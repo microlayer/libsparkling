@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="testbed">
+      <UniqueIdentifier>{4802822a-2f5b-48b6-a218-b37926b7087f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source">
+      <UniqueIdentifier>{5b63cb12-4d57-471a-9c17-f59a43be3c06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{0377183f-5767-483a-a65e-d7096d9e50a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\spark">
+      <UniqueIdentifier>{1577998b-12f2-4001-92ed-96b884f459a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\device">
+      <UniqueIdentifier>{7713f2eb-1b85-4473-aaf3-c126e305d454}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\renderer">
+      <UniqueIdentifier>{e6e32991-2143-4a10-88e5-f9266d738494}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\renderer\common">
+      <UniqueIdentifier>{9bab16e8-226f-4677-aef4-1d06cfdddc51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\log">
+      <UniqueIdentifier>{cd50dc10-f37a-4f72-9f36-57d908d0a359}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\file">
+      <UniqueIdentifier>{a803b8da-51f6-4117-b5f8-308648092703}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\device\window">
+      <UniqueIdentifier>{bb75345a-500b-4114-9fee-73bab0c69967}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\math">
+      <UniqueIdentifier>{b31f5b64-8419-4f31-8830-cae8290ecfb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\drawing">
+      <UniqueIdentifier>{770b9519-45af-41ce-be9a-7184122a61de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{f8c21553-6648-4951-b9bd-7e5e20a6115c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glew">
+      <UniqueIdentifier>{26fda8cc-9c88-4f35-89f3-6c1aebd801cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\app">
+      <UniqueIdentifier>{349c943e-8293-4abd-b7a4-271df3b1e8ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\ui">
+      <UniqueIdentifier>{2a32e0c2-62f8-4471-aff9-a4ee6e792fb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="testbed\bootstrap">
+      <UniqueIdentifier>{337b6faa-1c69-4f1b-8216-198a56e27b89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="testbed\bootstrap\win32">
+      <UniqueIdentifier>{ef47b415-61d1-4563-b828-5b24e70b44e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\timer">
+      <UniqueIdentifier>{96f727e9-b408-494f-ad1b-4bc8976567b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\perspective">
+      <UniqueIdentifier>{be68b19a-f107-4f6a-915f-ff556684f6fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\renderer\shader">
+      <UniqueIdentifier>{1ec21dfd-a20b-44b4-8870-8d7028928db9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\renderer\shader\glsl-for-gles2-feature-level-glsles10">
+      <UniqueIdentifier>{28b2e3c3-c2d7-4124-8ac0-d9767d594916}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\renderer\shader\glsl-for-spir-feature-level-glsles10">
+      <UniqueIdentifier>{0b9947a8-380d-46e3-95e6-de45192e416a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\renderer\shader\glsl-for-ogl-feature-level-glsles10">
+      <UniqueIdentifier>{34c4a2d2-aa1a-472e-870b-cf94813b61a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\mesh">
+      <UniqueIdentifier>{21ae06d1-6a61-4cb7-b47d-3d9ed3e6f9c4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\source\spark\Sparkling.cpp">
+      <Filter>source\spark</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\log\AndroidLogger.cpp">
+      <Filter>source\log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\log\DefaultLogger.cpp">
+      <Filter>source\log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\log\LogManager.cpp">
+      <Filter>source\log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\device\AbstractSparkDevice.cpp">
+      <Filter>source\device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\device\window\AbstractSparkWindow.cpp">
+      <Filter>source\device\window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\device\window\GlfwWindow.cpp">
+      <Filter>source\device\window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\renderer\OpenGLFLES2Renderer.cpp">
+      <Filter>source\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\renderer\AbstractSparkRenderer.cpp">
+      <Filter>source\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\glew\glew.c">
+      <Filter>lib\glew</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\app\SparkApp.cpp">
+      <Filter>source\app</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\ui\AbstractCanvas.cpp">
+      <Filter>source\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\testbed\bootstrap\win32\main.cpp">
+      <Filter>testbed\bootstrap\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\device\Win32Device.cpp">
+      <Filter>source\device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\device\AndroidDevice.cpp">
+      <Filter>source\device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\device\WebGLDevice.cpp">
+      <Filter>source\device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\renderer\OpenGLES2Renderer.cpp">
+      <Filter>source\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\device\window\AndroidEGLWindow.cpp">
+      <Filter>source\device\window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\device\DeviceInstance.cpp">
+      <Filter>source\device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\timer\Timer.cpp">
+      <Filter>source\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\perspective\OrthographicProjection.cpp">
+      <Filter>source\perspective</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\file\FileSystem.cpp">
+      <Filter>source\file</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\renderer\shader\OpenGLShaderProgram.cpp">
+      <Filter>source\renderer\shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\drawing\Bitmap.cpp">
+      <Filter>source\drawing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\mesh\Mesh.cpp">
+      <Filter>source\mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\renderer\OpenGLRenderer.cpp">
+      <Filter>source\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\renderer\Vulkan13Renderer.cpp">
+      <Filter>source\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\renderer\VulkanRenderer.cpp">
+      <Filter>source\renderer</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\source\spark\SparkCompilerConfig.hpp">
+      <Filter>source\spark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\spark\SparkSetup.hpp">
+      <Filter>source\spark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\spark\SparkTypes.hpp">
+      <Filter>source\spark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\device\AbstractSparkDevice.hpp">
+      <Filter>source\device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkDevice.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkRenderer.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\renderer\common\ERenderEngine.hpp">
+      <Filter>source\renderer\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\log\AndroidLogger.hpp">
+      <Filter>source\log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\log\DefaultLogger.hpp">
+      <Filter>source\log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\log\LogManager.hpp">
+      <Filter>source\log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkLogger.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\SparkRefCount.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\file\FileSystem.hpp">
+      <Filter>source\file</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\spark\SparkLibConfig.hpp">
+      <Filter>source\spark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\device\window\AbstractSparkWindow.hpp">
+      <Filter>source\device\window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\device\window\GlfwWindow.hpp">
+      <Filter>source\device\window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\renderer\OpenGLFLES2Renderer.hpp">
+      <Filter>source\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Sparkling.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\math\Matrix3.hpp">
+      <Filter>source\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\math\Matrix4.hpp">
+      <Filter>source\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\math\Vector2.hpp">
+      <Filter>source\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\math\Vector3.hpp">
+      <Filter>source\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\renderer\AbstractSparkRenderer.hpp">
+      <Filter>source\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\drawing\Color.hpp">
+      <Filter>source\drawing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\testbed\SampleApp.hpp">
+      <Filter>testbed</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\app\SparkApp.hpp">
+      <Filter>source\app</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkApp.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\testbed\SampleCanvas1.hpp">
+      <Filter>testbed</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkCommandListener.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ui\AbstractCanvas.hpp">
+      <Filter>source\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ui\Command.hpp">
+      <Filter>source\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\device\Win32Device.hpp">
+      <Filter>source\device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\device\AndroidDevice.hpp">
+      <Filter>source\device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\device\WebGLDevice.hpp">
+      <Filter>source\device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\renderer\OpenGLES2Renderer.hpp">
+      <Filter>source\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\device\window\AndroidEGLWindow.hpp">
+      <Filter>source\device\window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\device\DeviceInstance.hpp">
+      <Filter>source\device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkTimer.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\timer\Timer.hpp">
+      <Filter>source\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\perspective\OrthographicProjection.hpp">
+      <Filter>source\perspective</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\perspective\PerspectiveProjection.hpp">
+      <Filter>source\perspective</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\perspective\Viewport.hpp">
+      <Filter>source\perspective</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\perspective\VirtualResolution.hpp">
+      <Filter>source\perspective</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkFileSystem.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkImage.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\drawing\BitmapFormat.hpp">
+      <Filter>source\drawing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\drawing\PixelFormat.hpp">
+      <Filter>source\drawing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkShader.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\renderer\shader\glsl-for-ogl-feature-level-glsles10\DefaultShader.hpp">
+      <Filter>source\renderer\shader\glsl-for-ogl-feature-level-glsles10</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\drawing\Vertex3.hpp">
+      <Filter>source\drawing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\math\ProjectionMatrix.hpp">
+      <Filter>source\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\renderer\shader\OpenGLShaderProgram.hpp">
+      <Filter>source\renderer\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\drawing\Bitmap.hpp">
+      <Filter>source\drawing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\mesh\Mesh.hpp">
+      <Filter>source\mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkMesh.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\drawing\ClippingRectangle.hpp">
+      <Filter>source\drawing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\renderer\OpenGLRenderer.hpp">
+      <Filter>source\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\renderer\Vulkan13Renderer.hpp">
+      <Filter>source\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\renderer\VulkanRenderer.hpp">
+      <Filter>source\renderer</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\source\renderer\shader\glsl-for-ogl-feature-level-glsles10\Default.frag">
+      <Filter>source\renderer\shader\glsl-for-ogl-feature-level-glsles10</Filter>
+    </None>
+    <None Include="..\..\source\renderer\shader\glsl-for-ogl-feature-level-glsles10\Default.vert">
+      <Filter>source\renderer\shader\glsl-for-ogl-feature-level-glsles10</Filter>
+    </None>
+  </ItemGroup>
+</Project>
