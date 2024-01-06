@@ -76,6 +76,9 @@
     <Filter Include="source\mesh">
       <UniqueIdentifier>{21ae06d1-6a61-4cb7-b47d-3d9ed3e6f9c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\mlstl">
+      <UniqueIdentifier>{8f6b8672-66a5-4d81-9d9c-cb8052d9a085}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\spark\Sparkling.cpp">
@@ -161,6 +164,9 @@
     </ClCompile>
     <ClCompile Include="..\..\source\renderer\VulkanRenderer.cpp">
       <Filter>source\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\mlstl\MLBase64.cpp">
+      <Filter>source\mlstl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -341,6 +347,12 @@
     <ClInclude Include="..\..\source\renderer\VulkanRenderer.hpp">
       <Filter>source\renderer</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\source\renderer\shader\glsl-for-spir-feature-level-glsles10\DefaultShader.hpp">
+      <Filter>source\renderer\shader\glsl-for-spir-feature-level-glsles10</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\mlstl\MLBase64.hpp">
+      <Filter>source\mlstl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\source\renderer\shader\glsl-for-ogl-feature-level-glsles10\Default.frag">
@@ -348,6 +360,12 @@
     </None>
     <None Include="..\..\source\renderer\shader\glsl-for-ogl-feature-level-glsles10\Default.vert">
       <Filter>source\renderer\shader\glsl-for-ogl-feature-level-glsles10</Filter>
+    </None>
+    <None Include="..\..\source\renderer\shader\glsl-for-spir-feature-level-glsles10\Default.frag">
+      <Filter>source\renderer\shader\glsl-for-spir-feature-level-glsles10</Filter>
+    </None>
+    <None Include="..\..\source\renderer\shader\glsl-for-spir-feature-level-glsles10\Default.vert">
+      <Filter>source\renderer\shader\glsl-for-spir-feature-level-glsles10</Filter>
     </None>
   </ItemGroup>
 </Project>

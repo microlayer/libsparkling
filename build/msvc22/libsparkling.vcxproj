@@ -222,6 +222,7 @@
     <ClCompile Include="..\..\source\log\DefaultLogger.cpp" />
     <ClCompile Include="..\..\source\log\LogManager.cpp" />
     <ClCompile Include="..\..\source\mesh\Mesh.cpp" />
+    <ClCompile Include="..\..\source\mlstl\MLBase64.cpp" />
     <ClCompile Include="..\..\source\perspective\OrthographicProjection.cpp" />
     <ClCompile Include="..\..\source\renderer\AbstractSparkRenderer.cpp" />
     <ClCompile Include="..\..\source\renderer\OpenGLES2Renderer.cpp" />
@@ -273,6 +274,7 @@
     <ClInclude Include="..\..\source\math\Vector2.hpp" />
     <ClInclude Include="..\..\source\math\Vector3.hpp" />
     <ClInclude Include="..\..\source\mesh\Mesh.hpp" />
+    <ClInclude Include="..\..\source\mlstl\MLBase64.hpp" />
     <ClInclude Include="..\..\source\perspective\OrthographicProjection.hpp" />
     <ClInclude Include="..\..\source\perspective\PerspectiveProjection.hpp" />
     <ClInclude Include="..\..\source\perspective\Viewport.hpp" />
@@ -283,6 +285,7 @@
     <ClInclude Include="..\..\source\renderer\OpenGLFLES2Renderer.hpp" />
     <ClInclude Include="..\..\source\renderer\OpenGLRenderer.hpp" />
     <ClInclude Include="..\..\source\renderer\shader\glsl-for-ogl-feature-level-glsles10\DefaultShader.hpp" />
+    <ClInclude Include="..\..\source\renderer\shader\glsl-for-spir-feature-level-glsles10\DefaultShader.hpp" />
     <ClInclude Include="..\..\source\renderer\shader\OpenGLShaderProgram.hpp" />
     <ClInclude Include="..\..\source\renderer\Vulkan13Renderer.hpp" />
     <ClInclude Include="..\..\source\renderer\VulkanRenderer.hpp" />
@@ -299,6 +302,8 @@
   <ItemGroup>
     <None Include="..\..\source\renderer\shader\glsl-for-ogl-feature-level-glsles10\Default.frag" />
     <None Include="..\..\source\renderer\shader\glsl-for-ogl-feature-level-glsles10\Default.vert" />
+    <None Include="..\..\source\renderer\shader\glsl-for-spir-feature-level-glsles10\Default.frag" />
+    <None Include="..\..\source\renderer\shader\glsl-for-spir-feature-level-glsles10\Default.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
