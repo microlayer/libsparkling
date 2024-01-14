@@ -115,5 +115,5 @@ int main(void)
 |Lib|Version|Release Date|
 |---|---|---|
 |glew|2.1.0 |July 31, 2017|
-|glfw|3.3.9 |July 22, 2022|
+|glfw|3.3.9 |Dec 13, 2023|
 |lodepng|20230410|April 04, 2023|
