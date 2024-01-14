@@ -28,6 +28,7 @@ namespace spark {
             std::vector<VkPresentModeKHR> presentModes;
             std::vector<VkImage> swapChainImages;
             VkFormat format;
+            VkExtent2D maxViewport;
 
             // Supported GLFW Window Extensions
             uint32_t windowExtensionCount;
@@ -70,8 +71,7 @@ namespace spark {
             VkDevice m_device;
             // Command Buffer
             VkCommandPool m_commandPool;
-            // Swap chain
-            //VkFormat m_swapChainFormat;
+            // Swap chain            
             VkExtent2D m_swapChainExtent;
             VkSwapchainKHR m_swapChain;
             // Render pass

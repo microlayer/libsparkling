@@ -19,8 +19,8 @@ namespace spark {
         */
         Vulkan13Renderer::~Vulkan13Renderer()
         {
-            vkDestroyInstance(m_vkInstance, NULL);
             vkDestroyDevice(m_device, NULL);
+            vkDestroyInstance(m_vkInstance, NULL);
         }
 
         /**
@@ -63,10 +63,16 @@ namespace spark {
 
             // Enumerate available Layers
             uint32_t instanceLayerCount = 0;
-            vkEnumerateInstanceLayerProperties(&instanceLayerCount, nullptr);
+            if (vkEnumerateInstanceLayerProperties(&instanceLayerCount, nullptr) != VK_SUCCESS)
+            {
+                m_logger->error("Failed to get instance layers count");
+            }
 
             std::vector<VkLayerProperties> availableInstanceLayers(instanceLayerCount);
-            vkEnumerateInstanceLayerProperties(&instanceLayerCount, availableInstanceLayers.data());
+            if (vkEnumerateInstanceLayerProperties(&instanceLayerCount, availableInstanceLayers.data()) != VK_SUCCESS)
+            {
+                m_logger->error("Failed to enumerate instance layers");
+            }
 
             std::vector<const char*> layerNames;
             m_logger->info("Available layers:");
@@ -78,15 +84,13 @@ namespace spark {
 
             // Enumerate available instance Extensions
             uint32_t extensionPropertiesCount = 0;
-            VkResult result = vkEnumerateInstanceExtensionProperties(nullptr, &extensionPropertiesCount, nullptr);
-            if (result != VK_SUCCESS)
+            if (vkEnumerateInstanceExtensionProperties(nullptr, &extensionPropertiesCount, nullptr) != VK_SUCCESS)
             {
-                m_logger->error("Failed to enumerate count of instance extension prperties");
+                m_logger->error("Failed to get count of instance extension prperties");
             }
 
             std::vector<VkExtensionProperties> extensionProperties(extensionPropertiesCount);
-            result = vkEnumerateInstanceExtensionProperties(nullptr, &extensionPropertiesCount, extensionProperties.data());
-            if (result != VK_SUCCESS)
+            if (vkEnumerateInstanceExtensionProperties(nullptr, &extensionPropertiesCount, extensionProperties.data()) != VK_SUCCESS)
             {
                 m_logger->error("Failed to enumerate instance extension prperties");
             }
@@ -199,7 +203,7 @@ namespace spark {
 
             // Device Extensions                  
             std::vector<const char*> deviceExtensions;
-            //deviceExtensions.push_back(VK_KHR_DRIVER_PROPERTIES_EXTENSION_NAME);
+            deviceExtensions.push_back(VK_KHR_DRIVER_PROPERTIES_EXTENSION_NAME);
             deviceExtensions.push_back(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
 
             // device features
@@ -347,6 +351,7 @@ namespace spark {
 
             // Select swap chain size
             VkExtent2D swapChainExtent = surfaceCapabilities.currentExtent;
+            m_vulkanConfig.maxViewport = surfaceCapabilities.currentExtent;
 
             // Determine transformation to use (preferring no transform)
             VkSurfaceTransformFlagBitsKHR surfaceTransform;
@@ -481,7 +486,7 @@ namespace spark {
             m_logger->info("Vertex shader modul successfully created");
 
             VkShaderModule fragmentShaderModule = {};
-            if (vkCreateShaderModule(m_device, &vertexShaderCreateInfo, nullptr, &fragmentShaderModule) != VK_SUCCESS)
+            if (vkCreateShaderModule(m_device, &fragmentShaderCreateInfo, nullptr, &fragmentShaderModule) != VK_SUCCESS)
             {
                 m_logger->info("Failed to create fragment shader module");
                 exit(1);
@@ -507,7 +512,7 @@ namespace spark {
             vertexInputCreateInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
             vertexInputCreateInfo.vertexBindingDescriptionCount = 1;
             vertexInputCreateInfo.pVertexBindingDescriptions = &m_vertexBindingDescription;
-            vertexInputCreateInfo.vertexAttributeDescriptionCount = 2;
+            vertexInputCreateInfo.vertexAttributeDescriptionCount = m_vertexAttributeDescriptions.size();
             vertexInputCreateInfo.pVertexAttributeDescriptions = m_vertexAttributeDescriptions.data();
 
             // Describe input assembly
@@ -520,8 +525,8 @@ namespace spark {
             VkViewport viewport = {};
             viewport.x = 0.0f;
             viewport.y = 0.0f;
-            viewport.width = 640;
-            viewport.height = 480;
+            viewport.width = (float)m_vulkanConfig.maxViewport.width;
+            viewport.height = (float)m_vulkanConfig.maxViewport.height;
             viewport.minDepth = 0.0f;
             viewport.maxDepth = 1.0f;
 
@@ -529,8 +534,8 @@ namespace spark {
             VkRect2D scissor = {};
             scissor.offset.x = 0;
             scissor.offset.y = 0;
-            scissor.extent.width = 640;
-            scissor.extent.height = 480;
+            scissor.extent.width = m_vulkanConfig.maxViewport.width;
+            scissor.extent.height = m_vulkanConfig.maxViewport.height;
 
             VkPipelineViewportStateCreateInfo viewportCreateInfo = {};
             viewportCreateInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
@@ -539,8 +544,7 @@ namespace spark {
             viewportCreateInfo.scissorCount = 1;
             viewportCreateInfo.pScissors = &scissor;
 
-            // Describe rasterization
-            // Note: depth bias and using polygon modes other than fill require changes to logical device creation (device features)
+            // Describe rasterization            
             VkPipelineRasterizationStateCreateInfo rasterizationCreateInfo = {};
             rasterizationCreateInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO;
             rasterizationCreateInfo.depthClampEnable = VK_FALSE;
@@ -554,8 +558,7 @@ namespace spark {
             rasterizationCreateInfo.depthBiasSlopeFactor = 0.0f;
             rasterizationCreateInfo.lineWidth = 1.0f;
 
-            // Describe multisampling
-            // Note: using multisampling also requires turning on device features
+            // Describe multisampling            
             VkPipelineMultisampleStateCreateInfo multisampleCreateInfo = {};
             multisampleCreateInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO;
             multisampleCreateInfo.rasterizationSamples = VK_SAMPLE_COUNT_1_BIT;
@@ -564,8 +567,7 @@ namespace spark {
             multisampleCreateInfo.alphaToCoverageEnable = VK_FALSE;
             multisampleCreateInfo.alphaToOneEnable = VK_FALSE;
 
-            // Describing color blending
-            // Note: all paramaters except blendEnable and colorWriteMask are irrelevant here
+            // Describing color blending            
             VkPipelineColorBlendAttachmentState colorBlendAttachmentState = {};
             colorBlendAttachmentState.blendEnable = VK_FALSE;
             colorBlendAttachmentState.srcColorBlendFactor = VK_BLEND_FACTOR_ONE;
@@ -576,7 +578,6 @@ namespace spark {
             colorBlendAttachmentState.alphaBlendOp = VK_BLEND_OP_ADD;
             colorBlendAttachmentState.colorWriteMask = VK_COLOR_COMPONENT_R_BIT | VK_COLOR_COMPONENT_G_BIT | VK_COLOR_COMPONENT_B_BIT | VK_COLOR_COMPONENT_A_BIT;
 
-            // Note: all attachments must have the same values unless a device feature is enabled
             VkPipelineColorBlendStateCreateInfo colorBlendCreateInfo = {};
             colorBlendCreateInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO;
             colorBlendCreateInfo.logicOpEnable = VK_FALSE;
@@ -588,19 +589,16 @@ namespace spark {
             colorBlendCreateInfo.blendConstants[2] = 0.0f;
             colorBlendCreateInfo.blendConstants[3] = 0.0f;
 
-            // Describe pipeline layout
-            // Note: this describes the mapping between memory and shader resources (descriptor sets)
-            // This is for uniform buffers and samplers
-            VkDescriptorSetLayoutBinding layoutBinding = {};
-            layoutBinding.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
-            layoutBinding.descriptorCount = 1;
-            layoutBinding.stageFlags = VK_SHADER_STAGE_VERTEX_BIT;
+            // Describe pipeline layout           
+            VkDescriptorSetLayoutBinding descriptorLayoutBinding = {};
+            descriptorLayoutBinding.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
+            descriptorLayoutBinding.descriptorCount = 1;
+            descriptorLayoutBinding.stageFlags = VK_SHADER_STAGE_VERTEX_BIT;
 
             VkDescriptorSetLayoutCreateInfo descriptorLayoutCreateInfo = {};
             descriptorLayoutCreateInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO;
             descriptorLayoutCreateInfo.bindingCount = 1;
-            descriptorLayoutCreateInfo.pBindings = &layoutBinding;
-
+            descriptorLayoutCreateInfo.pBindings = &descriptorLayoutBinding;
             if (vkCreateDescriptorSetLayout(m_device, &descriptorLayoutCreateInfo, nullptr, &m_descriptorSetLayout) != VK_SUCCESS)
             {
                 m_logger->info("Failed to create descriptor layout");
@@ -611,12 +609,11 @@ namespace spark {
                 m_logger->info("Descriptor layout created successfully");
             }
 
-            VkPipelineLayoutCreateInfo layoutCreateInfo = {};
-            layoutCreateInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
-            layoutCreateInfo.setLayoutCount = 1;
-            layoutCreateInfo.pSetLayouts = &m_descriptorSetLayout;
-
-            if (vkCreatePipelineLayout(m_device, &layoutCreateInfo, nullptr, &m_pipelineLayout) != VK_SUCCESS)
+            VkPipelineLayoutCreateInfo pipelineLayoutCreateInfo = {};
+            pipelineLayoutCreateInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
+            pipelineLayoutCreateInfo.setLayoutCount = 1;
+            pipelineLayoutCreateInfo.pSetLayouts = &m_descriptorSetLayout;
+            if (vkCreatePipelineLayout(m_device, &pipelineLayoutCreateInfo, nullptr, &m_pipelineLayout) != VK_SUCCESS)
             {
                 m_logger->info("Failed to create pipeline layout");
                 exit(1);
@@ -642,7 +639,6 @@ namespace spark {
             pipelineCreateInfo.subpass = 0;
             pipelineCreateInfo.basePipelineHandle = VK_NULL_HANDLE;
             pipelineCreateInfo.basePipelineIndex = -1;
-            auto x = vkCreateGraphicsPipelines(m_device, VK_NULL_HANDLE, 1, &pipelineCreateInfo, nullptr, &m_graphicsPipeline);
             if (vkCreateGraphicsPipelines(m_device, VK_NULL_HANDLE, 1, &pipelineCreateInfo, nullptr, &m_graphicsPipeline) != VK_SUCCESS)
             {
                 m_logger->info("Failed to create graphics pipeline");
