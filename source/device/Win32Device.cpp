@@ -54,7 +54,7 @@ namespace spark {
             if (m_rendererEngineType == spark::renderer::ERE_OGLFLES2 ||
                 m_rendererEngineType == spark::renderer::ERE_VULKAN13)
             {
-                m_window = new spark::device::window::GlfwWindow(m_logger);
+                m_window = new spark::device::window::GlfwWindow(m_logger, m_rendererEngineType);
             }
             else if (m_rendererEngineType == spark::renderer::ERE_D3D11FL93)
             {
@@ -84,7 +84,7 @@ namespace spark {
         }
 
         /**
-        * @Brief The last instance which is created by the bootstrap phase. 
+        * @Brief The last instance which is created by the bootstrap phase.
         */
         void Win32Device::createRenderer()
         {
@@ -95,7 +95,7 @@ namespace spark {
 #if SPARK_COMPILE_VULKAN == 0x1
             else
             {
-                m_renderer = new spark::renderer::Vulkan13Renderer(this, m_shader);
+                m_renderer = new spark::renderer::Vulkan13Renderer(this, m_shader, m_window);
             }
 #endif
             m_renderer->onInit();

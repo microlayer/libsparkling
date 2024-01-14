@@ -37,8 +37,8 @@ namespace spark {
             // 3D
             void renderMesh(spark::mesh::ISparkMesh* mesh);
         };
-    }
-}
+    } // end namespace renderer
+} // end namespace spark
 #endif
 #endif
 #endif

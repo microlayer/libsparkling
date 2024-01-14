@@ -247,6 +247,7 @@
     <ClInclude Include="..\..\include\ISparkRenderer.hpp" />
     <ClInclude Include="..\..\include\ISparkShader.hpp" />
     <ClInclude Include="..\..\include\ISparkTimer.hpp" />
+    <ClInclude Include="..\..\include\ISparkWindow.hpp" />
     <ClInclude Include="..\..\include\Sparkling.hpp" />
     <ClInclude Include="..\..\include\SparkRefCount.hpp" />
     <ClInclude Include="..\..\source\app\SparkApp.hpp" />

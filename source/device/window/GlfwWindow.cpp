@@ -12,9 +12,10 @@ namespace spark {
             /**
             *
             */
-            GlfwWindow::GlfwWindow(spark::log::ISparkLogger* logger) :
+            GlfwWindow::GlfwWindow(spark::log::ISparkLogger* logger, spark::renderer::E_RENDER_ENGINE rendererEngineType) :
                 AbstractSparkWindow(logger),
-                m_window(NULL)
+                m_window(NULL),
+                m_rendererEngineType(rendererEngineType)
             {
                 m_landscape = true;
             }
@@ -47,6 +48,12 @@ namespace spark {
             {
                 Instance = this;
                 glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+                // By default GLFW creates OpenGL window context. 
+                // To use GLFW with vulkan GLFW_CLIENT_API and GLFW_NO_API needs to be set
+                if (m_rendererEngineType == spark::renderer::ERE_VULKAN13)
+                {
+                    glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+                }
                 m_window = glfwCreateWindow(width, height, "", NULL, NULL);
 
                 glfwSetKeyCallback(m_window, onKeyPressed);
@@ -110,6 +117,14 @@ namespace spark {
                     ScreenResolution sr = { 1196, 720, (1196.0f / 720.0f) };	//ratio:1.66
                     return sr;
                 }
+            }
+
+            /**
+            *
+            */
+            void* GlfwWindow::getNativeWindow()
+            {
+                return m_window;
             }
 
             /**

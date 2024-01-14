@@ -5,6 +5,7 @@
 #include "ISparkRenderer.hpp"
 #include "ISparkLogger.hpp"
 #include "ISparkDevice.hpp"
+#include "ISparkWindow.hpp"
 
 namespace spark {
     namespace device {
@@ -12,7 +13,7 @@ namespace spark {
             /**
             *
             */
-            class AbstractSparkWindow : public spark::SparkRefCount
+            class AbstractSparkWindow : public spark::device::window::ISparkWindow
             {
             public:
                 AbstractSparkWindow(spark::log::ISparkLogger* logger);

@@ -50,7 +50,7 @@ namespace spark {
         */
         void WebGLDevice::createSparkWindow()
         {
-            m_window = new spark::device::window::GlfwWindow(m_logger);
+            m_window = new spark::device::window::GlfwWindow(m_logger, m_rendererEngineType);
             // Initialize
             if (!m_window->init())
             {

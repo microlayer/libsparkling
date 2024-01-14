@@ -18,7 +18,7 @@ namespace spark {
             class GlfwWindow : public spark::device::window::AbstractSparkWindow
             {
             public:
-                GlfwWindow(spark::log::ISparkLogger* logger);
+                GlfwWindow(spark::log::ISparkLogger* logger, spark::renderer::E_RENDER_ENGINE rendererEngineType);
                 virtual ~GlfwWindow(void);
 
             public: // AbstractSparkWindow
@@ -29,6 +29,9 @@ namespace spark {
                 void swapBuffers();
                 bool isWindowActive();
                 ScreenResolution getScreenResolution();
+
+            public: // ISparkWindow
+                void* getNativeWindow();
 
             private:
                 void setDefaultViewport();
@@ -41,6 +44,8 @@ namespace spark {
             public:
                 static GlfwWindow* Instance;
                 GLFWwindow* m_window;
+                spark::renderer::E_RENDER_ENGINE m_rendererEngineType;
+
             };
         } // end namespace windowc
     } // end namespace device

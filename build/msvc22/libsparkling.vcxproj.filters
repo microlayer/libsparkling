@@ -353,6 +353,9 @@
     <ClInclude Include="..\..\source\mlstl\MLBase64.hpp">
       <Filter>source\mlstl</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\ISparkWindow.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\source\renderer\shader\glsl-for-ogl-feature-level-glsles10\Default.frag">
