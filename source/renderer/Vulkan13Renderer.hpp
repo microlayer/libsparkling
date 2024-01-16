@@ -84,7 +84,7 @@ namespace spark {
             VkPipelineLayout m_pipelineLayout;
 
         private:
-            const bool ENABLE_VULKAN_DEBUGGING = true;
+            const bool ENABLE_VULKAN_DEBUGGING = false;
 
         private:
             VulkanConfig m_vulkanConfig = {};

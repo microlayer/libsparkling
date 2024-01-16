@@ -82,6 +82,12 @@ namespace spark {
                 layerNames.push_back(layer.layerName);
             }
 
+            std::vector<const char*> enabledLayers;
+            if (ENABLE_VULKAN_DEBUGGING)
+            {                
+                enabledLayers.push_back("VK_LAYER_KHRONOS_validation");
+            }
+
             // Enumerate available instance Extensions
             uint32_t extensionPropertiesCount = 0;
             if (vkEnumerateInstanceExtensionProperties(nullptr, &extensionPropertiesCount, nullptr) != VK_SUCCESS)
@@ -105,8 +111,8 @@ namespace spark {
             instanceCreateInfo.pApplicationInfo = &appInfo;
             instanceCreateInfo.enabledExtensionCount = m_vulkanConfig.windowExtensionCount;
             instanceCreateInfo.ppEnabledExtensionNames = m_vulkanConfig.windowExtensions.data();
-            instanceCreateInfo.enabledLayerCount = availableInstanceLayers.size();
-            instanceCreateInfo.ppEnabledLayerNames = layerNames.data();
+            instanceCreateInfo.enabledLayerCount = enabledLayers.size();
+            instanceCreateInfo.ppEnabledLayerNames = enabledLayers.data();
             VkResult ret = vkCreateInstance(&instanceCreateInfo, nullptr, &m_vkInstance);
             if (ret != VK_SUCCESS)
             {
