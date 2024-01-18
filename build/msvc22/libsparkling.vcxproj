@@ -225,6 +225,7 @@
     <ClCompile Include="..\..\source\mlstl\MLBase64.cpp" />
     <ClCompile Include="..\..\source\perspective\OrthographicProjection.cpp" />
     <ClCompile Include="..\..\source\renderer\AbstractSparkRenderer.cpp" />
+    <ClCompile Include="..\..\source\renderer\config\VulkanConfig.cpp" />
     <ClCompile Include="..\..\source\renderer\OpenGLES2Renderer.cpp" />
     <ClCompile Include="..\..\source\renderer\OpenGLFLES2Renderer.cpp" />
     <ClCompile Include="..\..\source\renderer\OpenGLRenderer.cpp" />
@@ -237,6 +238,7 @@
     <ClCompile Include="..\..\testbed\bootstrap\win32\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\ISparkRendererApiConfig.hpp" />
     <ClInclude Include="..\..\include\ISparkApp.hpp" />
     <ClInclude Include="..\..\include\ISparkCommandListener.hpp" />
     <ClInclude Include="..\..\include\ISparkDevice.hpp" />
@@ -282,6 +284,7 @@
     <ClInclude Include="..\..\source\perspective\VirtualResolution.hpp" />
     <ClInclude Include="..\..\source\renderer\AbstractSparkRenderer.hpp" />
     <ClInclude Include="..\..\source\renderer\common\ERenderEngine.hpp" />
+    <ClInclude Include="..\..\source\renderer\config\VulkanConfig.hpp" />
     <ClInclude Include="..\..\source\renderer\OpenGLES2Renderer.hpp" />
     <ClInclude Include="..\..\source\renderer\OpenGLFLES2Renderer.hpp" />
     <ClInclude Include="..\..\source\renderer\OpenGLRenderer.hpp" />

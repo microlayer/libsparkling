@@ -22,6 +22,7 @@ namespace spark {
             m_fileSystem->release();
             m_window->release();
             m_shader->release();
+            m_rendererConfig->release();
             m_renderer->release();
         }
 
@@ -95,7 +96,8 @@ namespace spark {
 #if SPARK_COMPILE_VULKAN == 0x1
             else
             {
-                m_renderer = new spark::renderer::Vulkan13Renderer(this, m_shader, m_window);
+                m_rendererConfig = new spark::renderer::VulkanConfig(m_window, m_logger);
+                m_renderer = new spark::renderer::Vulkan13Renderer(this, m_shader);
             }
 #endif
             m_renderer->onInit();

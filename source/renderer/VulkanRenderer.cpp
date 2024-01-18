@@ -72,7 +72,27 @@ namespace spark {
         */
         void VulkanRenderer::draw2DLine(int16_t x1, int16_t y1, int16_t x2, int16_t y2, spark::drawing::Color color)
         {
+            //// Begin recording the command buffer
+            //VkCommandBufferBeginInfo beginInfo = {};
+            //beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
+            //beginInfo.flags = 0; // Optional
+            //beginInfo.pInheritanceInfo = nullptr; // Optional
 
+            //vkBeginCommandBuffer(commandBuffer, &beginInfo);
+
+
+            //vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline);
+
+
+            //VkDeviceSize offset = 0;
+            //vkCmdBindVertexBuffers(commandBuffer, 0, 1, &vertexBuffer, &offset);
+
+            //// Draw the vertices
+            //vkCmdDraw(commandBuffer, vertexCount, 1, 0, 0);
+            //
+
+            //// End recording the command buffer
+            //vkEndCommandBuffer(commandBuffer);
         }
 
         /**

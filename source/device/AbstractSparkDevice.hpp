@@ -7,6 +7,7 @@
 #include "device/window/GlfwWindow.hpp"
 #include "device/DeviceInstance.hpp"
 #include "ISparkShader.hpp"
+#include "ISparkRendererApiConfig.hpp"
 
 #if SPARK_PLATFORM == SPARK_PLATFORM_WEBGL
 #include <emscripten/emscripten.h>
@@ -68,6 +69,7 @@ namespace spark {
 			spark::ui::AbstractCanvas* m_canvas;
             spark::renderer::shader::ISparkShader* m_shader;
 			spark::renderer::ISparkRenderer* m_renderer;
+            spark::renderer::ISparkRendererApiConfig* m_rendererConfig;
 		};
 	} // end namespace device
 } // end namespace spark

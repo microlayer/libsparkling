@@ -8,6 +8,7 @@
 #include "AbstractSparkDevice.hpp"
 #include "renderer/OpenGLFLES2Renderer.hpp"
 #include "renderer/Vulkan13Renderer.hpp"
+#include "renderer/config/VulkanConfig.hpp"
 #include "renderer/shader/OpenGLShaderProgram.hpp"
 
 namespace spark {

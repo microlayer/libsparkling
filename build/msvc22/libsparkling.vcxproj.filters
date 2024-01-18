@@ -79,6 +79,9 @@
     <Filter Include="source\mlstl">
       <UniqueIdentifier>{8f6b8672-66a5-4d81-9d9c-cb8052d9a085}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\renderer\config">
+      <UniqueIdentifier>{7d0fbe6a-ef11-4551-9e83-68d9fb78eb89}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\spark\Sparkling.cpp">
@@ -167,6 +170,9 @@
     </ClCompile>
     <ClCompile Include="..\..\source\mlstl\MLBase64.cpp">
       <Filter>source\mlstl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\renderer\config\VulkanConfig.cpp">
+      <Filter>source\renderer\config</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -354,6 +360,12 @@
       <Filter>source\mlstl</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\ISparkWindow.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\renderer\config\VulkanConfig.hpp">
+      <Filter>source\renderer\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkRendererApiConfig.hpp">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
