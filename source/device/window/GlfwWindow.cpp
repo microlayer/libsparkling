@@ -101,24 +101,7 @@ namespace spark {
                 int32_t flag = glfwWindowShouldClose(m_window);
                 return flag == 0 ? true : false;
             }
-
-            /**
-            * @Brief Hardcoded Screen Resolution for this win32 Device. Equal to Android
-            */
-            ScreenResolution GlfwWindow::getScreenResolution()
-            {
-                if (!m_landscape)
-                {
-                    ScreenResolution sr = { 720, 1184, (720.0f / 1184.0f) };	//ratio:0.608
-                    return sr;
-                }
-                else
-                {
-                    ScreenResolution sr = { 1196, 720, (1196.0f / 720.0f) };	//ratio:1.66
-                    return sr;
-                }
-            }
-
+           
             /**
             *
             */

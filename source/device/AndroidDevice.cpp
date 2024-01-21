@@ -6,7 +6,8 @@ namespace spark {
         *
         */
         AndroidDevice::AndroidDevice(spark::renderer::E_RENDER_ENGINE rendererType, android_app* pApplication) :
-            AbstractSparkDevice(rendererType)
+            AbstractSparkDevice(rendererType),
+            m_androidApplication(pApplication)
         {
 
         }
@@ -44,7 +45,24 @@ namespace spark {
         */
         void AndroidDevice::createSparkWindow()
         {
+            if (m_rendererEngineType == spark::renderer::ERE_OGLFLES2 ||
+                m_rendererEngineType == spark::renderer::ERE_VULKAN13)
+            {
+                m_window = new spark::device::window::AndroidEGLWindow(m_logger, m_rendererEngineType, m_androidApplication);
+            }
+            
+            // Initialize
+            if (!m_window->init())
+            {
+                exit(EXIT_FAILURE);
+            }
 
+            if (!m_window->createWindow(this->getScreenResolution().m_width, this->getScreenResolution().m_height))
+            {
+                m_window->terminate();
+                exit(EXIT_FAILURE);
+            }
+            m_window->setWindowTitle("Microlayer - Sparkling");
         }
 
         /**
@@ -60,7 +78,8 @@ namespace spark {
         */
         void AndroidDevice::createRenderer()
         {
-
+            m_renderer = new spark::renderer::OpenGLES2Renderer(this, m_shader);
+            m_renderer->onInit();
         }
 
         /**

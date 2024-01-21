@@ -57,10 +57,6 @@ namespace spark {
             {
                 m_window = new spark::device::window::GlfwWindow(m_logger, m_rendererEngineType);
             }
-            else if (m_rendererEngineType == spark::renderer::ERE_D3D11FL93)
-            {
-                //m_window = new spark::device::window::WCWin32D3D11(this);
-            }
 
             // Initialize
             if (!m_window->init())

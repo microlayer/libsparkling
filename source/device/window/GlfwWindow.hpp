@@ -27,8 +27,7 @@ namespace spark {
                 void terminate();
                 void setWindowTitle(const char* title);
                 void swapBuffers();
-                bool isWindowActive();
-                ScreenResolution getScreenResolution();
+                bool isWindowActive();                
 
             public: // ISparkWindow
                 void* getNativeWindow();
@@ -47,7 +46,7 @@ namespace spark {
                 spark::renderer::E_RENDER_ENGINE m_rendererEngineType;
 
             };
-        } // end namespace windowc
+        } // end namespace window
     } // end namespace device
 } // end namespace spark
 #endif

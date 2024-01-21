@@ -6,6 +6,7 @@
 #include "Sparkling.hpp"
 #include "AbstractSparkDevice.hpp"
 #include "renderer/OpenGLES2Renderer.hpp"
+#include "window/AndroidEGLWindow.hpp"
 #include "renderer/shader/OpenGLShaderProgram.hpp"
 
 namespace spark {
@@ -28,6 +29,9 @@ namespace spark {
 
         public: // ISparkDevice
             std::string getRootPath();
+
+        private:
+            android_app* m_androidApplication;
         };
     } // end namespace device
 } // end namespace spark

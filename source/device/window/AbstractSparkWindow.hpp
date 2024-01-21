@@ -26,7 +26,9 @@ namespace spark {
                 virtual void setWindowTitle(const char* title) = 0;
                 virtual void swapBuffers() = 0;
                 virtual bool isWindowActive() = 0;
-                virtual ScreenResolution getScreenResolution() = 0;
+            
+            public:
+                virtual ScreenResolution getScreenResolution();
 
             protected:
                 log::ISparkLogger* m_logger;
