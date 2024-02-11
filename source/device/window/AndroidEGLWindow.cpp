@@ -20,6 +20,7 @@ namespace spark {
             {
                 m_androidApplication->userData = this;
                 m_androidApplication->onAppCmd = callbackEvent;
+                m_landscape = true;
             }
 
             /**
@@ -337,6 +338,14 @@ namespace spark {
                     androidEGLWindow->destroyEGL();
                     break;
                 }
+            }
+
+            /**
+            *
+            */
+            ScreenResolution AndroidEGLWindow::getScreenResolution()
+            {
+                return { m_width, m_height, real32(m_width / m_height) };
             }
         } // end namespace window	
     } // end namespace device

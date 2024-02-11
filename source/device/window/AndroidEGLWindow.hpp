@@ -43,6 +43,9 @@ namespace spark {
             private: // Event handler
                 static void callbackEvent(android_app* pApplication, int32_t pCommand);
 
+            public:
+                ScreenResolution getScreenResolution();
+
             private:
                 spark::renderer::E_RENDER_ENGINE m_rendererEngineType;
                 android_app* m_androidApplication;

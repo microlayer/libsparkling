@@ -9,7 +9,7 @@ namespace spark {
             AbstractSparkDevice(rendererType),
             m_androidApplication(pApplication)
         {
-
+            AbstractSparkDevice::construct();
         }
 
         /**
@@ -29,7 +29,12 @@ namespace spark {
         */
         void AndroidDevice::createLogger()
         {
-
+            m_logger = new spark::log::AndroidLogger();
+            if (m_logger != NULL)
+            {
+                spark::log::LogManager::setLogger(m_logger);
+            }
+            m_logger->info("Logger successful created for Android device");
         }
 
         /**
@@ -45,12 +50,12 @@ namespace spark {
         */
         void AndroidDevice::createSparkWindow()
         {
-            if (m_rendererEngineType == spark::renderer::ERE_OGLFLES2 ||
+            if (m_rendererEngineType == spark::renderer::ERE_OGLES2 ||
                 m_rendererEngineType == spark::renderer::ERE_VULKAN13)
             {
                 m_window = new spark::device::window::AndroidEGLWindow(m_logger, m_rendererEngineType, m_androidApplication);
             }
-            
+
             // Initialize
             if (!m_window->init())
             {
