@@ -47,7 +47,7 @@ $(call import-module,android/native_app_glue)
 # Build static library
 #----------------------------------------------------------------------------------------------------
 #include $(CLEAR_VARS)
-#LOCAL_MODULE		:= sparkling
+#LOCAL_MODULE		:= libsparkling
 #LOCAL_C_INCLUDES   := $(SPARKLING_C_INCLUDES)
 #LOCAL_SRC_FILES  	:= $(SPARKLING_SRC_FILES)
 
