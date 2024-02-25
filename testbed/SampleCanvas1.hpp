@@ -13,6 +13,11 @@ public:
     {
         m_fileSystem = device->getFileSystem();
         //m_image = m_fileSystem->loadBitmap("texture1.png");
+
+        // Set virtual resolution
+        spark::perspective::OrthographicProjection orthographicProjection(device->getScreenResolution().m_width, device->getScreenResolution().m_height);
+        orthographicProjection.setVirtualResolution(1196, 720, spark::perspective::VirtualResolution::E_LETTER_OR_PILLARBOX);
+        device->getRenderer()->setOrthographicProjection(orthographicProjection);
     }
 
     /**

@@ -21,12 +21,12 @@ namespace spark {
 
             public:
                 virtual int32_t init() = 0;
-                virtual int32_t createWindow(int32_t width, int32_t height) = 0;
+                virtual int32_t createWindow() = 0;
                 virtual void terminate() = 0;
                 virtual void setWindowTitle(const char* title) = 0;
                 virtual void swapBuffers() = 0;
                 virtual bool isWindowActive() = 0;
-            
+
             public:
                 virtual ScreenResolution getScreenResolution();
 

@@ -62,7 +62,7 @@ namespace spark {
                 exit(EXIT_FAILURE);
             }
 
-            if (!m_window->createWindow(this->getScreenResolution().m_width, this->getScreenResolution().m_height))
+            if (!m_window->createWindow())
             {
                 m_window->terminate();
                 exit(EXIT_FAILURE);

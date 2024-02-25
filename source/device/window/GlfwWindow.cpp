@@ -44,7 +44,7 @@ namespace spark {
             /**
             *
             */
-            int32_t GlfwWindow::createWindow(int32_t width, int32_t height)
+            int32_t GlfwWindow::createWindow()
             {
                 Instance = this;
                 glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
@@ -54,7 +54,7 @@ namespace spark {
                 {
                     glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
                 }
-                m_window = glfwCreateWindow(width, height, "", NULL, NULL);
+                m_window = glfwCreateWindow(this->getScreenResolution().m_width, this->getScreenResolution().m_height, "", NULL, NULL);
 
                 glfwSetKeyCallback(m_window, onKeyPressed);
                 glfwSetCursorPosCallback(m_window, onMouseMove);
@@ -101,7 +101,7 @@ namespace spark {
                 int32_t flag = glfwWindowShouldClose(m_window);
                 return flag == 0 ? true : false;
             }
-           
+
             /**
             *
             */
