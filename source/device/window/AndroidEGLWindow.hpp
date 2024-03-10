@@ -19,7 +19,7 @@ namespace spark {
             {
             public:
                 AndroidEGLWindow(spark::log::ISparkLogger* logger, spark::renderer::E_RENDER_ENGINE rendererEngineType, android_app* pApplication);
-                ~AndroidEGLWindow();
+                virtual ~AndroidEGLWindow();
 
             public: // AbstractSparkWindow
                 int32_t init();

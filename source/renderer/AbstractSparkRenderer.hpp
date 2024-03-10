@@ -12,7 +12,7 @@ namespace spark {
         {
         public:
             AbstractSparkRenderer(spark::device::ISparkDevice* device, spark::renderer::shader::ISparkShader* shader);
-            ~AbstractSparkRenderer();
+            virtual ~AbstractSparkRenderer();
 
         public: // ISparkRenderer
             void beginScene();

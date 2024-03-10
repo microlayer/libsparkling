@@ -17,7 +17,7 @@ namespace spark {
             {
             public:
                 AbstractSparkWindow(spark::log::ISparkLogger* logger);
-                ~AbstractSparkWindow(void);
+                virtual ~AbstractSparkWindow(void);
 
             public:
                 virtual int32_t init() = 0;
