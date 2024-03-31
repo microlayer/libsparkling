@@ -232,6 +232,8 @@
     <ClCompile Include="..\..\source\renderer\shader\OpenGLShaderProgram.cpp" />
     <ClCompile Include="..\..\source\renderer\Vulkan13Renderer.cpp" />
     <ClCompile Include="..\..\source\renderer\VulkanRenderer.cpp" />
+    <ClCompile Include="..\..\source\scene\SceneGraphManager2D.cpp" />
+    <ClCompile Include="..\..\source\scene\SceneGraphManager3D.cpp" />
     <ClCompile Include="..\..\source\spark\Sparkling.cpp" />
     <ClCompile Include="..\..\source\timer\Timer.cpp" />
     <ClCompile Include="..\..\source\ui\AbstractCanvas.cpp" />
@@ -293,6 +295,8 @@
     <ClInclude Include="..\..\source\renderer\shader\OpenGLShaderProgram.hpp" />
     <ClInclude Include="..\..\source\renderer\Vulkan13Renderer.hpp" />
     <ClInclude Include="..\..\source\renderer\VulkanRenderer.hpp" />
+    <ClInclude Include="..\..\source\scene\SceneGraphManager2D.hpp" />
+    <ClInclude Include="..\..\source\scene\SceneGraphManager3D.hpp" />
     <ClInclude Include="..\..\source\spark\SparkCompilerConfig.hpp" />
     <ClInclude Include="..\..\source\spark\SparkLibConfig.hpp" />
     <ClInclude Include="..\..\source\spark\SparkSetup.hpp" />

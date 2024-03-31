@@ -1,0 +1,4 @@
+namespace spark {
+    namespace scene {
+    }
+}

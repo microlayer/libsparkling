@@ -82,6 +82,9 @@
     <Filter Include="source\renderer\config">
       <UniqueIdentifier>{7d0fbe6a-ef11-4551-9e83-68d9fb78eb89}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\scene">
+      <UniqueIdentifier>{d0da75b2-92cb-40bd-b46e-322ee796811d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\spark\Sparkling.cpp">
@@ -173,6 +176,12 @@
     </ClCompile>
     <ClCompile Include="..\..\source\renderer\config\VulkanConfig.cpp">
       <Filter>source\renderer\config</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scene\SceneGraphManager2D.cpp">
+      <Filter>source\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scene\SceneGraphManager3D.cpp">
+      <Filter>source\scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -367,6 +376,12 @@
     </ClInclude>
     <ClInclude Include="..\..\include\ISparkRendererApiConfig.hpp">
       <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scene\SceneGraphManager2D.hpp">
+      <Filter>source\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scene\SceneGraphManager3D.hpp">
+      <Filter>source\scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
