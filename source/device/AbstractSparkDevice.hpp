@@ -8,6 +8,7 @@
 #include "device/DeviceInstance.hpp"
 #include "ISparkShader.hpp"
 #include "ISparkRendererApiConfig.hpp"
+#include "scene/SceneGraphManager3D.hpp"
 
 #if SPARK_PLATFORM == SPARK_PLATFORM_WEBGL
 #include <emscripten/emscripten.h>
@@ -57,6 +58,9 @@ namespace spark {
 			virtual void createSparkWindow() = 0;
             virtual void createShader() = 0;
 			virtual void createRenderer() = 0;
+
+        public:
+            spark::scene::ISceneGraphManager3D* createSceneGraphManager3D();
 
 		protected: // Device Members
 			bool m_isDeviceRunning;

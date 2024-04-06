@@ -183,6 +183,9 @@
     <ClCompile Include="..\..\source\scene\SceneGraphManager3D.cpp">
       <Filter>source\scene</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\scene\SceneNode.cpp">
+      <Filter>source\scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\spark\SparkCompilerConfig.hpp">
@@ -382,6 +385,15 @@
     </ClInclude>
     <ClInclude Include="..\..\source\scene\SceneGraphManager3D.hpp">
       <Filter>source\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scene\SceneNode.hpp">
+      <Filter>source\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISceneGraphManager2D.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISceneGraphManager3D.hpp">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

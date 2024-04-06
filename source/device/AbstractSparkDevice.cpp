@@ -91,7 +91,7 @@ namespace spark {
         */
         file::ISparkFileSystem* AbstractSparkDevice::getFileSystem()
         {
-        	return m_fileSystem;
+            return m_fileSystem;
         }
 
         /**
@@ -253,6 +253,14 @@ namespace spark {
         */
         void AbstractSparkDevice::createLogger()
         {
+        }
+
+        /**
+        *
+        */
+        spark::scene::ISceneGraphManager3D* AbstractSparkDevice::createSceneGraphManager3D()
+        {
+            return new spark::scene::SceneGraphManager3D();
         }
 
         /**

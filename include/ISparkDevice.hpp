@@ -5,6 +5,7 @@
 //#include "ISparkTimer.hpp"
 #include "ISparkRenderer.hpp"
 #include "ISparkFileSystem.hpp"
+#include "ISceneGraphManager3D.hpp"
 #include <string>
 #include "app/SparkApp.hpp"
 
@@ -38,6 +39,9 @@ namespace spark {
             virtual ScreenResolution getScreenResolution() = 0;
             //virtual std::string getRootPath() = 0;
             //virtual spark::font::ISparkFontPool* getSparkFontPool() = 0;
+
+        public:
+            virtual spark::scene::ISceneGraphManager3D* createSceneGraphManager3D() = 0;
 
         public:
             //virtual uint64_t getHeapAllocatedSize() = 0;
