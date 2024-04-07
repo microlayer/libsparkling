@@ -17,6 +17,7 @@ LIBSPARKLING_SRC_FILES += $(wildcard ../../source/app/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/drawing/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/file/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/mesh/*.cpp)
+LIBSPARKLING_SRC_FILES += $(wildcard ../../source/scene/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/mlstl/*.cpp)
 
 IDIRINCLUDE  	:= ../../include

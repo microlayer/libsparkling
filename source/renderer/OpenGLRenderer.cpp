@@ -176,7 +176,51 @@ namespace spark {
         */
         void OpenGLRenderer::renderMesh(spark::mesh::ISparkMesh* mesh)
         {
+            // void* pVertices = mesh->getVertices();
+            // void* pIndices = mesh->getIndices();
+            // void* pColors = mesh->getColors();
+            // void* pNormals = mesh->getNormals();
+            // void* pTextureCoords = mesh->getTextureCoords();*/
 
+            // std::vector<spark::drawing::Vertex3> vertices = mesh->getVertices();
+            // std::vector<uint32_t> pIndices = mesh->getIndices();
+            // std::vector<spark::drawing::Color> colors = mesh->getColors();
+            // std::vector<spark::math::Vector3f> normals = mesh->getNormals();
+            // std::vector<spark::math::Vector2f> textureCoords = mesh->getTextureCoords()
+
+            // // Vertices: Cast the vector back
+            // std::vector<drawing::Vertex3>* pVerticesArray = reinterpret_cast<std::vector<drawing::Vertex3>*>(pVertices);
+
+            // // Colors:
+            // uc8_t* pColorsArray = (uc8_t*)pColors;
+
+            // // Faces:
+            // uint16_t* pIndicesArray = (uint16_t*)pIndices;
+
+            // // Normals:
+            // real32* pNormalArray = (real32*)pNormals;
+
+            // // Texture coords
+            // real32* pTextureCoord = (real32*)pTextureCoords;
+
+
+            // // Hint: Transfers each frame vertex data to the graphics hardware
+            // glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(drawing::Vertex3), &pVerticesArray[0]);
+            // glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, &pNormalArray[0]);
+            // glVertexAttribPointer(2, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(drawing::Color), &pColorsArray[0]);
+            // glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 0, &pTextureCoord[0]);
+
+            // glEnableVertexAttribArray(0);
+            // glEnableVertexAttribArray(1);
+            // glEnableVertexAttribArray(2);
+            // glEnableVertexAttribArray(3);
+
+            // glDrawElements(GL_TRIANGLES, mesh->getIndexCount(), GL_UNSIGNED_SHORT, &pIndicesArray[0]);
+
+            // glDisableVertexAttribArray(3);
+            // glDisableVertexAttribArray(2);
+            // glDisableVertexAttribArray(1);
+            // glDisableVertexAttribArray(0);
         }
     } // end namespace renderer
 } // end namespace spark
