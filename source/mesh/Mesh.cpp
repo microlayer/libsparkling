@@ -21,7 +21,7 @@ namespace spark {
         */
         std::vector<drawing::Vertex3> Mesh::getVertices()
         {
-            return std::move(m_vertices);
+            return m_vertices;
         }
 
         /**

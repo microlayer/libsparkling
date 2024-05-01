@@ -18,5 +18,21 @@ namespace spark {
         {
 
         }
+
+        /**
+        *
+        */
+        SceneNode* SceneNode::addChildSceneNode()
+        {
+            return NULL;
+        }
+
+        /**
+        *
+        */
+        bool SceneNode::isRootNode()
+        {
+            return false;
+        }
     }
 }

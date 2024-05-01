@@ -221,6 +221,7 @@
     <ClCompile Include="..\..\source\log\AndroidLogger.cpp" />
     <ClCompile Include="..\..\source\log\DefaultLogger.cpp" />
     <ClCompile Include="..\..\source\log\LogManager.cpp" />
+    <ClCompile Include="..\..\source\mesh\generator\MeshGenerator.cpp" />
     <ClCompile Include="..\..\source\mesh\Mesh.cpp" />
     <ClCompile Include="..\..\source\mlstl\MLBase64.cpp" />
     <ClCompile Include="..\..\source\perspective\OrthographicProjection.cpp" />
@@ -281,6 +282,7 @@
     <ClInclude Include="..\..\source\math\ProjectionMatrix.hpp" />
     <ClInclude Include="..\..\source\math\Vector2.hpp" />
     <ClInclude Include="..\..\source\math\Vector3.hpp" />
+    <ClInclude Include="..\..\source\mesh\generator\MeshGenerator.hpp" />
     <ClInclude Include="..\..\source\mesh\Mesh.hpp" />
     <ClInclude Include="..\..\source\mlstl\MLBase64.hpp" />
     <ClInclude Include="..\..\source\perspective\OrthographicProjection.hpp" />

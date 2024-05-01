@@ -85,6 +85,9 @@
     <Filter Include="source\scene">
       <UniqueIdentifier>{d0da75b2-92cb-40bd-b46e-322ee796811d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\mesh\generator">
+      <UniqueIdentifier>{30d446dc-9236-4785-89e5-a0261606ac85}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\spark\Sparkling.cpp">
@@ -185,6 +188,9 @@
     </ClCompile>
     <ClCompile Include="..\..\source\scene\SceneNode.cpp">
       <Filter>source\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\mesh\generator\MeshGenerator.cpp">
+      <Filter>source\mesh\generator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -394,6 +400,9 @@
     </ClInclude>
     <ClInclude Include="..\..\include\ISceneGraphManager3D.hpp">
       <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\mesh\generator\MeshGenerator.hpp">
+      <Filter>source\mesh\generator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

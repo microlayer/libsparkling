@@ -17,8 +17,7 @@ namespace spark {
             virtual ~SceneGraphManager3D();
 
         public:
-            spark::scene::SceneNode* rootNode();
-            spark::scene::SceneNode* addChildSceneNode();
+            spark::scene::SceneNode* rootNode();           
             void drawGraph(spark::renderer::ISparkRenderer* renderer);
         };
     }

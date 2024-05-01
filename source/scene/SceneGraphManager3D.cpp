@@ -24,15 +24,7 @@ namespace spark {
         spark::scene::SceneNode* SceneGraphManager3D::rootNode()
         {
             return NULL;
-        }
-
-        /**
-        *
-        */
-        spark::scene::SceneNode* SceneGraphManager3D::addChildSceneNode()
-        {
-            return NULL;
-        }
+        }        
 
         /**
         *
