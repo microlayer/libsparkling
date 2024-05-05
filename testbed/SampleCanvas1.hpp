@@ -19,7 +19,9 @@ public:
         // Create SceneGraphManager3D
         m_sceneGraphManager3D = device->createSceneGraphManager3D();
         spark::scene::SceneNode* rootSceneNode = m_sceneGraphManager3D->rootNode();
-        rootSceneNode->addChildSceneNode();
+        spark::scene::SceneNode* node1 = rootSceneNode->addChildSceneNode();
+        node1->setPosition(spark::math::Vector3f(0, 0, 0));
+        //node1->addMesh();
 
         // Set virtual resolution
         spark::perspective::OrthographicProjection orthographicProjection(device->getScreenResolution().m_width, device->getScreenResolution().m_height);

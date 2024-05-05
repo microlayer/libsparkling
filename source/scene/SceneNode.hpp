@@ -16,6 +16,9 @@ namespace spark {
             SceneNode* addChildSceneNode();
             bool isRootNode();
 
+        public:
+            void setPosition(spark::math::Vector3f position);
+
         private:
             std::vector<SceneNode> m_children;
         };
