@@ -19,33 +19,32 @@ namespace spark {
 
         /**
         * Creates a pyramid mesh with 12 vertices 12 normals and 12 indices
+        *
+        * [1] Cut into the middle of the pyramid width and height of the pyramid is 2:
+        *	 /|\
+        *	/ | \
+        *  /  |2 \
+        * /ß  |  ß\
+        * ----------
+        *  1  |   1
+        *
+        * ß = atan(2/1) = 63,4°
+        *
+        * [2] Calculating the normal angle ßN
+        * ßN = 180°-90°-63,4° = 26,6°
+        *
+        * [3] Calculating the normal vector for the angle ßN
+        * X respectively Z	= Math.cos(angle) = 0.89
+        * Y				    = Math.sin(angle) = 0.45
+        *
+        * [4] Result: 4 different normals
+        * Front: (0, sin, cos)
+        * Right: (cos, sin, 0)
+        * Back:  (0, sin, -cos)
+        * Left:  (-cos, sin, 0)
         */
         spark::mesh::ISparkMesh* MeshGenerator::createPyramidMesh()
         {
-            // [1] Cut into the middle of the pyramid width and height of the pyramid is 2:
-            //	  /|\
-			//	 / | \
-			//  /  |2 \
-			// /ß  |  ß\
-			// ----------
-            //  1  |   1
-            //
-            // ß = atan(2/1) = 63,4° 
-            //
-            // [2] Calculating the normal angle ßN
-            // ßN = 180°-90°-63,4° = 26,6°
-            // 
-            // [3] Calculating the normal vector for the angle ßN
-            // X respectively Z	= Math.cos(angle) = 0.89 
-            // Y				= Math.sin(angle) = 0.45
-            // 
-            // [4] Result: 4 different normals
-            // Front: (0, sin, cos)
-            // Right: (cos, sin, 0)
-            // Back:  (0, sin, -cos)
-            // Left:  (-cos, sin, 0)
-
-
             real32 cos = 0.89f;
             real32 sin = 0.45f;
 
@@ -87,17 +86,17 @@ namespace spark {
 
         /**
         *  Creates a cube mesh with 24 vertices 24 normals and 36 indices
+        *
+        *    v6----- v5
+        *   /|      /|
+        *  v1------v0|
+        *  | |     | |
+        *  | |v7---|-|v4
+        *  |/      |/
+        *  v2------v3
         */
         spark::mesh::ISparkMesh* MeshGenerator::createQuadMesh()
         {
-            //    v6----- v5
-            //   /|      /|
-            //  v1------v0|
-            //  | |     | |
-            //  | |v7---|-|v4
-            //  |/      |/
-            //  v2------v3
-
             spark::mesh::Mesh* m = new spark::mesh::Mesh();
 
             m->addVertex(spark::drawing::Vertex3(1, 1, 1, spark::drawing::Color(0, 0, 255, 255), math::Vector3f(0, 0, 1), math::Vector2f(1.0f, 0.0f)));			//v0
@@ -149,14 +148,6 @@ namespace spark {
         }
 
         /**
-        * Creates a sphere mesh. vertices normals and indices depends on the specified recursion level
-        */
-        spark::mesh::ISparkMesh* MeshGenerator::createSphereMesh(uint32_t recursionLevel)
-        {
-            return NULL;
-        }
-
-        /**
         * Creates a plane mesh with 4 vertices 4 normals and 6 indices
         */
         spark::mesh::ISparkMesh* MeshGenerator::createPlaneMesh()
@@ -178,6 +169,14 @@ namespace spark {
                 m->addIndex(planeVertexFaces[i]);
             }
             return m;
+        }
+
+        /**
+        * Creates a sphere mesh. vertices normals and indices depends on the specified recursion level
+        */
+        spark::mesh::ISparkMesh* MeshGenerator::createSphereMesh(uint32_t recursionLevel)
+        {
+            return NULL;
         }
 
     } // end namespace mesh

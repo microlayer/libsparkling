@@ -1,6 +1,7 @@
 #include "file/FileSystem.hpp"
 #include "scene/SceneGraphManager3D.hpp"
 #include "scene/SceneNode.hpp"
+#include <mesh/generator/MeshGenerator.hpp>
 
 /**
 *
@@ -17,11 +18,14 @@ public:
         //m_image = m_fileSystem->loadBitmap("texture1.png");
 
         // Create SceneGraphManager3D
+        spark::mesh::ISparkMesh* cubeMesh = spark::mesh::MeshGenerator::createQuadMesh();
+
         m_sceneGraphManager3D = device->createSceneGraphManager3D();
         spark::scene::SceneNode* rootSceneNode = m_sceneGraphManager3D->rootNode();
         spark::scene::SceneNode* node1 = rootSceneNode->addChildSceneNode();
         node1->setPosition(spark::math::Vector3f(0, 0, 0));
-        //node1->addMesh();
+        node1->attachMesh(cubeMesh);
+        cubeMesh->release();
 
         // Set virtual resolution
         spark::perspective::OrthographicProjection orthographicProjection(device->getScreenResolution().m_width, device->getScreenResolution().m_height);

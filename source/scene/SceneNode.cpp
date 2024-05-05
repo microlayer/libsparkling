@@ -1,5 +1,4 @@
 #include "scene/SceneNode.hpp"
-#include <math/Vector3.hpp>
 
 namespace spark {
     namespace scene {
@@ -40,6 +39,14 @@ namespace spark {
         *
         */
         void SceneNode::setPosition(spark::math::Vector3f position)
+        {
+
+        }
+
+        /**
+        *
+        */
+        void SceneNode::attachMesh(spark::mesh::ISparkMesh* mesh)
         {
 
         }

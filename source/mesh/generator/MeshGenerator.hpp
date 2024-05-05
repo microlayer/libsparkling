@@ -14,10 +14,10 @@ namespace spark {
             virtual ~MeshGenerator(void);
 
         public:
-            spark::mesh::ISparkMesh* createPyramidMesh();
-            spark::mesh::ISparkMesh* createQuadMesh();
-            spark::mesh::ISparkMesh* createSphereMesh(uint32_t recursionLevel = 0);
-            spark::mesh::ISparkMesh* createPlaneMesh();
+            static spark::mesh::ISparkMesh* createPyramidMesh();
+            static spark::mesh::ISparkMesh* createQuadMesh();
+            static spark::mesh::ISparkMesh* createPlaneMesh();
+            static spark::mesh::ISparkMesh* createSphereMesh(uint32_t recursionLevel = 0);
         };
     } // end namespace mesh
 } // end namespace spark
