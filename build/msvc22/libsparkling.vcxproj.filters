@@ -404,6 +404,15 @@
     <ClInclude Include="..\..\source\mesh\generator\MeshGenerator.hpp">
       <Filter>source\mesh\generator</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\SparkSharedPointer.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\SparkScopedPointer.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkSceneNode.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\source\renderer\shader\glsl-for-ogl-feature-level-glsles10\Default.frag">

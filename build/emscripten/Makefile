@@ -17,6 +17,7 @@ LIBSPARKLING_SRC_FILES += $(wildcard ../../source/app/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/drawing/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/file/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/mesh/*.cpp)
+LIBSPARKLING_SRC_FILES += $(wildcard ../../source/mesh/generator/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/scene/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/mlstl/*.cpp)
 
@@ -25,7 +26,7 @@ IDIRSOURCE 	+= ../../source
 IDIRLIBS 	+= ../../lib
 
 CC=emcc
-CFLAGS=-I$(IDIRINCLUDE) -I$(IDIRSOURCE) -I$(IDIRLIBS) -D__WEBGL__ -Wno-write-strings
+CFLAGS=-I$(IDIRINCLUDE) -I$(IDIRSOURCE) -I$(IDIRLIBS) -D__WEBGL__ -Wno-write-strings -std=c++17
 LDFLAGS=
 
 OGLSUPPORT=-s LEGACY_GL_EMULATION=0 -s FULL_ES2=1 -s USE_GLFW=3

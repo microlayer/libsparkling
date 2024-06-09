@@ -16,15 +16,16 @@ namespace spark {
         */
         SceneNode::~SceneNode()
         {
-
+            m_children.clear();
+            if (m_mesh != NULL) delete m_mesh;
         }
 
         /**
         *
         */
-        SceneNode* SceneNode::addChildSceneNode()
+        void SceneNode::addChildSceneNode(spark::scene::SceneNode* node)
         {
-            return NULL;
+            m_children.push_back(node);
         }
 
         /**
@@ -33,6 +34,22 @@ namespace spark {
         bool SceneNode::isRootNode()
         {
             return false;
+        }
+
+        /**
+        *
+        */
+        std::vector<SceneNode*> SceneNode::getChildren()
+        {
+            return m_children;
+        }
+
+        /**
+        *
+        */
+        spark::mesh::ISparkMesh* SceneNode::getMesh()
+        {
+            return m_mesh;
         }
 
         /**
@@ -48,7 +65,8 @@ namespace spark {
         */
         void SceneNode::attachMesh(spark::mesh::ISparkMesh* mesh)
         {
-
+            m_mesh = mesh;
+            //m_mesh->addRef();
         }
     }
 }

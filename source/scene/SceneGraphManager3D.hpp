@@ -19,6 +19,9 @@ namespace spark {
         public:
             spark::scene::SceneNode* rootNode();           
             void drawGraph(spark::renderer::ISparkRenderer* renderer);
+
+        private:
+            spark::scene::SceneNode m_rootNode;
         };
     }
 }

@@ -7,7 +7,9 @@
 namespace spark {
     namespace device {
         namespace window {
-
+            /**
+            *
+            */
             class ISparkWindow : public spark::SparkRefCount
             {
             public:

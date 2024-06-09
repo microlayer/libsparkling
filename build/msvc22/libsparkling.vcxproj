@@ -127,6 +127,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -165,6 +166,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -253,11 +255,14 @@
     <ClInclude Include="..\..\include\ISparkLogger.hpp" />
     <ClInclude Include="..\..\include\ISparkMesh.hpp" />
     <ClInclude Include="..\..\include\ISparkRenderer.hpp" />
+    <ClInclude Include="..\..\include\ISparkSceneNode.hpp" />
     <ClInclude Include="..\..\include\ISparkShader.hpp" />
     <ClInclude Include="..\..\include\ISparkTimer.hpp" />
     <ClInclude Include="..\..\include\ISparkWindow.hpp" />
     <ClInclude Include="..\..\include\Sparkling.hpp" />
     <ClInclude Include="..\..\include\SparkRefCount.hpp" />
+    <ClInclude Include="..\..\include\SparkScopedPointer.hpp" />
+    <ClInclude Include="..\..\include\SparkSharedPointer.hpp" />
     <ClInclude Include="..\..\source\app\SparkApp.hpp" />
     <ClInclude Include="..\..\source\device\AbstractSparkDevice.hpp" />
     <ClInclude Include="..\..\source\device\AndroidDevice.hpp" />

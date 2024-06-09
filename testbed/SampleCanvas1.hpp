@@ -2,6 +2,7 @@
 #include "scene/SceneGraphManager3D.hpp"
 #include "scene/SceneNode.hpp"
 #include <mesh/generator/MeshGenerator.hpp>
+#include "SparkSharedPointer.hpp"
 
 /**
 *
@@ -18,14 +19,15 @@ public:
         //m_image = m_fileSystem->loadBitmap("texture1.png");
 
         // Create SceneGraphManager3D
-        spark::mesh::ISparkMesh* cubeMesh = spark::mesh::MeshGenerator::createQuadMesh();
-
         m_sceneGraphManager3D = device->createSceneGraphManager3D();
-        spark::scene::SceneNode* rootSceneNode = m_sceneGraphManager3D->rootNode();
-        spark::scene::SceneNode* node1 = rootSceneNode->addChildSceneNode();
-        node1->setPosition(spark::math::Vector3f(0, 0, 0));
-        node1->attachMesh(cubeMesh);
-        cubeMesh->release();
+
+        // Create Mesh
+        spark::SparkSharedPointer<spark::mesh::ISparkMesh> cubeMesh(spark::mesh::MeshGenerator::createQuadMesh());
+
+        // Create SceneNode
+        //spark::SparkSharedPointer<spark::scene::ISparkSceneNode> node = new spark::scene::SceneNode();
+        //node->setPosition(spark::math::Vector3f(0, 1, 0));
+        //node->attachMesh(cubeMesh.get());
 
         // Set virtual resolution
         spark::perspective::OrthographicProjection orthographicProjection(device->getScreenResolution().m_width, device->getScreenResolution().m_height);
@@ -39,7 +41,6 @@ public:
     virtual ~SampleCanvas1()
     {
         if (m_image != NULL) m_image->release();
-        if (m_sceneGraphManager3D != NULL) m_sceneGraphManager3D->release();
     }
 
     /**
@@ -51,8 +52,9 @@ public:
         //renderer->draw2DBitmap(m_image, 10, 10);
         m_sceneGraphManager3D->drawGraph(renderer);
     }
+
 private:
     spark::file::ISparkFileSystem* m_fileSystem;
     spark::drawing::ISparkImage* m_image;
-    spark::scene::ISceneGraphManager3D* m_sceneGraphManager3D;
+    spark::SparkSharedPointer<spark::scene::ISceneGraphManager3D> m_sceneGraphManager3D;
 };

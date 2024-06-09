@@ -134,7 +134,7 @@ namespace spark {
         void Mesh::addVertex(drawing::Vertex3 vertex)
         {
             m_vertices.push_back(vertex);
-            m_colors.push_back(vertex.m_color);
+            //m_colors.push_back(vertex.m_color);
             m_normals.push_back(vertex.m_normal);
             m_textureCoords.push_back(vertex.m_textureCoord);
         }

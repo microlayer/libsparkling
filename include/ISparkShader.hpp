@@ -1,5 +1,5 @@
-#ifndef __SPARK_SHADER_ISPARKShader_HPP_INCLUDED__
-#define __SPARK_SHADER_ISPARKShader_HPP_INCLUDED__
+#ifndef __SPARK_SHADER_ISPARKSHADER_HPP_INCLUDED__
+#define __SPARK_SHADER_ISPARKSHADER_HPP_INCLUDED__
 
 #include "spark/SparkTypes.hpp"
 #include "SparkRefCount.hpp"

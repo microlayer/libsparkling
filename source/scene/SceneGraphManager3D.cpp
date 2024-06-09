@@ -23,7 +23,7 @@ namespace spark {
         */
         spark::scene::SceneNode* SceneGraphManager3D::rootNode()
         {
-            return NULL;
+            return &m_rootNode;
         }        
 
         /**
@@ -31,7 +31,8 @@ namespace spark {
         */
         void SceneGraphManager3D::drawGraph(spark::renderer::ISparkRenderer* renderer)
         {
-
+            //spark::mesh::ISparkMesh* mesh = m_rootNode.getChildren().at(0)->getMesh();
+            //renderer->renderMesh(mesh);
         }
     }
 }
