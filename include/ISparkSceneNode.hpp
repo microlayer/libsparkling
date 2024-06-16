@@ -13,6 +13,7 @@ namespace spark {
         public:
             virtual void setPosition(spark::math::Vector3f position) = 0;
             virtual void attachMesh(spark::mesh::ISparkMesh* mesh) = 0;
+            virtual spark::mesh::ISparkMesh* getMesh() = 0;
         };
     }
 }

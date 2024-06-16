@@ -25,9 +25,11 @@ public:
         spark::SparkSharedPointer<spark::mesh::ISparkMesh> cubeMesh(spark::mesh::MeshGenerator::createQuadMesh());
 
         // Create SceneNode
-        //spark::SparkSharedPointer<spark::scene::ISparkSceneNode> node = new spark::scene::SceneNode();
-        //node->setPosition(spark::math::Vector3f(0, 1, 0));
-        //node->attachMesh(cubeMesh.get());
+        spark::SparkSharedPointer<spark::scene::ISparkSceneNode> node = new spark::scene::SceneNode();
+        node->setPosition(spark::math::Vector3f(0, 1, 0));
+        node->attachMesh(cubeMesh.get());
+
+        m_sceneGraphManager3D->rootNode()->addChildSceneNode(node.get());
 
         // Set virtual resolution
         spark::perspective::OrthographicProjection orthographicProjection(device->getScreenResolution().m_width, device->getScreenResolution().m_height);
@@ -40,7 +42,7 @@ public:
     */
     virtual ~SampleCanvas1()
     {
-        if (m_image != NULL) m_image->release();
+
     }
 
     /**

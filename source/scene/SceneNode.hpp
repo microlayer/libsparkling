@@ -18,9 +18,9 @@ namespace spark {
             virtual ~SceneNode();
 
         public:
-            void addChildSceneNode(spark::scene::SceneNode* node);
+            void addChildSceneNode(spark::scene::ISparkSceneNode* node);
             bool isRootNode();
-            std::vector<SceneNode*> getChildren();
+            std::vector<ISparkSceneNode*> getChildren();
 
         public:
             spark::mesh::ISparkMesh* getMesh();
@@ -32,7 +32,7 @@ namespace spark {
             void attachMesh(spark::mesh::ISparkMesh* mesh);
 
         private:
-            std::vector<SceneNode*> m_children;
+            std::vector<ISparkSceneNode*> m_children;
             spark::math::Vector3f m_position;
             spark::mesh::ISparkMesh* m_mesh;
         };

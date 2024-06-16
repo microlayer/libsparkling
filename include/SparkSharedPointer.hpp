@@ -56,7 +56,7 @@ namespace spark {
         }
 
         /**
-        *
+        * Overloaded dereference operator
         */
         T& operator*() const
         {
@@ -64,7 +64,7 @@ namespace spark {
         }
 
         /**
-        *
+        * Overloaded arrow operator
         */
         T* operator->() const
         {
