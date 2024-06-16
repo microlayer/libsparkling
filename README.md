@@ -112,8 +112,9 @@ int main(void)
 
 ## Used libraries
 
-|Lib|Version|Release Date|
-|---|---|---|
-|glew|2.1.0 |July 31, 2017|
-|glfw|3.3.9 |Dec 13, 2023|
-|lodepng|20230410|April 04, 2023|
+|Lib|Version|Release Date|Source|
+|---|---|---|---|
+|glew|2.1.0 |July 31, 2017|[OpenGL Extension Wrangler Library](https://glew.sourceforge.net/)|
+|glfw|3.4.0 |Feb 23, 2024|[GLFW](https://www.glfw.org/download.html)|
+|lodepng|20230410|April 04, 2023|[lodepng](https://lodev.org/lodepng/)|
+|vulkan|1.3.224.1|August 21, 2022|[Vulkan](https://de.wikipedia.org/wiki/Vulkan_(API))|

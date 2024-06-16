@@ -70,7 +70,7 @@ namespace spark {
         */
         void SceneNode::attachMesh(spark::mesh::ISparkMesh* mesh)
         {
-            m_mesh->addRef();
+            mesh->addRef();
             m_mesh = mesh;            
         }
     }

@@ -54,7 +54,7 @@ namespace spark {
 
 				std::unordered_map<char, uint32_t> hashtableCharToBase64Pos;
 
-				for (int i = 0; i < GetBase64Chars().size(); i++)
+				for (uint32_t i = 0; i < GetBase64Chars().size(); i++)
 				{
 					std::pair<c8_t, int> pair(GetBase64Chars()[i], i);
 					hashtableCharToBase64Pos.insert(pair);

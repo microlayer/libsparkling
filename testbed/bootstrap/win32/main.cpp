@@ -6,7 +6,8 @@ $(SolutionDir)../../include                                                     
 $(SolutionDir)../../source                                                                                      *
                                                                                                                 *
 [3] Bibliotheksverzeichnisse:                                                                                   *
-$(SolutionDir)../../lib                                                                                         *
+$(SolutionDir)../../lib                                                                                         *                                             
+$(VK_SDK_PATH)/lib32                                                                                            *
                                                                                                                 *
 [4] Preprocessordefinitions symbols:																			*
 _CRT_SECURE_NO_DEPRECATE																						*

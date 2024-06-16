@@ -28,7 +28,7 @@ namespace spark {
 
             std::vector<uc8_t> png;						// the png file
             std::vector<uc8_t> image;					// the raw pixels
-            uint32_t width, height, fileSize, rawSize;	// width, height and size of the png
+            //uint32_t width, height, fileSize, rawSize;	// width, height and size of the png
 
             //load and decode
             //lodepng::load_file(png, absolutePathFile);
