@@ -28,6 +28,10 @@ namespace spark {
             glClearColor(0.5f, 0.5f, 0, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             glClearDepthf(1.0f);
+
+            glEnable(GL_CULL_FACE);
+            glFrontFace(GL_CCW);
+            //glCullFace(GL_BACK); // GL_BACK GL_FRONT
         }
 
         /**
@@ -41,36 +45,60 @@ namespace spark {
         /**
         *
         */
-        void OpenGLRenderer::setOrthographicProjection(spark::perspective::OrthographicProjection& orthographicProjection)
+        void OpenGLRenderer::setOrthographicProjectionMatrix(spark::perspective::OrthographicProjection& orthographicProjection)
         {
             uint16_t screenWidth = m_device->getScreenResolution().m_width;
             uint16_t screenHeight = m_device->getScreenResolution().m_height;
             real32 orthoMatrix[16];
             spark::math::ProjectionMatrixf::createOrthofMatrix(0.0f, (real32)screenWidth, (real32)screenHeight, 0.0f, -1.0f, 1.0, orthoMatrix);
-            spark::math::Matrix4f projectionViewMatrix;
-            memcpy(projectionViewMatrix.m_matrix, orthoMatrix, sizeof(orthoMatrix));
+
+            memcpy(m_projectionViewMatrix.m_matrix, orthoMatrix, sizeof(orthoMatrix));
             if (orthographicProjection.getVirtualResolutionType() != perspective::VirtualResolution::E_NONE)
             {
                 glViewport(orthographicProjection.getViewport().m_x, orthographicProjection.getViewport().m_y, orthographicProjection.getViewport().m_width, orthographicProjection.getViewport().m_height);
                 glScissor(orthographicProjection.getViewport().m_x, orthographicProjection.getViewport().m_y, orthographicProjection.getViewport().m_width, orthographicProjection.getViewport().m_height);
-                math::Matrix4f m;
-                m.setScale(orthographicProjection.getViewportTransformationParameter().m_scaleWidth, orthographicProjection.getViewportTransformationParameter().m_scaleHeight, 1.0f);
-                projectionViewMatrix = projectionViewMatrix * m;
+                math::Matrix4f scaleMatrix;
+                scaleMatrix.setScale(orthographicProjection.getViewportTransformationParameter().m_scaleWidth, orthographicProjection.getViewportTransformationParameter().m_scaleHeight, 1.0f);
+                m_projectionViewMatrix = m_projectionViewMatrix * scaleMatrix;
             }
             else
             {
                 glViewport(orthographicProjection.getViewport().m_x, orthographicProjection.getViewport().m_y, orthographicProjection.getViewport().m_width, orthographicProjection.getViewport().m_height);
             }
-            m_shader->setProjectionViewMatrix(projectionViewMatrix.getPointer());
+            m_shader->setProjectionViewMatrix(m_projectionViewMatrix.getPointer());
         }
 
         /**
         *
         */
-        void OpenGLRenderer::setPerspectiveProjection(spark::perspective::PerspectiveProjection& perspectiveProjection)
+        void OpenGLRenderer::setPerspectiveProjectionMatrix(spark::perspective::PerspectiveProjection& perspectiveProjection)
         {
-            real32 perspectiveMatrix[16];
-            spark::math::ProjectionMatrixf::createPerspectiveMatrix(perspectiveProjection.m_fovy, perspectiveProjection.m_aspect, perspectiveProjection.m_zNear, perspectiveProjection.m_zFar, perspectiveMatrix);
+            uint16_t screenWidth = m_device->getScreenResolution().m_width;
+            uint16_t screenHeight = m_device->getScreenResolution().m_height;
+            real32 perspectiveArray[16];
+            spark::math::ProjectionMatrixf::createPerspectiveMatrix(perspectiveProjection.m_fovy, perspectiveProjection.m_aspect, perspectiveProjection.m_zNear, perspectiveProjection.m_zFar, perspectiveArray);
+            spark::math::Matrix4f projectionMatrix;
+            memcpy(projectionMatrix.m_matrix, perspectiveArray, sizeof(perspectiveArray));
+
+            real32 lookAtArray[16];
+            spark::math::ProjectionMatrixf::createLookAtMatrix(0, 0, 5, 0, 0, 0, 0, 1, 0, lookAtArray);
+            spark::math::Matrix4f lookAtMatrix;
+            memcpy(lookAtMatrix.m_matrix, lookAtArray, sizeof(lookAtArray));
+
+            m_projectionViewMatrix = projectionMatrix * lookAtMatrix;
+
+            glViewport(0, 0, screenWidth, screenHeight);
+            glScissor(0, 0, screenWidth, screenHeight);
+            m_shader->setProjectionViewMatrix(m_projectionViewMatrix.getPointer());
+        }
+
+        /**
+        *
+        */
+        void OpenGLRenderer::setModelTransformation(math::Matrix4f& modelTransformation)
+        {
+            m_projectionViewMatrix = m_projectionViewMatrix * modelTransformation;
+            m_shader->setProjectionViewMatrix(m_projectionViewMatrix.getPointer());
         }
 
         /**
@@ -182,11 +210,11 @@ namespace spark {
             // void* pNormals = mesh->getNormals();
             // void* pTextureCoords = mesh->getTextureCoords();*/
 
-            // std::vector<spark::drawing::Vertex3> vertices = mesh->getVertices();
-            // std::vector<uint32_t> pIndices = mesh->getIndices();
-            // std::vector<spark::drawing::Color> colors = mesh->getColors();
-            // std::vector<spark::math::Vector3f> normals = mesh->getNormals();
-            // std::vector<spark::math::Vector2f> textureCoords = mesh->getTextureCoords()
+            std::vector<spark::drawing::Vertex3> vertices = mesh->getVertices();
+            std::vector<uint16_t> indices = mesh->getIndices();
+            std::vector<spark::drawing::Color> colors = mesh->getColors();
+            std::vector<spark::math::Vector3f> normals = mesh->getNormals();
+            std::vector<spark::math::Vector2f> textureCoords = mesh->getTextureCoords();
 
             // // Vertices: Cast the vector back
             // std::vector<drawing::Vertex3>* pVerticesArray = reinterpret_cast<std::vector<drawing::Vertex3>*>(pVertices);
@@ -205,22 +233,22 @@ namespace spark {
 
 
             // // Hint: Transfers each frame vertex data to the graphics hardware
-            // glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(drawing::Vertex3), &pVerticesArray[0]);
-            // glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, &pNormalArray[0]);
-            // glVertexAttribPointer(2, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(drawing::Color), &pColorsArray[0]);
-            // glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 0, &pTextureCoord[0]);
+            glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(drawing::Vertex3), &vertices[0]);
+            glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, &normals[0]);
+            glVertexAttribPointer(2, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(drawing::Color), &colors[0]);
+            glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 0, &textureCoords[0]);
 
-            // glEnableVertexAttribArray(0);
-            // glEnableVertexAttribArray(1);
-            // glEnableVertexAttribArray(2);
-            // glEnableVertexAttribArray(3);
+            glEnableVertexAttribArray(0);
+            glEnableVertexAttribArray(1);
+            glEnableVertexAttribArray(2);
+            glEnableVertexAttribArray(3);
 
-            // glDrawElements(GL_TRIANGLES, mesh->getIndexCount(), GL_UNSIGNED_SHORT, &pIndicesArray[0]);
+            glDrawElements(GL_TRIANGLES, mesh->getIndexCount(), GL_UNSIGNED_SHORT, &indices[0]);
 
-            // glDisableVertexAttribArray(3);
-            // glDisableVertexAttribArray(2);
-            // glDisableVertexAttribArray(1);
-            // glDisableVertexAttribArray(0);
+            glDisableVertexAttribArray(3);
+            glDisableVertexAttribArray(2);
+            glDisableVertexAttribArray(1);
+            glDisableVertexAttribArray(0);
         }
     } // end namespace renderer
 } // end namespace spark

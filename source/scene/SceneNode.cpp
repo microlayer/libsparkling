@@ -6,7 +6,8 @@ namespace spark {
         /**
         *
         */
-        SceneNode::SceneNode()
+        SceneNode::SceneNode() :
+            m_mesh(NULL)
         {
 
         }
@@ -27,18 +28,18 @@ namespace spark {
         /**
         *
         */
-        void SceneNode::addChildSceneNode(spark::scene::ISparkSceneNode* node)
+        bool SceneNode::isRootNode()
         {
-            node->addRef();
-            m_children.push_back(node);
+            return false;
         }
 
         /**
         *
         */
-        bool SceneNode::isRootNode()
+        void SceneNode::addChildSceneNode(spark::scene::ISparkSceneNode* node)
         {
-            return false;
+            node->addRef();
+            m_children.push_back(node);
         }
 
         /**
@@ -52,15 +53,15 @@ namespace spark {
         /**
         *
         */
-        spark::mesh::ISparkMesh* SceneNode::getMesh()
+        void SceneNode::setPosition(spark::math::Vector3f position)
         {
-            return m_mesh;
+
         }
 
         /**
         *
         */
-        void SceneNode::setPosition(spark::math::Vector3f position)
+        void SceneNode::setRotation(spark::math::Vector3f rotation)
         {
 
         }
@@ -71,7 +72,46 @@ namespace spark {
         void SceneNode::attachMesh(spark::mesh::ISparkMesh* mesh)
         {
             mesh->addRef();
-            m_mesh = mesh;            
+            m_mesh = mesh;
+        }
+
+        /**
+        *
+        */
+        spark::mesh::ISparkMesh* SceneNode::getMesh()
+        {
+            return m_mesh;
+        }
+
+        /**
+        *
+        */
+        void SceneNode::addAnimator()
+        {
+
+        }
+
+        /**
+        *
+        */
+        void SceneNode::render(spark::renderer::ISparkRenderer* renderer)
+        {
+            animate();
+            renderer->setModelTransformation(m_modelTransformationMatrix);
+            renderer->renderMesh(m_mesh);
+        }
+
+        /**
+        *
+        */
+        void SceneNode::animate()
+        {
+            m_rotation.m_x += 0.0001;
+            if (m_rotation.m_x > 0.01)
+            {
+                m_rotation.m_x = 0;
+            }
+            m_modelTransformationMatrix = m_modelTransformationMatrix.setRotation(m_rotation);
         }
     }
 }

@@ -3,6 +3,7 @@
 #include "scene/SceneNode.hpp"
 #include <mesh/generator/MeshGenerator.hpp>
 #include "SparkSharedPointer.hpp"
+#include <math/Matrix4.hpp>
 
 /**
 *
@@ -26,15 +27,24 @@ public:
 
         // Create SceneNode
         spark::SparkSharedPointer<spark::scene::ISparkSceneNode> node = new spark::scene::SceneNode();
-        node->setPosition(spark::math::Vector3f(0, 1, 0));
+        node->setPosition(spark::math::Vector3f(0, 0, 10));
         node->attachMesh(cubeMesh.get());
+        node->addAnimator();
 
         m_sceneGraphManager3D->rootNode()->addChildSceneNode(node.get());
 
         // Set virtual resolution
-        spark::perspective::OrthographicProjection orthographicProjection(device->getScreenResolution().m_width, device->getScreenResolution().m_height);
-        orthographicProjection.setVirtualResolution(1196, 720, spark::perspective::VirtualResolution::E_LETTER_OR_PILLARBOX);
-        device->getRenderer()->setOrthographicProjection(orthographicProjection);
+        //spark::perspective::OrthographicProjection orthographicProjection(device->getScreenResolution().m_width, device->getScreenResolution().m_height);
+        //orthographicProjection.setVirtualResolution(1196, 720, spark::perspective::VirtualResolution::E_LETTER_OR_PILLARBOX);
+        //device->getRenderer()->setOrthographicProjection(orthographicProjection);
+        
+        // Set perspective
+        spark::perspective::PerspectiveProjection perspectiveProjection;
+        perspectiveProjection.m_aspect = 1.6f;
+        perspectiveProjection.m_fovy = 45;
+        perspectiveProjection.m_zFar = 100.0f;
+        perspectiveProjection.m_zNear = 1.0f;       
+        device->getRenderer()->setPerspectiveProjectionMatrix(perspectiveProjection);
     }
 
     /**
@@ -50,8 +60,9 @@ public:
     */
     void paint(spark::renderer::ISparkRenderer* renderer)
     {
-        renderer->draw2DLine(0, 0, 1196, 720, spark::drawing::Color(0, 255, 0, 255));
+        //renderer->draw2DLine(0, 0, 1196, 720, spark::drawing::Color(0, 255, 0, 255));
         //renderer->draw2DBitmap(m_image, 10, 10);
+        
         m_sceneGraphManager3D->drawGraph(renderer);
     }
 

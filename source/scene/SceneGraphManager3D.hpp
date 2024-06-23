@@ -17,7 +17,8 @@ namespace spark {
             virtual ~SceneGraphManager3D();
 
         public:
-            spark::scene::SceneNode* rootNode();           
+            spark::scene::SceneNode* rootNode();
+            void setActiveCamera();
             void drawGraph(spark::renderer::ISparkRenderer* renderer);
 
         private:

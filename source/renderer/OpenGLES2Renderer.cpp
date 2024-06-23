@@ -29,7 +29,7 @@ namespace spark {
             m_device->getLogger()->info("Initializing render pipeline");
             m_shader->applyShader("Default");
             spark::perspective::OrthographicProjection orthographicProjection(m_device->getScreenResolution().m_width, m_device->getScreenResolution().m_height);
-            setOrthographicProjection(orthographicProjection);
+            setOrthographicProjectionMatrix(orthographicProjection);
         }
     } // end namespace renderer
 } // end namespace spark

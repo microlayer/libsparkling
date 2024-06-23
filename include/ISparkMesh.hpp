@@ -31,7 +31,7 @@ namespace spark {
             /**
             *
             */
-            virtual std::vector<uint32_t> getIndices() = 0;
+            virtual std::vector<uint16_t> getIndices() = 0;
 
             /**
             * Returns the count of indices used by this mesh

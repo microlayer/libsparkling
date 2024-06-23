@@ -35,7 +35,7 @@ namespace spark {
         /**
         *
         */
-        std::vector<uint32_t> Mesh::getIndices()
+        std::vector<uint16_t> Mesh::getIndices()
         {
             return m_indices;
         }

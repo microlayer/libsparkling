@@ -15,7 +15,7 @@ namespace spark {
         */
         SceneGraphManager3D::~SceneGraphManager3D()
         {
-           
+
         }
 
         /**
@@ -24,7 +24,15 @@ namespace spark {
         spark::scene::SceneNode* SceneGraphManager3D::rootNode()
         {
             return &m_rootNode;
-        }        
+        }
+
+        /**
+        *
+        */
+        void SceneGraphManager3D::setActiveCamera()
+        {
+
+        }
 
         /**
         *
@@ -32,8 +40,9 @@ namespace spark {
         void SceneGraphManager3D::drawGraph(spark::renderer::ISparkRenderer* renderer)
         {
             //spark::mesh::ISparkMesh* mesh = m_rootNode.getMesh();
-            spark::mesh::ISparkMesh* mesh = m_rootNode.getChildren().at(0)->getMesh();            
-            renderer->renderMesh(mesh);
+            spark::scene::ISparkSceneNode* node = m_rootNode.getChildren().at(0);
+            spark::mesh::ISparkMesh* mesh = node->getMesh();
+            node->render(renderer);
         }
     }
 }

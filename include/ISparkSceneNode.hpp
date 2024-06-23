@@ -2,6 +2,7 @@
 #define __SPARK_SCENE_ISPARKSCENENODE_HPP_INCLUDED__
 
 #include "SparkRefCount.hpp"
+#include "ISparkRenderer.hpp"
 
 namespace spark {
     namespace scene {
@@ -12,8 +13,12 @@ namespace spark {
         {
         public:
             virtual void setPosition(spark::math::Vector3f position) = 0;
+            virtual void setRotation(spark::math::Vector3f rotation) = 0;
             virtual void attachMesh(spark::mesh::ISparkMesh* mesh) = 0;
             virtual spark::mesh::ISparkMesh* getMesh() = 0;
+            virtual void addAnimator() = 0;
+            virtual void render(spark::renderer::ISparkRenderer* renderer) = 0;
+            virtual void animate() = 0;
         };
     }
 }

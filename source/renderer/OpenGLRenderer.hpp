@@ -35,8 +35,9 @@ namespace spark {
 
         public: // ISparkRenderer
             // Perspective
-            void setOrthographicProjection(spark::perspective::OrthographicProjection& orthographicProjection);
-            void setPerspectiveProjection(spark::perspective::PerspectiveProjection& perspectiveProjection);
+            void setOrthographicProjectionMatrix(spark::perspective::OrthographicProjection& orthographicProjection);
+            void setPerspectiveProjectionMatrix(spark::perspective::PerspectiveProjection& perspectiveProjection);
+            void setModelTransformation(math::Matrix4f& modelTransformation);
 
             // Common
             void drawBackground(const spark::drawing::Color& color);
@@ -48,6 +49,9 @@ namespace spark {
 
             // 3D
             void renderMesh(spark::mesh::ISparkMesh* mesh);
+
+        private:
+            math::Matrix4f m_projectionViewMatrix;
         };
     } // end namespace renderer
 } // end namespace spark

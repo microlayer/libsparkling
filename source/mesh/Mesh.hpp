@@ -21,7 +21,7 @@ namespace spark {
             std::vector<drawing::Vertex3> getVertices();
             uint32_t getVertexCount() const;
 
-            std::vector<uint32_t> getIndices();
+            std::vector<uint16_t> getIndices();
             uint32_t getIndexCount() const;
 
             std::vector<drawing::Color> getColors();
@@ -47,7 +47,7 @@ namespace spark {
 
         private:
             std::vector<drawing::Vertex3> m_vertices;
-            std::vector<uint32_t> m_indices;
+            std::vector<uint16_t> m_indices;
             std::vector<drawing::Color> m_colors;
             std::vector<math::Vector3f> m_normals;
             std::vector<math::Vector2f> m_textureCoords;

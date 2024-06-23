@@ -5,6 +5,7 @@
 #include <math/Vector3.hpp>
 #include <ISparkMesh.hpp>
 #include <ISparkSceneNode.hpp>
+#include <ISparkRenderer.hpp>
 
 namespace spark {
     namespace scene {
@@ -18,23 +19,31 @@ namespace spark {
             virtual ~SceneNode();
 
         public:
-            void addChildSceneNode(spark::scene::ISparkSceneNode* node);
             bool isRootNode();
+            void addChildSceneNode(spark::scene::ISparkSceneNode* node);
             std::vector<ISparkSceneNode*> getChildren();
 
         public:
-            spark::mesh::ISparkMesh* getMesh();
-
-        public:
             void setPosition(spark::math::Vector3f position);
+            void setRotation(spark::math::Vector3f rotation);
 
         public:
             void attachMesh(spark::mesh::ISparkMesh* mesh);
+            spark::mesh::ISparkMesh* getMesh();
+            void addAnimator();
+
+        public:
+            void render(spark::renderer::ISparkRenderer* renderer);
+
+        private:
+            void animate();
 
         private:
             std::vector<ISparkSceneNode*> m_children;
             spark::math::Vector3f m_position;
+            spark::math::Vector3f m_rotation;
             spark::mesh::ISparkMesh* m_mesh;
+            spark::math::Matrix4f m_modelTransformationMatrix;
         };
     }
 }

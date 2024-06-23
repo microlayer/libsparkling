@@ -10,6 +10,7 @@
 #include "renderer/common/ERenderEngine.hpp"
 #include "SparkRefCount.hpp"
 #include "ISparkImage.hpp"
+#include "math/Matrix4.hpp"
 
 namespace spark {
     namespace renderer {
@@ -26,8 +27,9 @@ namespace spark {
             virtual void beginScene() = 0;
             virtual void endScene() = 0;
 
-            virtual void setOrthographicProjection(spark::perspective::OrthographicProjection& orthographicProjection) = 0;
-            virtual void setPerspectiveProjection(spark::perspective::PerspectiveProjection& perspectiveProjection) = 0;
+            virtual void setOrthographicProjectionMatrix(spark::perspective::OrthographicProjection& orthographicProjection) = 0;
+            virtual void setPerspectiveProjectionMatrix(spark::perspective::PerspectiveProjection& perspectiveProjection) = 0;
+            virtual void setModelTransformation(math::Matrix4f& modelTransformation) = 0;
 
             virtual void drawBackground(const spark::drawing::Color& color) = 0;
 
