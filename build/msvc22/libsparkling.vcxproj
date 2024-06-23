@@ -213,6 +213,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\lib\glew\glew.c" />
+    <ClCompile Include="..\..\source\animator\NodeRotationAnimator.cpp" />
     <ClCompile Include="..\..\source\app\SparkApp.cpp" />
     <ClCompile Include="..\..\source\device\AbstractSparkDevice.cpp" />
     <ClCompile Include="..\..\source\device\AndroidDevice.cpp" />
@@ -250,6 +251,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\include\ISceneGraphManager2D.hpp" />
     <ClInclude Include="..\..\include\ISceneGraphManager3D.hpp" />
+    <ClInclude Include="..\..\include\ISparkNodeAnimator.hpp" />
     <ClInclude Include="..\..\include\ISparkRendererApiConfig.hpp" />
     <ClInclude Include="..\..\include\ISparkApp.hpp" />
     <ClInclude Include="..\..\include\ISparkCommandListener.hpp" />
@@ -267,6 +269,7 @@
     <ClInclude Include="..\..\include\SparkRefCount.hpp" />
     <ClInclude Include="..\..\include\SparkScopedPointer.hpp" />
     <ClInclude Include="..\..\include\SparkSharedPointer.hpp" />
+    <ClInclude Include="..\..\source\animator\NodeRotationAnimator.hpp" />
     <ClInclude Include="..\..\source\app\SparkApp.hpp" />
     <ClInclude Include="..\..\source\device\AbstractSparkDevice.hpp" />
     <ClInclude Include="..\..\source\device\AndroidDevice.hpp" />

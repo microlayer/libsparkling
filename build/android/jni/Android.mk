@@ -21,6 +21,7 @@ LIBSPARKLING_SRC_FILES:= $(call LS_CPP,$(LOCAL_PATH),../../../testbed/bootstrap/
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/mesh) \
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/mesh/generator) \
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/scene) \
+			$(call LS_CPP,$(LOCAL_PATH),../../../source/animator) \
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/mlstl)
 			
 SPARKLING_C_INCLUDES := $(LOCAL_PATH)/../../../include

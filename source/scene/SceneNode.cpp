@@ -23,6 +23,7 @@ namespace spark {
             }
             m_children.clear();
             if (m_mesh != NULL) m_mesh->release();
+            if (m_nodeAnimator != NULL) m_nodeAnimator->release();
         }
 
         /**
@@ -63,7 +64,7 @@ namespace spark {
         */
         void SceneNode::setRotation(spark::math::Vector3f rotation)
         {
-
+            m_modelTransformationMatrix.setRotation(rotation);
         }
 
         /**
@@ -86,9 +87,10 @@ namespace spark {
         /**
         *
         */
-        void SceneNode::addAnimator()
+        void SceneNode::addAnimator(/*spark::animator::ISparkNodeAnimator* nodeAnimator*/)
         {
-
+            //nodeAnimator->addRef();
+            //m_nodeAnimator = nodeAnimator;
         }
 
         /**
@@ -106,12 +108,7 @@ namespace spark {
         */
         void SceneNode::animate()
         {
-            m_rotation.m_x += 0.0001;
-            if (m_rotation.m_x > 0.01)
-            {
-                m_rotation.m_x = 0;
-            }
-            m_modelTransformationMatrix = m_modelTransformationMatrix.setRotation(m_rotation);
+            //m_nodeAnimator->animate(this);            
         }
     }
 }

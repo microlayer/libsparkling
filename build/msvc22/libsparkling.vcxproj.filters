@@ -88,6 +88,9 @@
     <Filter Include="source\mesh\generator">
       <UniqueIdentifier>{30d446dc-9236-4785-89e5-a0261606ac85}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\animator">
+      <UniqueIdentifier>{d8844ac0-a697-4c56-9543-daa2ea56451a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\spark\Sparkling.cpp">
@@ -191,6 +194,9 @@
     </ClCompile>
     <ClCompile Include="..\..\source\mesh\generator\MeshGenerator.cpp">
       <Filter>source\mesh\generator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\animator\NodeRotationAnimator.cpp">
+      <Filter>source\animator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -411,6 +417,12 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\ISparkSceneNode.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\animator\NodeRotationAnimator.hpp">
+      <Filter>source\animator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkNodeAnimator.hpp">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
