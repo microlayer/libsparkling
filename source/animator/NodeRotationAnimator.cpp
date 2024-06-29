@@ -32,7 +32,7 @@ namespace spark {
         /**
         *
         */
-        void NodeRotationAnimator::animate(/*spark::scene::ISparkSceneNode* node*/)
+        void NodeRotationAnimator::animate(spark::scene::ISparkSceneNode* node)
         {
             const uint32_t timestamp = m_timer.getTimestamp();
             const uint32_t diffTime = timestamp - m_startTime;
@@ -47,8 +47,7 @@ namespace spark {
                 m_rotation.m_y = fmod(m_rotation.m_y + incPerFrameY, 6.2832f);
                 m_rotation.m_z = fmod(m_rotation.m_z + incPerFrameZ, 6.2832f);
 
-                //node->setRotation(m_rotation);
-
+                node->setRotation(m_rotation);
                 m_startTime = timestamp;
 
                 //spark::log::LogManager::GetLogger()->Info("diffTime: %i - FPS: %f - Inc X-axis: %f - Inc Y-axis: %f - Inc Z-axis: %f", diffTime, 1/(diffTime/1000.0f), valX, valY , valZ);

@@ -1,9 +1,7 @@
 #ifndef __SPARK_SCENE_SCENEGRAPHMANAGER2D_HPP_INCLUDED__
 #define __SPARK_SCENE_SCENEGRAPHMANAGER2D_HPP_INCLUDED__
 
-#include "ISparkRenderer.hpp"
 #include "ISceneGraphManager3D.hpp"
-#include "scene/SceneNode.hpp"
 
 namespace spark {
     namespace scene {
@@ -17,7 +15,7 @@ namespace spark {
             virtual ~SceneGraphManager3D();
 
         public:
-            spark::scene::SceneNode* rootNode();
+            spark::scene::ISparkSceneNode* rootNode();
             void setActiveCamera();
             void drawGraph(spark::renderer::ISparkRenderer* renderer);
 

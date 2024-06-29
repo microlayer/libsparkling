@@ -61,6 +61,7 @@ namespace spark {
                 glfwSetMouseButtonCallback(m_window, onMouseClick);
 
                 glfwMakeContextCurrent(m_window);
+                glfwSwapInterval(1); // Enable V-Sync
 
                 setDefaultViewport();
                 return 1;
@@ -88,9 +89,8 @@ namespace spark {
             */
             void GlfwWindow::swapBuffers()
             {
-                glfwPollEvents();
-                glfwSwapInterval(1);
                 glfwSwapBuffers(m_window);
+                glfwPollEvents();
             }
 
             /**

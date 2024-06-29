@@ -3,9 +3,7 @@
 
 #include "SparkRefCount.hpp"
 #include "ISparkRenderer.hpp"
-//#include "ISparkNodeAnimator.hpp"
-
-
+#include "ISparkNodeAnimator.hpp"
 
 namespace spark {
     namespace scene {
@@ -15,11 +13,12 @@ namespace spark {
         class ISparkSceneNode : public virtual SparkRefCount
         {
         public:
+            virtual void addChildSceneNode(spark::scene::ISparkSceneNode* node) = 0;
             virtual void setPosition(spark::math::Vector3f position) = 0;
             virtual void setRotation(spark::math::Vector3f rotation) = 0;
             virtual void attachMesh(spark::mesh::ISparkMesh* mesh) = 0;
             virtual spark::mesh::ISparkMesh* getMesh() = 0;
-            virtual void addAnimator(/*spark::animator::ISparkNodeAnimator* nodeAnimator*/) = 0;
+            virtual void addAnimator(spark::animator::ISparkNodeAnimator* nodeAnimator) = 0;
             virtual void render(spark::renderer::ISparkRenderer* renderer) = 0;
             virtual void animate() = 0;
         };

@@ -1,10 +1,9 @@
 #include "file/FileSystem.hpp"
-#include "scene/SceneGraphManager3D.hpp"
-#include "scene/SceneNode.hpp"
 #include <mesh/generator/MeshGenerator.hpp>
 #include "SparkSharedPointer.hpp"
 #include <math/Matrix4.hpp>
 #include "animator/NodeRotationAnimator.hpp"
+#include "scene/SceneNode.hpp"
 
 /**
 *
@@ -27,13 +26,13 @@ public:
         spark::SparkSharedPointer<spark::mesh::ISparkMesh> cubeMesh(spark::mesh::MeshGenerator::createQuadMesh());
 
         // Create Animator
-        //spark::SparkSharedPointer<spark::animator::NodeRotationAnimator> nodeRotationAnimaror = new spark::animator::NodeRotationAnimator(spark::math::Vector3f(0, 10, 0));
+        spark::SparkSharedPointer<spark::animator::NodeRotationAnimator> nodeRotationAnimaror = new spark::animator::NodeRotationAnimator(spark::math::Vector3f(40, 50, 20));
 
         // Create SceneNode
         spark::SparkSharedPointer<spark::scene::ISparkSceneNode> node = new spark::scene::SceneNode();
         node->setPosition(spark::math::Vector3f(0, 0, 10));
         node->attachMesh(cubeMesh.get());
-        //node->addAnimator(nodeRotationAnimaror.get());
+        node->addAnimator(nodeRotationAnimaror.get());
 
         m_sceneGraphManager3D->rootNode()->addChildSceneNode(node.get());
 
@@ -44,7 +43,7 @@ public:
 
         // Set perspective
         spark::perspective::PerspectiveProjection perspectiveProjection;
-        perspectiveProjection.m_aspect = 1.6f;
+        perspectiveProjection.m_aspect = 1.661111f;
         perspectiveProjection.m_fovy = 45;
         perspectiveProjection.m_zFar = 100.0f;
         perspectiveProjection.m_zNear = 1.0f;

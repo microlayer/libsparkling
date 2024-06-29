@@ -25,7 +25,7 @@ namespace spark {
         void OpenGLRenderer::onBeginScene()
         {
             glEnable(GL_SCISSOR_TEST);
-            glClearColor(0.5f, 0.5f, 0, 1.0f);
+            glClearColor(0.0f, 0.3f, 0, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             glClearDepthf(1.0f);
 
@@ -97,8 +97,8 @@ namespace spark {
         */
         void OpenGLRenderer::setModelTransformation(math::Matrix4f& modelTransformation)
         {
-            m_projectionViewMatrix = m_projectionViewMatrix * modelTransformation;
-            m_shader->setProjectionViewMatrix(m_projectionViewMatrix.getPointer());
+            math::Matrix4f m = m_projectionViewMatrix * modelTransformation;                        
+            m_shader->setProjectionViewMatrix(m.getPointer());
         }
 
         /**

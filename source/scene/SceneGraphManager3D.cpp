@@ -21,7 +21,7 @@ namespace spark {
         /**
         *
         */
-        spark::scene::SceneNode* SceneGraphManager3D::rootNode()
+        spark::scene::ISparkSceneNode* SceneGraphManager3D::rootNode()
         {
             return &m_rootNode;
         }

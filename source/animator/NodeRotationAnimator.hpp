@@ -2,14 +2,10 @@
 #define __SPARK_ANIMATOR_NODEROTATIONANIMATOR_HPP_INCLUDED__
 
 #include "ISparkNodeAnimator.hpp"
-#include "math/Vector3.hpp"
-#include <math.h>
-#include "log/LogManager.hpp"
 #include "timer/Timer.hpp"
 
 namespace spark {
     namespace animator {
-
         /**
         *
         */
@@ -20,7 +16,7 @@ namespace spark {
             virtual ~NodeRotationAnimator(void);
 
         public:
-            void animate(/*spark::scene::ISparkSceneNode* node*/);
+            void animate(spark::scene::ISparkSceneNode* node);
 
         private:
             spark::timer::Timer m_timer;

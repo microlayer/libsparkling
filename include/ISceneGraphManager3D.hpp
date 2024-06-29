@@ -13,7 +13,7 @@ namespace spark {
         {
 
         public:
-            virtual spark::scene::SceneNode* rootNode() = 0;            
+            virtual spark::scene::ISparkSceneNode* rootNode() = 0;
             virtual void drawGraph(spark::renderer::ISparkRenderer* renderer) = 0;
         };
     }

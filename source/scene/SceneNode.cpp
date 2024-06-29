@@ -87,10 +87,10 @@ namespace spark {
         /**
         *
         */
-        void SceneNode::addAnimator(/*spark::animator::ISparkNodeAnimator* nodeAnimator*/)
+        void SceneNode::addAnimator(spark::animator::ISparkNodeAnimator* nodeAnimator)
         {
-            //nodeAnimator->addRef();
-            //m_nodeAnimator = nodeAnimator;
+            nodeAnimator->addRef();
+            m_nodeAnimator = nodeAnimator;
         }
 
         /**
@@ -108,7 +108,7 @@ namespace spark {
         */
         void SceneNode::animate()
         {
-            //m_nodeAnimator->animate(this);            
+            m_nodeAnimator->animate(this);
         }
     }
 }

@@ -1,13 +1,6 @@
 #ifndef __SPARK_SCENE_SCENENODE_HPP_INCLUDED__
 #define __SPARK_SCENE_SCENENODE_HPP_INCLUDED__
 
-#include <ISparkNodeAnimator.hpp>
-#include <vector>
-#include <math/Vector3.hpp>
-#include <ISparkMesh.hpp>
-#include <ISparkSceneNode.hpp>
-#include <ISparkRenderer.hpp>
-#include <ISparkNodeAnimator.hpp>
 #include "ISparkSceneNode.hpp"
 
 namespace spark {
@@ -33,7 +26,7 @@ namespace spark {
         public:
             void attachMesh(spark::mesh::ISparkMesh* mesh);
             spark::mesh::ISparkMesh* getMesh();
-            void addAnimator(/*spark::animator::ISparkNodeAnimator* nodeAnimator*/);
+            void addAnimator(spark::animator::ISparkNodeAnimator* nodeAnimator);
 
         public:
             void render(spark::renderer::ISparkRenderer* renderer);
