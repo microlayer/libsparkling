@@ -102,24 +102,24 @@
     <LibraryPath>$(SolutionDir)../../lib;$(VK_SDK_PATH)/lib32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_StaticLib|Win32'">
-    <IncludePath>$(SolutionDir)../../include;$(SolutionDir)../../source;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)../../lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)../../include;$(SolutionDir)../../source;$(VK_SDK_PATH)/Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)../../lib;$(VK_SDK_PATH)/lib32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_DynamicLib|Win32'">
-    <IncludePath>$(SolutionDir)../../include;$(SolutionDir)../../source;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)../../lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)../../include;$(SolutionDir)../../source;$(VK_SDK_PATH)/Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)../../lib;$(VK_SDK_PATH)/lib32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)../../include;$(SolutionDir)../../source;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)../../lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)../../include;$(SolutionDir)../../source;$(VK_SDK_PATH)/Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)../../lib;$(VK_SDK_PATH)/lib32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_StaticLib|Win32'">
-    <IncludePath>$(SolutionDir)../../include;$(SolutionDir)../../source;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)../../lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)../../include;$(SolutionDir)../../source;$(VK_SDK_PATH)/Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)../../lib;$(VK_SDK_PATH)/lib32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_DynamicLib|Win32'">
-    <IncludePath>$(SolutionDir)../../include;$(SolutionDir)../../source;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)../../lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)../../include;$(SolutionDir)../../source;$(VK_SDK_PATH)/Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)../../lib;$(VK_SDK_PATH)/lib32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

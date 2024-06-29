@@ -38,7 +38,7 @@ namespace spark {
         /**
         *
         */
-        void VulkanRenderer::setOrthographicProjection(spark::perspective::OrthographicProjection& orthographicProjection)
+        void VulkanRenderer::setOrthographicProjectionMatrix(spark::perspective::OrthographicProjection& orthographicProjection)
         {
 
         }
@@ -46,7 +46,14 @@ namespace spark {
         /**
         *
         */
-        void VulkanRenderer::setPerspectiveProjection(spark::perspective::PerspectiveProjection& perspectiveProjection)
+        void VulkanRenderer::setPerspectiveProjectionMatrix(spark::perspective::PerspectiveProjection& perspectiveProjection)
+        {
+        }
+
+        /**
+        *
+        */
+        void VulkanRenderer::setModelTransformation(math::Matrix4f& modelTransformation)
         {
         }
 

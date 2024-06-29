@@ -23,8 +23,9 @@ namespace spark {
 
         public: // ISparkRenderer
             // Perspective
-            void setOrthographicProjection(spark::perspective::OrthographicProjection& orthographicProjection);
-            void setPerspectiveProjection(spark::perspective::PerspectiveProjection& perspectiveProjection);
+            void setOrthographicProjectionMatrix(spark::perspective::OrthographicProjection& orthographicProjection);
+            void setPerspectiveProjectionMatrix(spark::perspective::PerspectiveProjection& perspectiveProjection);
+            void setModelTransformation(math::Matrix4f& modelTransformation);
 
             // Common
             void drawBackground(const spark::drawing::Color& color);
