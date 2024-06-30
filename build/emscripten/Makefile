@@ -22,6 +22,7 @@ LIBSPARKLING_SRC_FILES += $(wildcard ../../source/scene/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/animator/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/timer/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/mlstl/*.cpp)
+LIBSPARKLING_SRC_FILES += $(wildcard ../../source/forms/*.cpp)
 
 IDIRINCLUDE  	:= ../../include
 IDIRSOURCE 	+= ../../source

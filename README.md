@@ -47,10 +47,7 @@ public:
     */
     virtual ~SampleApp()
     {
-        if(m_sampleCanvas != NULL)
-        {
-            delete m_sampleCanvas;
-        }
+     
     }
 
     /**
@@ -58,7 +55,7 @@ public:
     */
     void init()
     {
-        this->setActiveCanvas(m_sampleCanvas);
+        this->setActiveCanvas(m_sampleCanvas.get());
     }
 
     /**
@@ -72,7 +69,7 @@ public:
     }
 
 private:
-    SampleCanvas* m_sampleCanvas;
+    spark::SparkSharedPointer<SampleCanvas1> m_sampleCanvas;
 };
 
 class SampleCanvas : public spark::ui::AbstractCanvas
@@ -102,10 +99,11 @@ int main(void)
 {
     spark::device::ISparkDevice* device = spark::createDevice(spark::renderer::ERE_OGLFLES2);
     spark::log::ISparkLogger* logger = device->getLogger();
-    SampleApp* sampleApp = new SampleApp(device);
-    device->run(sampleApp);
+    {
+        std::unique_ptr<SampleApp> sampleApp = std::make_unique<SampleApp>(device);
+        device->run(sampleApp.get());
+    }
     logger->info("Cleanup");
-    delete sampleApp;
     device->release();
 }
 ```
@@ -117,4 +115,5 @@ int main(void)
 |glew|2.1.0 |July 31, 2017|[OpenGL Extension Wrangler Library](https://glew.sourceforge.net/)|
 |glfw|3.4.0 |Feb 23, 2024|[GLFW](https://www.glfw.org/download.html)|
 |lodepng|20230410|April 04, 2023|[lodepng](https://lodev.org/lodepng/)|
-|vulkan|1.3.224.1|August 21, 2022|[Vulkan](https://de.wikipedia.org/wiki/Vulkan_(API))|
+|vulkan|1.3.283.0|May 14, 2024|[Vulkan](https://de.wikipedia.org/wiki/Vulkan_(API))|
+|box2d|2.4.1|October 18, 2020|[box2D](https://box2d.org/)|

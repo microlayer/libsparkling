@@ -91,6 +91,9 @@
     <Filter Include="source\animator">
       <UniqueIdentifier>{d8844ac0-a697-4c56-9543-daa2ea56451a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\forms">
+      <UniqueIdentifier>{909a5867-ebd0-4fd7-b0b0-2b4fa87acfb9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\spark\Sparkling.cpp">
@@ -197,6 +200,9 @@
     </ClCompile>
     <ClCompile Include="..\..\source\animator\NodeRotationAnimator.cpp">
       <Filter>source\animator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\forms\Window.cpp">
+      <Filter>source\forms</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -424,6 +430,9 @@
     </ClInclude>
     <ClInclude Include="..\..\include\ISparkNodeAnimator.hpp">
       <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\forms\Window.hpp">
+      <Filter>source\forms</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
