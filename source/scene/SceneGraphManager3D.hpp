@@ -11,16 +11,18 @@ namespace spark {
         class SceneGraphManager3D : public ISceneGraphManager3D
         {
         public:
-            SceneGraphManager3D();
+            SceneGraphManager3D(spark::renderer::ISparkRenderer* renderer);
             virtual ~SceneGraphManager3D();
 
         public:
             spark::scene::ISparkSceneNode* rootNode();
+            void setDefaultCamera();
             void setActiveCamera();
             void drawGraph(spark::renderer::ISparkRenderer* renderer);
 
         private:
             spark::scene::SceneNode m_rootNode;
+            spark::renderer::ISparkRenderer* m_renderer;
         };
     }
 }

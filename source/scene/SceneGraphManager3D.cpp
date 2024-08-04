@@ -5,7 +5,7 @@ namespace spark {
         /**
         *
         */
-        SceneGraphManager3D::SceneGraphManager3D()
+        SceneGraphManager3D::SceneGraphManager3D(spark::renderer::ISparkRenderer* renderer) : m_renderer(renderer)
         {
 
         }
@@ -29,6 +29,19 @@ namespace spark {
         /**
         *
         */
+        void SceneGraphManager3D::setDefaultCamera()
+        {
+            spark::perspective::PerspectiveProjection perspectiveProjection;
+            perspectiveProjection.m_aspect = 1.661111f;
+            perspectiveProjection.m_fovy = 45;
+            perspectiveProjection.m_zFar = 100.0f;
+            perspectiveProjection.m_zNear = 1.0f;
+            m_renderer->setPerspectiveProjectionMatrix(perspectiveProjection);
+        }
+
+        /**
+        *
+        */
         void SceneGraphManager3D::setActiveCamera()
         {
 
@@ -39,6 +52,8 @@ namespace spark {
         */
         void SceneGraphManager3D::drawGraph(spark::renderer::ISparkRenderer* renderer)
         {
+            setDefaultCamera();
+
             //spark::mesh::ISparkMesh* mesh = m_rootNode.getMesh();
             spark::scene::ISparkSceneNode* node = m_rootNode.getChildren().at(0);
             spark::mesh::ISparkMesh* mesh = node->getMesh();

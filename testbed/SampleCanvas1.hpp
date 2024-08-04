@@ -39,15 +39,7 @@ public:
         // Set virtual resolution
         //spark::perspective::OrthographicProjection orthographicProjection(device->getScreenResolution().m_width, device->getScreenResolution().m_height);
         //orthographicProjection.setVirtualResolution(1196, 720, spark::perspective::VirtualResolution::E_LETTER_OR_PILLARBOX);
-        //device->getRenderer()->setOrthographicProjection(orthographicProjection);
-
-        // Set perspective
-        spark::perspective::PerspectiveProjection perspectiveProjection;
-        perspectiveProjection.m_aspect = 1.661111f;
-        perspectiveProjection.m_fovy = 45;
-        perspectiveProjection.m_zFar = 100.0f;
-        perspectiveProjection.m_zNear = 1.0f;
-        device->getRenderer()->setPerspectiveProjectionMatrix(perspectiveProjection);
+        //device->getRenderer()->setOrthographicProjection(orthographicProjection);        
     }
 
     /**
