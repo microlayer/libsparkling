@@ -43,8 +43,9 @@ MEMORY=-s TOTAL_MEMORY=33554432
 # WASM
 WASM=-s WASM=0
 
+# Link bitcode of lib projects 'emcc foo.bc -o bar.html ...'
 sparkling:$(LIBSPARKLING_SRC_FILES) 
-	emcc -o sparkling_emscripten.html $(LIBSPARKLING_SRC_FILES) $(CFLAGS) $(OGLSUPPORT) $(OPTIMIZERFLAGS) $(EXCEPTIONS) $(WASM) $(MEMORY) --memory-init-file 0
+	emcc ../../lib/lodepng/emscripten/lodepng.bc -o sparkling_emscripten.html $(LIBSPARKLING_SRC_FILES) $(CFLAGS) $(OGLSUPPORT) $(OPTIMIZERFLAGS) $(EXCEPTIONS) $(WASM) $(MEMORY) --memory-init-file 0
 
 clean:
     # TODO
