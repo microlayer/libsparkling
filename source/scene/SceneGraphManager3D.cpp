@@ -5,7 +5,9 @@ namespace spark {
         /**
         *
         */
-        SceneGraphManager3D::SceneGraphManager3D(spark::renderer::ISparkRenderer* renderer) : m_renderer(renderer)
+        SceneGraphManager3D::SceneGraphManager3D(spark::renderer::ISparkRenderer* renderer, spark::device::ScreenResolution screenResolution)
+            : m_renderer(renderer),
+            m_screenResolution(screenResolution)
         {
 
         }
@@ -32,7 +34,7 @@ namespace spark {
         void SceneGraphManager3D::setDefaultCamera()
         {
             spark::perspective::PerspectiveProjection perspectiveProjection;
-            perspectiveProjection.m_aspect = 1.661111f;
+            perspectiveProjection.m_aspect = m_screenResolution.m_ratio;
             perspectiveProjection.m_fovy = 45;
             perspectiveProjection.m_zFar = 100.0f;
             perspectiveProjection.m_zNear = 1.0f;

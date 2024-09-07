@@ -5,4 +5,6 @@ APP_CPPFLAGS := -fexceptions
 APP_CPPFLAGS += -frtti
 APP_CPPFLAGS += -std=c++17
 APP_CFLAGS := -Wno-write-strings
+# Android 12: API 31 
+APP_PLATFORM=android-31
 

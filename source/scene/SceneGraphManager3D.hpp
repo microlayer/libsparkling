@@ -2,6 +2,7 @@
 #define __SPARK_SCENE_SCENEGRAPHMANAGER2D_HPP_INCLUDED__
 
 #include "ISceneGraphManager3D.hpp"
+#include <Sparkling.hpp>
 
 namespace spark {
     namespace scene {
@@ -11,7 +12,7 @@ namespace spark {
         class SceneGraphManager3D : public ISceneGraphManager3D
         {
         public:
-            SceneGraphManager3D(spark::renderer::ISparkRenderer* renderer);
+            SceneGraphManager3D(spark::renderer::ISparkRenderer* renderer, spark::device::ScreenResolution screenResolution);
             virtual ~SceneGraphManager3D();
 
         public:
@@ -23,6 +24,7 @@ namespace spark {
         private:
             spark::scene::SceneNode m_rootNode;
             spark::renderer::ISparkRenderer* m_renderer;
+            spark::device::ScreenResolution m_screenResolution;
         };
     }
 }

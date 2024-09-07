@@ -25,13 +25,13 @@ android {
 		}
 	}
 
-	compileSdkVersion 29
+	compileSdkVersion 31
     buildToolsVersion '30.0.3' // minimal version which can ve used with gradle
 	namespace 'libsparkling'
 
 	defaultConfig {
-		minSdkVersion 30
-        targetSdkVersion 30
+		minSdkVersion 31
+        targetSdkVersion 34
         applicationId "com.microlayer.libsparkling"
 		versionName "1.0.0"
 		versionCode 1		

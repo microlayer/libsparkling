@@ -1,6 +1,5 @@
 LOCAL_PATH := $(call my-dir)
 
-
 LS_CPP=$(subst $(1)/,,$(wildcard $(1)/$(2)/*.cpp))
 LS_C=$(subst $(1)/,,$(wildcard $(1)/$(2)/*.c))
 
@@ -30,6 +29,13 @@ SPARKLING_C_INCLUDES := $(LOCAL_PATH)/../../../include
 SPARKLING_C_INCLUDES += $(LOCAL_PATH)/../../../source
 SPARKLING_C_INCLUDES += $(LOCAL_PATH)/../../../lib
 
+#----------------------------------------------------------------------------------------------------
+# Include liblodepng.a
+#----------------------------------------------------------------------------------------------------
+include $(CLEAR_VARS)
+LOCAL_MODULE := liblodepng
+LOCAL_SRC_FILES := ../../../lib/lodepng/android/obj/local/$(TARGET_ARCH_ABI)/liblodepng.a
+include $(PREBUILT_STATIC_LIBRARY)
 
 #----------------------------------------------------------------------------------------------------
 # Build shared library
@@ -41,26 +47,14 @@ LOCAL_SRC_FILES  	:= $(LIBSPARKLING_SRC_FILES)
 LOCAL_LDLIBS		:= -landroid -llog -lEGL -lGLESv1_CM -lGLESv2 
 LOCAL_CFLAGS		:= -DSPARK_USE_ROOT_HOME_DIR
 
-LOCAL_STATIC_LIBRARIES := android_native_app_glue
+LOCAL_STATIC_LIBRARIES := android_native_app_glue liblodepng
 
 include $(BUILD_SHARED_LIBRARY)
 
 $(call import-module,android/native_app_glue)
 
 
-#----------------------------------------------------------------------------------------------------
-# Build static library
-#----------------------------------------------------------------------------------------------------
-#include $(CLEAR_VARS)
-#LOCAL_MODULE		:= libsparkling
-#LOCAL_C_INCLUDES   := $(SPARKLING_C_INCLUDES)
-#LOCAL_SRC_FILES  	:= $(SPARKLING_SRC_FILES)
 
-#LOCAL_STATIC_LIBRARIES := android_native_app_glue png
-
-#include $(BUILD_STATIC_LIBRARY)
-
-#$(call import-module,android/native_app_glue)
 
 
 

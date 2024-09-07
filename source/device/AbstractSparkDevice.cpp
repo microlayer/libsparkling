@@ -259,8 +259,8 @@ namespace spark {
         *
         */
         spark::scene::ISceneGraphManager3D* AbstractSparkDevice::createSceneGraphManager3D()
-        {
-            return new spark::scene::SceneGraphManager3D(m_renderer);
+        {            
+            return new spark::scene::SceneGraphManager3D(m_renderer, this->getScreenResolution());
         }
 
         /**

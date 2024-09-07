@@ -246,7 +246,7 @@ namespace spark {
                 int32_t lResult;
                 int32_t lEvents;
                 android_poll_source* lSource;
-                while ((lResult = ALooper_pollAll(m_enabled ? 0 : -1, NULL, &lEvents, (void**)&lSource)) >= 0)
+                while ((lResult = ALooper_pollOnce(m_enabled ? 0 : -1, NULL, &lEvents, (void**)&lSource)) >= 0)
                 {
                     if (lSource != NULL)
                     {
@@ -364,7 +364,9 @@ namespace spark {
             */
             ScreenResolution AndroidEGLWindow::getScreenResolution()
             {
-                return { m_width, m_height, real32(m_width / m_height) };
+                real32 aspect = (real32)(m_width / m_height);
+                m_logger->info("AndroidEGLWindow::getScreenResolution %i %i %f ", m_width, m_height, aspect);
+                return { m_width, m_height, aspect };
             }
         } // end namespace window	
     } // end namespace device

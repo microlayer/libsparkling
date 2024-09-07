@@ -22,7 +22,11 @@ Multibyte Character Set                                                         
 
 #pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
 #pragma comment(lib, "glfw/lib-vc2022/glfw3.lib")
-#pragma comment(lib, "lodepng/lib-vc2022/lodepng.lib")
+#ifdef _DEBUG
+    #pragma comment(lib, "lodepng/lib-vc2022/lodepngd.lib")
+#else
+    #pragma comment(lib, "lodepng/lib-vc2022/lodepng.lib")
+#endif
 #pragma comment(lib, "opengl32.lib")
 #if SPARK_COMPILE_VULKAN == 0x1
 #pragma comment(lib, "vulkan-1.lib")
