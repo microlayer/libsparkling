@@ -53,7 +53,7 @@ namespace spark {
                 {
                     // NOK
                 }
-                spark::renderer::shader::glslfles10::DefaultShader defaultShader;
+                spark::renderer::shader::glsl_for_ogl_feature_level_glsles10::DefaultShader defaultShader;
                 const char* vertShaderSource = defaultShader.GetVertexShader();
                 const char* fragShaderSource = defaultShader.GetFragmentShader();
                 glShaderSource(vertexShader, 1, &vertShaderSource, NULL);
