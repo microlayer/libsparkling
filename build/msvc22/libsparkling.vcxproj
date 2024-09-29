@@ -309,6 +309,7 @@
     <ClInclude Include="..\..\source\renderer\OpenGLES2Renderer.hpp" />
     <ClInclude Include="..\..\source\renderer\OpenGLFLES2Renderer.hpp" />
     <ClInclude Include="..\..\source\renderer\OpenGLRenderer.hpp" />
+    <ClInclude Include="..\..\source\renderer\shader\glsl_for_gles2_feature_level_glsles10\DefaultShader.hpp" />
     <ClInclude Include="..\..\source\renderer\shader\glsl_for_ogl_feature_level_glsles10\DefaultShader.hpp" />
     <ClInclude Include="..\..\source\renderer\shader\glsl_for_spir_feature_level_glsles10\DefaultShader.hpp" />
     <ClInclude Include="..\..\source\renderer\shader\OpenGLShaderProgram.hpp" />
@@ -328,6 +329,8 @@
     <ClInclude Include="..\..\testbed\SampleCanvas1.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\source\renderer\shader\glsl_for_gles2_feature_level_glsles10\Default.frag" />
+    <None Include="..\..\source\renderer\shader\glsl_for_gles2_feature_level_glsles10\Default.vert" />
     <None Include="..\..\source\renderer\shader\glsl_for_ogl_feature_level_glsles10\Default.frag" />
     <None Include="..\..\source\renderer\shader\glsl_for_ogl_feature_level_glsles10\Default.vert" />
     <None Include="..\..\source\renderer\shader\glsl_for_spir_feature_level_glsles10\Default.frag" />

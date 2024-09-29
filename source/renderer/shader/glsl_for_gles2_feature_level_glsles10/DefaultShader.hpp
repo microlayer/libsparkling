@@ -4,13 +4,13 @@
 //	Changes will be lost if code is regenerated
 // </auto-generated>
 //------------------------------------------------------------------------------
-#ifndef __SPARK_RENDERER_SHADER_GLSL_FOR_OGL_FEATURE_LEVEL_GLSLES10_DEFAULTSHADER_HPP_INCLUDED__
-#define __SPARK_RENDERER_SHADER_GLSL_FOR_OGL_FEATURE_LEVEL_GLSLES10_DEFAULTSHADER_HPP_INCLUDED__
+#ifndef __SPARK_RENDERER_SHADER_GLSL_FOR_GLES2_FEATURE_LEVEL_GLSLES10_DEFAULTSHADER_HPP_INCLUDED__
+#define __SPARK_RENDERER_SHADER_GLSL_FOR_GLES2_FEATURE_LEVEL_GLSLES10_DEFAULTSHADER_HPP_INCLUDED__
 
 namespace spark {
 	namespace renderer {
 		namespace shader {
-			namespace glsl_for_ogl_feature_level_glsles10 {
+			namespace glsl_for_gles2_feature_level_glsles10 {
 				/// <summary>
 				///
 				/// <summary>
@@ -38,7 +38,7 @@ namespace spark {
 					const char* GetVertexShader() const
 					{
 						const char* vertexShaderStr =
-							"#version 130\n"
+							"#version 100\n"
 							"//precision mediump float;\n"
 							"\n"
 							"// Input\n"
@@ -72,7 +72,7 @@ namespace spark {
 					const char* GetFragmentShader() const
 					{
 						const char* fragmentShaderStr =
-							"#version 130\n"
+							"#version 100\n"
 							"//precision mediump float;\n"
 							"\n"
 							"// Varying\n"

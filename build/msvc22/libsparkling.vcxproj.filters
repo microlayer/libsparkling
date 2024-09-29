@@ -434,6 +434,9 @@
     <ClInclude Include="..\..\source\renderer\shader\glsl_for_spir_feature_level_glsles10\DefaultShader.hpp">
       <Filter>source\renderer\shader\glsl_for_spir_feature_level_glsles10</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\source\renderer\shader\glsl_for_gles2_feature_level_glsles10\DefaultShader.hpp">
+      <Filter>source\renderer\shader\glsl_for_gles2_feature_level_glsles10</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\source\renderer\shader\glsl_for_ogl_feature_level_glsles10\Default.frag">
@@ -447,6 +450,12 @@
     </None>
     <None Include="..\..\source\renderer\shader\glsl_for_spir_feature_level_glsles10\Default.vert">
       <Filter>source\renderer\shader\glsl_for_spir_feature_level_glsles10</Filter>
+    </None>
+    <None Include="..\..\source\renderer\shader\glsl_for_gles2_feature_level_glsles10\Default.frag">
+      <Filter>source\renderer\shader\glsl_for_gles2_feature_level_glsles10</Filter>
+    </None>
+    <None Include="..\..\source\renderer\shader\glsl_for_gles2_feature_level_glsles10\Default.vert">
+      <Filter>source\renderer\shader\glsl_for_gles2_feature_level_glsles10</Filter>
     </None>
   </ItemGroup>
 </Project>
