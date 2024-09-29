@@ -1,19 +1,23 @@
-#version 100
-precision mediump float;
+#version 130
+//precision mediump float;
 
-attribute vec3 aPosition;
-attribute vec3 aNormal;
-attribute vec4 aColor;
+// Input
+attribute vec3 aVertexPosition;
+attribute vec3 aVertexNormal;
+attribute vec4 aVertexColor;
 attribute vec2 aTextureCoord;
 uniform mat4 uModelViewProjectionMatrix;
 
-varying vec4 Color;
+// Varying
+varying vec4 color;
+varying vec2 textureCoord;
 
 //--------------------------------------------------------------------------------------
 //
 //--------------------------------------------------------------------------------------
 void main()
 {	
-    Color = aColor;
-	gl_Position = uModelViewProjectionMatrix * vec4(aPosition, 1.0);    
+    color = aVertexColor;
+    textureCoord = aTextureCoord;
+	gl_Position = uModelViewProjectionMatrix * vec4(aVertexPosition, 1.0);    
 }

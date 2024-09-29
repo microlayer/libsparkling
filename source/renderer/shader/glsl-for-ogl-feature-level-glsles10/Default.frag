@@ -1,13 +1,26 @@
-#version 100
-precision mediump float;
+#version 130
+//precision mediump float;
 
-varying vec4 Color;
+// Varying
+varying vec4 color;
+varying vec2 textureCoord;
+
+// Input
+uniform sampler2D utexture0;
+uniform int uDrawMode;
 
 //--------------------------------------------------------------------------------------
 //
 //--------------------------------------------------------------------------------------
 void main()
 {
-	gl_FragColor = Color;
+    if(uDrawMode == 1)
+    {
+	    gl_FragColor = texture(utexture0, textureCoord);        
+    }
+    else
+    {
+        gl_FragColor = color;
+    }
 }
 
