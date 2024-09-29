@@ -10,7 +10,7 @@
         string ClassName { get; }
         string VertexName { get; }
         string FragmentName { get; }
-        string Guard {  get; }
+        string Guard { get; }
         string Namespace { get; }
     }
 }

@@ -53,11 +53,11 @@
         /// <summary>
         /// 
         /// </summary>
-        public string Guard { get { return Version.Replace('-', '_').ToUpper(); } }
+        public string Guard { get { return Version.ToUpper(); } }
 
         /// <summary>
         /// 
         /// </summary>
-        public string Namespace { get { return Version.Replace('-', '_'); } }
+        public string Namespace { get { return Version; } }
     }
 }
