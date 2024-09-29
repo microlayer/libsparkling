@@ -3,7 +3,7 @@
 
 #include "spark/SparkSetup.hpp"
 #include "ISparkShader.hpp"
-#include "glsl-for-ogl-feature-level-glsles10/DefaultShader.hpp"
+#include "glsl_for_ogl_feature_level_glsles10/DefaultShader.hpp"
 #if SPARK_PLATFORM == SPARK_PLATFORM_WINDOWS
 #include <GL/glew.h>
 #endif

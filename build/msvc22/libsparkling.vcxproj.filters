@@ -64,15 +64,6 @@
     <Filter Include="source\renderer\shader">
       <UniqueIdentifier>{1ec21dfd-a20b-44b4-8870-8d7028928db9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="source\renderer\shader\glsl-for-gles2-feature-level-glsles10">
-      <UniqueIdentifier>{28b2e3c3-c2d7-4124-8ac0-d9767d594916}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="source\renderer\shader\glsl-for-spir-feature-level-glsles10">
-      <UniqueIdentifier>{0b9947a8-380d-46e3-95e6-de45192e416a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="source\renderer\shader\glsl-for-ogl-feature-level-glsles10">
-      <UniqueIdentifier>{34c4a2d2-aa1a-472e-870b-cf94813b61a0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="source\mesh">
       <UniqueIdentifier>{21ae06d1-6a61-4cb7-b47d-3d9ed3e6f9c4}</UniqueIdentifier>
     </Filter>
@@ -93,6 +84,15 @@
     </Filter>
     <Filter Include="source\forms">
       <UniqueIdentifier>{909a5867-ebd0-4fd7-b0b0-2b4fa87acfb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\renderer\shader\glsl_for_ogl_feature_level_glsles10">
+      <UniqueIdentifier>{34c4a2d2-aa1a-472e-870b-cf94813b61a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\renderer\shader\glsl_for_gles2_feature_level_glsles10">
+      <UniqueIdentifier>{28b2e3c3-c2d7-4124-8ac0-d9767d594916}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\renderer\shader\glsl_for_spir_feature_level_glsles10">
+      <UniqueIdentifier>{0b9947a8-380d-46e3-95e6-de45192e416a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -350,9 +350,6 @@
     <ClInclude Include="..\..\include\ISparkShader.hpp">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\renderer\shader\glsl-for-ogl-feature-level-glsles10\DefaultShader.hpp">
-      <Filter>source\renderer\shader\glsl-for-ogl-feature-level-glsles10</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\source\drawing\Vertex3.hpp">
       <Filter>source\drawing</Filter>
     </ClInclude>
@@ -382,9 +379,6 @@
     </ClInclude>
     <ClInclude Include="..\..\source\renderer\VulkanRenderer.hpp">
       <Filter>source\renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\renderer\shader\glsl-for-spir-feature-level-glsles10\DefaultShader.hpp">
-      <Filter>source\renderer\shader\glsl-for-spir-feature-level-glsles10</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\mlstl\MLBase64.hpp">
       <Filter>source\mlstl</Filter>
@@ -434,19 +428,25 @@
     <ClInclude Include="..\..\source\forms\Window.hpp">
       <Filter>source\forms</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\source\renderer\shader\glsl_for_ogl_feature_level_glsles10\DefaultShader.hpp">
+      <Filter>source\renderer\shader\glsl_for_ogl_feature_level_glsles10</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\renderer\shader\glsl_for_spir_feature_level_glsles10\DefaultShader.hpp">
+      <Filter>source\renderer\shader\glsl_for_spir_feature_level_glsles10</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\source\renderer\shader\glsl-for-ogl-feature-level-glsles10\Default.frag">
-      <Filter>source\renderer\shader\glsl-for-ogl-feature-level-glsles10</Filter>
+    <None Include="..\..\source\renderer\shader\glsl_for_ogl_feature_level_glsles10\Default.frag">
+      <Filter>source\renderer\shader\glsl_for_ogl_feature_level_glsles10</Filter>
     </None>
-    <None Include="..\..\source\renderer\shader\glsl-for-ogl-feature-level-glsles10\Default.vert">
-      <Filter>source\renderer\shader\glsl-for-ogl-feature-level-glsles10</Filter>
+    <None Include="..\..\source\renderer\shader\glsl_for_ogl_feature_level_glsles10\Default.vert">
+      <Filter>source\renderer\shader\glsl_for_ogl_feature_level_glsles10</Filter>
     </None>
-    <None Include="..\..\source\renderer\shader\glsl-for-spir-feature-level-glsles10\Default.frag">
-      <Filter>source\renderer\shader\glsl-for-spir-feature-level-glsles10</Filter>
+    <None Include="..\..\source\renderer\shader\glsl_for_spir_feature_level_glsles10\Default.frag">
+      <Filter>source\renderer\shader\glsl_for_spir_feature_level_glsles10</Filter>
     </None>
-    <None Include="..\..\source\renderer\shader\glsl-for-spir-feature-level-glsles10\Default.vert">
-      <Filter>source\renderer\shader\glsl-for-spir-feature-level-glsles10</Filter>
+    <None Include="..\..\source\renderer\shader\glsl_for_spir_feature_level_glsles10\Default.vert">
+      <Filter>source\renderer\shader\glsl_for_spir_feature_level_glsles10</Filter>
     </None>
   </ItemGroup>
 </Project>

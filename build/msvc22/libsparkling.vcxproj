@@ -309,8 +309,8 @@
     <ClInclude Include="..\..\source\renderer\OpenGLES2Renderer.hpp" />
     <ClInclude Include="..\..\source\renderer\OpenGLFLES2Renderer.hpp" />
     <ClInclude Include="..\..\source\renderer\OpenGLRenderer.hpp" />
-    <ClInclude Include="..\..\source\renderer\shader\glsl-for-ogl-feature-level-glsles10\DefaultShader.hpp" />
-    <ClInclude Include="..\..\source\renderer\shader\glsl-for-spir-feature-level-glsles10\DefaultShader.hpp" />
+    <ClInclude Include="..\..\source\renderer\shader\glsl_for_ogl_feature_level_glsles10\DefaultShader.hpp" />
+    <ClInclude Include="..\..\source\renderer\shader\glsl_for_spir_feature_level_glsles10\DefaultShader.hpp" />
     <ClInclude Include="..\..\source\renderer\shader\OpenGLShaderProgram.hpp" />
     <ClInclude Include="..\..\source\renderer\Vulkan13Renderer.hpp" />
     <ClInclude Include="..\..\source\renderer\VulkanRenderer.hpp" />
@@ -328,10 +328,10 @@
     <ClInclude Include="..\..\testbed\SampleCanvas1.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\source\renderer\shader\glsl-for-ogl-feature-level-glsles10\Default.frag" />
-    <None Include="..\..\source\renderer\shader\glsl-for-ogl-feature-level-glsles10\Default.vert" />
-    <None Include="..\..\source\renderer\shader\glsl-for-spir-feature-level-glsles10\Default.frag" />
-    <None Include="..\..\source\renderer\shader\glsl-for-spir-feature-level-glsles10\Default.vert" />
+    <None Include="..\..\source\renderer\shader\glsl_for_ogl_feature_level_glsles10\Default.frag" />
+    <None Include="..\..\source\renderer\shader\glsl_for_ogl_feature_level_glsles10\Default.vert" />
+    <None Include="..\..\source\renderer\shader\glsl_for_spir_feature_level_glsles10\Default.frag" />
+    <None Include="..\..\source\renderer\shader\glsl_for_spir_feature_level_glsles10\Default.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
