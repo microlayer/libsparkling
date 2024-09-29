@@ -63,6 +63,12 @@ namespace spark {
                 glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &vertShaderCompiled);
                 glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &fragShaderCompiled);
 
+
+                char infoLog[512];
+                glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
+
+                //m_logger->info(infoLog);
+
                 if (!vertexShader)
                 {
                     GLint infoLen = 0;
