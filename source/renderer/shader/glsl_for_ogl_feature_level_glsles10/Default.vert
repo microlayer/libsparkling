@@ -1,10 +1,10 @@
 #version 130
 
 // Input
-attribute vec3 aVertexPosition;
-attribute vec3 aVertexNormal;
-attribute vec4 aVertexColor;
-attribute vec2 aTextureCoord;
+in vec3 aVertexPosition;
+in vec3 aVertexNormal;
+in vec4 aVertexColor;
+in vec2 aTextureCoord;
 uniform mat4 uModelViewProjectionMatrix;
 
 // Varying

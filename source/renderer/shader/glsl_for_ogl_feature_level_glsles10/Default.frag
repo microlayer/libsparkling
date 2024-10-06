@@ -5,7 +5,7 @@ in vec4 color;
 in vec2 textureCoord;
 
 // Input
-uniform sampler2D utexture0;
+uniform sampler2D uTexture0;
 uniform int uDrawMode;
 
 // Out
@@ -18,7 +18,7 @@ void main()
 {
     if(uDrawMode == 1)
     {
-        fragColor = texture2D(utexture0, textureCoord);
+        fragColor = texture2D(uTexture0, textureCoord);
     }
     else
     {

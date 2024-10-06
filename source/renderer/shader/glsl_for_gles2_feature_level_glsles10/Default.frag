@@ -6,7 +6,7 @@ varying vec4 color;
 varying vec2 textureCoord;
 
 // Input
-uniform sampler2D utexture0;
+uniform sampler2D uTexture0;
 uniform int uDrawMode;
 
 //--------------------------------------------------------------------------------------
@@ -16,7 +16,7 @@ void main()
 {
     if(uDrawMode == 1)
     {
-        gl_FragColor = texture2D(utexture0, textureCoord);
+        gl_FragColor = texture2D(uTexture0, textureCoord);
     }
     else
     {
