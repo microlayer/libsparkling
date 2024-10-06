@@ -8,7 +8,7 @@ namespace spark {
         OpenGLRenderer::OpenGLRenderer(spark::device::ISparkDevice* device, spark::renderer::shader::ISparkShader* shader) :
             AbstractSparkRenderer(device, shader)
         {
-
+        
         }
 
         /**
@@ -150,53 +150,57 @@ namespace spark {
         */
         void OpenGLRenderer::draw2DBitmap(const spark::drawing::ISparkImage* image, int16_t x, int16_t y)
         {
-            //GLuint textureID;
-            //glBindTexture(GL_TEXTURE_2D, textureID);
+            m_shader->setDrawMode(1);
+            glDisable(GL_CULL_FACE);
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, 0);
+            glBindTexture(GL_TEXTURE_2D, 0);
+            glUniform1i(glGetUniformLocation(1, "utexture0"), 0);
+            spark::drawing::ClippingRectangle clipRect(0, 0, image->getWidth(), image->getHeight());
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image->getWidth(), image->getHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, image->getImageAsStream());
 
-            //spark::drawing::ClippingRectangle clipRect(0, 0, image->getWidth(), image->getHeight());
-            //glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image->getWidth(), image->getHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, image->getImageAsStream());
+            GLenum err = glGetError();
+            if (glGetError() != err)
+            {
+                m_logger->error("Error loading texture into OpenGL with reason: %s code: %i", "Undefined", err);
+            }
 
-            //GLenum err = glGetError();
-            //if (glGetError() != err)
-            //{
-            //    m_logger->error("Error loading texture into OpenGL with reason: %s code: %i", "Undefined", err);
-            //}
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-            //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-            //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-            //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-            //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+            real32 clipStart = (1.0 / image->getWidth()) * clipRect.m_x;
+            real32 clipEnd = clipStart + (1.0 / image->getWidth()) * clipRect.m_width;
 
-            //real32 clipStart = (1.0 / image->getWidth()) * clipRect.m_x;
-            //real32 clipEnd = clipStart + (1.0 / image->getWidth()) * clipRect.m_width;
+            GLfloat texureCoords[] = {	// If clipping area is the full size of the image
+                clipStart, 1.0,		    // 0.0, 1.0,
+                clipEnd, 1.0,		    // 1.0, 1.0,
+                clipStart, 0.0,		    // 0.0, 0.0,
+                clipEnd, 0.0		    // 1.0, 0.0
+            };
 
-            //GLfloat texureCoords[] = {	// If clipping area is the full size of the image
-            //    clipStart, 1.0,		    // 0.0, 1.0,
-            //    clipEnd, 1.0,		    // 1.0, 1.0,
-            //    clipStart, 0.0,		    // 0.0, 0.0,
-            //    clipEnd, 0.0		    // 1.0, 0.0
-            //};
+            real32 imageHeight = clipRect.m_height;	    // Use the clip height instead image->GetHeight()
+            real32 imageWidth = clipRect.m_width;	    // Use the clip width instead image->GetWidth()
 
-            //real32 imageHeight = clipRect.m_height;	    // Use the clip height instead image->GetHeight()
-            //real32 imageWidth = clipRect.m_width;	    // Use the clip width instead image->GetWidth()
+            GLfloat vertices[] = {
+                0.0f + x, -imageHeight + -y, 0.0f,
+                imageWidth + x, -imageHeight + -y, 0.0f,
+                0.0f + x, 0.0f + -y, 0.0f,
+                imageWidth + x, 0.0f + -y, 0.0f
+            };
 
-            //GLfloat vertices[] = {
-            //    0.0f + x, -imageHeight + -y, 0.0f,
-            //    imageWidth + x, -imageHeight + -y, 0.0f,
-            //    0.0f + x, 0.0f + -y, 0.0f,
-            //    imageWidth + x, 0.0f + -y, 0.0f
-            //};
+            glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, &vertices[0]);
+            glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 0, &texureCoords[0]);
 
-            //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, &vertices[0]);
-            //glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 0, &texureCoords[0]);
+            glEnableVertexAttribArray(0);
+            glEnableVertexAttribArray(3);
 
-            //glEnableVertexAttribArray(0);
-            //glEnableVertexAttribArray(3);
+            glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
-            //glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-
-            //glDisableVertexAttribArray(3);
-            //glDisableVertexAttribArray(0);
+            glDisableVertexAttribArray(3);
+            glDisableVertexAttribArray(0);
+            m_shader->setDrawMode(0);
         }
 
         /**
