@@ -36,6 +36,7 @@ namespace spark {
 
             public:
                 void setProjectionViewMatrix(const real32* matrix);
+                void setDrawMode(uint32_t drawMode);
 
             private:
                 GLuint m_programObject;

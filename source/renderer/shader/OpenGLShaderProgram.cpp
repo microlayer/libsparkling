@@ -54,7 +54,7 @@ namespace spark {
                 fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
                 if (vertexShader == 0 || fragmentShader == 0)
                 {
-                    m_logger->error("Creating shader failed");
+                    m_logger->error("Creating shader failed.");
                 }
                 else
                 {
@@ -79,32 +79,24 @@ namespace spark {
                     glCompileShader(fragmentShader);
                     glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &vertShaderCompiled);
                     glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &fragShaderCompiled);
-                   
-                    if (!vertexShader)
-                    {
-                        GLint infoLen = 0;
-                        glGetShaderiv(vertexShader, GL_INFO_LOG_LENGTH, &infoLen);
-                        if (infoLen > 1)
-                        {
-                            char infoLog[2048];	//Attention: Fix buffer size
-                            glGetShaderInfoLog(vertexShader, infoLen, NULL, infoLog);
-                            m_logger->info("Vertex Shader result: ", infoLog);
-                        }
-                        glDeleteShader(vertexShader);
-                    }
 
-                    if (!fragmentShader)
+                    GLint infoLen = 0;
+                    glGetShaderiv(vertexShader, GL_INFO_LOG_LENGTH, &infoLen);
+                    if (infoLen > 1)
                     {
-                        GLint infoLen = 0;
-                        glGetShaderiv(fragmentShader, GL_INFO_LOG_LENGTH, &infoLen);
-                        if (infoLen > 1)
-                        {
-                            char infoLog[2048];	//Attention: Fix buffer size
-                            glGetShaderInfoLog(fragmentShader, infoLen, NULL, infoLog);
-                            m_logger->info("Fragment Shader result: ", infoLog);
-                        }
-                        glDeleteShader(fragmentShader);
+                        char infoLog[2048];	//Attention: Fix buffer size
+                        glGetShaderInfoLog(vertexShader, infoLen, NULL, infoLog);
+                        m_logger->info("Vertex Shader result: %s", &infoLog);
                     }
+                    
+                    glGetShaderiv(fragmentShader, GL_INFO_LOG_LENGTH, &infoLen);
+                    if (infoLen > 1)
+                    {
+                        char infoLog[2048];	//Attention: Fix buffer size
+                        glGetShaderInfoLog(fragmentShader, infoLen, NULL, infoLog);
+                        m_logger->info("Fragment Shader result: %s", infoLog);
+                    }                    
+
                     glAttachShader(m_programObject, vertexShader);
                     glAttachShader(m_programObject, fragmentShader);
 
@@ -116,7 +108,17 @@ namespace spark {
                     glLinkProgram(m_programObject);
                     glUseProgram(m_programObject);
 
-                    m_logger->info("Shader attached successfully")
+                    if (vertShaderCompiled && fragShaderCompiled)
+                    {
+                        m_logger->info("Shader compiled and used successfully");
+                    }
+                    else
+                    {
+                        m_logger->info("Shader failed to use. Cleaning up resources");
+                        glDeleteShader(vertexShader);
+                        glDeleteShader(fragmentShader);
+                        glDeleteProgram(m_programObject);
+                    }
                 }
                 return this;
             }
@@ -127,6 +129,14 @@ namespace spark {
             void OpenGLShaderProgram::setProjectionViewMatrix(const real32* matrix)
             {
                 glUniformMatrix4fv(glGetUniformLocation(m_programObject, "uModelViewProjectionMatrix"), 1, GL_FALSE, matrix);
+            }
+
+            /**
+            *
+            */
+            void OpenGLShaderProgram::setDrawMode(uint32_t drawMode)
+            {
+                glUniform1i(glGetUniformLocation(m_programObject, "uDrawMode"), drawMode);
             }
         } // end namespace shader
     } // end namespace renderer

@@ -20,6 +20,7 @@ namespace spark {
 
             public:
                 virtual void setProjectionViewMatrix(const real32* matrix) = 0;
+                virtual void setDrawMode(uint32_t drawMode) = 0;
             };
         } // end namespace shader
     } // end namespace renderer
