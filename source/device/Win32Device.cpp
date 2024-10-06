@@ -77,7 +77,7 @@ namespace spark {
         */
         void Win32Device::createShader()
         {
-            m_shader = new spark::renderer::shader::OpenGLShaderProgram();
+            m_shader = new spark::renderer::shader::OpenGLShaderProgram(m_logger, m_rendererEngineType);
         }
 
         /**

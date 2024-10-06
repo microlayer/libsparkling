@@ -70,7 +70,7 @@ namespace spark {
         */
         void WebGLDevice::createShader()
         {
-            m_shader = new spark::renderer::shader::OpenGLShaderProgram();
+            m_shader = new spark::renderer::shader::OpenGLShaderProgram(m_logger, m_rendererEngineType);
         }
 
         /**

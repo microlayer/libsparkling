@@ -1,5 +1,5 @@
 #version 100
-//precision mediump float;
+precision mediump float;
 
 // Varying
 varying vec4 color;
@@ -16,11 +16,12 @@ void main()
 {
     if(uDrawMode == 1)
     {
-	    gl_FragColor = texture(utexture0, textureCoord);        
+        gl_FragColor = texture2D(utexture0, textureCoord);
     }
     else
     {
         gl_FragColor = color;
     }
 }
+
 

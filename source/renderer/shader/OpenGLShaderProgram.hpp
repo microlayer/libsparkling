@@ -3,7 +3,10 @@
 
 #include "spark/SparkSetup.hpp"
 #include "ISparkShader.hpp"
+#include "ISparkLogger.hpp"
+#include "renderer/common/ERenderEngine.hpp"
 #include "glsl_for_ogl_feature_level_glsles10/DefaultShader.hpp"
+#include "glsl_for_gles2_feature_level_glsles10/DefaultShader.hpp"
 #if SPARK_PLATFORM == SPARK_PLATFORM_WINDOWS
 #include <GL/glew.h>
 #endif
@@ -23,7 +26,7 @@ namespace spark {
             class OpenGLShaderProgram : public spark::renderer::shader::ISparkShader
             {
             public:
-                OpenGLShaderProgram();
+                OpenGLShaderProgram(spark::log::ISparkLogger* logger, spark::renderer::E_RENDER_ENGINE rendererType);
                 virtual ~OpenGLShaderProgram(void);
 
             public:
@@ -36,6 +39,8 @@ namespace spark {
 
             private:
                 GLuint m_programObject;
+                spark::log::ISparkLogger* m_logger;
+                spark::renderer::E_RENDER_ENGINE m_rendererEngineType;
             };
         } // end namespace shader
     } // end namespace renderer

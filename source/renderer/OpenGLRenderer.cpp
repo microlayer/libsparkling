@@ -97,7 +97,7 @@ namespace spark {
         */
         void OpenGLRenderer::setModelTransformation(math::Matrix4f& modelTransformation)
         {
-            math::Matrix4f m = m_projectionViewMatrix * modelTransformation;                        
+            math::Matrix4f m = m_projectionViewMatrix * modelTransformation;
             m_shader->setProjectionViewMatrix(m.getPointer());
         }
 

@@ -39,7 +39,7 @@ namespace spark {
 					{
 						const char* vertexShaderStr =
 							"#version 100\n"
-							"//precision mediump float;\n"
+							"precision mediump float;\n"
 							"\n"
 							"// Input\n"
 							"attribute vec3 aVertexPosition;\n"
@@ -56,11 +56,12 @@ namespace spark {
 							"//\n"
 							"//--------------------------------------------------------------------------------------\n"
 							"void main()\n"
-							"{	\n"
+							"{\n"
 							"    color = aVertexColor;\n"
 							"    textureCoord = aTextureCoord;\n"
-							"	gl_Position = uModelViewProjectionMatrix * vec4(aVertexPosition, 1.0);    \n"
+							"    gl_Position = uModelViewProjectionMatrix * vec4(aVertexPosition, 1.0);\n"
 							"}\n"
+							"\n"
 							"\n"
 							;
 						return vertexShaderStr;
@@ -73,7 +74,7 @@ namespace spark {
 					{
 						const char* fragmentShaderStr =
 							"#version 100\n"
-							"//precision mediump float;\n"
+							"precision mediump float;\n"
 							"\n"
 							"// Varying\n"
 							"varying vec4 color;\n"
@@ -90,13 +91,14 @@ namespace spark {
 							"{\n"
 							"    if(uDrawMode == 1)\n"
 							"    {\n"
-							"	    gl_FragColor = texture(utexture0, textureCoord);        \n"
+							"        gl_FragColor = texture2D(utexture0, textureCoord);\n"
 							"    }\n"
 							"    else\n"
 							"    {\n"
 							"        gl_FragColor = color;\n"
 							"    }\n"
 							"}\n"
+							"\n"
 							"\n"
 							"\n"
 							;

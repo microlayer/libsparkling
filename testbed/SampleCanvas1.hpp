@@ -17,7 +17,7 @@ public:
     SampleCanvas1(spark::device::ISparkDevice* device)
     {
         m_fileSystem = device->getFileSystem();
-        m_image = m_fileSystem->loadBitmap("texture1.png");
+        //m_image = m_fileSystem->loadBitmap("texture1.png");
 
         // Create SceneGraphManager3D
         m_sceneGraphManager3D = device->createSceneGraphManager3D();
@@ -47,7 +47,7 @@ public:
     */
     virtual ~SampleCanvas1()
     {
-        delete m_image;
+        //delete m_image;
     }
 
     /**

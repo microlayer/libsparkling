@@ -73,7 +73,7 @@ namespace spark {
         /**
         *
         */
-        void AndroidDevice::createShader()
+        void AndroidDevice::createShader(m_logger, m_rendererEngineType)
         {
             m_shader = new spark::renderer::shader::OpenGLShaderProgram();
         }

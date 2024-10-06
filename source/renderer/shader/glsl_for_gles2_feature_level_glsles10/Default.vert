@@ -1,5 +1,5 @@
 #version 100
-//precision mediump float;
+precision mediump float;
 
 // Input
 attribute vec3 aVertexPosition;
@@ -16,8 +16,9 @@ varying vec2 textureCoord;
 //
 //--------------------------------------------------------------------------------------
 void main()
-{	
+{
     color = aVertexColor;
     textureCoord = aTextureCoord;
-	gl_Position = uModelViewProjectionMatrix * vec4(aVertexPosition, 1.0);    
+    gl_Position = uModelViewProjectionMatrix * vec4(aVertexPosition, 1.0);
 }
+
