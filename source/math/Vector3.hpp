@@ -150,7 +150,7 @@ namespace spark {
             Vector3<T>& getReflection(math::Vector3<T>& n)
             {
                 math::Vector3<T> e(*this);
-                math::Vector3<T> a = n * (2 * e.GetDotProduct(n)) - e;
+                math::Vector3<T> a = n * (2 * e.getDotProduct(n)) - e;
                 return a;
             }
 
