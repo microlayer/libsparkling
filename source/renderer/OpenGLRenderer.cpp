@@ -8,7 +8,7 @@ namespace spark {
         OpenGLRenderer::OpenGLRenderer(spark::device::ISparkDevice* device, spark::renderer::shader::ISparkShader* shader) :
             AbstractSparkRenderer(device, shader)
         {
-        
+
         }
 
         /**
@@ -31,7 +31,7 @@ namespace spark {
 
             glEnable(GL_CULL_FACE);
             glFrontFace(GL_CCW);
-            //glCullFace(GL_BACK); // GL_BACK GL_FRONT
+            glCullFace(GL_BACK); // GL_BACK GL_FRONT
         }
 
         /**
@@ -151,7 +151,6 @@ namespace spark {
         void OpenGLRenderer::draw2DBitmap(const spark::drawing::ISparkImage* image, int16_t x, int16_t y)
         {
             m_shader->setDrawMode(1);
-            glDisable(GL_CULL_FACE);
             glActiveTexture(GL_TEXTURE0);
             glBindTexture(GL_TEXTURE_2D, 0);
             glBindTexture(GL_TEXTURE_2D, 0);
@@ -170,8 +169,8 @@ namespace spark {
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-            real32 clipStart = (1.0 / image->getWidth()) * clipRect.m_x;
-            real32 clipEnd = clipStart + (1.0 / image->getWidth()) * clipRect.m_width;
+            GLfloat clipStart = (GLfloat)(1.0 / image->getWidth()) * clipRect.m_x;
+            GLfloat clipEnd = (GLfloat)(clipStart + (1.0 / image->getWidth())) * clipRect.m_width;
 
             GLfloat texureCoords[] = {	// If clipping area is the full size of the image
                 clipStart, 1.0,		    // 0.0, 1.0,
@@ -184,10 +183,10 @@ namespace spark {
             real32 imageWidth = clipRect.m_width;	    // Use the clip width instead image->GetWidth()
 
             GLfloat vertices[] = {
-                0.0f + x, -imageHeight + -y, 0.0f,
-                imageWidth + x, -imageHeight + -y, 0.0f,
-                0.0f + x, 0.0f + -y, 0.0f,
-                imageWidth + x, 0.0f + -y, 0.0f
+                (GLfloat)x, imageHeight + (GLfloat)y, 0.0f,
+                imageWidth + x, imageHeight + (GLfloat)y, 0.0f,
+                (GLfloat)x, (GLfloat)y, 0.0f,
+                imageWidth + (GLfloat)x, (GLfloat)y, 0.0f
             };
 
             glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, &vertices[0]);
@@ -253,6 +252,14 @@ namespace spark {
             glDisableVertexAttribArray(2);
             glDisableVertexAttribArray(1);
             glDisableVertexAttribArray(0);
+        }
+
+        /**
+        *
+        */
+        void OpenGLRenderer::drawTiledLayer(const spark::game::TiledLayer* tiledLayer, int16_t x, int16_t y)
+        {
+            const spark::drawing::ISparkImage* tilsetImage = tiledLayer->getTilesetImage();
         }
     } // end namespace renderer
 } // end namespace spark

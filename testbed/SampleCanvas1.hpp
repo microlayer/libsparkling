@@ -4,6 +4,7 @@
 #include <math/Matrix4.hpp>
 #include "animator/NodeRotationAnimator.hpp"
 #include "scene/SceneNode.hpp"
+#include "game/TiledLayer.hpp"
 
 /**
 *
@@ -18,6 +19,7 @@ public:
     {
         m_fileSystem = device->getFileSystem();
         //m_image = m_fileSystem->loadBitmap("texture1.png");
+        //m_tiledLayer = m_fileSystem->loadTiledLayer("tiles4x4.tmx");
 
         // Create SceneGraphManager3D
         m_sceneGraphManager3D = device->createSceneGraphManager3D();
@@ -47,7 +49,7 @@ public:
     */
     virtual ~SampleCanvas1()
     {
-        //delete m_image;
+
     }
 
     /**
@@ -56,13 +58,15 @@ public:
     void paint(spark::renderer::ISparkRenderer* renderer)
     {
         //renderer->draw2DLine(0, 0, 1196, 720, spark::drawing::Color(0, 255, 0, 255));
-        //renderer->draw2DBitmap(m_image, 10, 10);
+        //renderer->draw2DBitmap(m_image.get(), 100, 10);
+        //m_tiledLayer->paint(renderer);
 
         m_sceneGraphManager3D->drawGraph(renderer);
     }
 
 private:
     spark::file::ISparkFileSystem* m_fileSystem;
-    spark::drawing::ISparkImage* m_image;
+    //spark::SparkSharedPointer<spark::drawing::ISparkImage> m_image;
+    //spark::SparkSharedPointer<spark::game::TiledLayer> m_tiledLayer;
     spark::SparkSharedPointer<spark::scene::ISceneGraphManager3D> m_sceneGraphManager3D;
 };

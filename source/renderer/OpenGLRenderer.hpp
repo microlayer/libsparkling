@@ -6,6 +6,8 @@
 #include "drawing/ClippingRectangle.hpp"
 #include "math/Matrix4.hpp"
 #include "math/ProjectionMatrix.hpp"
+#include "game/TiledLayer.hpp"
+
 #if SPARK_PLATFORM == SPARK_PLATFORM_WINDOWS || \
     SPARK_PLATFORM == SPARK_PLATFORM_LINUX   || \
     SPARK_PLATFORM == SPARK_PLATFORM_APPLE
@@ -46,6 +48,7 @@ namespace spark {
             void draw2DPoint(int16_t x, int16_t y, spark::drawing::Color color);
             void draw2DLine(int16_t x1, int16_t y1, int16_t x2, int16_t y2, spark::drawing::Color color);
             void draw2DBitmap(const spark::drawing::ISparkImage* image, int16_t x, int16_t y);
+            void drawTiledLayer(const spark::game::TiledLayer* tiledLayer, int16_t x, int16_t y);
 
             // 3D
             void renderMesh(spark::mesh::ISparkMesh* mesh);

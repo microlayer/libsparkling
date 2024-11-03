@@ -5,37 +5,34 @@
 #include "ISparkFileSystem.hpp"
 #include <vector>
 #include "drawing/Bitmap.hpp"
+#include "game/TiledLayer.hpp"
+#include "ISparkImage.hpp"
 #include "../../lib/lodepng/lodepng.h"
-
-#ifdef __cplusplus
-extern "C"  {
-	//#include "../../lib/libroxml/roxml.h"
-}
-#endif
+#include "../../lib/tinyxml2/tinyxml2.h"
 
 namespace spark {
-	namespace file {
+    namespace file {
 
-		class FileSystem : public file::ISparkFileSystem
-		{
-		public:
-			FileSystem(spark::log::ISparkLogger* logger, std::string rootPath);
-			virtual ~FileSystem(void);
-		
-		public: // ISparkFileSystem
-			spark::drawing::ISparkImage* loadBitmap(std::string fileName);
-			//spark::renderer::ISparkTexture* loadTexture(std::string fileName);
-			//spark::mesh::ISparkMeshEntity* loadMesh(std::string fileName); 
-			//spark::game::TiledLayer* loadTiledLayer(std::string fileName);
-			//spark::font::ISparkFont* loadBitmapFont(std::string fileName);
+        class FileSystem : public file::ISparkFileSystem
+        {
+        public:
+            FileSystem(spark::log::ISparkLogger* logger, std::string rootPath);
+            virtual ~FileSystem(void);
 
-		public:
-			void appendText(std::string filename, std::string text);
-        
+        public: // ISparkFileSystem
+            spark::drawing::ISparkImage* loadBitmap(std::string fileName);
+            spark::game::TiledLayer* loadTiledLayer(std::string fileName);
+            //spark::renderer::ISparkTexture* loadTexture(std::string fileName);
+            //spark::mesh::ISparkMesh* loadMesh(std::string fileName); 			
+            //spark::font::ISparkFont* loadBitmapFont(std::string fileName);
+
+        public:
+            void appendText(std::string filename, std::string text);
+
         private:
-			spark::log::ISparkLogger* m_logger;
+            spark::log::ISparkLogger* m_logger;
             std::string m_rootPath;
-		};
-	} // end namespace file
+        };
+    } // end namespace file
 } // end namespace spark
 #endif

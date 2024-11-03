@@ -105,7 +105,7 @@ namespace spark {
         std::string Win32Device::getRootPath()
         {
 
-            std::string rootPath = "c:\\home\\microlayer\\";
+            std::string rootPath = "c:\\microlayer\\assets\\";
             m_logger->info("Root Path:  %s", rootPath.c_str());
             return rootPath;
             //char buffer[512];

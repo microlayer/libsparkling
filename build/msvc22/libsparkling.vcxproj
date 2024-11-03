@@ -226,6 +226,7 @@
     <ClCompile Include="..\..\source\drawing\Bitmap.cpp" />
     <ClCompile Include="..\..\source\file\FileSystem.cpp" />
     <ClCompile Include="..\..\source\forms\Window.cpp" />
+    <ClCompile Include="..\..\source\game\TiledLayer.cpp" />
     <ClCompile Include="..\..\source\log\AndroidLogger.cpp" />
     <ClCompile Include="..\..\source\log\DefaultLogger.cpp" />
     <ClCompile Include="..\..\source\log\LogManager.cpp" />
@@ -288,6 +289,8 @@
     <ClInclude Include="..\..\source\drawing\Vertex3.hpp" />
     <ClInclude Include="..\..\source\file\FileSystem.hpp" />
     <ClInclude Include="..\..\source\forms\Window.hpp" />
+    <ClInclude Include="..\..\source\game\AbstractLayer.hpp" />
+    <ClInclude Include="..\..\source\game\TiledLayer.hpp" />
     <ClInclude Include="..\..\source\log\AndroidLogger.hpp" />
     <ClInclude Include="..\..\source\log\DefaultLogger.hpp" />
     <ClInclude Include="..\..\source\log\LogManager.hpp" />

@@ -94,6 +94,9 @@
     <Filter Include="source\renderer\shader\glsl_for_spir_feature_level_glsles10">
       <UniqueIdentifier>{0b9947a8-380d-46e3-95e6-de45192e416a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\game">
+      <UniqueIdentifier>{459f3f40-dcb2-4f68-af95-97b75c17fa8c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\spark\Sparkling.cpp">
@@ -203,6 +206,9 @@
     </ClCompile>
     <ClCompile Include="..\..\source\forms\Window.cpp">
       <Filter>source\forms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\game\TiledLayer.cpp">
+      <Filter>source\game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -436,6 +442,12 @@
     </ClInclude>
     <ClInclude Include="..\..\source\renderer\shader\glsl_for_gles2_feature_level_glsles10\DefaultShader.hpp">
       <Filter>source\renderer\shader\glsl_for_gles2_feature_level_glsles10</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\game\TiledLayer.hpp">
+      <Filter>source\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\game\AbstractLayer.hpp">
+      <Filter>source\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

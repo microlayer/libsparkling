@@ -115,5 +115,6 @@ int main(void)
 |glew|2.1.0 |July 31, 2017|[OpenGL Extension Wrangler Library](https://glew.sourceforge.net/)|
 |glfw|3.4.0 |Feb 23, 2024|[GLFW](https://www.glfw.org/download.html)|
 |lodepng|20230410|April 04, 2023|[lodepng](https://lodev.org/lodepng/)|
-|vulkan|1.3.283.0|May 14, 2024|[Vulkan](https://de.wikipedia.org/wiki/Vulkan_(API))|
+|tinyxml2|10.0.0|Dec 31, 2023|[tinyxml2](https://github.com/leethomason/tinyxml2)|
+|vulkan|1.3.296.0|Oct 8, 2024|[Vulkan](https://de.wikipedia.org/wiki/Vulkan_(API))|
 |box2d|2.4.1|October 18, 2020|[box2D](https://box2d.org/)|

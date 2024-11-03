@@ -24,8 +24,10 @@ Multibyte Character Set                                                         
 #pragma comment(lib, "glfw/lib-vc2022/glfw3.lib")
 #ifdef _DEBUG
     #pragma comment(lib, "lodepng/lib-vc2022/lodepngd.lib")
+    #pragma comment(lib, "tinyxml2/lib-vc2022/tinyxml2d.lib")
 #else
     #pragma comment(lib, "lodepng/lib-vc2022/lodepng.lib")
+    #pragma comment(lib, "tinyxml2/lib-vc2022/tinyxml2.lib")
 #endif
 #pragma comment(lib, "opengl32.lib")
 #if SPARK_COMPILE_VULKAN == 0x1
