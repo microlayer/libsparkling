@@ -23,6 +23,7 @@ LIBSPARKLING_SRC_FILES += $(wildcard ../../source/animator/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/timer/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/mlstl/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/forms/*.cpp)
+LIBSPARKLING_SRC_FILES += $(wildcard ../../source/game/*.cpp)
 
 IDIRINCLUDE  	:= ../../include
 IDIRSOURCE 	+= ../../source
@@ -45,7 +46,7 @@ WASM=-s WASM=0
 
 # Link bitcode of lib projects 'emcc foo.bc -o bar.html ...'
 sparkling:$(LIBSPARKLING_SRC_FILES) 
-	emcc ../../lib/lodepng/emscripten/lodepng.bc -o libsparkling_emscripten.html $(LIBSPARKLING_SRC_FILES) $(CFLAGS) $(OGLSUPPORT) $(OPTIMIZERFLAGS) $(EXCEPTIONS) $(WASM) $(MEMORY) -s MODULARIZE=0 
+	emcc ../../lib/lodepng/emscripten/lodepng.bc ../../lib/tinyxml2/emscripten/tinyxml2.bc -o libsparkling_emscripten.html $(LIBSPARKLING_SRC_FILES) $(CFLAGS) $(OGLSUPPORT) $(OPTIMIZERFLAGS) $(EXCEPTIONS) $(WASM) $(MEMORY) -s MODULARIZE=0 
 
 clean:
     # TODO

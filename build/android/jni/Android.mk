@@ -23,7 +23,8 @@ LIBSPARKLING_SRC_FILES:= $(call LS_CPP,$(LOCAL_PATH),../../../testbed/bootstrap/
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/animator) \
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/timer) \
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/mlstl) \
-			$(call LS_CPP,$(LOCAL_PATH),../../../source/forms)
+			$(call LS_CPP,$(LOCAL_PATH),../../../source/forms) \
+			$(call LS_CPP,$(LOCAL_PATH),../../../source/game)
 			
 SPARKLING_C_INCLUDES := $(LOCAL_PATH)/../../../include
 SPARKLING_C_INCLUDES += $(LOCAL_PATH)/../../../source
@@ -38,6 +39,14 @@ LOCAL_SRC_FILES := ../../../lib/lodepng/android/obj/local/$(TARGET_ARCH_ABI)/lib
 include $(PREBUILT_STATIC_LIBRARY)
 
 #----------------------------------------------------------------------------------------------------
+# Include tinyxml2.a
+#----------------------------------------------------------------------------------------------------
+include $(CLEAR_VARS)
+LOCAL_MODULE := tinyxml2
+LOCAL_SRC_FILES := ../../../lib/tinyxml2/android/obj/local/$(TARGET_ARCH_ABI)/libtinyxml2.a
+include $(PREBUILT_STATIC_LIBRARY)
+
+#----------------------------------------------------------------------------------------------------
 # Build shared library
 #----------------------------------------------------------------------------------------------------
 include $(CLEAR_VARS)
@@ -47,7 +56,7 @@ LOCAL_SRC_FILES  	:= $(LIBSPARKLING_SRC_FILES)
 LOCAL_LDLIBS		:= -landroid -llog -lEGL -lGLESv1_CM -lGLESv2 
 LOCAL_CFLAGS		:= -DSPARK_USE_ROOT_HOME_DIR
 
-LOCAL_STATIC_LIBRARIES := android_native_app_glue liblodepng
+LOCAL_STATIC_LIBRARIES := android_native_app_glue liblodepng libtinyxml2
 
 include $(BUILD_SHARED_LIBRARY)
 
