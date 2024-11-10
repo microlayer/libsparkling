@@ -4,6 +4,7 @@
 #include "spark/SparkSetup.hpp"
 #if SPARK_PLATFORM == SPARK_PLATFORM_WINDOWS
 #include <Windows.h>
+#include <filesystem>
 #include <GL/glew.h>
 #include "AbstractSparkDevice.hpp"
 #include "renderer/OpenGLFLES2Renderer.hpp"

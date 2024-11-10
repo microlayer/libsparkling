@@ -104,14 +104,15 @@ namespace spark {
         */
         std::string Win32Device::getRootPath()
         {
-
-            std::string rootPath = "c:\\microlayer\\assets\\";
-            m_logger->info("Root Path:  %s", rootPath.c_str());
-            return rootPath;
-            //char buffer[512];
-            //GetModuleFileName(NULL, buffer, 512);
-            //std::string::size_type pos = std::string(buffer).find_last_of("\\/");
-            //return std::string(buffer).substr(0, pos);
+            char path[MAX_PATH];
+            GetModuleFileNameA(NULL, path, MAX_PATH);
+            std::string fullPath(path);
+            size_t pos = fullPath.find_last_of("\\/");
+            std::string pathToExecutable = fullPath.substr(0, pos);
+            std::filesystem::path resPath = std::filesystem::path(pathToExecutable + "..//..//..//..//res//");
+            std::string relativeResPath = resPath.lexically_normal().string();
+            m_logger->info("Root Path:  %s", relativeResPath.c_str());
+            return relativeResPath;
         }
 
     } // end namespace device
