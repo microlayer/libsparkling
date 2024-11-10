@@ -3,7 +3,7 @@ LOCAL_PATH := $(call my-dir)
 LS_CPP=$(subst $(1)/,,$(wildcard $(1)/$(2)/*.cpp))
 LS_C=$(subst $(1)/,,$(wildcard $(1)/$(2)/*.c))
 
-TINYXML2_SRC_FILES:= $(call LS_CPP,$(LOCAL_PATH),../../) \
+TINYXML2_SRC_FILES:= $(call LS_CPP,$(LOCAL_PATH),../../../) \
 			
 #----------------------------------------------------------------------------------------------------
 # Build static library
