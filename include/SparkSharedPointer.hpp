@@ -14,7 +14,7 @@ namespace spark {
         /**
         *
         */
-        SparkSharedPointer(T* ptr = NULL) : m_ptr(ptr)
+        /*explicit*/ SparkSharedPointer(T* ptr = NULL) : m_ptr(ptr)
         {
             static_assert(std::is_base_of<SparkRefCount, T>::value, "Type parameter of this class must derive from SparkRefCount");
         }
@@ -34,7 +34,10 @@ namespace spark {
         */
         ~SparkSharedPointer()
         {
-            static_cast<SparkRefCount*>(m_ptr)->release();
+            if (m_ptr)
+            {
+                static_cast<SparkRefCount*>(m_ptr)->release();
+            }
         }
 
         /**
@@ -74,5 +77,14 @@ namespace spark {
     private:
         T* m_ptr;
     };
+
+    /**
+    * Creates a SparkSharedPointer
+    */
+    template<typename T>
+    spark::SparkSharedPointer<T> makeShared(T* ptr)
+    {
+        return SparkSharedPointer<T>(ptr);
+    }
 }
 #endif
