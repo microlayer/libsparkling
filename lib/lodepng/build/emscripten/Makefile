@@ -3,7 +3,7 @@
 VERSION=1.0
 PROJECTNAME:=lodepng
 
-SRC_FILES := $(wildcard ../*.cpp)
+SRC_FILES := $(wildcard ../../*.cpp)
 
 CC=emcc
 CFLAGS=-c
