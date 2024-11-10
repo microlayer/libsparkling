@@ -35,7 +35,7 @@ SPARKLING_C_INCLUDES += $(LOCAL_PATH)/../../../lib
 #----------------------------------------------------------------------------------------------------
 include $(CLEAR_VARS)
 LOCAL_MODULE := liblodepng
-LOCAL_SRC_FILES := ../../../lib/lodepng/android/obj/local/$(TARGET_ARCH_ABI)/liblodepng.a
+LOCAL_SRC_FILES := ../../../lib/lodepng/build/android/obj/local/$(TARGET_ARCH_ABI)/liblodepng.a
 include $(PREBUILT_STATIC_LIBRARY)
 
 #----------------------------------------------------------------------------------------------------
@@ -43,7 +43,7 @@ include $(PREBUILT_STATIC_LIBRARY)
 #----------------------------------------------------------------------------------------------------
 include $(CLEAR_VARS)
 LOCAL_MODULE := tinyxml2
-LOCAL_SRC_FILES := ../../../lib/tinyxml2/android/obj/local/$(TARGET_ARCH_ABI)/libtinyxml2.a
+LOCAL_SRC_FILES := ../../../lib/tinyxml2/build/android/obj/local/$(TARGET_ARCH_ABI)/libtinyxml2.a
 include $(PREBUILT_STATIC_LIBRARY)
 
 #----------------------------------------------------------------------------------------------------
