@@ -57,33 +57,61 @@ namespace spark {
         */
         spark::game::TiledLayer* FileSystem::loadTiledLayer(std::string fileName)
         {
+            spark::game::TiledLayer* tiledLayer = NULL;
             spark::drawing::ISparkImage* tilesetImage = NULL;
 
-            std::string absolutePathFile = m_rootPath + fileName;
             tinyxml2::XMLDocument xmlDoc;
-            if (xmlDoc.LoadFile(absolutePathFile.c_str()) == tinyxml2::XML_SUCCESS)
+            if (xmlDoc.LoadFile((m_rootPath + fileName).c_str()) == tinyxml2::XML_SUCCESS)
             {
-                m_logger->info("Loading '%s' successful", fileName.c_str());
+                m_logger->info("Loading '%s' successful - start analysing", fileName.c_str());
 
                 tinyxml2::XMLElement* mapNode = xmlDoc.FirstChildElement("map");
-                const char* version = mapNode->Attribute("version");
+                const char* version = mapNode->Attribute("tiledversion");
+
+                const char* supportedTiledVersion = "1.11.0";
+
+                if (strcmp(version, supportedTiledVersion) != 0)
+                {
+                    m_logger->warn("Tilset must use version %s and current version is %s", supportedTiledVersion, version);
+                }
+
+                const char* tileWidth = mapNode->Attribute("tilewidth");
+                const char* tileHeight = mapNode->Attribute("tileheight");
+                const char* gridWidth = mapNode->Attribute("width");
+                const char* gridHeight = mapNode->Attribute("height");
 
                 tinyxml2::XMLElement* tilesetNode = mapNode->FirstChildElement("tileset");
-                const char* name = tilesetNode->Attribute("name");
 
+                // Grap tileset image data
                 tinyxml2::XMLElement* tilesetImageNode = tilesetNode->FirstChildElement("image");
                 const char* tilesetImageName = tilesetImageNode->Attribute("source");
                 const char* tilesetImageWidth = tilesetImageNode->Attribute("width");
                 const char* tilesetImageHeight = tilesetImageNode->Attribute("height");
 
+                // Grap layer data
+                tinyxml2::XMLElement* layerNode = mapNode->FirstChildElement("layer");
+                const char* layerId = layerNode->Attribute("id");
+                const char* layerName = layerNode->Attribute("name");
+                const char* layerColumns = layerNode->Attribute("width");
+                const char* layerRows = layerNode->Attribute("height");
+                tinyxml2::XMLElement* layerDataNode = layerNode->FirstChildElement("data");
+                const char* layerNodeData = layerDataNode->GetText();
+
                 std::string tilesetImageNameAbsolutePathFile = m_rootPath + std::string(tilesetImageName);
-
                 tilesetImage = loadBitmap(tilesetImageName);
-            }
 
-            uc8_t* data = NULL;
-            spark::game::TiledLayer* tiledLayer = NULL;
-            tiledLayer = new spark::game::TiledLayer(tilesetImage, 4, 4, NULL, 32, 32, 256, 256, spark::game::TiledLayer::ELT_ORTHOGONAL);
+                // Parse CSV
+                char* csv = _strdup(layerNodeData);
+                char* line = strtok(csv, "\n");
+                char* token = strtok(line, ",");
+                uc8_t* data = NULL;
+
+                tiledLayer = new spark::game::TiledLayer(tilesetImage, 4, 4, NULL, 32, 32, 256, 256, spark::game::TiledLayer::ELT_ORTHOGONAL);
+            }
+            else
+            {
+                m_logger->error("Tilset file %s could not be found", fileName);
+            }
             return tiledLayer;
         }
 

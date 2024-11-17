@@ -210,6 +210,9 @@
     <ClCompile Include="..\..\source\game\TiledLayer.cpp">
       <Filter>source\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\game\AbstractLayer.cpp">
+      <Filter>source\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\spark\SparkCompilerConfig.hpp">

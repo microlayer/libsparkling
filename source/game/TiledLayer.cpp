@@ -6,8 +6,8 @@ namespace spark {
         /**
         *
         */
-        TiledLayer::TiledLayer(spark::drawing::ISparkImage* tilesetImage, uint16_t layerColumns, uint16_t layerRows, uint16_t* gidData, uint16_t tileWidth, uint16_t tileHeight, uint16_t tilesetImageTileWidth, uint16_t tilesetImageTileHeight, E_LAYER_TYPE layerType) :
-            AbstractLayer(),
+        TiledLayer::TiledLayer(spark::drawing::ISparkImage* tilesetImage, uint16_t layerColumns, uint16_t layerRows, uint16_t* gidData, uint16_t tileWidth, uint16_t tileHeight, uint16_t tilesetImageWidth, uint16_t tilesetImageHeight, E_LAYER_TYPE layerType) :
+            AbstractLayer(NULL),
             m_tilesetImage(tilesetImage),
             m_layerColumns(layerColumns),
             m_layerRows(layerRows),
@@ -16,8 +16,6 @@ namespace spark {
             m_tileHeight(tileHeight),
             m_tilesetImageWidth(tilesetImage->getWidth()),
             m_tilesetImageHeight(tilesetImage->getHeight()),
-            m_tilesetImageTileWidth(tilesetImageTileWidth),
-            m_tilesetImageTileHeight(tilesetImageTileHeight),
             m_layerType(layerType)
         {
             m_tilesetImage->addRef();
@@ -38,7 +36,6 @@ namespace spark {
             {
                 delete m_tilesetImage;
             }
-
             delete[] m_gidData;
         }
 
@@ -112,22 +109,6 @@ namespace spark {
         uint32_t TiledLayer::getTilesetImageHeight() const
         {
             return m_tilesetImage->getHeight();
-        }
-
-        /**
-        *
-        */
-        uint32_t TiledLayer::getTilesetImageTileWidth() const
-        {
-            return m_tilesetImageTileWidth;
-        }
-
-        /**
-        *
-        */
-        uint32_t TiledLayer::getTilesetImageTileHeight() const
-        {
-            return m_tilesetImageTileHeight;
         }
 
         /**

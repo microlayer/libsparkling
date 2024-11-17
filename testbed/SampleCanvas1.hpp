@@ -19,7 +19,7 @@ public:
     {
         m_fileSystem = device->getFileSystem();
         //m_image = m_fileSystem->loadBitmap("texture1.png");
-        //m_tiledLayer = m_fileSystem->loadTiledLayer("tiles4x4.tmx");
+        //m_tiledLayer = m_fileSystem->loadTiledLayer("tiles4x4_32_v1-11.tmx");
 
         // Create SceneGraphManager3D
         m_sceneGraphManager3D = device->createSceneGraphManager3D();
@@ -66,7 +66,7 @@ public:
 
 private:
     spark::file::ISparkFileSystem* m_fileSystem;
-    //spark::SparkSharedPointer<spark::drawing::ISparkImage> m_image;
-    //spark::SparkSharedPointer<spark::game::TiledLayer> m_tiledLayer;
+    spark::SparkSharedPointer<spark::drawing::ISparkImage> m_image;
+    spark::SparkSharedPointer<spark::game::TiledLayer> m_tiledLayer;
     spark::SparkSharedPointer<spark::scene::ISceneGraphManager3D> m_sceneGraphManager3D;
 };

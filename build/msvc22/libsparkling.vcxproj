@@ -98,27 +98,27 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)../../include;$(SolutionDir)../../source;$(VK_SDK_PATH)/Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)../../include;$(SolutionDir)../../source;$(SolutionDir)../../lib;$(VK_SDK_PATH)/Include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)../../lib;$(VK_SDK_PATH)/lib32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_StaticLib|Win32'">
-    <IncludePath>$(SolutionDir)../../include;$(SolutionDir)../../source;$(VK_SDK_PATH)/Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)../../include;$(SolutionDir)../../source;$(SolutionDir)../../lib;$(VK_SDK_PATH)/Include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)../../lib;$(VK_SDK_PATH)/lib32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_DynamicLib|Win32'">
-    <IncludePath>$(SolutionDir)../../include;$(SolutionDir)../../source;$(VK_SDK_PATH)/Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)../../include;$(SolutionDir)../../source;$(SolutionDir)../../lib;$(VK_SDK_PATH)/Include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)../../lib;$(VK_SDK_PATH)/lib32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)../../include;$(SolutionDir)../../source;$(VK_SDK_PATH)/Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)../../include;$(SolutionDir)../../source;$(SolutionDir)../../lib;$(VK_SDK_PATH)/Include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)../../lib;$(VK_SDK_PATH)/lib32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_StaticLib|Win32'">
-    <IncludePath>$(SolutionDir)../../include;$(SolutionDir)../../source;$(VK_SDK_PATH)/Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)../../include;$(SolutionDir)../../source;$(SolutionDir)../../lib;$(VK_SDK_PATH)/Include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)../../lib;$(VK_SDK_PATH)/lib32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_DynamicLib|Win32'">
-    <IncludePath>$(SolutionDir)../../include;$(SolutionDir)../../source;$(VK_SDK_PATH)/Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)../../include;$(SolutionDir)../../source;$(SolutionDir)../../lib;$(VK_SDK_PATH)/Include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)../../lib;$(VK_SDK_PATH)/lib32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -226,6 +226,7 @@
     <ClCompile Include="..\..\source\drawing\Bitmap.cpp" />
     <ClCompile Include="..\..\source\file\FileSystem.cpp" />
     <ClCompile Include="..\..\source\forms\Window.cpp" />
+    <ClCompile Include="..\..\source\game\AbstractLayer.cpp" />
     <ClCompile Include="..\..\source\game\TiledLayer.cpp" />
     <ClCompile Include="..\..\source\log\AndroidLogger.cpp" />
     <ClCompile Include="..\..\source\log\DefaultLogger.cpp" />

@@ -20,7 +20,7 @@ namespace spark {
             };
 
         public:
-            TiledLayer(spark::drawing::ISparkImage* tilesetImage, uint16_t layerColumns, uint16_t layerRows, uint16_t* gidData, uint16_t tileWidth, uint16_t tileHeight, uint16_t tilesetImageTileWidth, uint16_t tilesetImageTileHeight, E_LAYER_TYPE layerType);
+            TiledLayer(spark::drawing::ISparkImage* tilesetImage, uint16_t layerColumns, uint16_t layerRows, uint16_t* gidData, uint16_t tileWidth, uint16_t tileHeight, uint16_t tilesetImageWidth, uint16_t tilesetImageHeight, E_LAYER_TYPE layerType);
             virtual ~TiledLayer(void);
 
         public: // AbstractLayer
@@ -35,8 +35,6 @@ namespace spark {
             uint16_t getTileHeight() const;
             uint32_t getTilesetImageWidth() const;
             uint32_t getTilesetImageHeight() const;
-            uint32_t getTilesetImageTileWidth() const;
-            uint32_t getTilesetImageTileHeight() const;
             E_LAYER_TYPE getLayerType() const;
 
         private:
@@ -48,8 +46,6 @@ namespace spark {
             uint16_t m_tileHeight;
             uint16_t m_tilesetImageWidth;
             uint16_t m_tilesetImageHeight;
-            uint16_t m_tilesetImageTileWidth;
-            uint16_t m_tilesetImageTileHeight;
             E_LAYER_TYPE m_layerType;
         };
     } // end namespace game

@@ -81,10 +81,10 @@ namespace spark {
     /**
     * Creates a SparkSharedPointer
     */
-    template<typename T>
-    spark::SparkSharedPointer<T> makeShared(T* ptr)
+    template<typename T, typename... Args>
+    static spark::SparkSharedPointer<T> makeShared(Args&&... args)
     {
-        return SparkSharedPointer<T>(ptr);
+        return SparkSharedPointer<T>(new T(std::forward<Args>(args)...));
     }
 }
 #endif
