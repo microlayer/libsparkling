@@ -4,6 +4,7 @@
 #include "log/LogManager.hpp"
 #include "ISparkFileSystem.hpp"
 #include <vector>
+#include <sstream>
 #include "drawing/Bitmap.hpp"
 #include "game/TiledLayer.hpp"
 #include "ISparkImage.hpp"

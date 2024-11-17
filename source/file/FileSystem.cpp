@@ -100,13 +100,21 @@ namespace spark {
                 std::string tilesetImageNameAbsolutePathFile = m_rootPath + std::string(tilesetImageName);
                 tilesetImage = loadBitmap(tilesetImageName);
 
-                // Parse CSV
-                char* csv = _strdup(layerNodeData);
-                char* line = strtok(csv, "\n");
-                char* token = strtok(line, ",");
-                uc8_t* data = NULL;
+                // Parse CSV               
+                std::string str(layerNodeData);
+                str.erase(std::remove(str.begin(), str.end(), '\n'), str.end());
+                std::vector<int> numbers;
+                std::istringstream sstream(str);
+                int number;
+                char comma;
+                while (sstream >> number)
+                {
+                    numbers.push_back(number);
+                    sstream >> comma;
+                }
+                uint16_t* data = (uint16_t*)&numbers[0];
 
-                tiledLayer = new spark::game::TiledLayer(tilesetImage, 4, 4, NULL, 32, 32, 256, 256, spark::game::TiledLayer::ELT_ORTHOGONAL);
+                tiledLayer = new spark::game::TiledLayer(tilesetImage, atoi(layerColumns), atoi(layerRows), data, atoi(tileWidth), atoi(tileHeight), atoi(tilesetImageWidth), atoi(tilesetImageHeight), spark::game::TiledLayer::ELT_ORTHOGONAL);
             }
             else
             {
