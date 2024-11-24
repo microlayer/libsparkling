@@ -44,7 +44,7 @@ namespace spark {
         */
         void TiledLayer::paint(spark::renderer::ISparkRenderer* renderer)
         {
-            //renderer->drawTiledLayer(this, this->m_x, this->m_y);
+            renderer->drawTiledLayer(this, this->m_x, this->m_y);
         }
 
         /**

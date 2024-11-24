@@ -259,7 +259,111 @@ namespace spark {
         */
         void OpenGLRenderer::drawTiledLayer(const spark::game::TiledLayer* tiledLayer, int16_t x, int16_t y)
         {
+            m_shader->setDrawMode(1);
+
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, 0);
+            glBindTexture(GL_TEXTURE_2D, 0);
+            glUniform1i(glGetUniformLocation(1, "utexture0"), 0);
             const spark::drawing::ISparkImage* tilsetImage = tiledLayer->getTilesetImage();
+            spark::drawing::ClippingRectangle clipRect(0, 0, tilsetImage->getWidth(), tilsetImage->getHeight());
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tilsetImage->getWidth(), tilsetImage->getHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, tilsetImage->getImageAsStream());
+
+            GLenum err = glGetError();
+            if (glGetError() != err)
+            {
+                m_logger->error("Error loading texture into OpenGL with reason: %s code: %i", "Undefined", err);
+            }
+
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+            if (tiledLayer->getLayerType() == spark::game::TiledLayer::ELT_ORTHOGONAL)
+            {
+                uint16_t* gid = tiledLayer->getGIDData();
+                uint16_t tilsetImageWidth = tiledLayer->getTilesetImageWidth();
+                uint16_t tilsetImageHeight = tiledLayer->getTilesetImageHeight();
+                uint16_t layerRows = tiledLayer->getLayerRows();
+                uint16_t layerCols = tiledLayer->getLayerColumns();
+                uint16_t tileWidth = tiledLayer->getTileWidth();
+                uint16_t tileHeight = tiledLayer->getTileHeight();
+                uint16_t tilesetImageRows = tiledLayer->getTilesetImageHeight() / tileHeight;
+                uint16_t tilesetImageCols = tiledLayer->getTilesetImageWidth() / tileWidth;
+
+                uint16_t gidIndex = 0;
+                std::vector<GLfloat> vertices;
+                std::vector<GLfloat> texureCoords;
+                for (int row = 0; row < layerRows; row++)
+                {
+                    for (int col = 0; col < layerCols; col++)
+                    {
+                        vertices.push_back(x + (col * tileWidth));                  // vx0
+                        vertices.push_back(y + (row * tileHeight) + tileHeight);    // vy0
+                        vertices.push_back(0);                                      // vz0
+                        vertices.push_back(x + (col * tileWidth) + tileWidth);      // vx1
+                        vertices.push_back(y + (row * tileHeight) + tileHeight);    // vy1
+                        vertices.push_back(0);                                      // vz1
+                        vertices.push_back(x + (col * tileWidth));                  // vx2
+                        vertices.push_back(y + (row * tileHeight));                 // vy2
+                        vertices.push_back(0);                                      // vz2
+                        vertices.push_back(x + (col * tileWidth) + tileWidth);      // vx3
+                        vertices.push_back(y + (row * tileHeight));                 // vy3
+                        vertices.push_back(0);                                      // vz3
+
+                        real32 u = 1.0f / tilesetImageCols;
+                        real32 v = 1.0f / tilesetImageRows;
+
+                        uint16_t gid = tiledLayer->getGIDData()[gidIndex];
+                        uint16_t gy = gid / tilesetImageCols;
+                        uint16_t gx = gid % tilesetImageCols - 1;
+
+                        texureCoords.push_back(gx * u);               // u0
+                        texureCoords.push_back(gy * v + v);           // v0
+                        texureCoords.push_back(gx * u + u);           // u1
+                        texureCoords.push_back(gy * v + v);           // v1
+                        texureCoords.push_back(gx * u);               // u2
+                        texureCoords.push_back(gy * v);               // v2
+                        texureCoords.push_back(gx * u + u);           // u3
+                        texureCoords.push_back(gy * v);               // v4    
+
+                        gidIndex++;
+                    }
+                }
+
+                std::vector<GLshort> indicesBuffer;
+                GLshort indicesBufferSize = 6 * layerCols * layerRows;
+                for (int i = 0; i < indicesBufferSize; i++)
+                {
+                    indicesBuffer.push_back(0 + (i * 4));
+                    indicesBuffer.push_back(1 + (i * 4));
+                    indicesBuffer.push_back(2 + (i * 4));
+                    indicesBuffer.push_back(1 + (i * 4));
+                    indicesBuffer.push_back(3 + (i * 4));
+                    indicesBuffer.push_back(2 + (i * 4));
+                }
+
+                glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, &vertices[0]);
+                glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 0, &texureCoords[0]);
+
+                glEnableVertexAttribArray(0);
+                glEnableVertexAttribArray(3);
+
+                glDrawElements(GL_TRIANGLES, indicesBufferSize, GL_UNSIGNED_SHORT, &indicesBuffer[0]);
+
+                glDisableVertexAttribArray(3);
+                glDisableVertexAttribArray(0);
+            }
+            else
+            {
+                m_logger->error("TiledLayer type is unknown");
+            }
+            glDisable(GL_BLEND);
+            m_shader->setDrawMode(0);
         }
     } // end namespace renderer
 } // end namespace spark

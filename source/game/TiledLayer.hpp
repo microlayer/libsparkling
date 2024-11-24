@@ -9,7 +9,7 @@ namespace spark {
         /**
         *
         */
-        class TiledLayer : public spark::game::AbstractLayer
+        class TiledLayer : public AbstractLayer
         {
         public:
             enum E_LAYER_TYPE

@@ -6,7 +6,6 @@
 #include "drawing/ClippingRectangle.hpp"
 #include "math/Matrix4.hpp"
 #include "math/ProjectionMatrix.hpp"
-#include "game/TiledLayer.hpp"
 
 #if SPARK_PLATFORM == SPARK_PLATFORM_WINDOWS || \
     SPARK_PLATFORM == SPARK_PLATFORM_LINUX   || \

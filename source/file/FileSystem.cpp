@@ -103,7 +103,7 @@ namespace spark {
                 // Parse CSV               
                 std::string str(layerNodeData);
                 str.erase(std::remove(str.begin(), str.end(), '\n'), str.end());
-                std::vector<int> numbers;
+                std::vector<uint16_t> numbers;
                 std::istringstream sstream(str);
                 int number;
                 char comma;
@@ -112,7 +112,7 @@ namespace spark {
                     numbers.push_back(number);
                     sstream >> comma;
                 }
-                uint16_t* data = (uint16_t*)&numbers[0];
+                uint16_t* data = &numbers[0];
 
                 tiledLayer = new spark::game::TiledLayer(tilesetImage, atoi(layerColumns), atoi(layerRows), data, atoi(tileWidth), atoi(tileHeight), atoi(tilesetImageWidth), atoi(tilesetImageHeight), spark::game::TiledLayer::ELT_ORTHOGONAL);
             }

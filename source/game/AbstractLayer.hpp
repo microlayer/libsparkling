@@ -12,7 +12,6 @@ namespace spark {
         class AbstractLayer : public virtual spark::SparkRefCount
         {
         public:
-
             AbstractLayer(b2Body* body);
             virtual ~AbstractLayer(void);
 

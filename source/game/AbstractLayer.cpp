@@ -2,6 +2,7 @@
 
 namespace spark {
     namespace game {
+
         /**
         *
         */
@@ -26,7 +27,8 @@ namespace spark {
         */
         void AbstractLayer::setPosition(int16_t x, int16_t y)
         {
-
+            m_x = x;
+            m_y = y;
         }
 
         /**

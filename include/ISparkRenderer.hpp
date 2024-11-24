@@ -13,6 +13,12 @@
 #include "math/Matrix4.hpp"
 
 namespace spark {
+    namespace game {
+        class TiledLayer;
+    }
+}
+
+namespace spark {
     namespace renderer {
 
         /**
@@ -41,7 +47,7 @@ namespace spark {
             //virtual void draw2DBitmap(/*const*/ spark::renderer::ISparkTexture* texture, int16_t x, int16_t y) = 0;
             //virtual void draw2DBitmap(/*const*/ spark::renderer::ISparkTexture* texture, int16_t x, int16_t y, const spark::drawing::ClippingRectangle clipRect) = 0;
             //virtual void draw2DCircle() = 0;
-            //virtual void drawTiledLayer(const spark::game::TiledLayer* tiledLayer, int16_t x, int16_t y) = 0;	
+            virtual void drawTiledLayer(const spark::game::TiledLayer* tiledLayer, int16_t x, int16_t y) = 0;
             //virtual void drawString(const spark::font::E_SYSTEM_FONT_TYPE fontType, const std::string text, spark::drawing::Color color, int16_t x, int16_t y) = 0;
             //virtual void drawString(const std::string fontFamily, uint32_t size, const std::string text, spark::drawing::Color color, int16_t x, int16_t y) = 0;
 

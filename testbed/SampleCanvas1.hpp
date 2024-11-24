@@ -61,6 +61,9 @@ public:
         //renderer->draw2DBitmap(m_image.get(), 100, 10);
         //m_tiledLayer->paint(renderer);
 
+        //m_tiledLayer->setPosition(250, 50);
+        //m_tiledLayer->paint(renderer);
+
         m_sceneGraphManager3D->drawGraph(renderer);
     }
 
