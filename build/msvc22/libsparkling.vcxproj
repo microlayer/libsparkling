@@ -227,6 +227,7 @@
     <ClCompile Include="..\..\source\file\FileSystem.cpp" />
     <ClCompile Include="..\..\source\forms\Window.cpp" />
     <ClCompile Include="..\..\source\game\AbstractLayer.cpp" />
+    <ClCompile Include="..\..\source\game\Sprite.cpp" />
     <ClCompile Include="..\..\source\game\TiledLayer.cpp" />
     <ClCompile Include="..\..\source\log\AndroidLogger.cpp" />
     <ClCompile Include="..\..\source\log\DefaultLogger.cpp" />
@@ -266,6 +267,7 @@
     <ClInclude Include="..\..\include\ISparkRenderer.hpp" />
     <ClInclude Include="..\..\include\ISparkSceneNode.hpp" />
     <ClInclude Include="..\..\include\ISparkShader.hpp" />
+    <ClInclude Include="..\..\include\ISparkTexture.hpp" />
     <ClInclude Include="..\..\include\ISparkTimer.hpp" />
     <ClInclude Include="..\..\include\ISparkWindow.hpp" />
     <ClInclude Include="..\..\include\Sparkling.hpp" />
@@ -291,6 +293,8 @@
     <ClInclude Include="..\..\source\file\FileSystem.hpp" />
     <ClInclude Include="..\..\source\forms\Window.hpp" />
     <ClInclude Include="..\..\source\game\AbstractLayer.hpp" />
+    <ClInclude Include="..\..\source\game\PixelToMeterOffsetInfo.hpp" />
+    <ClInclude Include="..\..\source\game\Sprite.hpp" />
     <ClInclude Include="..\..\source\game\TiledLayer.hpp" />
     <ClInclude Include="..\..\source\log\AndroidLogger.hpp" />
     <ClInclude Include="..\..\source\log\DefaultLogger.hpp" />

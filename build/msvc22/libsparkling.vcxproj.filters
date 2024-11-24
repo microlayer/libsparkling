@@ -213,6 +213,9 @@
     <ClCompile Include="..\..\source\game\AbstractLayer.cpp">
       <Filter>source\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\game\Sprite.cpp">
+      <Filter>source\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\spark\SparkCompilerConfig.hpp">
@@ -450,6 +453,15 @@
       <Filter>source\game</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\game\AbstractLayer.hpp">
+      <Filter>source\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\game\Sprite.hpp">
+      <Filter>source\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkTexture.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\game\PixelToMeterOffsetInfo.hpp">
       <Filter>source\game</Filter>
     </ClInclude>
   </ItemGroup>
