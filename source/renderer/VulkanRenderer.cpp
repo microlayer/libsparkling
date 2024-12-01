@@ -71,7 +71,6 @@ namespace spark {
         void VulkanRenderer::draw2DPoint(int16_t x, int16_t y, spark::drawing::Color color)
         {
 
-
         }
 
         /**
@@ -105,7 +104,55 @@ namespace spark {
         /**
         *
         */
+        void VulkanRenderer::draw2DCircle(int16_t centerX, int16_t centerY, int16_t radius)
+        {
+
+        }
+
+        /**
+        *
+        */
+        void VulkanRenderer::draw2DRectangle(int16_t x1, int16_t y1, int16_t width, int16_t height)
+        {
+
+        }
+
+        /**
+        *
+        */
         void VulkanRenderer::draw2DBitmap(const spark::drawing::ISparkImage* image, int16_t x, int16_t y)
+        {
+
+        }
+
+        /**
+        *
+        */
+        void VulkanRenderer::draw2DBitmap(const spark::drawing::ISparkImage* image, int16_t x, int16_t y, const spark::drawing::ClippingRectangle clipRect);
+        {
+
+        }
+
+        /**
+        *
+        */
+        void VulkanRenderer::drawTiledLayer(const spark::game::TiledLayer* tiledLayer, int16_t x, int16_t y)
+        {
+
+        }
+
+        /**
+        *
+        */
+        void VulkanRenderer::drawString(const spark::font::E_SYSTEM_FONT_TYPE fontType, const std::string text, spark::drawing::Color color, int16_t x, int16_t y)
+        {
+
+        }
+
+        /**
+        *
+        */
+        void VulkanRenderer::drawString(const std::string fontFamily, uint32_t size, const std::string text, spark::drawing::Color color, int16_t x, int16_t y)
         {
 
         }

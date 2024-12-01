@@ -7,12 +7,17 @@ namespace spark {
         */
         AbstractSparkDevice::AbstractSparkDevice(spark::renderer::E_RENDER_ENGINE rendererType) :
             m_rendererEngineType(rendererType),
-            m_logger(NULL)
-            //m_timer(NULL),
-            //m_fileSystem(NULL)
+            m_logger(NULL),
+            m_timer(NULL),
+            m_fileSystem(NULL),
+            m_fontPool(NULL),
+            m_window(NULL),
+            m_canvas(NULL),
+            m_shader(NULL),
+            m_renderer(NULL),
+            m_rendererConfig(NULL)
         {
             m_isDeviceRunning = true;
-            //m_canvas = NULL;			
         }
 
         /**
@@ -20,7 +25,8 @@ namespace spark {
         */
         AbstractSparkDevice::~AbstractSparkDevice(void)
         {
-
+            m_timer->release();
+            m_fontPool->release();
         }
 
         /**
@@ -33,8 +39,8 @@ namespace spark {
             createSparkWindow();
             createShader();
             createRenderer();
-            //createTimer();	
-            //createFontPool();
+            createTimer();
+            createFontPool();
         }
 
         /**
@@ -57,7 +63,7 @@ namespace spark {
         /**
         *
         */
-        renderer::ISparkRenderer* AbstractSparkDevice::getRenderer(void)
+        renderer::ISparkRenderer* AbstractSparkDevice::getRenderer(void) const
         {
             return m_renderer;
         }
@@ -65,7 +71,7 @@ namespace spark {
         /**
         *
         */
-        spark::renderer::E_RENDER_ENGINE AbstractSparkDevice::getRenderEngineType()
+        spark::renderer::E_RENDER_ENGINE AbstractSparkDevice::getRenderEngineType() const
         {
             return m_rendererEngineType;
         }
@@ -73,7 +79,7 @@ namespace spark {
         /**
         * Gets logger for the created device
         */
-        log::ISparkLogger* AbstractSparkDevice::getLogger()
+        log::ISparkLogger* AbstractSparkDevice::getLogger() const
         {
             return spark::log::LogManager::getLogger();
         }
@@ -81,15 +87,15 @@ namespace spark {
         /**
         *
         */
-        //timer::ISparkTimer* AbstractSparkDevice::getTimer()
-        //{
-        //	return m_timer;
-        //}
+        spark::timer::ISparkTimer* AbstractSparkDevice::getTimer() const
+        {
+            return m_timer;
+        }
 
         /**
         *
         */
-        file::ISparkFileSystem* AbstractSparkDevice::getFileSystem()
+        file::ISparkFileSystem* AbstractSparkDevice::getFileSystem() const
         {
             return m_fileSystem;
         }
@@ -97,7 +103,7 @@ namespace spark {
         /**
         *
         */
-        ScreenResolution AbstractSparkDevice::getScreenResolution()
+        ScreenResolution AbstractSparkDevice::getScreenResolution() const
         {
             return m_window->getScreenResolution();
         }
@@ -105,42 +111,42 @@ namespace spark {
         /**
         *
         */
-        //std::string AbstractSparkDevice::getRootPath()
-        //{
-        //	return "/";
-        //}
+        spark::font::ISparkFontPool* AbstractSparkDevice::getSparkFontPool() const
+        {
+            return m_fontPool;
+        }
 
         /**
         *
         */
-        //spark::font::ISparkFontPool* AbstractSparkDevice::getSparkFontPool()
-        //{
-        //	return m_fontPool;
-        //}
+        spark::scene::ISceneGraphManager3D* AbstractSparkDevice::createSceneGraphManager3D()
+        {
+            return new spark::scene::SceneGraphManager3D(m_renderer, this->getScreenResolution());
+        }
 
         /**
         *
         */
-        //uint64_t AbstractSparkDevice::getHeapAllocatedSize()
-        //{
-        //	return 0;
-        //}
+        uint64_t AbstractSparkDevice::getHeapAllocatedSize()
+        {
+            return 0;
+        }
 
         /**
         *
         */
-        //uint64_t AbstractSparkDevice::getHeapSize()
-        //{
-        //	return 0;
-        //}
+        uint64_t AbstractSparkDevice::getHeapSize()
+        {
+            return 0;
+        }
 
         /**
         *
         */
-        //uint16 AbstractSparkDevice::getAPIVersionSDK()
-        //{
-        //	return 0;
-        //}
+        uint16 AbstractSparkDevice::getAPIVersionSDK()
+        {
+            return 0;
+        }
 
         /**
         *
@@ -155,11 +161,6 @@ namespace spark {
 #else
             while (isDeviceRunning())
             {
-                //				if (sparkApp->isCanvasChanged())
-                //				{
-                //                  m_canvas = sparkApp->getActiveCanvas();
-                //					sparkApp->resetIsCanvasChanged();
-                //				}
                 mainLoop();
             }
 #endif 
@@ -170,35 +171,7 @@ namespace spark {
         */
         void AbstractSparkDevice::onKeyPressed(int key, int action)
         {
-            //	m_logger->info("OnKeyPressed key:%i action:%i", key, action);
-            //	
-            //	if (m_canvas != NULL)
-            //	{
-            //		// UP
-            //		if (key == 265)
-            //		{
-            //			m_canvas->processMoveEvent(spark::math::Vector2f(0, -1), 1);
-            //		}
-            //		// Down
-            //		if (key == 264)
-            //		{
-            //			m_canvas->processMoveEvent(spark::math::Vector2f(0, 1), 1);
-            //		}
-            //		// Left
-            //		if (key == 263)
-            //		{
-            //			m_canvas->processMoveEvent(spark::math::Vector2f(-1, 0), 1);
-            //		}
-            //		// Right
-            //		if (key == 262)
-            //		{
-            //			m_canvas->processMoveEvent(spark::math::Vector2f(1, 0), 1);
-            //		}
-            //		if (key == 32)
-            //		{
-            //			m_canvas->eventAction(spark::ui::Event::EET_COMMAND, spark::ui::Command::ECT_HOME);
-            //		}
-            //	}
+            m_logger->info("OnKeyPressed key:%i action:%i", key, action);
         }
 
         /**
@@ -206,12 +179,7 @@ namespace spark {
         */
         void AbstractSparkDevice::onMouseMove(real32 x, real32 y)
         {
-            //	m_logger->info("OnMouseMove x:%i y:%i", x, y);
-            //	
-            //	if (m_canvas != NULL)
-            //	{
-            //		m_canvas->processMoveEvent(spark::math::Vector2f(1, 0), 1);
-            //	}
+            m_logger->info("OnMouseMove x:%i y:%i", x, y);
         }
 
         /**
@@ -219,12 +187,7 @@ namespace spark {
         */
         void AbstractSparkDevice::onMouseClick(int button, int action)
         {
-            //	m_logger->info("OnMouseClick button:%i action:%i", button, action);
-            //	
-            //	if (m_canvas != NULL)
-            //	{
-            //		//iCanvas->EventAction();
-            //	}
+            m_logger->info("OnMouseClick button:%i action:%i", button, action);
         }
 
         /**
@@ -251,49 +214,17 @@ namespace spark {
         /**
         *
         */
-        void AbstractSparkDevice::createLogger()
+        void AbstractSparkDevice::createTimer()
         {
+            m_timer = new spark::timer::Timer();
         }
 
         /**
         *
         */
-        spark::scene::ISceneGraphManager3D* AbstractSparkDevice::createSceneGraphManager3D()
-        {            
-            return new spark::scene::SceneGraphManager3D(m_renderer, this->getScreenResolution());
+        void AbstractSparkDevice::createFontPool()
+        {
+            m_fontPool = new spark::font::FontPool();
         }
-
-        /**
-        *
-        */
-        //void AbstractSparkDevice::createTimer()
-        //{
-        //	m_timer = new timer::Timer();
-        //}
-
-        /**
-        *
-        */
-        //void AbstractSparkDevice::createFileSystem()
-        //{
-        //	m_fileSystem = new file::FileSystem(this);
-        //}
-
-        /**
-        *
-        */
-        //void AbstractSparkDevice::createFontPool()
-        //{
-        //	m_fontPool = new spark::font::FontPool(this);
-        //}
-
-        /**
-        *
-        */
-        //void AbstractSparkDevice::createSparkWindow()
-        //{
-
-        //}
-
     } // end namespace device
 } // end namespace spark

@@ -148,11 +148,26 @@ namespace spark {
         /**
         *
         */
+        void OpenGLRenderer::draw2DCircle(int16_t centerX, int16_t centerY, int16_t radius)
+        {
+
+        }
+
+        /**
+        *
+        */
+        void OpenGLRenderer::draw2DRectangle(int16_t x1, int16_t y1, int16_t width, int16_t height)
+        {
+
+        }
+
+        /**
+        *
+        */
         void OpenGLRenderer::draw2DBitmap(const spark::drawing::ISparkImage* image, int16_t x, int16_t y)
         {
             m_shader->setDrawMode(1);
             glActiveTexture(GL_TEXTURE0);
-            glBindTexture(GL_TEXTURE_2D, 0);
             glBindTexture(GL_TEXTURE_2D, 0);
             glUniform1i(glGetUniformLocation(1, "utexture0"), 0);
             spark::drawing::ClippingRectangle clipRect(0, 0, image->getWidth(), image->getHeight());
@@ -205,53 +220,9 @@ namespace spark {
         /**
         *
         */
-        void OpenGLRenderer::renderMesh(spark::mesh::ISparkMesh* mesh)
+        void OpenGLRenderer::draw2DBitmap(const spark::drawing::ISparkImage* image, int16_t x, int16_t y, const spark::drawing::ClippingRectangle clipRect)
         {
-            // void* pVertices = mesh->getVertices();
-            // void* pIndices = mesh->getIndices();
-            // void* pColors = mesh->getColors();
-            // void* pNormals = mesh->getNormals();
-            // void* pTextureCoords = mesh->getTextureCoords();*/
 
-            std::vector<spark::drawing::Vertex3> vertices = mesh->getVertices();
-            std::vector<uint16_t> indices = mesh->getIndices();
-            std::vector<spark::drawing::Color> colors = mesh->getColors();
-            std::vector<spark::math::Vector3f> normals = mesh->getNormals();
-            std::vector<spark::math::Vector2f> textureCoords = mesh->getTextureCoords();
-
-            // // Vertices: Cast the vector back
-            // std::vector<drawing::Vertex3>* pVerticesArray = reinterpret_cast<std::vector<drawing::Vertex3>*>(pVertices);
-
-            // // Colors:
-            // uc8_t* pColorsArray = (uc8_t*)pColors;
-
-            // // Faces:
-            // uint16_t* pIndicesArray = (uint16_t*)pIndices;
-
-            // // Normals:
-            // real32* pNormalArray = (real32*)pNormals;
-
-            // // Texture coords
-            // real32* pTextureCoord = (real32*)pTextureCoords;
-
-
-            // // Hint: Transfers each frame vertex data to the graphics hardware
-            glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(drawing::Vertex3), &vertices[0]);
-            glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, &normals[0]);
-            glVertexAttribPointer(2, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(drawing::Color), &colors[0]);
-            glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 0, &textureCoords[0]);
-
-            glEnableVertexAttribArray(0);
-            glEnableVertexAttribArray(1);
-            glEnableVertexAttribArray(2);
-            glEnableVertexAttribArray(3);
-
-            glDrawElements(GL_TRIANGLES, mesh->getIndexCount(), GL_UNSIGNED_SHORT, &indices[0]);
-
-            glDisableVertexAttribArray(3);
-            glDisableVertexAttribArray(2);
-            glDisableVertexAttribArray(1);
-            glDisableVertexAttribArray(0);
         }
 
         /**
@@ -265,7 +236,6 @@ namespace spark {
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
             glActiveTexture(GL_TEXTURE0);
-            glBindTexture(GL_TEXTURE_2D, 0);
             glBindTexture(GL_TEXTURE_2D, 0);
             glUniform1i(glGetUniformLocation(1, "utexture0"), 0);
             const spark::drawing::ISparkImage* tilsetImage = tiledLayer->getTilesetImage();
@@ -364,6 +334,125 @@ namespace spark {
             }
             glDisable(GL_BLEND);
             m_shader->setDrawMode(0);
+        }
+
+        /**
+        *
+        */
+        void OpenGLRenderer::drawString(const spark::font::E_SYSTEM_FONT_TYPE fontType, const std::string text, spark::drawing::Color color, int16_t x, int16_t y)
+        {
+            m_shader->setDrawMode(1);
+
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, 0);
+            glUniform1i(glGetUniformLocation(1, "utexture0"), 0);
+
+            spark::font::ISparkFont* font = m_device->getSparkFontPool()->getFont();
+            spark::uc8_t* fontMapImageData = font->getFontMap();
+            uint16_t fontMapWidth = font->getBitmapFontInfo(16).m_textureWidth;
+            uint16_t fontMapHeight = font->getBitmapFontInfo(16).m_textureHeight;
+
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, fontMapWidth, fontMapHeight, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, fontMapImageData);
+            GLenum err = glGetError();
+            if (glGetError() != err)
+            {
+                m_logger->error("Error loading texture into OpenGL with reason: %s code: %i", "Undefined", err);
+            }
+
+            spark::font::BitmapFontInfo bitmapFontInfo = font->getBitmapFontInfo(16);
+            spark::font::BitmapGlyphInfo bitmapGlypInfo = bitmapFontInfo.m_bitmapGlyphs[65];
+
+            spark::uc8_t charId = bitmapGlypInfo.m_charId;
+
+            GLfloat texureCoords[] = {
+                0.0, 0.0,
+                1.0, 0.0,
+                0.0, 1.0,
+                1.0, 1.0
+            };
+
+            GLfloat vertices[] = {
+               (GLfloat)x, fontMapHeight + (GLfloat)y, 0.0f,
+               fontMapWidth + x, fontMapHeight + (GLfloat)y, 0.0f,
+               (GLfloat)x, (GLfloat)y, 0.0f,
+               fontMapWidth + (GLfloat)x, (GLfloat)y, 0.0f
+            };
+
+            glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, &vertices[0]);
+            glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 0, &texureCoords[0]);
+
+            glEnableVertexAttribArray(0);
+            glEnableVertexAttribArray(3);
+
+            glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+            glDisableVertexAttribArray(3);
+            glDisableVertexAttribArray(0);
+
+            m_shader->setDrawMode(0);
+        }
+
+        /**
+        *
+        */
+        void OpenGLRenderer::drawString(const std::string fontFamily, uint32_t size, const std::string text, spark::drawing::Color color, int16_t x, int16_t y)
+        {
+
+        }
+
+        /**
+        *
+        */
+        void OpenGLRenderer::renderMesh(spark::mesh::ISparkMesh* mesh)
+        {
+            // void* pVertices = mesh->getVertices();
+            // void* pIndices = mesh->getIndices();
+            // void* pColors = mesh->getColors();
+            // void* pNormals = mesh->getNormals();
+            // void* pTextureCoords = mesh->getTextureCoords();*/
+
+            std::vector<spark::drawing::Vertex3> vertices = mesh->getVertices();
+            std::vector<uint16_t> indices = mesh->getIndices();
+            std::vector<spark::drawing::Color> colors = mesh->getColors();
+            std::vector<spark::math::Vector3f> normals = mesh->getNormals();
+            std::vector<spark::math::Vector2f> textureCoords = mesh->getTextureCoords();
+
+            // // Vertices: Cast the vector back
+            // std::vector<drawing::Vertex3>* pVerticesArray = reinterpret_cast<std::vector<drawing::Vertex3>*>(pVertices);
+
+            // // Colors:
+            // uc8_t* pColorsArray = (uc8_t*)pColors;
+
+            // // Faces:
+            // uint16_t* pIndicesArray = (uint16_t*)pIndices;
+
+            // // Normals:
+            // real32* pNormalArray = (real32*)pNormals;
+
+            // // Texture coords
+            // real32* pTextureCoord = (real32*)pTextureCoords;
+
+
+            // // Hint: Transfers each frame vertex data to the graphics hardware
+            glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(drawing::Vertex3), &vertices[0]);
+            glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, &normals[0]);
+            glVertexAttribPointer(2, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(drawing::Color), &colors[0]);
+            glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 0, &textureCoords[0]);
+
+            glEnableVertexAttribArray(0);
+            glEnableVertexAttribArray(1);
+            glEnableVertexAttribArray(2);
+            glEnableVertexAttribArray(3);
+
+            glDrawElements(GL_TRIANGLES, mesh->getIndexCount(), GL_UNSIGNED_SHORT, &indices[0]);
+
+            glDisableVertexAttribArray(3);
+            glDisableVertexAttribArray(2);
+            glDisableVertexAttribArray(1);
+            glDisableVertexAttribArray(0);
         }
     } // end namespace renderer
 } // end namespace spark

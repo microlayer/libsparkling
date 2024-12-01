@@ -97,6 +97,15 @@
     <Filter Include="source\game">
       <UniqueIdentifier>{459f3f40-dcb2-4f68-af95-97b75c17fa8c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\fonts">
+      <UniqueIdentifier>{10d62399-f365-4c80-8f38-556bd81ec010}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\fonts\embedded">
+      <UniqueIdentifier>{dbc37804-40b2-481f-ad88-517d2a35d2df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\renderer\ogl">
+      <UniqueIdentifier>{5be823f4-f9e5-4232-9a43-55d70afeedae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\spark\Sparkling.cpp">
@@ -215,6 +224,15 @@
     </ClCompile>
     <ClCompile Include="..\..\source\game\Sprite.cpp">
       <Filter>source\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\fonts\Font.cpp">
+      <Filter>source\fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\fonts\FontPool.cpp">
+      <Filter>source\fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\renderer\ogl\OGLTexture.cpp">
+      <Filter>source\renderer\ogl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -463,6 +481,30 @@
     </ClInclude>
     <ClInclude Include="..\..\source\game\PixelToMeterOffsetInfo.hpp">
       <Filter>source\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\fonts\embedded\Arial16.hpp">
+      <Filter>source\fonts\embedded</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\fonts\BitmapFontInfo.hpp">
+      <Filter>source\fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkFont.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\fonts\BitmapGlyphInfo.hpp">
+      <Filter>source\fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\fonts\Font.hpp">
+      <Filter>source\fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\fonts\FontPool.hpp">
+      <Filter>source\fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkFontPool.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\renderer\ogl\OGLTexture.hpp">
+      <Filter>source\renderer\ogl</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

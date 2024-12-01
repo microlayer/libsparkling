@@ -225,6 +225,8 @@
     <ClCompile Include="..\..\source\device\window\GlfwWindow.cpp" />
     <ClCompile Include="..\..\source\drawing\Bitmap.cpp" />
     <ClCompile Include="..\..\source\file\FileSystem.cpp" />
+    <ClCompile Include="..\..\source\fonts\Font.cpp" />
+    <ClCompile Include="..\..\source\fonts\FontPool.cpp" />
     <ClCompile Include="..\..\source\forms\Window.cpp" />
     <ClCompile Include="..\..\source\game\AbstractLayer.cpp" />
     <ClCompile Include="..\..\source\game\Sprite.cpp" />
@@ -238,6 +240,7 @@
     <ClCompile Include="..\..\source\perspective\OrthographicProjection.cpp" />
     <ClCompile Include="..\..\source\renderer\AbstractSparkRenderer.cpp" />
     <ClCompile Include="..\..\source\renderer\config\VulkanConfig.cpp" />
+    <ClCompile Include="..\..\source\renderer\ogl\OGLTexture.cpp" />
     <ClCompile Include="..\..\source\renderer\OpenGLES2Renderer.cpp" />
     <ClCompile Include="..\..\source\renderer\OpenGLFLES2Renderer.cpp" />
     <ClCompile Include="..\..\source\renderer\OpenGLRenderer.cpp" />
@@ -253,8 +256,10 @@
     <ClCompile Include="..\..\testbed\bootstrap\win32\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\ISparkFontPool.hpp" />
     <ClInclude Include="..\..\include\ISceneGraphManager2D.hpp" />
     <ClInclude Include="..\..\include\ISceneGraphManager3D.hpp" />
+    <ClInclude Include="..\..\include\ISparkFont.hpp" />
     <ClInclude Include="..\..\include\ISparkNodeAnimator.hpp" />
     <ClInclude Include="..\..\include\ISparkRendererApiConfig.hpp" />
     <ClInclude Include="..\..\include\ISparkApp.hpp" />
@@ -291,6 +296,11 @@
     <ClInclude Include="..\..\source\drawing\PixelFormat.hpp" />
     <ClInclude Include="..\..\source\drawing\Vertex3.hpp" />
     <ClInclude Include="..\..\source\file\FileSystem.hpp" />
+    <ClInclude Include="..\..\source\fonts\BitmapFontInfo.hpp" />
+    <ClInclude Include="..\..\source\fonts\BitmapGlyphInfo.hpp" />
+    <ClInclude Include="..\..\source\fonts\embedded\Arial16.hpp" />
+    <ClInclude Include="..\..\source\fonts\Font.hpp" />
+    <ClInclude Include="..\..\source\fonts\FontPool.hpp" />
     <ClInclude Include="..\..\source\forms\Window.hpp" />
     <ClInclude Include="..\..\source\game\AbstractLayer.hpp" />
     <ClInclude Include="..\..\source\game\PixelToMeterOffsetInfo.hpp" />
@@ -314,6 +324,7 @@
     <ClInclude Include="..\..\source\renderer\AbstractSparkRenderer.hpp" />
     <ClInclude Include="..\..\source\renderer\common\ERenderEngine.hpp" />
     <ClInclude Include="..\..\source\renderer\config\VulkanConfig.hpp" />
+    <ClInclude Include="..\..\source\renderer\ogl\OGLTexture.hpp" />
     <ClInclude Include="..\..\source\renderer\OpenGLES2Renderer.hpp" />
     <ClInclude Include="..\..\source\renderer\OpenGLFLES2Renderer.hpp" />
     <ClInclude Include="..\..\source\renderer\OpenGLRenderer.hpp" />

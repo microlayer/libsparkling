@@ -2,10 +2,11 @@
 #define __SPARK_DEVICE_ISPARKDEVICE_HPP_INCLUDED__
 
 #include "ISparkLogger.hpp"
-//#include "ISparkTimer.hpp"
+#include "ISparkTimer.hpp"
 #include "ISparkRenderer.hpp"
 #include "ISparkFileSystem.hpp"
 #include "ISceneGraphManager3D.hpp"
+#include "ISparkFontPool.hpp"
 #include <string>
 #include "app/SparkApp.hpp"
 
@@ -31,22 +32,21 @@ namespace spark {
             virtual void flush() = 0; // Callback to swap/flush the video-buffer
 
         public:
-            virtual spark::renderer::ISparkRenderer* getRenderer() = 0;
-            virtual spark::renderer::E_RENDER_ENGINE getRenderEngineType() = 0;
-            virtual spark::log::ISparkLogger* getLogger() = 0;
-            //virtual spark::timer::ISparkTimer* getTimer() = 0;
-            virtual spark::file::ISparkFileSystem* getFileSystem() = 0;
-            virtual ScreenResolution getScreenResolution() = 0;
-            //virtual std::string getRootPath() = 0;
-            //virtual spark::font::ISparkFontPool* getSparkFontPool() = 0;
+            virtual spark::renderer::ISparkRenderer* getRenderer() const = 0;
+            virtual spark::renderer::E_RENDER_ENGINE getRenderEngineType() const = 0;
+            virtual spark::log::ISparkLogger* getLogger() const = 0;
+            virtual spark::timer::ISparkTimer* getTimer() const = 0;
+            virtual spark::file::ISparkFileSystem* getFileSystem() const = 0;
+            virtual ScreenResolution getScreenResolution() const = 0;
+            virtual spark::font::ISparkFontPool* getSparkFontPool() const = 0;
 
         public:
             virtual spark::scene::ISceneGraphManager3D* createSceneGraphManager3D() = 0;
 
         public:
-            //virtual uint64_t getHeapAllocatedSize() = 0;
-            //virtual uint64_t getHeapSize() = 0;
-            //virtual uint16 getAPIVersionSDK() = 0;
+            virtual uint64_t getHeapAllocatedSize() = 0;
+            virtual uint64_t getHeapSize() = 0;
+            virtual uint16 getAPIVersionSDK() = 0;
 
         public: // MainLoop infrastructure
             virtual void run(spark::app::SparkApp* sparkApp) = 0;

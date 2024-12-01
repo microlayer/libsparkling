@@ -64,6 +64,8 @@ public:
         //m_tiledLayer->setPosition(250, 50);
         //m_tiledLayer->paint(renderer);
 
+        //renderer->drawString(spark::font::ESFT_ARIAL_16, "Hello", spark::drawing::Color(128, 128, 128, 128), 25, 25);
+
         m_sceneGraphManager3D->drawGraph(renderer);
     }
 
