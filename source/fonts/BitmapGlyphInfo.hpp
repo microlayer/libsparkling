@@ -13,8 +13,8 @@ namespace spark {
             c8_t m_charId;
             real32 m_uo;
             real32 m_vo;
-            real32 m_normWidth;
-            real32 m_normHeight;
+            real32 m_normalizedWidth;
+            real32 m_normalizedHeight;
             int32_t m_width;
             int32_t m_height;
             int32_t m_xOffset;

@@ -272,18 +272,18 @@ namespace spark {
                 {
                     for (int col = 0; col < layerCols; col++)
                     {
-                        vertices.push_back(x + (col * tileWidth));                  // vx0
-                        vertices.push_back(y + (row * tileHeight) + tileHeight);    // vy0
-                        vertices.push_back(0);                                      // vz0
-                        vertices.push_back(x + (col * tileWidth) + tileWidth);      // vx1
-                        vertices.push_back(y + (row * tileHeight) + tileHeight);    // vy1
-                        vertices.push_back(0);                                      // vz1
-                        vertices.push_back(x + (col * tileWidth));                  // vx2
-                        vertices.push_back(y + (row * tileHeight));                 // vy2
-                        vertices.push_back(0);                                      // vz2
-                        vertices.push_back(x + (col * tileWidth) + tileWidth);      // vx3
-                        vertices.push_back(y + (row * tileHeight));                 // vy3
-                        vertices.push_back(0);                                      // vz3
+                        vertices.push_back(GLfloat(x + (col * tileWidth)));                     // vx0
+                        vertices.push_back(GLfloat(y + (row * tileHeight) + tileHeight));       // vy0
+                        vertices.push_back(0);                                                  // vz0
+                        vertices.push_back(GLfloat(x + (col * tileWidth) + tileWidth));         // vx1
+                        vertices.push_back(GLfloat(y + (row * tileHeight) + tileHeight));       // vy1
+                        vertices.push_back(0);                                                  // vz1
+                        vertices.push_back(GLfloat(x + (col * tileWidth)));                     // vx2
+                        vertices.push_back(GLfloat(y + (row * tileHeight)));                    // vy2
+                        vertices.push_back(0);                                                  // vz2
+                        vertices.push_back(GLfloat(x + (col * tileWidth) + tileWidth));         // vx3
+                        vertices.push_back(GLfloat(y + (row * tileHeight)));                    // vy3
+                        vertices.push_back(0);                                                  // vz3
 
                         real32 u = 1.0f / tilesetImageCols;
                         real32 v = 1.0f / tilesetImageRows;
@@ -306,8 +306,9 @@ namespace spark {
                 }
 
                 std::vector<GLshort> indicesBuffer;
-                GLshort indicesBufferSize = 6 * layerCols * layerRows;
-                for (int i = 0; i < indicesBufferSize; i++)
+                GLshort rectangleCount = layerCols * layerRows;
+                GLshort indicesBufferSize = 6 * rectangleCount;
+                for (int i = 0; i < rectangleCount; i++)
                 {
                     indicesBuffer.push_back(0 + (i * 4));
                     indicesBuffer.push_back(1 + (i * 4));
@@ -341,7 +342,7 @@ namespace spark {
         */
         void OpenGLRenderer::drawString(const spark::font::E_SYSTEM_FONT_TYPE fontType, const std::string text, spark::drawing::Color color, int16_t x, int16_t y)
         {
-            m_shader->setDrawMode(1);
+            m_shader->setDrawMode(2);
 
             glEnable(GL_BLEND);
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -349,6 +350,7 @@ namespace spark {
             glActiveTexture(GL_TEXTURE0);
             glBindTexture(GL_TEXTURE_2D, 0);
             glUniform1i(glGetUniformLocation(1, "utexture0"), 0);
+            glUniform3f(glGetUniformLocation(1, "uFontColor"), color.m_redf, color.m_greenf, color.m_bluef);
 
             spark::font::ISparkFont* font = m_device->getSparkFontPool()->getFont();
             spark::uc8_t* fontMapImageData = font->getFontMap();
@@ -356,38 +358,59 @@ namespace spark {
             uint16_t fontMapHeight = font->getBitmapFontInfo(16).m_textureHeight;
 
             glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, fontMapWidth, fontMapHeight, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, fontMapImageData);
+
             GLenum err = glGetError();
             if (glGetError() != err)
             {
                 m_logger->error("Error loading texture into OpenGL with reason: %s code: %i", "Undefined", err);
             }
 
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
             spark::font::BitmapFontInfo bitmapFontInfo = font->getBitmapFontInfo(16);
             spark::font::BitmapGlyphInfo bitmapGlypInfo = bitmapFontInfo.m_bitmapGlyphs[65];
-
             spark::uc8_t charId = bitmapGlypInfo.m_charId;
 
-            GLfloat texureCoords[] = {
-                0.0, 0.0,
-                1.0, 0.0,
-                0.0, 1.0,
-                1.0, 1.0
-            };
+            int16_t advance = 0;
+            const char* ch = text.c_str();
+            std::vector<spark::drawing::Vertex3> vertices;
+            for (uint16_t index = 0; ch[index] != '\0'; index++)
+            {
+                spark::font::BitmapGlyphInfo gi = font->getBitmapFontInfo(index).m_bitmapGlyphs[ch[index]];
+                int16_t px = x + gi.m_xOffset + advance;
+                int16_t py = y + (gi.m_height + gi.m_yOffset);
+                advance += gi.m_xAdvance;
 
-            GLfloat vertices[] = {
-               (GLfloat)x, fontMapHeight + (GLfloat)y, 0.0f,
-               fontMapWidth + x, fontMapHeight + (GLfloat)y, 0.0f,
-               (GLfloat)x, (GLfloat)y, 0.0f,
-               fontMapWidth + (GLfloat)x, (GLfloat)y, 0.0f
-            };
+                spark::drawing::Vertex3 v0(px, py, 0.0f, spark::math::Vector2f(gi.m_uo, gi.m_vo));
+                spark::drawing::Vertex3 v1(real32(px + gi.m_width), py, 0.0f, spark::math::Vector2f(gi.m_uo + gi.m_normalizedWidth, gi.m_vo));
+                spark::drawing::Vertex3 v2(px, real32(py - gi.m_height), 0.0f, spark::math::Vector2f(gi.m_uo, gi.m_vo + gi.m_normalizedHeight));
+                spark::drawing::Vertex3 v3(real32(px + gi.m_width), real32(py - gi.m_height), 0.0f, spark::math::Vector2f(gi.m_uo + gi.m_normalizedWidth, gi.m_vo + gi.m_normalizedHeight));
+                vertices.push_back(v0); vertices.push_back(v1); vertices.push_back(v2); vertices.push_back(v3);
+            }
 
-            glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, &vertices[0]);
-            glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 0, &texureCoords[0]);
+            std::vector<GLshort> indicesBuffer;
+            GLshort rectangleCount = (GLshort)text.size();
+            GLshort indicesBufferSize = 6 * rectangleCount;
+            for (int i = 0; i < rectangleCount; i++)
+            {
+                indicesBuffer.push_back(0 + (i * 4));
+                indicesBuffer.push_back(1 + (i * 4));
+                indicesBuffer.push_back(2 + (i * 4));
+                indicesBuffer.push_back(1 + (i * 4));
+                indicesBuffer.push_back(3 + (i * 4));
+                indicesBuffer.push_back(2 + (i * 4));
+            }
+
+            glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(spark::drawing::Vertex3), &vertices[0].m_position);
+            glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, sizeof(spark::drawing::Vertex3), &vertices[0].m_textureCoord);
 
             glEnableVertexAttribArray(0);
             glEnableVertexAttribArray(3);
 
-            glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+            glDrawElements(GL_TRIANGLES, indicesBufferSize, GL_UNSIGNED_SHORT, &indicesBuffer[0]);
 
             glDisableVertexAttribArray(3);
             glDisableVertexAttribArray(0);
