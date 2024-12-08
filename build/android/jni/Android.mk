@@ -24,7 +24,8 @@ LIBSPARKLING_SRC_FILES:= $(call LS_CPP,$(LOCAL_PATH),../../../testbed/bootstrap/
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/timer) \
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/mlstl) \
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/forms) \
-			$(call LS_CPP,$(LOCAL_PATH),../../../source/game)
+			$(call LS_CPP,$(LOCAL_PATH),../../../source/game) \
+			$(call LS_CPP,$(LOCAL_PATH),../../../source/fonts)
 			
 SPARKLING_C_INCLUDES := $(LOCAL_PATH)/../../../include
 SPARKLING_C_INCLUDES += $(LOCAL_PATH)/../../../source

@@ -118,7 +118,7 @@ namespace spark {
             }
             else
             {
-                m_logger->error("Tilset file %s could not be found", fileName);
+                m_logger->error("Tilset file %s could not be found", fileName.c_str());
             }
             return tiledLayer;
         }
