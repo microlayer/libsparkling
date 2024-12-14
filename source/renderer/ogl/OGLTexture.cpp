@@ -6,6 +6,22 @@ namespace spark {
             /**
             *
             */
+            OGLTexture::OGLTexture()
+            {
+
+            }
+
+            /**
+            *
+            */
+            OGLTexture::~OGLTexture()
+            {
+
+            }
+
+            /**
+            *
+            */
             uc8_t* OGLTexture::getImageAsStream() const
             {
                 return 0;

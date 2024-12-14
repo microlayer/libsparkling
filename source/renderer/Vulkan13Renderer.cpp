@@ -6,7 +6,9 @@ namespace spark {
         /**
         *
         */
-        Vulkan13Renderer::Vulkan13Renderer(spark::device::ISparkDevice* device, spark::renderer::shader::ISparkShader* shader) :
+        Vulkan13Renderer::Vulkan13Renderer(spark::device::ISparkDevice* device,
+            spark::renderer::shader::ISparkShader* shader,
+            spark::renderer::ISparkTextureFactory* textureFactory) :
             VulkanRenderer(device, shader)
         {
             m_logger = device->getLogger();

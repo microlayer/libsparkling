@@ -2,6 +2,7 @@
 #define __SPARK_RENDERER_ABSTRACTSPARKRENDERER_HPP_INCLUDED__
 #include "ISparkDevice.hpp"
 #include "ISparkShader.hpp"
+#include "ISparkTextureFactory.hpp"
 
 namespace spark {
     namespace renderer {
@@ -11,7 +12,9 @@ namespace spark {
         class AbstractSparkRenderer : public spark::renderer::ISparkRenderer
         {
         public:
-            AbstractSparkRenderer(spark::device::ISparkDevice* device, spark::renderer::shader::ISparkShader* shader);
+            AbstractSparkRenderer(spark::device::ISparkDevice* device,
+                spark::renderer::shader::ISparkShader* shader,
+                spark::renderer::ISparkTextureFactory* textureFactory);
             virtual ~AbstractSparkRenderer();
 
         public: // ISparkRenderer
@@ -25,6 +28,7 @@ namespace spark {
         protected:
             spark::device::ISparkDevice* m_device;
             spark::renderer::shader::ISparkShader* m_shader;
+            spark::renderer::ISparkTextureFactory* m_textureFactory;
             spark::log::ISparkLogger* m_logger;
         };
     } // end namespace renderer

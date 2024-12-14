@@ -5,8 +5,10 @@ namespace spark {
         /**
         *
         */
-        OpenGLRenderer::OpenGLRenderer(spark::device::ISparkDevice* device, spark::renderer::shader::ISparkShader* shader) :
-            AbstractSparkRenderer(device, shader)
+        OpenGLRenderer::OpenGLRenderer(spark::device::ISparkDevice* device,
+            spark::renderer::shader::ISparkShader* shader,
+            spark::renderer::ISparkTextureFactory* textureFactory) :
+            AbstractSparkRenderer(device, shader, textureFactory)
         {
 
         }

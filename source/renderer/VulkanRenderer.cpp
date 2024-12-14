@@ -1,12 +1,15 @@
 #include "VulkanRenderer.hpp"
 #if SPARK_COMPILE_VULKAN == 0x1
+
 namespace spark {
     namespace renderer {
         /**
         *
         */
-        VulkanRenderer::VulkanRenderer(spark::device::ISparkDevice* device, spark::renderer::shader::ISparkShader* shader) :
-            AbstractSparkRenderer(device, shader)
+        VulkanRenderer::VulkanRenderer(spark::device::ISparkDevice* device,
+            spark::renderer::shader::ISparkShader* shader,
+            spark::renderer::ISparkTextureFactory* textureFactory) :
+            AbstractSparkRenderer(device, shader, textureFactory)
         {
 
         }

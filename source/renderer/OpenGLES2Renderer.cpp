@@ -7,8 +7,10 @@ namespace spark {
         /**
         *
         */
-        OpenGLES2Renderer::OpenGLES2Renderer(spark::device::ISparkDevice* device, spark::renderer::shader::ISparkShader* shader) :
-            OpenGLRenderer(device, shader)
+        OpenGLES2Renderer::OpenGLES2Renderer(spark::device::ISparkDevice* device,
+            spark::renderer::shader::ISparkShader* shader,
+            spark::renderer::ISparkTextureFactory* textureFactory) :
+            OpenGLRenderer(device, shader, textureFactory)
         {
 
         }

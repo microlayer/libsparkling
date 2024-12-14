@@ -11,6 +11,8 @@
 #include "timer/Timer.hpp"
 #include "fonts/FontPool.hpp"
 #include "scene/SceneGraphManager3D.hpp"
+#include "ISparkTextureFactory.hpp"
+#include "renderer/common/TextureFactory.hpp"
 
 #if SPARK_PLATFORM == SPARK_PLATFORM_WEBGL
 #include <emscripten/emscripten.h>
@@ -62,6 +64,7 @@ namespace spark {
         private:
             virtual void createTimer();
             virtual void createFontPool();
+            virtual void createTextureFactory();
 
         private:
             virtual void createLogger() = 0;
@@ -80,6 +83,7 @@ namespace spark {
             spark::renderer::ISparkRenderer* m_renderer;
             spark::renderer::E_RENDER_ENGINE m_rendererEngineType;
             spark::renderer::ISparkRendererApiConfig* m_rendererConfig;
+            spark::renderer::ISparkTextureFactory* m_texureFactory;
             spark::ui::AbstractCanvas* m_canvas;
             bool m_isDeviceRunning;
         };

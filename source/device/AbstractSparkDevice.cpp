@@ -27,6 +27,7 @@ namespace spark {
         {
             m_timer->release();
             m_fontPool->release();
+            m_texureFactory->release();
         }
 
         /**
@@ -38,6 +39,7 @@ namespace spark {
             createFileSystem();
             createSparkWindow();
             createShader();
+            createTextureFactory();
             createRenderer();
             createTimer();
             createFontPool();
@@ -225,6 +227,14 @@ namespace spark {
         void AbstractSparkDevice::createFontPool()
         {
             m_fontPool = new spark::font::FontPool();
+        }
+
+        /**
+        *
+        */
+        void AbstractSparkDevice::createTextureFactory()
+        {
+            m_texureFactory = new spark::renderer::TextureFactory();
         }
     } // end namespace device
 } // end namespace spark

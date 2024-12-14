@@ -234,6 +234,9 @@
     <ClCompile Include="..\..\source\renderer\ogl\OGLTexture.cpp">
       <Filter>source\renderer\ogl</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\renderer\common\TextureFactory.cpp">
+      <Filter>source\renderer\common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\spark\SparkCompilerConfig.hpp">
@@ -505,6 +508,12 @@
     </ClInclude>
     <ClInclude Include="..\..\source\renderer\ogl\OGLTexture.hpp">
       <Filter>source\renderer\ogl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkTextureFactory.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\renderer\common\TextureFactory.hpp">
+      <Filter>source\renderer\common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

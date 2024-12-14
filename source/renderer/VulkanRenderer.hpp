@@ -1,6 +1,7 @@
 #ifndef __SPARK_RENDERER_VULKANRENDERER_HPP_INCLUDED__
 #define __SPARK_RENDERER_VULKANRENDERER_HPP_INCLUDED__
 #include "spark/SparkSetup.hpp"
+#include "ISparkTextureFactory.hpp"
 #if SPARK_COMPILE_VULKAN == 0x1
 #if SPARK_PLATFORM == SPARK_PLATFORM_WINDOWS  || \
     SPARK_PLATFORM == SPARK_PLATFORM_LINUX
@@ -14,7 +15,9 @@ namespace spark {
         class VulkanRenderer : public spark::renderer::AbstractSparkRenderer
         {
         public:
-            VulkanRenderer(spark::device::ISparkDevice* device, spark::renderer::shader::ISparkShader* shader);
+            VulkanRenderer(spark::device::ISparkDevice* device,
+                spark::renderer::shader::ISparkShader* shader,
+                spark::renderer::ISparkTextureFactory* textureFactory);
             virtual ~VulkanRenderer(void);
 
         public: // AbstractSparkRenderer

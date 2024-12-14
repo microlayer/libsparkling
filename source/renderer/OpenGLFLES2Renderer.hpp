@@ -5,6 +5,7 @@
     SPARK_PLATFORM == SPARK_PLATFORM_LINUX    || \
     SPARK_PLATFORM == SPARK_PLATFORM_APPLE
 #include "OpenGLRenderer.hpp"
+#include "ISparkTextureFactory.hpp"
 
 namespace spark {
     namespace renderer {
@@ -14,7 +15,9 @@ namespace spark {
         class OpenGLFLES2Renderer : public spark::renderer::OpenGLRenderer
         {
         public:
-            OpenGLFLES2Renderer(spark::device::ISparkDevice* device, spark::renderer::shader::ISparkShader* shader);
+            OpenGLFLES2Renderer(spark::device::ISparkDevice* device,
+                spark::renderer::shader::ISparkShader* shader,
+                spark::renderer::ISparkTextureFactory* textureFactory);
             virtual ~OpenGLFLES2Renderer(void);
 
         public: // ISparkRenderer

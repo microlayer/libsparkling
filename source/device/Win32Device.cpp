@@ -87,7 +87,7 @@ namespace spark {
         {
             if (m_rendererEngineType == spark::renderer::E_RENDER_ENGINE::ERE_OGLFLES2)
             {
-                m_renderer = new spark::renderer::OpenGLFLES2Renderer(this, m_shader);
+                m_renderer = new spark::renderer::OpenGLFLES2Renderer(this, m_shader, m_texureFactory);
             }
 #if SPARK_COMPILE_VULKAN == 0x1
             else
