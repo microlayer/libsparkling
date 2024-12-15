@@ -234,7 +234,7 @@ namespace spark {
         */
         void AbstractSparkDevice::createTextureFactory()
         {
-            m_texureFactory = new spark::renderer::TextureFactory();
+            m_texureFactory = new spark::renderer::TextureFactory(m_logger);
         }
     } // end namespace device
 } // end namespace spark

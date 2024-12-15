@@ -17,7 +17,7 @@ namespace spark {
             virtual uint32_t getHeight() const = 0;
             virtual spark::drawing::E_PIXEL_FORMAT getPixelFormat() const = 0;
             virtual bool hasMipMaps() const = 0;
-            virtual void setActive() = 0;
+            virtual void bind() = 0;
             virtual uint32_t getHandle() const = 0;
         };
     } // end namespace renderer

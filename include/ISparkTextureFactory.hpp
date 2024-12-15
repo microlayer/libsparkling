@@ -3,6 +3,7 @@
 
 #include "SparkRefCount.hpp"
 #include "ISparkTexture.hpp"
+#include <string>
 
 namespace spark {
     namespace renderer {
@@ -12,8 +13,8 @@ namespace spark {
         class ISparkTextureFactory : public virtual spark::SparkRefCount
         {
         public:
-            virtual spark::renderer::ISparkTexture* CreateOrUpdate(uc8_t* data) = 0;
+            virtual spark::renderer::ISparkTexture* createOrUpdate(std::string id, uc8_t* data, int32_t width, int32_t height) = 0;
         };
-    }
-}
+    } // end namespace renderer
+} // end namespace spark
 #endif

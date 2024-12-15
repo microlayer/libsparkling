@@ -6,7 +6,7 @@ namespace spark {
             /**
             *
             */
-            OGLTexture::OGLTexture()
+            OGLTexture::OGLTexture(spark::log::ISparkLogger* logger) : m_logger(logger)
             {
 
             }
@@ -62,9 +62,22 @@ namespace spark {
             /**
             *
             */
-            void OGLTexture::setActive()
+            void OGLTexture::bind()
             {
+                glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, 0, 0, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, 0);
 
+                GLenum err = glGetError();
+                if (glGetError() != err)
+                {
+                    m_logger->error("Error loading texture into OpenGL with reason: %s code: %i", "Undefined", err);
+                }
+
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+                glBindTexture(GL_TEXTURE_2D, 0);
             }
 
             /**

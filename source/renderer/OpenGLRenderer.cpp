@@ -376,6 +376,9 @@ namespace spark {
             spark::font::BitmapGlyphInfo bitmapGlypInfo = bitmapFontInfo.m_bitmapGlyphs[65];
             spark::uc8_t charId = bitmapGlypInfo.m_charId;
 
+            //spark::renderer::ISparkTexture* fontMapTexture = m_textureFactory->createOrUpdate("arial16", fontMapImageData, fontMapWidth, fontMapHeight);
+            //fontMapTexture->bind();
+
             int16_t advance = 0;
             const char* ch = text.c_str();
             std::vector<spark::drawing::Vertex3> vertices;
