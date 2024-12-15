@@ -6,9 +6,26 @@ namespace spark {
             /**
             *
             */
-            OGLTexture::OGLTexture(spark::log::ISparkLogger* logger) : m_logger(logger)
+            OGLTexture::OGLTexture(spark::log::ISparkLogger* logger, uc8_t* data, int32_t width, int32_t height) :
+                m_logger(logger),
+                m_data(data),
+                m_width(width),
+                m_height(height)
             {
+                //glGenTextures(1, &m_textureId);
 
+                glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, m_width, m_height, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, m_data);
+
+                GLenum err = glGetError();
+                if (glGetError() != err)
+                {
+                    m_logger->error("Error loading texture into OpenGL with reason: %s code: %i", "Undefined", err);
+                }
+
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
             }
 
             /**
@@ -24,7 +41,7 @@ namespace spark {
             */
             uc8_t* OGLTexture::getImageAsStream() const
             {
-                return 0;
+                return m_data;
             }
 
             /**
@@ -32,7 +49,7 @@ namespace spark {
             */
             uint32_t OGLTexture::getWidth() const
             {
-                return 0;
+                return m_width;
             }
 
             /**
@@ -40,7 +57,7 @@ namespace spark {
             */
             uint32_t OGLTexture::getHeight() const
             {
-                return 0;
+                return m_height;
             }
 
             /**
@@ -64,19 +81,6 @@ namespace spark {
             */
             void OGLTexture::bind()
             {
-                glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, 0, 0, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, 0);
-
-                GLenum err = glGetError();
-                if (glGetError() != err)
-                {
-                    m_logger->error("Error loading texture into OpenGL with reason: %s code: %i", "Undefined", err);
-                }
-
-                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
                 glBindTexture(GL_TEXTURE_2D, 0);
             }
 
