@@ -117,7 +117,6 @@ namespace spark {
         void OpenGLRenderer::draw2DPoint(int16_t x, int16_t y, spark::drawing::Color color)
         {
 
-
         }
 
         /**
@@ -168,26 +167,25 @@ namespace spark {
         */
         void OpenGLRenderer::draw2DBitmap(const spark::drawing::ISparkImage* image, int16_t x, int16_t y)
         {
+            spark::drawing::ClippingRectangle clipRect = { 0,0, (uint16_t)image->getWidth(), (uint16_t)image->getHeight() };
+            draw2DBitmap(image, x, y, clipRect);
+        }
+
+        /**
+        *
+        */
+        void OpenGLRenderer::draw2DBitmap(const spark::drawing::ISparkImage* image, int16_t x, int16_t y, const spark::drawing::ClippingRectangle clipRect)
+        {
             m_shader->setDrawMode(1);
-            glActiveTexture(GL_TEXTURE0);
-            glBindTexture(GL_TEXTURE_2D, 0);
-            glUniform1i(glGetUniformLocation(1, "utexture0"), 0);
-            spark::drawing::ClippingRectangle clipRect(0, 0, image->getWidth(), image->getHeight());
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image->getWidth(), image->getHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, image->getImageAsStream());
 
-            GLenum err = glGetError();
-            if (glGetError() != err)
-            {
-                m_logger->error("Error loading texture into OpenGL with reason: %s code: %i", "Undefined", err);
-            }
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+            spark::renderer::ISparkTexture* texture = m_textureFactory->createOrUpdate(image->getHash(), image->getImageAsStream(), image->getWidth(), image->getHeight());
+            texture->bind();
 
             GLfloat clipStart = (GLfloat)(1.0 / image->getWidth()) * clipRect.m_x;
-            GLfloat clipEnd = (GLfloat)(clipStart + (1.0 / image->getWidth())) * clipRect.m_width;
+            GLfloat clipEnd = (GLfloat)(clipStart + (1.0 / image->getWidth()) * clipRect.m_width);
 
             GLfloat texureCoords[] = {	// If clipping area is the full size of the image
                 clipStart, 1.0,		    // 0.0, 1.0,
@@ -216,15 +214,9 @@ namespace spark {
 
             glDisableVertexAttribArray(3);
             glDisableVertexAttribArray(0);
+
+            glDisable(GL_BLEND);
             m_shader->setDrawMode(0);
-        }
-
-        /**
-        *
-        */
-        void OpenGLRenderer::draw2DBitmap(const spark::drawing::ISparkImage* image, int16_t x, int16_t y, const spark::drawing::ClippingRectangle clipRect)
-        {
-
         }
 
         /**
@@ -237,7 +229,7 @@ namespace spark {
             glEnable(GL_BLEND);
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-            glActiveTexture(GL_TEXTURE0);
+            //glActiveTexture(GL_TEXTURE0);
             glBindTexture(GL_TEXTURE_2D, 0);
             glUniform1i(glGetUniformLocation(1, "utexture0"), 0);
             const spark::drawing::ISparkImage* tilsetImage = tiledLayer->getTilesetImage();
@@ -335,6 +327,7 @@ namespace spark {
             {
                 m_logger->error("TiledLayer type is unknown");
             }
+            
             glDisable(GL_BLEND);
             m_shader->setDrawMode(0);
         }
@@ -349,7 +342,7 @@ namespace spark {
             glEnable(GL_BLEND);
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-            glActiveTexture(GL_TEXTURE0);
+            //glActiveTexture(GL_TEXTURE0);
             glBindTexture(GL_TEXTURE_2D, 0);
             glUniform1i(glGetUniformLocation(1, "utexture0"), 0);
             glUniform3f(glGetUniformLocation(1, "uFontColor"), color.m_redf, color.m_greenf, color.m_bluef);
@@ -375,9 +368,6 @@ namespace spark {
             spark::font::BitmapFontInfo bitmapFontInfo = font->getBitmapFontInfo(16);
             spark::font::BitmapGlyphInfo bitmapGlypInfo = bitmapFontInfo.m_bitmapGlyphs[65];
             spark::uc8_t charId = bitmapGlypInfo.m_charId;
-
-            //spark::renderer::ISparkTexture* fontMapTexture = m_textureFactory->createOrUpdate("arial16", fontMapImageData, fontMapWidth, fontMapHeight);
-            //fontMapTexture->bind();
 
             int16_t advance = 0;
             const char* ch = text.c_str();
@@ -420,6 +410,7 @@ namespace spark {
             glDisableVertexAttribArray(3);
             glDisableVertexAttribArray(0);
 
+            glDisable(GL_BLEND);
             m_shader->setDrawMode(0);
         }
 

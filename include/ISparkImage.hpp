@@ -3,6 +3,7 @@
 
 #include "SparkRefCount.hpp"
 #include "drawing/PixelFormat.hpp"
+#include <string>
 
 namespace spark {
     namespace drawing {
@@ -16,6 +17,7 @@ namespace spark {
             virtual uint32_t getWidth() const = 0;
             virtual uint32_t getHeight() const = 0;
             virtual spark::drawing::E_PIXEL_FORMAT getPixelFormat() const = 0;
+            virtual std::string getHash() const = 0;
         };
     } // end namespace drawing
 } // end namespace spark

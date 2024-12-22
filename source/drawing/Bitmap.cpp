@@ -5,11 +5,12 @@ namespace spark {
         /**
         *
         */
-        Bitmap::Bitmap(uc8_t* stream, uint32_t width, uint32_t height, spark::drawing::E_PIXEL_FORMAT pixelFormat) :
+        Bitmap::Bitmap(uc8_t* stream, uint32_t width, uint32_t height, spark::drawing::E_PIXEL_FORMAT pixelFormat, std::string hash) :
             m_stream(stream),
             m_width(width),
             m_height(height),
-            m_pixelFormat(pixelFormat)
+            m_pixelFormat(pixelFormat),
+            m_hash(hash)
         {
             if (spark::drawing::E_RGBA8 == pixelFormat)
             {
@@ -63,6 +64,14 @@ namespace spark {
         spark::drawing::E_PIXEL_FORMAT Bitmap::getPixelFormat() const
         {
             return m_pixelFormat;
+        }
+
+        /**
+        * Gets the calculated hash value of the raw image stream data
+        */
+        std::string Bitmap::getHash() const
+        {
+            return m_hash;
         }
     } // end namespace drawing
 } // end namespace spark

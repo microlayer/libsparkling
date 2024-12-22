@@ -1,5 +1,4 @@
 #include "FileSystem.hpp"
-#include "game/TiledLayer.hpp"
 
 namespace spark {
     namespace file {
@@ -35,12 +34,14 @@ namespace spark {
             lodepng::load_file(png, absolutePathFile);
             int32_t error = lodepng::decode(image, width, height, png);
 
+            std::string hash = mlstl::hash::MLHash::hashFNV1a(image);
+
             if (error == 0)
             {
                 m_logger->info("Loading '%s' successful", fileName.c_str());
                 fileSize = png.size();
                 rawSize = image.size();
-                bmp = new drawing::Bitmap(&image[0], width, height, spark::drawing::E_RGBA8);
+                bmp = new drawing::Bitmap(&image[0], width, height, spark::drawing::E_RGBA8, hash);
             }
             else
             {

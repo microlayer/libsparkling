@@ -8,6 +8,7 @@
 #include "drawing/Bitmap.hpp"
 #include "game/TiledLayer.hpp"
 #include "ISparkImage.hpp"
+#include "mlstl/MLHash.hpp"
 #include "../../lib/lodepng/lodepng.h"
 #include "../../lib/tinyxml2/tinyxml2.h"
 
@@ -23,11 +24,8 @@ namespace spark {
         public: // ISparkFileSystem
             spark::drawing::ISparkImage* loadBitmap(std::string fileName);
             spark::game::TiledLayer* loadTiledLayer(std::string fileName);
-            //spark::renderer::ISparkTexture* loadTexture(std::string fileName);
             //spark::mesh::ISparkMesh* loadMesh(std::string fileName); 			
             //spark::font::ISparkFont* loadBitmapFont(std::string fileName);
-
-        public:
             void appendText(std::string filename, std::string text);
 
         private:

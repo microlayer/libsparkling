@@ -319,6 +319,7 @@
     <ClInclude Include="..\..\source\mesh\generator\MeshGenerator.hpp" />
     <ClInclude Include="..\..\source\mesh\Mesh.hpp" />
     <ClInclude Include="..\..\source\mlstl\MLBase64.hpp" />
+    <ClInclude Include="..\..\source\mlstl\MLHash.hpp" />
     <ClInclude Include="..\..\source\perspective\OrthographicProjection.hpp" />
     <ClInclude Include="..\..\source\perspective\PerspectiveProjection.hpp" />
     <ClInclude Include="..\..\source\perspective\Viewport.hpp" />

@@ -515,6 +515,9 @@
     <ClInclude Include="..\..\source\renderer\common\TextureFactory.hpp">
       <Filter>source\renderer\common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\source\mlstl\MLHash.hpp">
+      <Filter>source\mlstl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\source\renderer\shader\glsl_for_ogl_feature_level_glsles10\Default.frag">

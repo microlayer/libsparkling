@@ -10,11 +10,12 @@ namespace spark {
                 m_logger(logger),
                 m_data(data),
                 m_width(width),
-                m_height(height)
+                m_height(height),
+                m_textureId(0)
             {
-                //glGenTextures(1, &m_textureId);
-
-                glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, m_width, m_height, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, m_data);
+                glGenTextures(1, &m_textureId);
+                glBindTexture(GL_TEXTURE_2D, m_textureId);
+                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width, m_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_data);
 
                 GLenum err = glGetError();
                 if (glGetError() != err)
@@ -80,8 +81,8 @@ namespace spark {
             *
             */
             void OGLTexture::bind()
-            {
-                glBindTexture(GL_TEXTURE_2D, 0);
+            {                
+                glBindTexture(GL_TEXTURE_2D, m_textureId);
             }
 
             /**
@@ -89,7 +90,7 @@ namespace spark {
             */
             uint32_t OGLTexture::getHandle() const
             {
-                return 0;
+                return m_textureId;
             }
         } // end namespace ogl
     } // end namespace renderer
