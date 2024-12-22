@@ -6,6 +6,7 @@
 #include "scene/SceneNode.hpp"
 #include "game/TiledLayer.hpp"
 #include "game/Sprite.hpp"
+#include "scene/SceneGraphManager2D.hpp"
 
 //#define SAMPLE_2D
 
@@ -100,4 +101,5 @@ private:
     spark::SparkSharedPointer<spark::game::Sprite> m_explosionSprite;
     spark::SparkSharedPointer<spark::game::TiledLayer> m_tiledLayer;
     spark::SparkSharedPointer<spark::scene::ISceneGraphManager3D> m_sceneGraphManager3D;
+    spark::SparkSharedPointer<spark::scene::ISceneGraphManager2D> m_sceneGraphManager2D;
 };

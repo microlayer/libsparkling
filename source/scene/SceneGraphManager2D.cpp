@@ -2,7 +2,9 @@
 
 namespace spark {
     namespace scene {
-
+        /**
+        *
+        */
         void SceneGraphManager2D::drawGraph(spark::renderer::ISparkRenderer* renderer)
         {
 

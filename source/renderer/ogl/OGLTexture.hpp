@@ -1,9 +1,18 @@
 #ifndef __SPARK_RENDERER_OGL_OGLTEXTURE_HPP_INCLUDED__
 #define __SPARK_RENDERER_OGL_OGLTEXTURE_HPP_INCLUDED__
 
-#include <GL/glew.h>
 #include "ISparkTexture.hpp"
 #include "ISparkLogger.hpp"
+#if SPARK_PLATFORM == SPARK_PLATFORM_WINDOWS || \
+    SPARK_PLATFORM == SPARK_PLATFORM_LINUX   || \
+    SPARK_PLATFORM == SPARK_PLATFORM_APPLE
+#include <GL/glew.h>
+#endif
+#if SPARK_PLATFORM == SPARK_PLATFORM_WEBGL || \
+    SPARK_PLATFORM == SPARK_PLATFORM_ANDROID
+#include <GLES2/gl2.h>
+#include <GLES2/gl2ext.h>
+#endif
 
 namespace spark {
     namespace renderer {

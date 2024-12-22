@@ -3,6 +3,10 @@ cmake_minimum_required(VERSION 3.10)
 project(Box2D)
 
 # Setze die C++-Standardversion
+set(CMAKE_CXX_FLAGS "")
+set(CMAKE_C_FLAGS "")
+set(CMAKE_CXX_FLAGS_DEBUG "/MDd /W4")
+set(CMAKE_CXX_FLAGS_RELEASE "/MD /W4")
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 

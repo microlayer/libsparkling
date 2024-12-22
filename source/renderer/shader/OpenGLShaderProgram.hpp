@@ -7,11 +7,13 @@
 #include "renderer/common/ERenderEngine.hpp"
 #include "glsl_for_ogl_feature_level_glsles10/DefaultShader.hpp"
 #include "glsl_for_gles2_feature_level_glsles10/DefaultShader.hpp"
-#if SPARK_PLATFORM == SPARK_PLATFORM_WINDOWS
+#if SPARK_PLATFORM == SPARK_PLATFORM_WINDOWS || \
+    SPARK_PLATFORM == SPARK_PLATFORM_LINUX   || \
+    SPARK_PLATFORM == SPARK_PLATFORM_APPLE
 #include <GL/glew.h>
 #endif
-#if SPARK_PLATFORM == SPARK_PLATFORM_ANDROID || \
-    SPARK_PLATFORM == SPARK_PLATFORM_WEBGL
+#if SPARK_PLATFORM == SPARK_PLATFORM_WEBGL || \
+    SPARK_PLATFORM == SPARK_PLATFORM_ANDROID
 #include <GLES2/gl2.h>
 #include <GLES2/gl2ext.h>
 #include "stdlib.h"
