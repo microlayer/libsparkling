@@ -1,4 +1,5 @@
 #include "SampleCanvas1.hpp"
+#include "SampleCanvas2.hpp"
 #include "ISparkCommandListener.hpp"
 
 /**
@@ -12,7 +13,8 @@ public:
     */
     SampleApp(spark::device::ISparkDevice* device)
     {
-        m_sampleCanvas = new SampleCanvas1(device);
+        m_sampleCanvas1 = new SampleCanvas1(device);
+        m_sampleCanvas2 = new SampleCanvas2(device);
         //m_sampleCanvas->registerCommandListener(this);
     }
 
@@ -29,7 +31,16 @@ public:
     */
     void onInit()
     {
-        this->setActiveCanvas(m_sampleCanvas.get());
+        this->setActiveCanvas(m_sampleCanvas1.get());
+        //m_timer.setTimeout([this]() {this->switchCanvas(); }, 2000);
+    }
+
+    /**
+    *
+    */
+    void switchCanvas()
+    {
+        this->setActiveCanvas(m_sampleCanvas2.get());
     }
 
     /**
@@ -44,5 +55,7 @@ public:
     }
 
 private:
-    spark::SparkSharedPointer<SampleCanvas1> m_sampleCanvas;
+    spark::SparkSharedPointer<SampleCanvas1> m_sampleCanvas1;
+    spark::SparkSharedPointer<SampleCanvas2> m_sampleCanvas2;
+    spark::timer::Timer m_timer;
 };

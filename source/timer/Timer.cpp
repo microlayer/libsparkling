@@ -3,8 +3,14 @@
 
 #if SPARK_PLATFORM == SPARK_PLATFORM_WINDOWS
 #include <windows.h>
+#include <thread>
+#include <chrono>
 #elif SPARK_PLATFORM == SPARK_PLATFORM_ANDROID
 #include <time.h>
+#include <thread>
+#include <chrono>
+#elif SPARK_PLATFORM == SPARK_PLATFORM_WEBGL
+#include <emscripten.h>
 #endif
 
 namespace spark {
@@ -104,6 +110,24 @@ namespace spark {
         real32 Timer::getElapsedTime()
         {
             return (m_measurementTimeStop / (1.0f * CLOCKS_PER_SEC)) - (m_measurementTimeStart / (1.0f * CLOCKS_PER_SEC));
+        }
+
+        /**
+        *
+        */
+        void Timer::setTimeout(std::function<void()> function, uint32_t millisecond)
+        {
+#if SPARK_PLATFORM == SPARK_PLATFORM_WEBGL
+            emscripten_sleep_with_yield(millisecond);
+            function();
+#else           
+            std::thread([function, millisecond]() {
+                std::this_thread::sleep_for(std::chrono::milliseconds(millisecond));
+                if (function) {
+                    function();
+                }
+                }).detach();
+#endif
         }
 
     } // end namespace timer

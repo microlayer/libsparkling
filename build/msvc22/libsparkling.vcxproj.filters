@@ -518,6 +518,9 @@
     <ClInclude Include="..\..\source\mlstl\MLHash.hpp">
       <Filter>source\mlstl</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\testbed\SampleCanvas2.hpp">
+      <Filter>testbed</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\source\renderer\shader\glsl_for_ogl_feature_level_glsles10\Default.frag">

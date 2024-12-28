@@ -4,10 +4,10 @@
 #include "ISparkTimer.hpp"
 #include "Sparkling.hpp"
 #include <ctime>
+#include <functional>
 
 namespace spark {
     namespace timer {
-
         /**
         *
         */
@@ -25,6 +25,7 @@ namespace spark {
             void start();
             void stop();
             real32 getElapsedTime();
+            void setTimeout(std::function<void()> function, uint32_t millisecond);
 
         private:
             uint32_t m_measurementTimeStart;

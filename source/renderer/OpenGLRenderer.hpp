@@ -62,6 +62,7 @@ namespace spark {
 
         private:
             math::Matrix4f m_projectionViewMatrix;
+            spark::drawing::Color m_backgroundColor;
         };
     } // end namespace renderer
 } // end namespace spark

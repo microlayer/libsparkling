@@ -164,6 +164,12 @@ namespace spark {
             while (isDeviceRunning())
             {
                 mainLoop();
+
+                if (sparkApp->isCanvasChanged())
+                {
+                    m_canvas = sparkApp->getActiveCanvas();
+                    sparkApp->resetIsCanvasChanged();
+                }
             }
 #endif 
         }

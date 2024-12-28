@@ -10,7 +10,7 @@ namespace spark {
             spark::renderer::ISparkTextureFactory* textureFactory) :
             AbstractSparkRenderer(device, shader, textureFactory)
         {
-
+            m_backgroundColor = spark::drawing::Color(0, 128, 0, 0);
         }
 
         /**
@@ -27,7 +27,7 @@ namespace spark {
         void OpenGLRenderer::onBeginScene()
         {
             glEnable(GL_SCISSOR_TEST);
-            glClearColor(0.1f, 0.3f, 0.2f, 1.0f);
+            glClearColor(m_backgroundColor.m_redf, m_backgroundColor.m_greenf, m_backgroundColor.m_bluef, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             glClearDepthf(1.0f);
 
@@ -108,7 +108,7 @@ namespace spark {
         */
         void OpenGLRenderer::drawBackground(const spark::drawing::Color& color)
         {
-
+            m_backgroundColor = spark::drawing::Color(color.m_red, color.m_green, color.m_blue, color.m_alpha);
         }
 
         /**
@@ -327,7 +327,7 @@ namespace spark {
             {
                 m_logger->error("TiledLayer type is unknown");
             }
-            
+
             glDisable(GL_BLEND);
             m_shader->setDrawMode(0);
         }

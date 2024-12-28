@@ -3,6 +3,7 @@
 
 #include "spark/SparkTypes.hpp"
 #include "SparkRefCount.hpp"
+#include <functional>
 
 namespace spark {
     namespace timer {
@@ -24,6 +25,7 @@ namespace spark {
         */
         class ISparkTimer : public virtual SparkRefCount
         {
+
         public:
             virtual uint32_t getTimestamp() = 0;
             virtual SparkTime getDateTimeNow() = 0;
@@ -32,6 +34,7 @@ namespace spark {
             virtual void start() = 0;
             virtual void stop() = 0;
             virtual real32 getElapsedTime() = 0;
+            virtual void setTimeout(std::function<void()> function, uint32_t millisecond) = 0;
         };
     } // end namespace timer
 } // end namespace spark

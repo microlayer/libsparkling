@@ -350,6 +350,7 @@
     <ClInclude Include="..\..\source\ui\Command.hpp" />
     <ClInclude Include="..\..\testbed\SampleApp.hpp" />
     <ClInclude Include="..\..\testbed\SampleCanvas1.hpp" />
+    <ClInclude Include="..\..\testbed\SampleCanvas2.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\source\renderer\shader\glsl_for_gles2_feature_level_glsles10\Default.frag" />
