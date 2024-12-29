@@ -18,6 +18,7 @@ namespace spark {
             m_rendererConfig(NULL)
         {
             m_isDeviceRunning = true;
+            DeviceInstance::Instance = this;
         }
 
         /**
@@ -155,8 +156,8 @@ namespace spark {
         */
         void AbstractSparkDevice::run(spark::app::SparkApp* sparkApp)
         {
-            DeviceInstance::Instance = this;
-            sparkApp->onInit();
+            m_sparkApp = sparkApp;
+            m_sparkApp->onInit();
             m_canvas = sparkApp->getActiveCanvas();
 #ifdef EMSCRIPTEN						
             emscripten_set_main_loop(setEmscriptenMainLoop, 0, 1);
@@ -164,12 +165,6 @@ namespace spark {
             while (isDeviceRunning())
             {
                 mainLoop();
-
-                if (sparkApp->isCanvasChanged())
-                {
-                    m_canvas = sparkApp->getActiveCanvas();
-                    sparkApp->resetIsCanvasChanged();
-                }
             }
 #endif 
         }
@@ -211,6 +206,12 @@ namespace spark {
         */
         void AbstractSparkDevice::mainLoop()
         {
+            if (m_sparkApp != NULL && m_sparkApp->isCanvasChanged())
+            {
+                m_canvas = m_sparkApp->getActiveCanvas();
+                m_sparkApp->resetIsCanvasChanged();
+            }
+
             m_renderer->beginScene();
             if (m_canvas != NULL)
             {

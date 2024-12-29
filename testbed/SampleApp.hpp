@@ -32,14 +32,14 @@ public:
     void onInit()
     {
         this->setActiveCanvas(m_sampleCanvas1.get());
-        //m_timer.setTimeout([this]() {this->switchCanvas(); }, 2000);
+        m_timer.setTimeout([this]() {this->switchCanvas(); }, 2000);
     }
 
     /**
     *
     */
     void switchCanvas()
-    {
+    {       
         this->setActiveCanvas(m_sampleCanvas2.get());
     }
 

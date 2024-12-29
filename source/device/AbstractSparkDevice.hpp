@@ -85,6 +85,7 @@ namespace spark {
             spark::renderer::ISparkRendererApiConfig* m_rendererConfig;
             spark::renderer::ISparkTextureFactory* m_texureFactory;
             spark::ui::AbstractCanvas* m_canvas;
+            spark::app::SparkApp* m_sparkApp;
             bool m_isDeviceRunning;
         };
     } // end namespace device

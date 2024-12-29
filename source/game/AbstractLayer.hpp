@@ -2,7 +2,7 @@
 #define __SPARK_GAME_ABSTRACTLAYER_HPP_INCLUDED__
 
 #include "ISparkRenderer.hpp"
-#include <box2d/Box2D.h>
+#include <Box2D/Box2D.h>
 
 namespace spark {
     namespace game {

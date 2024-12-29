@@ -28,6 +28,10 @@ namespace spark {
             void setTimeout(std::function<void()> function, uint32_t millisecond);
 
         private:
+            void static timeoutCallback(void* arg);
+            std::function<void()> m_timeoutCallbackFunction;
+
+        private:
             uint32_t m_measurementTimeStart;
             uint32_t m_measurementTimeStop;
         };

@@ -117,9 +117,9 @@ namespace spark {
         */
         void Timer::setTimeout(std::function<void()> function, uint32_t millisecond)
         {
-#if SPARK_PLATFORM == SPARK_PLATFORM_WEBGL
-            emscripten_sleep_with_yield(millisecond);
-            function();
+            m_timeoutCallbackFunction = function;
+#if SPARK_PLATFORM == SPARK_PLATFORM_WEBGL            
+            emscripten_async_call(timeoutCallback, this, millisecond);
 #else           
             std::thread([function, millisecond]() {
                 std::this_thread::sleep_for(std::chrono::milliseconds(millisecond));
@@ -128,6 +128,16 @@ namespace spark {
                 }
                 }).detach();
 #endif
+        }
+
+        /**
+        *
+        */
+        void Timer::timeoutCallback(void* arg)
+        {
+            spark::timer::Timer* instance = static_cast<spark::timer::Timer*>(arg);
+            std::function<void()> function = instance->m_timeoutCallbackFunction;
+            function();
         }
 
     } // end namespace timer
