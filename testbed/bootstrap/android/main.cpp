@@ -1,14 +1,14 @@
+#include "Sparkling.hpp"
+#include "../../SampleApp.hpp"
+
 #define START_SAMPLEAPP 0
 #if (START_SAMPLEAPP)
 /**
 * 
 */
-#include <android_native_app_glue.h>
-#include "Sparkling.hpp"
-
 void android_main(android_app* pApplication)
 {
-/*	spark::device::ISparkDevice* device = spark::createDevice(spark::renderer::ERE_OGLES2);
+	spark::device::ISparkDevice* device = spark::createDevice(spark::renderer::ERE_OGLES2);
 	spark::log::ISparkLogger* logger = device->getLogger();
 	while (device->isDeviceRunning())
 	{
@@ -17,15 +17,12 @@ void android_main(android_app* pApplication)
 		device->getRenderer()->endScene();
 	}
 	logger->info("Cleanup");
-	device->release();*/
+	device->release();
 }
 #else
 /**
 *
 */
-#include "Sparkling.hpp"
-#include "../../SampleApp.hpp"
-
 void android_main(android_app* pApplication)
 {
     spark::device::ISparkDevice* device = spark::createDevice(spark::renderer::ERE_OGLES2, pApplication);

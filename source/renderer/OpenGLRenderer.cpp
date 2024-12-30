@@ -181,7 +181,7 @@ namespace spark {
             glEnable(GL_BLEND);
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-            spark::renderer::ISparkTexture* texture = m_textureFactory->createOrUpdate(image->getHash(), image->getImageAsStream(), image->getWidth(), image->getHeight());
+            spark::renderer::ISparkTexture* texture = m_textureFactory->createOrUpdate(image->getHash(), image->getImageAsStream(), image->getWidth(), image->getHeight(), spark::drawing::E_RGBA8);
             texture->bind();
 
             GLfloat clipStart = (GLfloat)(1.0 / image->getWidth()) * clipRect.m_x;
@@ -229,23 +229,10 @@ namespace spark {
             glEnable(GL_BLEND);
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-            //glActiveTexture(GL_TEXTURE0);
-            glBindTexture(GL_TEXTURE_2D, 0);
-            glUniform1i(glGetUniformLocation(1, "utexture0"), 0);
             const spark::drawing::ISparkImage* tilsetImage = tiledLayer->getTilesetImage();
-            spark::drawing::ClippingRectangle clipRect(0, 0, tilsetImage->getWidth(), tilsetImage->getHeight());
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tilsetImage->getWidth(), tilsetImage->getHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, tilsetImage->getImageAsStream());
-
-            GLenum err = glGetError();
-            if (glGetError() != err)
-            {
-                m_logger->error("Error loading texture into OpenGL with reason: %s code: %i", "Undefined", err);
-            }
-
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        
+            spark::renderer::ISparkTexture* texture = m_textureFactory->createOrUpdate(tilsetImage->getHash(), tilsetImage->getImageAsStream(), tilsetImage->getWidth(), tilsetImage->getHeight(), spark::drawing::E_RGBA8);
+            texture->bind();
 
             if (tiledLayer->getLayerType() == spark::game::TiledLayer::ELT_ORTHOGONAL)
             {
@@ -342,23 +329,14 @@ namespace spark {
             glEnable(GL_BLEND);
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-            //glActiveTexture(GL_TEXTURE0);
-            glBindTexture(GL_TEXTURE_2D, 0);
-            glUniform1i(glGetUniformLocation(1, "utexture0"), 0);
-            glUniform3f(glGetUniformLocation(1, "uFontColor"), color.m_redf, color.m_greenf, color.m_bluef);
-
             spark::font::ISparkFont* font = m_device->getSparkFontPool()->getFont();
             spark::uc8_t* fontMapImageData = font->getFontMap();
             uint16_t fontMapWidth = font->getBitmapFontInfo(16).m_textureWidth;
             uint16_t fontMapHeight = font->getBitmapFontInfo(16).m_textureHeight;
 
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, fontMapWidth, fontMapHeight, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, fontMapImageData);
-
-            GLenum err = glGetError();
-            if (glGetError() != err)
-            {
-                m_logger->error("Error loading texture into OpenGL with reason: %s code: %i", "Undefined", err);
-            }
+            m_shader->setFontColor(color);
+            spark::renderer::ISparkTexture* texture = m_textureFactory->createOrUpdate(font->getFontName(), fontMapImageData, fontMapWidth, fontMapHeight, spark::drawing::E_GRAY8);
+            texture->bind();
 
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);

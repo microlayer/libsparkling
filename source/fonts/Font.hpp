@@ -3,6 +3,7 @@
 
 #include "ISparkFont.hpp"
 #include "embedded/Arial16.hpp"
+#include <string>
 
 namespace spark {
     namespace font {
@@ -17,6 +18,7 @@ namespace spark {
         public:
             spark::font::BitmapFontInfo getBitmapFontInfo(uint16_t size) const;
             uc8_t* getFontMap() const;
+            std::string getFontName() const;
         };
     } // end namespace font
 } // end namespace spark

@@ -98,7 +98,7 @@ namespace spark {
 							"    else if(uDrawMode == 2)\n"
 							"    {\n"
 							"        float alpha = texture2D(uTexture0, textureCoord.xy).x;\n"
-							"        gl_FragColor = vec4(256, 0, 0, alpha);\n"
+							"        gl_FragColor = vec4(uFontColor, alpha);\n"
 							"    }\n"
 							"    else\n"
 							"    {\n"

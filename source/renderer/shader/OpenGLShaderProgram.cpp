@@ -88,14 +88,14 @@ namespace spark {
                         glGetShaderInfoLog(vertexShader, infoLen, NULL, infoLog);
                         m_logger->info("Vertex Shader result: %s", &infoLog);
                     }
-                    
+
                     glGetShaderiv(fragmentShader, GL_INFO_LOG_LENGTH, &infoLen);
                     if (infoLen > 1)
                     {
                         char infoLog[2048];	//Attention: Fix buffer size
                         glGetShaderInfoLog(fragmentShader, infoLen, NULL, infoLog);
                         m_logger->info("Fragment Shader result: %s", infoLog);
-                    }                    
+                    }
 
                     glAttachShader(m_programObject, vertexShader);
                     glAttachShader(m_programObject, fragmentShader);
@@ -120,6 +120,7 @@ namespace spark {
                         glDeleteProgram(m_programObject);
                     }
                 }
+                init();
                 return this;
             }
 
@@ -137,6 +138,32 @@ namespace spark {
             void OpenGLShaderProgram::setDrawMode(uint32_t drawMode)
             {
                 glUniform1i(glGetUniformLocation(m_programObject, "uDrawMode"), drawMode);
+            }
+
+            /**
+            *
+            */
+            void OpenGLShaderProgram::setTextureUnit(uint32_t unit)
+            {
+                glActiveTexture(GL_TEXTURE0);
+                int uTexture0Location = glGetUniformLocation(m_programObject, "uTexture0");
+                glUniform1i(uTexture0Location, 0); // Tell the sampler to use texture unit 0
+            }
+
+            /**
+            *
+            */
+            void OpenGLShaderProgram::setFontColor(spark::drawing::Color fontColor)
+            {
+                glUniform3f(glGetUniformLocation(m_programObject, "uFontColor"), fontColor.m_redf, fontColor.m_greenf, fontColor.m_bluef);
+            }
+
+            /**
+            *
+            */
+            void OpenGLShaderProgram::init()
+            {
+                setTextureUnit(0);
             }
         } // end namespace shader
     } // end namespace renderer

@@ -33,5 +33,13 @@ namespace spark {
         {
             return spark::font::embedded::font_Arial_16::Image;
         }
+
+        /**
+        *
+        */
+        std::string Font::getFontName() const
+        {
+            return "Arial_16";
+        }
     }
 }

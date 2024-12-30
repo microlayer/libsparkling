@@ -23,7 +23,7 @@ void main()
     else if(uDrawMode == 2)
     {
         float alpha = texture2D(uTexture0, textureCoord.xy).x;
-        gl_FragColor = vec4(256, 0, 0, alpha);
+        gl_FragColor = vec4(uFontColor, alpha);
     }
     else
     {

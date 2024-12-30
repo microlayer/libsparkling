@@ -159,6 +159,7 @@ namespace spark {
             m_sparkApp = sparkApp;
             m_sparkApp->onInit();
             m_canvas = sparkApp->getActiveCanvas();
+            m_canvas->init();
 #ifdef EMSCRIPTEN						
             emscripten_set_main_loop(setEmscriptenMainLoop, 0, 1);
 #else
@@ -209,6 +210,7 @@ namespace spark {
             if (m_sparkApp != NULL && m_sparkApp->isCanvasChanged())
             {
                 m_canvas = m_sparkApp->getActiveCanvas();
+                m_canvas->init();
                 m_sparkApp->resetIsCanvasChanged();
             }
 

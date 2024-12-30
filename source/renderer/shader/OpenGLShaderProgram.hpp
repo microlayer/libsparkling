@@ -5,6 +5,7 @@
 #include "ISparkShader.hpp"
 #include "ISparkLogger.hpp"
 #include "renderer/common/ERenderEngine.hpp"
+#include "drawing/Color.hpp"
 #include "glsl_for_ogl_feature_level_glsles10/DefaultShader.hpp"
 #include "glsl_for_gles2_feature_level_glsles10/DefaultShader.hpp"
 #if SPARK_PLATFORM == SPARK_PLATFORM_WINDOWS || \
@@ -39,6 +40,11 @@ namespace spark {
             public:
                 void setProjectionViewMatrix(const real32* matrix);
                 void setDrawMode(uint32_t drawMode);
+                void setTextureUnit(uint32_t unit);
+                void setFontColor(spark::drawing::Color fontColor);
+
+            private:
+                void init();
 
             private:
                 GLuint m_programObject;

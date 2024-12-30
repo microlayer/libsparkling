@@ -25,11 +25,11 @@ namespace spark {
         /**
         *
         */
-        spark::renderer::ISparkTexture* TextureFactory::createOrUpdate(std::string id, uc8_t* data, int32_t width, int32_t height)
+        spark::renderer::ISparkTexture* TextureFactory::createOrUpdate(std::string id, uc8_t* data, int32_t width, int32_t height, spark::drawing::E_PIXEL_FORMAT pixelFormat)
         {
             if (m_textureMap.find(id) == m_textureMap.end())
             {
-                spark::renderer::ogl::OGLTexture* texture = new spark::renderer::ogl::OGLTexture(m_logger, data, width, height);
+                spark::renderer::ogl::OGLTexture* texture = new spark::renderer::ogl::OGLTexture(m_logger, data, width, height, pixelFormat);
                 m_textureMap[id] = texture;
                 return texture;
             }

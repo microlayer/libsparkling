@@ -19,7 +19,8 @@ public:
     /**
     *
     */
-    SampleCanvas1(spark::device::ISparkDevice* device)
+    SampleCanvas1(spark::device::ISparkDevice* device) :
+        m_device(device)
     {
 
 #ifdef SAMPLE_2D
@@ -57,12 +58,7 @@ public:
         node->addAnimator(nodeRotationAnimaror.get());
 
         m_sceneGraphManager3D->rootNode()->addChildSceneNode(node.get());
-#endif
-
-        // Set virtual resolution
-        //spark::perspective::OrthographicProjection orthographicProjection(device->getScreenResolution().m_width, device->getScreenResolution().m_height);
-        //orthographicProjection.setVirtualResolution(1196, 720, spark::perspective::VirtualResolution::E_LETTER_OR_PILLARBOX);
-        //device->getRenderer()->setOrthographicProjection(orthographicProjection);        
+#endif        
     }
 
     /**
@@ -71,6 +67,17 @@ public:
     virtual ~SampleCanvas1()
     {
 
+    }
+
+    /**
+    *
+    */
+    void init()
+    {
+        // Set virtual resolution
+        spark::perspective::OrthographicProjection orthographicProjection(m_device->getScreenResolution().m_width, m_device->getScreenResolution().m_height);
+        orthographicProjection.setVirtualResolution(1196, 720, spark::perspective::VirtualResolution::E_LETTER_OR_PILLARBOX);
+        m_device->getRenderer()->setOrthographicProjectionMatrix(orthographicProjection);
     }
 
     /**
@@ -93,6 +100,7 @@ public:
     }
 
 private:
+    spark::device::ISparkDevice* m_device;
     spark::file::ISparkFileSystem* m_fileSystem;
     spark::SparkSharedPointer<spark::drawing::ISparkImage> m_image;
     spark::SparkSharedPointer<spark::drawing::ISparkImage> m_playerImage;

@@ -23,7 +23,12 @@ namespace spark {
             class OGLTexture : public ISparkTexture
             {
             public:
-                OGLTexture(spark::log::ISparkLogger* logger, uc8_t* data, int32_t width, int32_t height);
+                OGLTexture(
+                    spark::log::ISparkLogger* logger,
+                    uc8_t* data,
+                    int32_t width,
+                    int32_t height,
+                    spark::drawing::E_PIXEL_FORMAT pixelFormat);
                 ~OGLTexture();
 
             public: // ISparkTexture

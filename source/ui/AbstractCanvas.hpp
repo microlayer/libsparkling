@@ -22,6 +22,7 @@ namespace spark {
             //void deRegisterCommandListener(spark::ui::ISparkCommandListener* commandListener);
 
         public:
+            virtual void init() = 0;
             virtual void paint(spark::renderer::ISparkRenderer* renderer) = 0;
 
         private:
