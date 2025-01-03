@@ -30,8 +30,8 @@ public:
         m_explosionImage = m_fileSystem->loadBitmap("explosion.png");
         m_tiledLayer = m_fileSystem->loadTiledLayer("tiles4x4_32_v1-11.tmx");
 
-        m_playerSprite = new spark::game::Sprite(m_playerImage.get());
-        m_explosionSprite = new spark::game::Sprite(m_explosionImage.get());
+        m_playerSprite = m_device->createSprite(m_playerImage.get());
+        m_explosionSprite = m_device->createSprite(m_explosionImage.get());
 
         // Setup TiledLayer
         m_tiledLayer->setPosition(250, 50);
@@ -99,15 +99,23 @@ public:
 #endif
     }
 
+    /**
+    *
+    */
+    void onKeyPressed(int key, int action)
+    {
+        m_device->getLogger()->info("onKeyPressed");
+    }
+
 private:
     spark::device::ISparkDevice* m_device;
     spark::file::ISparkFileSystem* m_fileSystem;
     spark::SparkSharedPointer<spark::drawing::ISparkImage> m_image;
     spark::SparkSharedPointer<spark::drawing::ISparkImage> m_playerImage;
     spark::SparkSharedPointer<spark::drawing::ISparkImage> m_explosionImage;
-    spark::SparkSharedPointer<spark::game::Sprite> m_playerSprite;
-    spark::SparkSharedPointer<spark::game::Sprite> m_explosionSprite;
-    spark::SparkSharedPointer<spark::game::TiledLayer> m_tiledLayer;
+    spark::SparkSharedPointer<spark::game::ISparkSprite> m_playerSprite;
+    spark::SparkSharedPointer<spark::game::ISparkSprite> m_explosionSprite;
+    spark::SparkSharedPointer<spark::game::ISparkTiledLayer> m_tiledLayer;
     spark::SparkSharedPointer<spark::scene::ISceneGraphManager3D> m_sceneGraphManager3D;
     spark::SparkSharedPointer<spark::scene::ISceneGraphManager2D> m_sceneGraphManager2D;
 };

@@ -6,7 +6,11 @@ namespace spark {
             /**
             *
             */
-            AndroidEGLWindow::AndroidEGLWindow(spark::log::ISparkLogger* logger, spark::renderer::E_RENDER_ENGINE rendererEngineType, android_app* pApplication) :
+            AndroidEGLWindow::AndroidEGLWindow(
+                spark::log::ISparkLogger* logger,
+                spark::renderer::E_RENDER_ENGINE rendererEngineType,
+                android_app* pApplication,
+                spark::device::ISparkDevice* device) :
                 AbstractSparkWindow(logger),
                 m_rendererEngineType(rendererEngineType),
                 m_androidApplication(pApplication),
@@ -16,7 +20,8 @@ namespace spark {
                 m_wantsQuit(false),
                 m_display(EGL_NO_DISPLAY),
                 m_surface(EGL_NO_CONTEXT),
-                m_context(EGL_NO_SURFACE)
+                m_context(EGL_NO_SURFACE),
+                m_device(device)
             {
                 m_androidApplication->userData = this;
                 m_androidApplication->onAppCmd = callbackEvent;
@@ -45,7 +50,7 @@ namespace spark {
             *
             */
             int32_t AndroidEGLWindow::createWindow()
-            {                
+            {
                 while (!m_isGLES2ContextAvailable)
                 {
                     eventLoop();
@@ -252,6 +257,7 @@ namespace spark {
                     {
                         m_logger->info("AndroidEGLWindow::EventLoop - Processing an event");
                         lSource->process(m_androidApplication, lSource);
+                        m_device->onMouseClick(0, 0);
                     }
                     if (m_androidApplication->destroyRequested)
                     {
@@ -325,35 +331,35 @@ namespace spark {
                 androidEGLWindow->m_logger->info("Processing an event");
                 switch (pCommand)
                 {
-                // Command from main thread: a new ANativeWindow is ready for use
+                    // Command from main thread: a new ANativeWindow is ready for use
                 case APP_CMD_INIT_WINDOW:
                     androidEGLWindow->initWindow();
                     break;
-                // Command from main thread: the app's activity window has gained input focus. 
+                    // Command from main thread: the app's activity window has gained input focus. 
                 case APP_CMD_GAINED_FOCUS:
                     androidEGLWindow->setAppActive();
                     break;
-                // Command from main thread: the app's activity window has lost input focus
+                    // Command from main thread: the app's activity window has lost input focus
                 case APP_CMD_LOST_FOCUS:
                     break;
-                // Command from main thread: the existing ANativeWindow needs to be terminated. 
+                    // Command from main thread: the existing ANativeWindow needs to be terminated. 
                 case APP_CMD_TERM_WINDOW:
                     androidEGLWindow->setAppInactive();
                     androidEGLWindow->destroyEGL();
                     break;
-                // Command from main thread: the app's activity has been paused. 
+                    // Command from main thread: the app's activity has been paused. 
                 case APP_CMD_PAUSE:
                     break;
-                // Command from main thread: the app's activity has been resumed.
+                    // Command from main thread: the app's activity has been resumed.
                 case APP_CMD_RESUME:
                     break;
-                // Command from main thread: the existing ANativeWindow needs to be terminated. 
+                    // Command from main thread: the existing ANativeWindow needs to be terminated. 
                 case APP_CMD_START:
                     break;
-                // Command from main thread: the current device configuration has changed. 
+                    // Command from main thread: the current device configuration has changed. 
                 case APP_CMD_CONFIG_CHANGED:
                     break;
-                // Command from main thread: the current ANativeWindow has been resized
+                    // Command from main thread: the current ANativeWindow has been resized
                 case APP_CMD_WINDOW_RESIZED:
                     break;
                 }

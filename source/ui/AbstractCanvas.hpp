@@ -3,8 +3,6 @@
 
 #include "ISparkRenderer.hpp"
 #include "SparkRefCount.hpp"
-//#include "ISparkCommandListener.hpp"
-//#include "ui/Event.hpp"
 
 namespace spark {
     namespace ui {
@@ -16,10 +14,11 @@ namespace spark {
         public:
             AbstractCanvas();
             virtual ~AbstractCanvas(void);
-            //virtual void processMoveEvent(spark::math::Vector2f direction, spark::real32 strength);
-            //void eventAction(spark::ui::Event::E_EVENT_TYPE eventType, spark::ui::Command::E_COMMAND_TYPE cmdType);
-            //void registerCommandListener(spark::ui::ISparkCommandListener* commandListener);
-            //void deRegisterCommandListener(spark::ui::ISparkCommandListener* commandListener);
+
+        public:
+            virtual void onKeyPressed(int key, int action);
+            virtual void onMouseMove(real32 x, real32 y);
+            virtual void onMouseClick(int button, int action);
 
         public:
             virtual void init() = 0;

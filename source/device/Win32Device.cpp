@@ -55,7 +55,7 @@ namespace spark {
             if (m_rendererEngineType == spark::renderer::ERE_OGLFLES2 ||
                 m_rendererEngineType == spark::renderer::ERE_VULKAN13)
             {
-                m_window = new spark::device::window::GlfwWindow(m_logger, m_rendererEngineType);
+                m_window = new spark::device::window::GlfwWindow(m_logger, m_rendererEngineType, this);
             }
 
             // Initialize

@@ -23,7 +23,7 @@ namespace spark {
 
         public: // ISparkFileSystem
             spark::drawing::ISparkImage* loadBitmap(std::string fileName);
-            spark::game::TiledLayer* loadTiledLayer(std::string fileName);
+            spark::game::ISparkTiledLayer* loadTiledLayer(std::string fileName);
             //spark::mesh::ISparkMesh* loadMesh(std::string fileName); 			
             //spark::font::ISparkFont* loadBitmapFont(std::string fileName);
             void appendText(std::string filename, std::string text);

@@ -56,7 +56,7 @@ namespace spark {
         /**
         *
         */
-        spark::game::TiledLayer* FileSystem::loadTiledLayer(std::string fileName)
+        spark::game::ISparkTiledLayer* FileSystem::loadTiledLayer(std::string fileName)
         {
             spark::game::TiledLayer* tiledLayer = NULL;
             spark::drawing::ISparkImage* tilesetImage = NULL;
@@ -115,7 +115,7 @@ namespace spark {
                 }
                 uint16_t* data = &numbers[0];
 
-                tiledLayer = new spark::game::TiledLayer(tilesetImage, atoi(layerColumns), atoi(layerRows), data, atoi(tileWidth), atoi(tileHeight), atoi(tilesetImageWidth), atoi(tilesetImageHeight), spark::game::TiledLayer::ELT_ORTHOGONAL);
+                tiledLayer = new spark::game::TiledLayer(tilesetImage, atoi(layerColumns), atoi(layerRows), data, atoi(tileWidth), atoi(tileHeight), atoi(tilesetImageWidth), atoi(tilesetImageHeight), spark::game::E_LAYER_TYPE::ELT_ORTHOGONAL);
             }
             else
             {

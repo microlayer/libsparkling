@@ -234,7 +234,7 @@ namespace spark {
             spark::renderer::ISparkTexture* texture = m_textureFactory->createOrUpdate(tilsetImage->getHash(), tilsetImage->getImageAsStream(), tilsetImage->getWidth(), tilsetImage->getHeight(), spark::drawing::E_RGBA8);
             texture->bind();
 
-            if (tiledLayer->getLayerType() == spark::game::TiledLayer::ELT_ORTHOGONAL)
+            if (tiledLayer->getLayerType() == spark::game::E_LAYER_TYPE::ELT_ORTHOGONAL)
             {
                 uint16_t* gid = tiledLayer->getGIDData();
                 uint16_t tilsetImageWidth = tiledLayer->getTilesetImageWidth();
@@ -337,11 +337,6 @@ namespace spark {
             m_shader->setFontColor(color);
             spark::renderer::ISparkTexture* texture = m_textureFactory->createOrUpdate(font->getFontName(), fontMapImageData, fontMapWidth, fontMapHeight, spark::drawing::E_GRAY8);
             texture->bind();
-
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
             spark::font::BitmapFontInfo bitmapFontInfo = font->getBitmapFontInfo(16);
             spark::font::BitmapGlyphInfo bitmapGlypInfo = bitmapFontInfo.m_bitmapGlyphs[65];

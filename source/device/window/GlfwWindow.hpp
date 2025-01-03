@@ -18,7 +18,7 @@ namespace spark {
             class GlfwWindow : public spark::device::window::AbstractSparkWindow
             {
             public:
-                GlfwWindow(spark::log::ISparkLogger* logger, spark::renderer::E_RENDER_ENGINE rendererEngineType);
+                GlfwWindow(spark::log::ISparkLogger* logger, spark::renderer::E_RENDER_ENGINE rendererEngineType, spark::device::ISparkDevice* device);
                 virtual ~GlfwWindow(void);
 
             public: // AbstractSparkWindow
@@ -44,6 +44,7 @@ namespace spark {
                 static GlfwWindow* Instance;
                 GLFWwindow* m_window;
                 spark::renderer::E_RENDER_ENGINE m_rendererEngineType;
+                spark::device::ISparkDevice* m_device;
 
             };
         } // end namespace window

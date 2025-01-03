@@ -273,8 +273,10 @@
     <ClInclude Include="..\..\include\ISparkRenderer.hpp" />
     <ClInclude Include="..\..\include\ISparkSceneNode.hpp" />
     <ClInclude Include="..\..\include\ISparkShader.hpp" />
+    <ClInclude Include="..\..\include\ISparkSprite.hpp" />
     <ClInclude Include="..\..\include\ISparkTexture.hpp" />
     <ClInclude Include="..\..\include\ISparkTextureFactory.hpp" />
+    <ClInclude Include="..\..\include\ISparkTiledLayer.hpp" />
     <ClInclude Include="..\..\include\ISparkTimer.hpp" />
     <ClInclude Include="..\..\include\ISparkWindow.hpp" />
     <ClInclude Include="..\..\include\Sparkling.hpp" />

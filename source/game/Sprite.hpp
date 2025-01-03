@@ -7,18 +7,25 @@
 #include "ISparkLogger.hpp"
 #include "PixelToMeterOffsetInfo.hpp"
 #include "timer/Timer.hpp"
+#include "ISparkSprite.hpp"
 
 namespace spark {
     namespace game {
         /**
         *
         */
-        class Sprite : public spark::game::AbstractLayer
+        class Sprite : public spark::game::AbstractLayer, public spark::game::ISparkSprite
         {
         public:
             Sprite(spark::drawing::ISparkImage* image);
             Sprite(spark::drawing::ISparkImage* image, b2Body* body);
             virtual ~Sprite(void);
+
+        public: // AbstractLayer
+            void setPosition(int16_t x, int16_t y);
+            void setRotation(real32 zAxisRotation);
+            real32 getRotation();
+            void move(int16_t dx, int16_t dy);
 
         public: // AbstractLayer
             void paint(spark::renderer::ISparkRenderer* renderer);
@@ -37,7 +44,7 @@ namespace spark {
             uint16_t m_frameWidth;
             uint16_t m_frameHeight;
             uint16_t m_currentFrame;
-            uint32_t m_startTime;            
+            uint32_t m_startTime;
             spark::game::PixelToMeterOffsetInfo* m_ptmOffsetInfo;
             spark::timer::Timer m_timer;
         };

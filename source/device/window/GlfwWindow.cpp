@@ -12,10 +12,11 @@ namespace spark {
             /**
             *
             */
-            GlfwWindow::GlfwWindow(spark::log::ISparkLogger* logger, spark::renderer::E_RENDER_ENGINE rendererEngineType) :
+            GlfwWindow::GlfwWindow(spark::log::ISparkLogger* logger, spark::renderer::E_RENDER_ENGINE rendererEngineType, spark::device::ISparkDevice* device) :
                 AbstractSparkWindow(logger),
                 m_window(NULL),
-                m_rendererEngineType(rendererEngineType)
+                m_rendererEngineType(rendererEngineType),
+                m_device(device)
             {
                 m_landscape = true;
             }
@@ -116,6 +117,7 @@ namespace spark {
             void GlfwWindow::setDefaultViewport()
             {
                 glViewport(0, 0, this->getScreenResolution().m_width, this->getScreenResolution().m_height);
+
             }
 
             /**
@@ -123,7 +125,8 @@ namespace spark {
             */
             void GlfwWindow::onKeyPressed(GLFWwindow* window, int key, int scancode, int action, int mods)
             {
-                //Instance->getDevice()->onKeyPressed(key, action);
+
+                Instance->m_device->onKeyPressed(key, action);
             }
 
             /**
@@ -131,7 +134,7 @@ namespace spark {
             */
             void GlfwWindow::onMouseMove(GLFWwindow* window, double x, double y)
             {
-                //Instance->getDevice()->onMouseMove((real32)x, (real32)y);
+                Instance->m_device->onMouseMove((real32)x, (real32)y);
             }
 
             /**
@@ -139,7 +142,7 @@ namespace spark {
             */
             void GlfwWindow::onMouseClick(GLFWwindow* window, int button, int action, int mods)
             {
-                //Instance->getDevice()->onMouseClick(button, action);
+                Instance->m_device->onMouseClick(button, action);
             }
 
         } // end namespace window	

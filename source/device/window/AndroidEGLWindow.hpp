@@ -18,7 +18,7 @@ namespace spark {
             class AndroidEGLWindow : public spark::device::window::AbstractSparkWindow
             {
             public:
-                AndroidEGLWindow(spark::log::ISparkLogger* logger, spark::renderer::E_RENDER_ENGINE rendererEngineType, android_app* pApplication);
+                AndroidEGLWindow(spark::log::ISparkLogger* logger, spark::renderer::E_RENDER_ENGINE rendererEngineType, android_app* pApplication, spark::device::ISparkDevice* device);
                 virtual ~AndroidEGLWindow();
 
             public: // AbstractSparkWindow
@@ -57,6 +57,7 @@ namespace spark {
                 bool m_isGLES2ContextAvailable;
                 bool m_isWindowActive;
                 int32_t m_width, m_height;
+                spark::device::ISparkDevice* m_device;
             };
         } // end namespace window
     } // end namespace device

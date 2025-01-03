@@ -53,7 +53,7 @@ namespace spark {
             if (m_rendererEngineType == spark::renderer::ERE_OGLES2 ||
                 m_rendererEngineType == spark::renderer::ERE_VULKAN13)
             {
-                m_window = new spark::device::window::AndroidEGLWindow(m_logger, m_rendererEngineType, m_androidApplication);
+                m_window = new spark::device::window::AndroidEGLWindow(m_logger, m_rendererEngineType, m_androidApplication, this);
             }
 
             // Initialize

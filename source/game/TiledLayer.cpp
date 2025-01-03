@@ -42,6 +42,38 @@ namespace spark {
         /**
         *
         */
+        void TiledLayer::setPosition(int16_t x, int16_t y)
+        {
+            AbstractLayer::setPosition(x, y);
+        }
+
+        /**
+        *
+        */
+        void TiledLayer::setRotation(real32 zAxisRotation)
+        {
+            AbstractLayer::setRotation(zAxisRotation);
+        }
+
+        /**
+        *
+        */
+        real32 TiledLayer::getRotation()
+        {
+            return AbstractLayer::getRotation();
+        }
+
+        /**
+        *
+        */
+        void TiledLayer::move(int16_t dx, int16_t dy)
+        {
+            AbstractLayer::move(dx, dy);
+        }
+
+        /**
+        *
+        */
         void TiledLayer::paint(spark::renderer::ISparkRenderer* renderer)
         {
             renderer->drawTiledLayer(this, this->m_x, this->m_y);
@@ -114,7 +146,7 @@ namespace spark {
         /**
         *
         */
-        TiledLayer::E_LAYER_TYPE TiledLayer::getLayerType() const
+        spark::game::E_LAYER_TYPE TiledLayer::getLayerType() const
         {
             return m_layerType;
         }

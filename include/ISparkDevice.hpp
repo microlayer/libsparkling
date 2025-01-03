@@ -9,6 +9,8 @@
 #include "ISparkFontPool.hpp"
 #include <string>
 #include "app/SparkApp.hpp"
+#include "ISparkSprite.hpp"
+#include "ISparkTiledLayer.hpp"
 
 namespace spark {
     namespace device {
@@ -40,8 +42,10 @@ namespace spark {
             virtual ScreenResolution getScreenResolution() const = 0;
             virtual spark::font::ISparkFontPool* getSparkFontPool() const = 0;
 
-        public:
+        public: // Factory
             virtual spark::scene::ISceneGraphManager3D* createSceneGraphManager3D() = 0;
+            virtual spark::game::ISparkSprite* createSprite(spark::drawing::ISparkImage* image) = 0;
+            virtual spark::game::ISparkTiledLayer* createTiledLayer(spark::drawing::ISparkImage* tilesetImage, uint16_t layerColumns, uint16_t layerRows, uint16_t* gidData, uint16_t tileWidth, uint16_t tileHeight, uint16_t tilesetImageWidth, uint16_t tilesetImageHeight, spark::game::E_LAYER_TYPE layerType) = 0;
 
         public:
             virtual uint64_t getHeapAllocatedSize() = 0;

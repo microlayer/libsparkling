@@ -47,6 +47,38 @@ namespace spark {
         /**
         *
         */
+        void Sprite::setPosition(int16_t x, int16_t y)
+        {
+            AbstractLayer::setPosition(x, y);
+        }
+
+        /**
+        *
+        */
+        void Sprite::setRotation(real32 zAxisRotation)
+        {
+            AbstractLayer::setRotation(zAxisRotation);
+        }
+
+        /**
+        *
+        */
+        real32 Sprite::getRotation()
+        {
+            return AbstractLayer::getRotation();
+        }
+
+        /**
+        *
+        */
+        void Sprite::move(int16_t dx, int16_t dy)
+        {
+            AbstractLayer::move(dx, dy);
+        }
+
+        /**
+        *
+        */
         void Sprite::paint(spark::renderer::ISparkRenderer* renderer)
         {
             spark::drawing::ClippingRectangle clipRect;

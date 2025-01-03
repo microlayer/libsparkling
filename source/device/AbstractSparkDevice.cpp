@@ -12,7 +12,7 @@ namespace spark {
             m_fileSystem(NULL),
             m_fontPool(NULL),
             m_window(NULL),
-            m_canvas(NULL),
+            m_activeCanvas(NULL),
             m_shader(NULL),
             m_renderer(NULL),
             m_rendererConfig(NULL)
@@ -130,6 +130,22 @@ namespace spark {
         /**
         *
         */
+        spark::game::ISparkSprite* AbstractSparkDevice::createSprite(spark::drawing::ISparkImage* image)
+        {
+            return new spark::game::Sprite(image);
+        }
+
+        /**
+        *
+        */
+        spark::game::ISparkTiledLayer* AbstractSparkDevice::createTiledLayer(spark::drawing::ISparkImage* tilesetImage, uint16_t layerColumns, uint16_t layerRows, uint16_t* gidData, uint16_t tileWidth, uint16_t tileHeight, uint16_t tilesetImageWidth, uint16_t tilesetImageHeight, spark::game::E_LAYER_TYPE layerType)
+        {
+            return new spark::game::TiledLayer(tilesetImage, layerColumns, layerRows, gidData, tileWidth, tileHeight, tilesetImageWidth, tilesetImageHeight, layerType);
+        }
+
+        /**
+        *
+        */
         uint64_t AbstractSparkDevice::getHeapAllocatedSize()
         {
             return 0;
@@ -158,8 +174,8 @@ namespace spark {
         {
             m_sparkApp = sparkApp;
             m_sparkApp->onInit();
-            m_canvas = sparkApp->getActiveCanvas();
-            m_canvas->init();
+            m_activeCanvas = sparkApp->getActiveCanvas();
+            m_activeCanvas->init();
 #ifdef EMSCRIPTEN						
             emscripten_set_main_loop(setEmscriptenMainLoop, 0, 1);
 #else
@@ -176,6 +192,7 @@ namespace spark {
         void AbstractSparkDevice::onKeyPressed(int key, int action)
         {
             m_logger->info("OnKeyPressed key:%i action:%i", key, action);
+            if (m_activeCanvas != NULL) m_activeCanvas->onKeyPressed(key, action);
         }
 
         /**
@@ -209,15 +226,15 @@ namespace spark {
         {
             if (m_sparkApp != NULL && m_sparkApp->isCanvasChanged())
             {
-                m_canvas = m_sparkApp->getActiveCanvas();
-                m_canvas->init();
+                m_activeCanvas = m_sparkApp->getActiveCanvas();
+                m_activeCanvas->init();
                 m_sparkApp->resetIsCanvasChanged();
             }
 
             m_renderer->beginScene();
-            if (m_canvas != NULL)
+            if (m_activeCanvas != NULL)
             {
-                m_canvas->paint(m_renderer);
+                m_activeCanvas->paint(m_renderer);
             }
             m_renderer->endScene();
         }
