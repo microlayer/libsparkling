@@ -93,7 +93,7 @@ namespace spark {
             else
             {
                 m_rendererConfig = new spark::renderer::VulkanConfig(m_window, m_logger);
-                m_renderer = new spark::renderer::Vulkan13Renderer(this, m_shader);
+                m_renderer = new spark::renderer::Vulkan13Renderer(this, m_shader, m_texureFactory);
             }
 #endif
             m_renderer->onInit();

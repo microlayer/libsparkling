@@ -131,7 +131,7 @@ namespace spark {
         /**
         *
         */
-        void VulkanRenderer::draw2DBitmap(const spark::drawing::ISparkImage* image, int16_t x, int16_t y, const spark::drawing::ClippingRectangle clipRect);
+        void VulkanRenderer::draw2DBitmap(const spark::drawing::ISparkImage* image, int16_t x, int16_t y, const spark::drawing::ClippingRectangle clipRect)
         {
 
         }

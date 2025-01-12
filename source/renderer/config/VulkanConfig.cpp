@@ -467,8 +467,8 @@ namespace spark {
         void VulkanConfig::createPipeline()
         {
             spark::renderer::shader::glsl_for_spir_feature_level_glsles10::DefaultShader defaultShader;
-            std::vector<uc8_t> vertexShaderStream = spark::mlstl::base64::MLBase64::Decode(defaultShader.getVertexShader());
-            std::vector<uc8_t> fragmentShaderStream = spark::mlstl::base64::MLBase64::Decode(defaultShader.getFragmentShader());
+            std::vector<uc8_t> vertexShaderStream = spark::mlstl::base64::MLBase64::decode(defaultShader.getVertexShader());
+            std::vector<uc8_t> fragmentShaderStream = spark::mlstl::base64::MLBase64::decode(defaultShader.getFragmentShader());
 
             VkShaderModuleCreateInfo vertexShaderCreateInfo = {};
             vertexShaderCreateInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
