@@ -103,7 +103,7 @@
     <Filter Include="source\fonts\embedded">
       <UniqueIdentifier>{dbc37804-40b2-481f-ad88-517d2a35d2df}</UniqueIdentifier>
     </Filter>
-    <Filter Include="source\renderer\ogl">
+    <Filter Include="source\renderer\texture">
       <UniqueIdentifier>{5be823f4-f9e5-4232-9a43-55d70afeedae}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -231,11 +231,14 @@
     <ClCompile Include="..\..\source\fonts\FontPool.cpp">
       <Filter>source\fonts</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\renderer\ogl\OGLTexture.cpp">
-      <Filter>source\renderer\ogl</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\renderer\common\TextureFactory.cpp">
       <Filter>source\renderer\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\renderer\texture\VulkanTexture.cpp">
+      <Filter>source\renderer\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\renderer\texture\OGLTexture.cpp">
+      <Filter>source\renderer\texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -506,9 +509,6 @@
     <ClInclude Include="..\..\include\ISparkFontPool.hpp">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\renderer\ogl\OGLTexture.hpp">
-      <Filter>source\renderer\ogl</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\ISparkTextureFactory.hpp">
       <Filter>include</Filter>
     </ClInclude>
@@ -526,6 +526,12 @@
     </ClInclude>
     <ClInclude Include="..\..\include\ISparkSprite.hpp">
       <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\renderer\texture\VulkanTexture.hpp">
+      <Filter>source\renderer\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\renderer\texture\OGLTexture.hpp">
+      <Filter>source\renderer\texture</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

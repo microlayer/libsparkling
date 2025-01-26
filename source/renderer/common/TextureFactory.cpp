@@ -1,5 +1,5 @@
 #include "TextureFactory.hpp"
-#include "renderer/ogl/OGLTexture.hpp"
+#include "renderer/texture/OGLTexture.hpp"
 
 namespace spark {
     namespace renderer {

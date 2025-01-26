@@ -125,7 +125,8 @@ namespace spark {
         */
         void VulkanRenderer::draw2DBitmap(const spark::drawing::ISparkImage* image, int16_t x, int16_t y)
         {
-
+            spark::drawing::ClippingRectangle clipRect = { 0,0, (uint16_t)image->getWidth(), (uint16_t)image->getHeight() };
+            draw2DBitmap(image, x, y, clipRect);
         }
 
         /**
@@ -133,7 +134,8 @@ namespace spark {
         */
         void VulkanRenderer::draw2DBitmap(const spark::drawing::ISparkImage* image, int16_t x, int16_t y, const spark::drawing::ClippingRectangle clipRect)
         {
-
+            //vkCmdBindDescriptorSets(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipelineLayout, 0, 1, &descriptorSet, 0, nullptr);
+            //vkCmdDraw(commandBuffer, vertexCount, instanceCount, firstVertex, firstInstance);
         }
 
         /**

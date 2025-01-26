@@ -241,11 +241,12 @@
     <ClCompile Include="..\..\source\renderer\AbstractSparkRenderer.cpp" />
     <ClCompile Include="..\..\source\renderer\common\TextureFactory.cpp" />
     <ClCompile Include="..\..\source\renderer\config\VulkanConfig.cpp" />
-    <ClCompile Include="..\..\source\renderer\ogl\OGLTexture.cpp" />
     <ClCompile Include="..\..\source\renderer\OpenGLES2Renderer.cpp" />
     <ClCompile Include="..\..\source\renderer\OpenGLFLES2Renderer.cpp" />
     <ClCompile Include="..\..\source\renderer\OpenGLRenderer.cpp" />
     <ClCompile Include="..\..\source\renderer\shader\OpenGLShaderProgram.cpp" />
+    <ClCompile Include="..\..\source\renderer\texture\OGLTexture.cpp" />
+    <ClCompile Include="..\..\source\renderer\texture\VulkanTexture.cpp" />
     <ClCompile Include="..\..\source\renderer\Vulkan13Renderer.cpp" />
     <ClCompile Include="..\..\source\renderer\VulkanRenderer.cpp" />
     <ClCompile Include="..\..\source\scene\SceneGraphManager2D.cpp" />
@@ -330,7 +331,6 @@
     <ClInclude Include="..\..\source\renderer\common\ERenderEngine.hpp" />
     <ClInclude Include="..\..\source\renderer\common\TextureFactory.hpp" />
     <ClInclude Include="..\..\source\renderer\config\VulkanConfig.hpp" />
-    <ClInclude Include="..\..\source\renderer\ogl\OGLTexture.hpp" />
     <ClInclude Include="..\..\source\renderer\OpenGLES2Renderer.hpp" />
     <ClInclude Include="..\..\source\renderer\OpenGLFLES2Renderer.hpp" />
     <ClInclude Include="..\..\source\renderer\OpenGLRenderer.hpp" />
@@ -338,6 +338,8 @@
     <ClInclude Include="..\..\source\renderer\shader\glsl_for_ogl_feature_level_glsles10\DefaultShader.hpp" />
     <ClInclude Include="..\..\source\renderer\shader\glsl_for_spir_feature_level_glsles10\DefaultShader.hpp" />
     <ClInclude Include="..\..\source\renderer\shader\OpenGLShaderProgram.hpp" />
+    <ClInclude Include="..\..\source\renderer\texture\OGLTexture.hpp" />
+    <ClInclude Include="..\..\source\renderer\texture\VulkanTexture.hpp" />
     <ClInclude Include="..\..\source\renderer\Vulkan13Renderer.hpp" />
     <ClInclude Include="..\..\source\renderer\VulkanRenderer.hpp" />
     <ClInclude Include="..\..\source\scene\SceneGraphManager2D.hpp" />
