@@ -15,7 +15,6 @@ LIBSPARKLING_SRC_FILES:= $(call LS_CPP,$(LOCAL_PATH),../../../testbed/bootstrap/
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/renderer/texture) \
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/perspective) \
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/ui) \
-			$(call LS_CPP,$(LOCAL_PATH),../../../source/app) \
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/drawing) \
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/file) \
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/mesh) \
