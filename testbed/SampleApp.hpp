@@ -5,7 +5,7 @@
 /**
 *
 */
-class SampleApp : public spark::app::SparkApp, public spark::ui::ISparkCommandListener
+class SampleApp : public spark::app::ISparkApp, public spark::ui::ISparkCommandListener
 {
 public:
     /**
@@ -39,7 +39,7 @@ public:
     *
     */
     void switchCanvas()
-    {       
+    {
         this->setActiveCanvas(m_sampleCanvas2.get());
     }
 
@@ -54,8 +54,43 @@ public:
         }
     }
 
+    /**
+    *
+    */
+    spark::ui::AbstractCanvas* getActiveCanvas()
+    {
+        return m_currentCanvas;
+    }
+
+    /**
+    *
+    */
+    void setActiveCanvas(spark::ui::AbstractCanvas* canvas)
+    {
+        m_currentCanvas = canvas;
+        m_canvasChange = true;
+    }
+
+    /**
+    *
+    */
+    bool isCanvasChanged()
+    {
+        return m_canvasChange;
+    }
+
+    /**
+    *
+    */
+    void resetIsCanvasChanged()
+    {
+        m_canvasChange = false;
+    }
+
 private:
     spark::SparkSharedPointer<SampleCanvas1> m_sampleCanvas1;
     spark::SparkSharedPointer<SampleCanvas2> m_sampleCanvas2;
+    spark::ui::AbstractCanvas* m_currentCanvas;
+    bool m_canvasChange = false;
     spark::timer::Timer m_timer;
 };

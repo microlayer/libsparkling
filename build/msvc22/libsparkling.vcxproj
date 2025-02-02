@@ -214,7 +214,6 @@
   <ItemGroup>
     <ClCompile Include="..\..\lib\glew\glew.c" />
     <ClCompile Include="..\..\source\animator\NodeRotationAnimator.cpp" />
-    <ClCompile Include="..\..\source\app\SparkApp.cpp" />
     <ClCompile Include="..\..\source\device\AbstractSparkDevice.cpp" />
     <ClCompile Include="..\..\source\device\AndroidDevice.cpp" />
     <ClCompile Include="..\..\source\device\DeviceInstance.cpp" />
@@ -285,7 +284,6 @@
     <ClInclude Include="..\..\include\SparkScopedPointer.hpp" />
     <ClInclude Include="..\..\include\SparkSharedPointer.hpp" />
     <ClInclude Include="..\..\source\animator\NodeRotationAnimator.hpp" />
-    <ClInclude Include="..\..\source\app\SparkApp.hpp" />
     <ClInclude Include="..\..\source\device\AbstractSparkDevice.hpp" />
     <ClInclude Include="..\..\source\device\AndroidDevice.hpp" />
     <ClInclude Include="..\..\source\device\DeviceInstance.hpp" />

@@ -54,7 +54,7 @@ namespace spark {
             virtual uint16 getAPIVersionSDK();
 
         public:
-            virtual void run(spark::app::SparkApp* sparkApp);
+            virtual void run(spark::app::ISparkApp* sparkApp);
 
         public:
             virtual void onKeyPressed(int key, int action);
@@ -89,7 +89,7 @@ namespace spark {
             spark::renderer::ISparkRendererApiConfig* m_rendererConfig;
             spark::renderer::ISparkTextureFactory* m_texureFactory;
             spark::ui::AbstractCanvas* m_activeCanvas;
-            spark::app::SparkApp* m_sparkApp;
+            spark::app::ISparkApp* m_sparkApp;
             bool m_isDeviceRunning;
         };
     } // end namespace device

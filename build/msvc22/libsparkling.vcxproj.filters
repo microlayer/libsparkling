@@ -43,9 +43,6 @@
     <Filter Include="lib\glew">
       <UniqueIdentifier>{26fda8cc-9c88-4f35-89f3-6c1aebd801cc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="source\app">
-      <UniqueIdentifier>{349c943e-8293-4abd-b7a4-271df3b1e8ac}</UniqueIdentifier>
-    </Filter>
     <Filter Include="source\ui">
       <UniqueIdentifier>{2a32e0c2-62f8-4471-aff9-a4ee6e792fb9}</UniqueIdentifier>
     </Filter>
@@ -137,9 +134,6 @@
     </ClCompile>
     <ClCompile Include="..\..\lib\glew\glew.c">
       <Filter>lib\glew</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\app\SparkApp.cpp">
-      <Filter>source\app</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\ui\AbstractCanvas.cpp">
       <Filter>source\ui</Filter>
@@ -316,9 +310,6 @@
     </ClInclude>
     <ClInclude Include="..\..\testbed\SampleApp.hpp">
       <Filter>testbed</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\app\SparkApp.hpp">
-      <Filter>source\app</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\ISparkApp.hpp">
       <Filter>include</Filter>

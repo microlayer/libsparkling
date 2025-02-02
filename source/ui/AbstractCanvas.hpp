@@ -23,11 +23,7 @@ namespace spark {
         public:
             virtual void init() = 0;
             virtual void paint(spark::renderer::ISparkRenderer* renderer) = 0;
-
-        private:
-            //spark::ui::ISparkCommandListener* m_currentCommandListener;
         };
-
     } // end namespace ui
 } // end namespace spark
 #endif

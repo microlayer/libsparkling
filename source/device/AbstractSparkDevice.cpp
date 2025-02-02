@@ -170,7 +170,7 @@ namespace spark {
         /**
         *
         */
-        void AbstractSparkDevice::run(spark::app::SparkApp* sparkApp)
+        void AbstractSparkDevice::run(spark::app::ISparkApp* sparkApp)
         {
             m_sparkApp = sparkApp;
             m_sparkApp->onInit();

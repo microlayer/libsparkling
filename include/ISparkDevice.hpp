@@ -8,7 +8,7 @@
 #include "ISceneGraphManager3D.hpp"
 #include "ISparkFontPool.hpp"
 #include <string>
-#include "app/SparkApp.hpp"
+#include "ISparkApp.hpp"
 #include "ISparkSprite.hpp"
 #include "ISparkTiledLayer.hpp"
 
@@ -53,7 +53,7 @@ namespace spark {
             virtual uint16 getAPIVersionSDK() = 0;
 
         public: // MainLoop infrastructure
-            virtual void run(spark::app::SparkApp* sparkApp) = 0;
+            virtual void run(spark::app::ISparkApp* sparkApp) = 0;
 
         public: // Event handler
             virtual void onKeyPressed(int key, int action) = 0;
