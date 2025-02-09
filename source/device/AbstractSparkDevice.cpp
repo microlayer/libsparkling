@@ -175,15 +175,22 @@ namespace spark {
             m_sparkApp = sparkApp;
             m_sparkApp->onInit();
             m_activeCanvas = sparkApp->getActiveCanvas();
-            m_activeCanvas->init();
-#ifdef EMSCRIPTEN						
-            emscripten_set_main_loop(setEmscriptenMainLoop, 0, 1);
-#else
-            while (isDeviceRunning())
+            if (m_activeCanvas != NULL)
             {
-                mainLoop();
-            }
+                m_activeCanvas->init();
+#ifdef EMSCRIPTEN						
+                emscripten_set_main_loop(setEmscriptenMainLoop, 0, 1);
+#else
+                while (isDeviceRunning())
+                {
+                    mainLoop();
+                }
 #endif 
+            }
+            else
+            {
+                m_logger->info("Canvas is not set. Please set an active canvas first");
+            }
         }
 
         /**
@@ -224,11 +231,10 @@ namespace spark {
         */
         void AbstractSparkDevice::mainLoop()
         {
-            if (m_sparkApp != NULL && m_sparkApp->isCanvasChanged())
+            if (m_activeCanvas != m_sparkApp->getActiveCanvas())
             {
                 m_activeCanvas = m_sparkApp->getActiveCanvas();
                 m_activeCanvas->init();
-                m_sparkApp->resetIsCanvasChanged();
             }
 
             m_renderer->beginScene();

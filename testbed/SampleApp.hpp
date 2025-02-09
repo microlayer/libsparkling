@@ -68,29 +68,11 @@ public:
     void setActiveCanvas(spark::ui::AbstractCanvas* canvas)
     {
         m_currentCanvas = canvas;
-        m_canvasChange = true;
-    }
-
-    /**
-    *
-    */
-    bool isCanvasChanged()
-    {
-        return m_canvasChange;
-    }
-
-    /**
-    *
-    */
-    void resetIsCanvasChanged()
-    {
-        m_canvasChange = false;
     }
 
 private:
     spark::SparkSharedPointer<SampleCanvas1> m_sampleCanvas1;
     spark::SparkSharedPointer<SampleCanvas2> m_sampleCanvas2;
     spark::ui::AbstractCanvas* m_currentCanvas;
-    bool m_canvasChange = false;
     spark::timer::Timer m_timer;
 };
