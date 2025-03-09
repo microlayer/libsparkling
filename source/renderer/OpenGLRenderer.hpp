@@ -8,6 +8,7 @@
 #include "math/ProjectionMatrix.hpp"
 #include "fonts/FontPool.hpp"
 #include "ISparkTextureFactory.hpp"
+#include "ISparkVertexBufferFactory.hpp"
 #if SPARK_PLATFORM == SPARK_PLATFORM_WINDOWS || \
     SPARK_PLATFORM == SPARK_PLATFORM_LINUX   || \
     SPARK_PLATFORM == SPARK_PLATFORM_APPLE
@@ -30,7 +31,8 @@ namespace spark {
         public:
             OpenGLRenderer(spark::device::ISparkDevice* device,
                 spark::renderer::shader::ISparkShader* shader,
-                spark::renderer::ISparkTextureFactory* textureFactory);
+                spark::renderer::ISparkTextureFactory* textureFactory,
+                spark::renderer::ISparkVertexBufferFactory* vertexBufferFactory);
             virtual ~OpenGLRenderer(void);
 
         public: // AbstractSparkRenderer

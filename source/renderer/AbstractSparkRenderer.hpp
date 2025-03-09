@@ -3,6 +3,7 @@
 #include "ISparkDevice.hpp"
 #include "ISparkShader.hpp"
 #include "ISparkTextureFactory.hpp"
+#include "ISparkVertexBufferFactory.hpp"
 
 namespace spark {
     namespace renderer {
@@ -14,7 +15,8 @@ namespace spark {
         public:
             AbstractSparkRenderer(spark::device::ISparkDevice* device,
                 spark::renderer::shader::ISparkShader* shader,
-                spark::renderer::ISparkTextureFactory* textureFactory);
+                spark::renderer::ISparkTextureFactory* textureFactory,
+                spark::renderer::ISparkVertexBufferFactory* vertexBufferFactory);
             virtual ~AbstractSparkRenderer();
 
         public: // ISparkRenderer
@@ -29,6 +31,7 @@ namespace spark {
             spark::device::ISparkDevice* m_device;
             spark::renderer::shader::ISparkShader* m_shader;
             spark::renderer::ISparkTextureFactory* m_textureFactory;
+            spark::renderer::ISparkVertexBufferFactory* m_vertexBufferFactory;
             spark::log::ISparkLogger* m_logger;
         };
     } // end namespace renderer

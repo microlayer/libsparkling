@@ -12,7 +12,9 @@
 #include "fonts/FontPool.hpp"
 #include "scene/SceneGraphManager3D.hpp"
 #include "ISparkTextureFactory.hpp"
+#include "ISparkVertexBufferFactory.hpp"
 #include "renderer/common/TextureFactory.hpp"
+#include "renderer/common/VertexBufferFactory.hpp"
 #include "game/Sprite.hpp"
 #include "game/TiledLayer.hpp"
 
@@ -69,6 +71,7 @@ namespace spark {
             virtual void createTimer();
             virtual void createFontPool();
             virtual void createTextureFactory();
+            virtual void createVertexBufferFactory();
 
         private:
             virtual void createLogger() = 0;
@@ -88,6 +91,7 @@ namespace spark {
             spark::renderer::E_RENDER_ENGINE m_rendererEngineType;
             spark::renderer::ISparkRendererApiConfig* m_rendererConfig;
             spark::renderer::ISparkTextureFactory* m_texureFactory;
+            spark::renderer::ISparkVertexBufferFactory* m_vertexBufferFactory;
             spark::ui::AbstractCanvas* m_activeCanvas;
             spark::app::ISparkApp* m_sparkApp;
             bool m_isDeviceRunning;

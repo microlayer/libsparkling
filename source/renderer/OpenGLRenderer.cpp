@@ -7,8 +7,9 @@ namespace spark {
         */
         OpenGLRenderer::OpenGLRenderer(spark::device::ISparkDevice* device,
             spark::renderer::shader::ISparkShader* shader,
-            spark::renderer::ISparkTextureFactory* textureFactory) :
-            AbstractSparkRenderer(device, shader, textureFactory)
+            spark::renderer::ISparkTextureFactory* textureFactory,
+            spark::renderer::ISparkVertexBufferFactory* vertexBufferFactory) :
+            AbstractSparkRenderer(device, shader, textureFactory, vertexBufferFactory)
         {
             m_backgroundColor = spark::drawing::Color(0, 128, 0, 0);
         }

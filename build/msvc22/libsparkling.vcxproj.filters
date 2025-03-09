@@ -234,6 +234,9 @@
     <ClCompile Include="..\..\source\renderer\texture\OGLTexture.cpp">
       <Filter>source\renderer\texture</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\renderer\common\VertexBufferFactory.cpp">
+      <Filter>source\renderer\common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\spark\SparkCompilerConfig.hpp">
@@ -523,6 +526,15 @@
     </ClInclude>
     <ClInclude Include="..\..\source\renderer\texture\OGLTexture.hpp">
       <Filter>source\renderer\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\renderer\common\VertexBufferFactory.hpp">
+      <Filter>source\renderer\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkVertexBufferFactory.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkVertexBuffer.hpp">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

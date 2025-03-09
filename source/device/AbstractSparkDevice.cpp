@@ -41,6 +41,7 @@ namespace spark {
             createSparkWindow();
             createShader();
             createTextureFactory();
+            createVertexBufferFactory();
             createRenderer();
             createTimer();
             createFontPool();
@@ -267,6 +268,14 @@ namespace spark {
         void AbstractSparkDevice::createTextureFactory()
         {
             m_texureFactory = new spark::renderer::TextureFactory(m_logger);
+        }
+
+        /**
+        *
+        */
+        void AbstractSparkDevice::createVertexBufferFactory()
+        {
+            m_vertexBufferFactory = new spark::renderer::VertexBufferFactory(m_logger);
         }
     } // end namespace device
 } // end namespace spark

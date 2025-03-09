@@ -239,6 +239,7 @@
     <ClCompile Include="..\..\source\perspective\OrthographicProjection.cpp" />
     <ClCompile Include="..\..\source\renderer\AbstractSparkRenderer.cpp" />
     <ClCompile Include="..\..\source\renderer\common\TextureFactory.cpp" />
+    <ClCompile Include="..\..\source\renderer\common\VertexBufferFactory.cpp" />
     <ClCompile Include="..\..\source\renderer\config\VulkanConfig.cpp" />
     <ClCompile Include="..\..\source\renderer\OpenGLES2Renderer.cpp" />
     <ClCompile Include="..\..\source\renderer\OpenGLFLES2Renderer.cpp" />
@@ -278,6 +279,8 @@
     <ClInclude Include="..\..\include\ISparkTextureFactory.hpp" />
     <ClInclude Include="..\..\include\ISparkTiledLayer.hpp" />
     <ClInclude Include="..\..\include\ISparkTimer.hpp" />
+    <ClInclude Include="..\..\include\ISparkVertexBuffer.hpp" />
+    <ClInclude Include="..\..\include\ISparkVertexBufferFactory.hpp" />
     <ClInclude Include="..\..\include\ISparkWindow.hpp" />
     <ClInclude Include="..\..\include\Sparkling.hpp" />
     <ClInclude Include="..\..\include\SparkRefCount.hpp" />
@@ -328,6 +331,7 @@
     <ClInclude Include="..\..\source\renderer\AbstractSparkRenderer.hpp" />
     <ClInclude Include="..\..\source\renderer\common\ERenderEngine.hpp" />
     <ClInclude Include="..\..\source\renderer\common\TextureFactory.hpp" />
+    <ClInclude Include="..\..\source\renderer\common\VertexBufferFactory.hpp" />
     <ClInclude Include="..\..\source\renderer\config\VulkanConfig.hpp" />
     <ClInclude Include="..\..\source\renderer\OpenGLES2Renderer.hpp" />
     <ClInclude Include="..\..\source\renderer\OpenGLFLES2Renderer.hpp" />

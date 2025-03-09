@@ -9,8 +9,9 @@ namespace spark {
         */
         OpenGLFLES2Renderer::OpenGLFLES2Renderer(spark::device::ISparkDevice* device,
             spark::renderer::shader::ISparkShader* shader,
-            spark::renderer::ISparkTextureFactory* textureFactory) :
-            OpenGLRenderer(device, shader, textureFactory)
+            spark::renderer::ISparkTextureFactory* textureFactory,
+            spark::renderer::ISparkVertexBufferFactory* vertexBufferFactory) :
+            OpenGLRenderer(device, shader, textureFactory, vertexBufferFactory)
         {
             uint32_t ret = glewInit();
         }
