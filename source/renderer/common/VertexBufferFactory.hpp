@@ -5,6 +5,15 @@
 #include "ISparkVertexBuffer.hpp"
 #include "ISparkLogger.hpp"
 #include <string>
+#include <map>
+
+namespace spark {
+    namespace renderer {
+        namespace vertexbuffer {
+            class OGLVertexBuffer;
+        }
+    }
+}
 
 namespace spark {
     namespace renderer {
@@ -18,7 +27,11 @@ namespace spark {
             ~VertexBufferFactory();
 
         public:
-            spark::renderer::ISparkVertexBuffer* createOrUpdate(std::string id);
+            spark::renderer::ISparkVertexBuffer* createOrUpdate(std::string id, std::vector<spark::drawing::Vertex3>& vertices);
+
+        private:
+            std::map<std::string, spark::renderer::vertexbuffer::OGLVertexBuffer*> m_vertexBufferMap;
+            spark::log::ISparkLogger* m_logger;
         };
     } // end namespace renderer
 } // end namespace spark

@@ -4,6 +4,7 @@
 #include "SparkRefCount.hpp"
 #include "ISparkVertexBuffer.hpp"
 #include <string>
+#include <vector>
 
 namespace spark {
     namespace renderer {
@@ -13,7 +14,7 @@ namespace spark {
         class ISparkVertexBufferFactory : public virtual spark::SparkRefCount
         {
         public:
-            virtual spark::renderer::ISparkVertexBuffer* createOrUpdate(std::string id) = 0;
+            virtual spark::renderer::ISparkVertexBuffer* createOrUpdate(std::string id, std::vector<spark::drawing::Vertex3>& vertices) = 0;
         };
     } // end namespace renderer
 } // end namespace spark

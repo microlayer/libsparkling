@@ -2,6 +2,7 @@
 #define __SPARK_RENDERER_ISPARKVERTEXBUFFER_HPP_INCLUDED__
 
 #include "SparkRefCount.hpp"
+#include "drawing/Vertex3.hpp"
 
 namespace spark {
     namespace renderer {
@@ -11,6 +12,7 @@ namespace spark {
         class ISparkVertexBuffer : public virtual spark::SparkRefCount
         {
         public:
+            virtual void bind() = 0;
         };
 
     } // end namespace renderer

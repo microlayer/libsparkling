@@ -247,6 +247,7 @@
     <ClCompile Include="..\..\source\renderer\shader\OpenGLShaderProgram.cpp" />
     <ClCompile Include="..\..\source\renderer\texture\OGLTexture.cpp" />
     <ClCompile Include="..\..\source\renderer\texture\VulkanTexture.cpp" />
+    <ClCompile Include="..\..\source\renderer\vertexbuffer\OGLVertexBuffer.cpp" />
     <ClCompile Include="..\..\source\renderer\Vulkan13Renderer.cpp" />
     <ClCompile Include="..\..\source\renderer\VulkanRenderer.cpp" />
     <ClCompile Include="..\..\source\scene\SceneGraphManager2D.cpp" />
@@ -342,6 +343,7 @@
     <ClInclude Include="..\..\source\renderer\shader\OpenGLShaderProgram.hpp" />
     <ClInclude Include="..\..\source\renderer\texture\OGLTexture.hpp" />
     <ClInclude Include="..\..\source\renderer\texture\VulkanTexture.hpp" />
+    <ClInclude Include="..\..\source\renderer\vertexbuffer\OGLVertexBuffer.hpp" />
     <ClInclude Include="..\..\source\renderer\Vulkan13Renderer.hpp" />
     <ClInclude Include="..\..\source\renderer\VulkanRenderer.hpp" />
     <ClInclude Include="..\..\source\scene\SceneGraphManager2D.hpp" />

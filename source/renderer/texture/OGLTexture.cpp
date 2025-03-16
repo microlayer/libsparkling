@@ -2,7 +2,7 @@
 
 namespace spark {
     namespace renderer {
-        namespace ogl {
+        namespace texture {
             /**
             *
             */

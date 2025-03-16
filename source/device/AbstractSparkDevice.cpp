@@ -29,6 +29,7 @@ namespace spark {
             m_timer->release();
             m_fontPool->release();
             m_texureFactory->release();
+            m_vertexBufferFactory->release();
         }
 
         /**

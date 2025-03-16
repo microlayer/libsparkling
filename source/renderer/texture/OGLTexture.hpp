@@ -1,5 +1,5 @@
-#ifndef __SPARK_RENDERER_OGL_OGLTEXTURE_HPP_INCLUDED__
-#define __SPARK_RENDERER_OGL_OGLTEXTURE_HPP_INCLUDED__
+#ifndef __SPARK_RENDERER_TEXTURE_OGLTEXTURE_HPP_INCLUDED__
+#define __SPARK_RENDERER_TEXTURE_OGLTEXTURE_HPP_INCLUDED__
 
 #include "ISparkTexture.hpp"
 #include "ISparkLogger.hpp"
@@ -16,7 +16,7 @@
 
 namespace spark {
     namespace renderer {
-        namespace ogl {
+        namespace texture {
             /**
             *
             */

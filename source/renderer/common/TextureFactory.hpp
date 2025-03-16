@@ -9,7 +9,7 @@
 
 namespace spark {
     namespace renderer {
-        namespace ogl {
+        namespace texture {
             class OGLTexture;
         }
     }
@@ -30,7 +30,7 @@ namespace spark {
             spark::renderer::ISparkTexture* createOrUpdate(std::string id, uc8_t* data, int32_t width, int32_t height, spark::drawing::E_PIXEL_FORMAT pixelFormat);
 
         private:
-            std::map<std::string, spark::renderer::ogl::OGLTexture*> m_textureMap;
+            std::map<std::string, spark::renderer::texture::OGLTexture*> m_textureMap;
             spark::log::ISparkLogger* m_logger;
         };
     } // end namespace renderer

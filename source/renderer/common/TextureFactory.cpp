@@ -29,7 +29,7 @@ namespace spark {
         {
             if (m_textureMap.find(id) == m_textureMap.end())
             {
-                spark::renderer::ogl::OGLTexture* texture = new spark::renderer::ogl::OGLTexture(m_logger, data, width, height, pixelFormat);
+                spark::renderer::texture::OGLTexture* texture = new spark::renderer::texture::OGLTexture(m_logger, data, width, height, pixelFormat);
                 m_textureMap[id] = texture;
                 return texture;
             }

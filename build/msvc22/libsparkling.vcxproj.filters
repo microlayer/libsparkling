@@ -103,6 +103,9 @@
     <Filter Include="source\renderer\texture">
       <UniqueIdentifier>{5be823f4-f9e5-4232-9a43-55d70afeedae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\renderer\vertexbuffer">
+      <UniqueIdentifier>{62cb945a-567a-4ee0-bc5c-5e1cd686d51e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\spark\Sparkling.cpp">
@@ -236,6 +239,9 @@
     </ClCompile>
     <ClCompile Include="..\..\source\renderer\common\VertexBufferFactory.cpp">
       <Filter>source\renderer\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\renderer\vertexbuffer\OGLVertexBuffer.cpp">
+      <Filter>source\renderer\vertexbuffer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -535,6 +541,9 @@
     </ClInclude>
     <ClInclude Include="..\..\include\ISparkVertexBuffer.hpp">
       <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\renderer\vertexbuffer\OGLVertexBuffer.hpp">
+      <Filter>source\renderer\vertexbuffer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
