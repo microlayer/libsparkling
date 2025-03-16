@@ -125,6 +125,15 @@ namespace spark {
         */
         void OpenGLRenderer::draw2DLine(int16_t x1, int16_t y1, int16_t x2, int16_t y2, spark::drawing::Color color)
         {
+            //std::vector<spark::drawing::Vertex3> vertices = {
+            // {(real32)x1, (real32)y1, 0, {color.m_red, color.m_green, color.m_blue, 0}},
+            // {(real32)x2, (real32)y2, 0, {color.m_red, color.m_green, color.m_blue, 0}}
+            //};
+
+            //spark::renderer::ISparkVertexBuffer* vertexBuffer = m_vertexBufferFactory->createOrUpdate("1", vertices);
+            //vertexBuffer->bind();
+            //glDrawArrays(GL_LINES, 0, 2);
+
             GLfloat vertices[] = {
                (GLfloat)x1, (GLfloat)y1,
                (GLfloat)x2, (GLfloat)y2
