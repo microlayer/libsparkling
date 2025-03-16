@@ -26,11 +26,17 @@ namespace spark {
             public:
                 OGLVertexBuffer(spark::log::ISparkLogger* logger, std::vector<spark::drawing::Vertex3>& vertices);
                 ~OGLVertexBuffer();
+
             public:
-                void bind();
+                void allocateBuffer();
+                void uploadBuffer();
+
+            public:
+                void draw();
 
             private:
-                GLuint m_vao, m_vbo;
+                GLuint m_vao, m_vbo, m_cbo;
+                std::vector<spark::drawing::Vertex3>& m_vertices;
             };
         }
     }

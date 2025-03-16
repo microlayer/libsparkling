@@ -12,7 +12,7 @@ namespace spark {
         class ISparkVertexBuffer : public virtual spark::SparkRefCount
         {
         public:
-            virtual void bind() = 0;
+            virtual void draw() = 0;
         };
 
     } // end namespace renderer

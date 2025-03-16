@@ -131,8 +131,8 @@ namespace spark {
             //};
 
             //spark::renderer::ISparkVertexBuffer* vertexBuffer = m_vertexBufferFactory->createOrUpdate("1", vertices);
-            //vertexBuffer->bind();
-            //glDrawArrays(GL_LINES, 0, 2);
+            //vertexBuffer->draw();
+
 
             GLfloat vertices[] = {
                (GLfloat)x1, (GLfloat)y1,
@@ -240,7 +240,7 @@ namespace spark {
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
             const spark::drawing::ISparkImage* tilsetImage = tiledLayer->getTilesetImage();
-        
+
             spark::renderer::ISparkTexture* texture = m_textureFactory->createOrUpdate(tilsetImage->getHash(), tilsetImage->getImageAsStream(), tilsetImage->getWidth(), tilsetImage->getHeight(), spark::drawing::E_RGBA8);
             texture->bind();
 
