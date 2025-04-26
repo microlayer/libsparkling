@@ -7,12 +7,29 @@ namespace spark {
             *
             */
             OGLVertexBuffer::OGLVertexBuffer(spark::log::ISparkLogger* logger, std::vector<spark::drawing::Vertex3>& vertices) :
-                m_vertices(vertices)
+                m_bufferSizeVertices(0),
+                m_bufferSizeColor(0)
             {
+                for (auto& vertex : vertices) {
+                    m_verticesData.push_back(vertex.m_x);
+                    m_verticesData.push_back(vertex.m_y);
+                    m_verticesData.push_back(vertex.m_z);
+                    m_colorData.push_back(vertex.m_color.m_red);
+                    m_colorData.push_back(vertex.m_color.m_green);
+                    m_colorData.push_back(vertex.m_color.m_blue);
+                    m_colorData.push_back(vertex.m_color.m_alpha);
+                }
+
+                m_bufferSizeVertices = m_verticesData.size() * 4;
+                m_bufferSizeColor = m_colorData.size() * 1;
+
                 allocateBuffer();
                 uploadBuffer();
             }
 
+            /**
+            *
+            */
             OGLVertexBuffer::~OGLVertexBuffer()
             {
                 glDeleteBuffers(1, &m_vbo);
@@ -29,17 +46,17 @@ namespace spark {
                 glGenVertexArrays(1, &m_vao);
                 glBindVertexArray(m_vao);
 
-                // Create VBO for vertices
+                //Create VBO for vertices
                 glGenBuffers(1, &m_vbo);
                 glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
-                glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * 4, nullptr, GL_DYNAMIC_DRAW); // Allocate but not upload yet
+                glBufferData(GL_ARRAY_BUFFER, m_bufferSizeVertices, NULL, GL_DYNAMIC_DRAW); // Allocate but not upload on GPU yet
                 glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
                 glEnableVertexAttribArray(0);
 
                 // Create VBO for colors
                 glGenBuffers(1, &m_cbo);
                 glBindBuffer(GL_ARRAY_BUFFER, m_cbo);
-                glBufferData(GL_ARRAY_BUFFER, sizeof(GLubyte) * 8, nullptr, GL_DYNAMIC_DRAW); // Allocate but not upload yet
+                glBufferData(GL_ARRAY_BUFFER, m_bufferSizeColor, NULL, GL_DYNAMIC_DRAW); // Allocate but not upload on GPU yet
                 glVertexAttribPointer(2, 4, GL_UNSIGNED_BYTE, GL_TRUE, 0, (void*)0);
                 glEnableVertexAttribArray(2);
             }
@@ -49,11 +66,13 @@ namespace spark {
             */
             void OGLVertexBuffer::uploadBuffer()
             {
-                glBindVertexArray(m_vao);
                 glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
-                glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(spark::drawing::Vertex3), &m_vertices[0]);
+                glBufferSubData(GL_ARRAY_BUFFER, 0, m_bufferSizeVertices, &m_verticesData[0]);
+                glBindBuffer(GL_ARRAY_BUFFER, 0);
+
                 glBindBuffer(GL_ARRAY_BUFFER, m_cbo);
-                glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(spark::drawing::Vertex3), &m_vertices[0].m_color);
+                glBufferSubData(GL_ARRAY_BUFFER, 0, m_bufferSizeColor, &m_colorData[0]);
+                glBindBuffer(GL_ARRAY_BUFFER, 0);
             }
 
             /**
@@ -61,8 +80,9 @@ namespace spark {
             */
             void OGLVertexBuffer::draw()
             {
-                glBindVertexArray(m_vao); // The VAO stores all attribute pointer configurations,
+                glBindVertexArray(m_vao); // The VAO stores all attribute pointer configurations,        
                 glDrawArrays(GL_LINES, 0, 2);
+                glBindVertexArray(0);
             }
         }
     }

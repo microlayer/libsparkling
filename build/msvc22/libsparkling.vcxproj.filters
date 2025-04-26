@@ -243,6 +243,9 @@
     <ClCompile Include="..\..\source\renderer\vertexbuffer\OGLVertexBuffer.cpp">
       <Filter>source\renderer\vertexbuffer</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\renderer\config\OGLConfig.cpp">
+      <Filter>source\renderer\config</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\spark\SparkCompilerConfig.hpp">
@@ -544,6 +547,9 @@
     </ClInclude>
     <ClInclude Include="..\..\source\renderer\vertexbuffer\OGLVertexBuffer.hpp">
       <Filter>source\renderer\vertexbuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\renderer\config\OGLConfig.hpp">
+      <Filter>source\renderer\config</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -36,7 +36,11 @@ namespace spark {
 
             private:
                 GLuint m_vao, m_vbo, m_cbo;
-                std::vector<spark::drawing::Vertex3>& m_vertices;
+                int m_bufferSizeVertices;
+                int m_bufferSizeColor;
+
+                std::vector<real32> m_verticesData;
+                std::vector<uc8_t> m_colorData;
             };
         }
     }
