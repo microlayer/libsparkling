@@ -38,5 +38,22 @@ namespace spark {
                 return m_vertexBufferMap[id];
             }
         }
+
+        /**
+        *
+        */
+        spark::renderer::ISparkVertexBuffer* VertexBufferFactory::createOrUpdate(std::string id, spark::mesh::ISparkMesh* mesh)
+        {
+            if (m_vertexBufferMap.find(id) == m_vertexBufferMap.end())
+            {
+                spark::renderer::vertexbuffer::OGLVertexBuffer* vertexBuffer = new spark::renderer::vertexbuffer::OGLVertexBuffer(m_logger, mesh);
+                m_vertexBufferMap[id] = vertexBuffer;
+                return vertexBuffer;
+            }
+            else
+            {
+                return m_vertexBufferMap[id];
+            }
+        }
     }
 }

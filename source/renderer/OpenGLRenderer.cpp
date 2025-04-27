@@ -410,6 +410,9 @@ namespace spark {
         */
         void OpenGLRenderer::renderMesh(spark::mesh::ISparkMesh* mesh)
         {
+            //spark::renderer::ISparkVertexBuffer* vertexBuffer = m_vertexBufferFactory->createOrUpdate("2", mesh);
+            //vertexBuffer->drawTrinagles();
+            
             // void* pVertices = mesh->getVertices();
             // void* pIndices = mesh->getIndices();
             // void* pColors = mesh->getColors();

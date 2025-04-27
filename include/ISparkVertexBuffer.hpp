@@ -13,6 +13,7 @@ namespace spark {
         {
         public:
             virtual void draw() = 0;
+            virtual void drawTrinagles() = 0;
         };
 
     } // end namespace renderer

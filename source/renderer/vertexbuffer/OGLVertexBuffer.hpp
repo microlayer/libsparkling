@@ -3,6 +3,7 @@
 
 #include "ISparkVertexBuffer.hpp"
 #include "ISparkLogger.hpp"
+#include "ISparkMesh.hpp"
 #if SPARK_PLATFORM == SPARK_PLATFORM_WINDOWS || \
     SPARK_PLATFORM == SPARK_PLATFORM_LINUX   || \
     SPARK_PLATFORM == SPARK_PLATFORM_APPLE
@@ -25,6 +26,7 @@ namespace spark {
             {
             public:
                 OGLVertexBuffer(spark::log::ISparkLogger* logger, std::vector<spark::drawing::Vertex3>& vertices);
+                OGLVertexBuffer(spark::log::ISparkLogger* logger, spark::mesh::ISparkMesh* mesh);
                 ~OGLVertexBuffer();
 
             public:
@@ -33,14 +35,18 @@ namespace spark {
 
             public:
                 void draw();
+                void drawTrinagles();
 
             private:
                 GLuint m_vao, m_vbo, m_cbo;
+
                 int m_bufferSizeVertices;
                 int m_bufferSizeColor;
+                int m_bufferSizeIndices;
 
                 std::vector<real32> m_verticesData;
                 std::vector<uc8_t> m_colorData;
+                spark::mesh::ISparkMesh* m_mesh;
             };
         }
     }

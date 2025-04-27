@@ -30,6 +30,33 @@ namespace spark {
             /**
             *
             */
+            OGLVertexBuffer::OGLVertexBuffer(spark::log::ISparkLogger* logger, spark::mesh::ISparkMesh* mesh) :
+                m_mesh(mesh),
+                m_bufferSizeVertices(0),
+                m_bufferSizeColor(0)
+            {
+                for (auto& vertex : mesh->getVertices()) {
+                    m_verticesData.push_back(vertex.m_x);
+                    m_verticesData.push_back(vertex.m_y);
+                    m_verticesData.push_back(vertex.m_z);
+                    m_colorData.push_back(vertex.m_color.m_red);
+                    m_colorData.push_back(vertex.m_color.m_green);
+                    m_colorData.push_back(vertex.m_color.m_blue);
+                    m_colorData.push_back(vertex.m_color.m_alpha);
+                }
+
+                m_bufferSizeVertices = mesh->getVertices().size() * sizeof(real32);     // 24*4=96
+                m_bufferSizeColor = mesh->getColors().size() * sizeof(uc8_t);           // 24*1=24
+                m_bufferSizeIndices = m_mesh->getIndices().size() * sizeof(uint16_t);   // 36*2=72
+
+                allocateBuffer();
+                uploadBuffer();
+            }
+
+
+            /**
+            *
+            */
             OGLVertexBuffer::~OGLVertexBuffer()
             {
                 glDeleteBuffers(1, &m_vbo);
@@ -83,6 +110,14 @@ namespace spark {
                 glBindVertexArray(m_vao); // The VAO stores all attribute pointer configurations,        
                 glDrawArrays(GL_LINES, 0, 2);
                 glBindVertexArray(0);
+            }
+
+            /**
+            *
+            */
+            void OGLVertexBuffer::drawTrinagles()
+            {
+
             }
         }
     }
