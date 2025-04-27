@@ -38,7 +38,7 @@ namespace spark {
                 void drawTrinagles();
 
             private:
-                GLuint m_vao, m_vbo, m_cbo;
+                GLuint m_vao, m_vbo, m_cbo, m_ibo;
 
                 int m_bufferSizeVertices;
                 int m_bufferSizeColor;
