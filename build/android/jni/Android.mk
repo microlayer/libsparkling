@@ -13,6 +13,7 @@ LIBSPARKLING_SRC_FILES:= $(call LS_CPP,$(LOCAL_PATH),../../../testbed/bootstrap/
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/renderer/common) \
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/renderer/shader) \
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/renderer/texture) \
+			$(call LS_CPP,$(LOCAL_PATH),../../../source/renderer/vertexbuffer) \
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/perspective) \
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/ui) \
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/drawing) \
@@ -54,7 +55,7 @@ include $(CLEAR_VARS)
 LOCAL_MODULE		:= libsparkling
 LOCAL_C_INCLUDES    	:= $(SPARKLING_C_INCLUDES)
 LOCAL_SRC_FILES  	:= $(LIBSPARKLING_SRC_FILES)
-LOCAL_LDLIBS		:= -landroid -llog -lEGL -lGLESv1_CM -lGLESv2 
+LOCAL_LDLIBS		:= -landroid -llog -lEGL -lGLESv3 
 LOCAL_CFLAGS		:= -DSPARK_USE_ROOT_HOME_DIR
 
 LOCAL_STATIC_LIBRARIES := android_native_app_glue liblodepng libtinyxml2

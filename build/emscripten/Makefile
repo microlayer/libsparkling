@@ -12,6 +12,7 @@ LIBSPARKLING_SRC_FILES += $(wildcard ../../source/renderer/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/renderer/common/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/renderer/shader/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/renderer/texture/*.cpp)
+LIBSPARKLING_SRC_FILES += $(wildcard ../../source/renderer/vertexbuffer/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/perspective/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/ui/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/drawing/*.cpp)
@@ -34,7 +35,7 @@ CC=emcc
 CFLAGS=-I$(IDIRINCLUDE) -I$(IDIRSOURCE) -I$(IDIRLIBS) -D__WEBGL__ -Wno-write-strings -std=c++17
 LDFLAGS=
 
-OGLSUPPORT=-s LEGACY_GL_EMULATION=0 -s FULL_ES2=1 -s USE_GLFW=3
+OGLSUPPORT=-s LEGACY_GL_EMULATION=0 -s FULL_ES3=1 -s USE_GLFW=3
 
 OPTIMIZERFLAGS=-O2
 EXCEPTIONS=-s DISABLE_EXCEPTION_CATCHING=1

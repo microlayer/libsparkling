@@ -11,8 +11,7 @@
 #endif
 #if SPARK_PLATFORM == SPARK_PLATFORM_WEBGL || \
     SPARK_PLATFORM == SPARK_PLATFORM_ANDROID
-#include <GLES2/gl2.h>
-#include <GLES2/gl2ext.h>
+#include <GLES3/gl3.h>
 #endif
 #include <vector>
 

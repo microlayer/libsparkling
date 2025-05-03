@@ -83,7 +83,7 @@ namespace spark {
         */
         void AndroidDevice::createRenderer()
         {
-            m_renderer = new spark::renderer::OpenGLES2Renderer(this, m_shader, m_texureFactory);
+            m_renderer = new spark::renderer::OpenGLES2Renderer(this, m_shader, m_texureFactory, m_vertexBufferFactory);
             m_renderer->onInit();
         }
 

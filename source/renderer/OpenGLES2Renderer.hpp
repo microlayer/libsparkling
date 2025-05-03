@@ -16,7 +16,8 @@ namespace spark {
         public:
             OpenGLES2Renderer(spark::device::ISparkDevice* device,
                 spark::renderer::shader::ISparkShader* shader,
-                spark::renderer::ISparkTextureFactory* textureFactory);
+                spark::renderer::ISparkTextureFactory* textureFactory,
+                spark::renderer::ISparkVertexBufferFactory* vertexBufferFactory);
             virtual ~OpenGLES2Renderer(void);
 
         public: // ISparkRenderer
