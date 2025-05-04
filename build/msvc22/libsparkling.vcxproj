@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug_DynamicLib|Win32">
+      <Configuration>Debug_DynamicLib</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug_StaticLib|Win32">
+      <Configuration>Debug_StaticLib</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release_DynamicLib|Win32">
+      <Configuration>Release_DynamicLib</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release_StaticLib|Win32">
+      <Configuration>Release_StaticLib</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{3f7f4575-1752-4936-bf98-24edd2340ae7}</ProjectGuid>
+    <RootNamespace>libsparkling</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_StaticLib|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_DynamicLib|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_StaticLib|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_DynamicLib|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_StaticLib|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_DynamicLib|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release_StaticLib|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release_DynamicLib|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(SolutionDir)../../include;$(SolutionDir)../../source;$(SolutionDir)../../lib;$(VK_SDK_PATH)/Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)../../lib;$(VK_SDK_PATH)/lib32;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_StaticLib|Win32'">
+    <IncludePath>$(SolutionDir)../../include;$(SolutionDir)../../source;$(SolutionDir)../../lib;$(VK_SDK_PATH)/Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)../../lib;$(VK_SDK_PATH)/lib32;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_DynamicLib|Win32'">
+    <IncludePath>$(SolutionDir)../../include;$(SolutionDir)../../source;$(SolutionDir)../../lib;$(VK_SDK_PATH)/Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)../../lib;$(VK_SDK_PATH)/lib32;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(SolutionDir)../../include;$(SolutionDir)../../source;$(SolutionDir)../../lib;$(VK_SDK_PATH)/Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)../../lib;$(VK_SDK_PATH)/lib32;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_StaticLib|Win32'">
+    <IncludePath>$(SolutionDir)../../include;$(SolutionDir)../../source;$(SolutionDir)../../lib;$(VK_SDK_PATH)/Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)../../lib;$(VK_SDK_PATH)/lib32;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_DynamicLib|Win32'">
+    <IncludePath>$(SolutionDir)../../include;$(SolutionDir)../../source;$(SolutionDir)../../lib;$(VK_SDK_PATH)/Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)../../lib;$(VK_SDK_PATH)/lib32;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_StaticLib|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_DynamicLib|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_StaticLib|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_DynamicLib|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\lib\glew\glew.c" />
+    <ClCompile Include="..\..\source\animator\NodeRotationAnimator.cpp" />
+    <ClCompile Include="..\..\source\device\AbstractSparkDevice.cpp" />
+    <ClCompile Include="..\..\source\device\AndroidDevice.cpp" />
+    <ClCompile Include="..\..\source\device\DeviceInstance.cpp" />
+    <ClCompile Include="..\..\source\device\WebGLDevice.cpp" />
+    <ClCompile Include="..\..\source\device\Win32Device.cpp" />
+    <ClCompile Include="..\..\source\device\window\AbstractSparkWindow.cpp" />
+    <ClCompile Include="..\..\source\device\window\AndroidEGLWindow.cpp" />
+    <ClCompile Include="..\..\source\device\window\GlfwWindow.cpp" />
+    <ClCompile Include="..\..\source\drawing\Bitmap.cpp" />
+    <ClCompile Include="..\..\source\file\FileSystem.cpp" />
+    <ClCompile Include="..\..\source\fonts\Font.cpp" />
+    <ClCompile Include="..\..\source\fonts\FontPool.cpp" />
+    <ClCompile Include="..\..\source\forms\Window.cpp" />
+    <ClCompile Include="..\..\source\game\AbstractLayer.cpp" />
+    <ClCompile Include="..\..\source\game\Sprite.cpp" />
+    <ClCompile Include="..\..\source\game\TiledLayer.cpp" />
+    <ClCompile Include="..\..\source\log\AndroidLogger.cpp" />
+    <ClCompile Include="..\..\source\log\DefaultLogger.cpp" />
+    <ClCompile Include="..\..\source\log\LogManager.cpp" />
+    <ClCompile Include="..\..\source\mesh\generator\MeshGenerator.cpp" />
+    <ClCompile Include="..\..\source\mesh\Mesh.cpp" />
+    <ClCompile Include="..\..\source\mlstl\MLBase64.cpp" />
+    <ClCompile Include="..\..\source\perspective\OrthographicProjection.cpp" />
+    <ClCompile Include="..\..\source\renderer\AbstractSparkRenderer.cpp" />
+    <ClCompile Include="..\..\source\renderer\common\TextureFactory.cpp" />
+    <ClCompile Include="..\..\source\renderer\common\VertexBufferFactory.cpp" />
+    <ClCompile Include="..\..\source\renderer\config\OGLConfig.cpp" />
+    <ClCompile Include="..\..\source\renderer\config\VulkanConfig.cpp" />
+    <ClCompile Include="..\..\source\renderer\OpenGLES2Renderer.cpp" />
+    <ClCompile Include="..\..\source\renderer\OpenGLFLES2Renderer.cpp" />
+    <ClCompile Include="..\..\source\renderer\OpenGLRenderer.cpp" />
+    <ClCompile Include="..\..\source\renderer\shader\OpenGLShaderProgram.cpp" />
+    <ClCompile Include="..\..\source\renderer\texture\OGLTexture.cpp" />
+    <ClCompile Include="..\..\source\renderer\texture\VulkanTexture.cpp" />
+    <ClCompile Include="..\..\source\renderer\vertexbuffer\OGLVertexBuffer.cpp" />
+    <ClCompile Include="..\..\source\renderer\Vulkan13Renderer.cpp" />
+    <ClCompile Include="..\..\source\renderer\VulkanRenderer.cpp" />
+    <ClCompile Include="..\..\source\scene\SceneGraphManager2D.cpp" />
+    <ClCompile Include="..\..\source\scene\SceneGraphManager3D.cpp" />
+    <ClCompile Include="..\..\source\scene\SceneNode.cpp" />
+    <ClCompile Include="..\..\source\spark\Sparkling.cpp" />
+    <ClCompile Include="..\..\source\timer\Timer.cpp" />
+    <ClCompile Include="..\..\source\ui\AbstractCanvas.cpp" />
+    <ClCompile Include="..\..\testbed\bootstrap\win32\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\ISparkFontPool.hpp" />
+    <ClInclude Include="..\..\include\ISceneGraphManager2D.hpp" />
+    <ClInclude Include="..\..\include\ISceneGraphManager3D.hpp" />
+    <ClInclude Include="..\..\include\ISparkFont.hpp" />
+    <ClInclude Include="..\..\include\ISparkNodeAnimator.hpp" />
+    <ClInclude Include="..\..\include\ISparkRendererApiConfig.hpp" />
+    <ClInclude Include="..\..\include\ISparkApp.hpp" />
+    <ClInclude Include="..\..\include\ISparkCommandListener.hpp" />
+    <ClInclude Include="..\..\include\ISparkDevice.hpp" />
+    <ClInclude Include="..\..\include\ISparkFileSystem.hpp" />
+    <ClInclude Include="..\..\include\ISparkImage.hpp" />
+    <ClInclude Include="..\..\include\ISparkLogger.hpp" />
+    <ClInclude Include="..\..\include\ISparkMesh.hpp" />
+    <ClInclude Include="..\..\include\ISparkRenderer.hpp" />
+    <ClInclude Include="..\..\include\ISparkSceneNode.hpp" />
+    <ClInclude Include="..\..\include\ISparkShader.hpp" />
+    <ClInclude Include="..\..\include\ISparkSprite.hpp" />
+    <ClInclude Include="..\..\include\ISparkTexture.hpp" />
+    <ClInclude Include="..\..\include\ISparkTextureFactory.hpp" />
+    <ClInclude Include="..\..\include\ISparkTiledLayer.hpp" />
+    <ClInclude Include="..\..\include\ISparkTimer.hpp" />
+    <ClInclude Include="..\..\include\ISparkVertexBuffer.hpp" />
+    <ClInclude Include="..\..\include\ISparkVertexBufferFactory.hpp" />
+    <ClInclude Include="..\..\include\ISparkWindow.hpp" />
+    <ClInclude Include="..\..\include\Sparkling.hpp" />
+    <ClInclude Include="..\..\include\SparkRefCount.hpp" />
+    <ClInclude Include="..\..\include\SparkScopedPointer.hpp" />
+    <ClInclude Include="..\..\include\SparkSharedPointer.hpp" />
+    <ClInclude Include="..\..\source\animator\NodeRotationAnimator.hpp" />
+    <ClInclude Include="..\..\source\device\AbstractSparkDevice.hpp" />
+    <ClInclude Include="..\..\source\device\AndroidDevice.hpp" />
+    <ClInclude Include="..\..\source\device\DeviceInstance.hpp" />
+    <ClInclude Include="..\..\source\device\WebGLDevice.hpp" />
+    <ClInclude Include="..\..\source\device\Win32Device.hpp" />
+    <ClInclude Include="..\..\source\device\window\AbstractSparkWindow.hpp" />
+    <ClInclude Include="..\..\source\device\window\AndroidEGLWindow.hpp" />
+    <ClInclude Include="..\..\source\device\window\GlfwWindow.hpp" />
+    <ClInclude Include="..\..\source\drawing\Bitmap.hpp" />
+    <ClInclude Include="..\..\source\drawing\BitmapFormat.hpp" />
+    <ClInclude Include="..\..\source\drawing\ClippingRectangle.hpp" />
+    <ClInclude Include="..\..\source\drawing\Color.hpp" />
+    <ClInclude Include="..\..\source\drawing\PixelFormat.hpp" />
+    <ClInclude Include="..\..\source\drawing\Vertex3.hpp" />
+    <ClInclude Include="..\..\source\file\FileSystem.hpp" />
+    <ClInclude Include="..\..\source\fonts\BitmapFontInfo.hpp" />
+    <ClInclude Include="..\..\source\fonts\BitmapGlyphInfo.hpp" />
+    <ClInclude Include="..\..\source\fonts\embedded\Arial16.hpp" />
+    <ClInclude Include="..\..\source\fonts\Font.hpp" />
+    <ClInclude Include="..\..\source\fonts\FontPool.hpp" />
+    <ClInclude Include="..\..\source\forms\Window.hpp" />
+    <ClInclude Include="..\..\source\game\AbstractLayer.hpp" />
+    <ClInclude Include="..\..\source\game\PixelToMeterOffsetInfo.hpp" />
+    <ClInclude Include="..\..\source\game\Sprite.hpp" />
+    <ClInclude Include="..\..\source\game\TiledLayer.hpp" />
+    <ClInclude Include="..\..\source\log\AndroidLogger.hpp" />
+    <ClInclude Include="..\..\source\log\DefaultLogger.hpp" />
+    <ClInclude Include="..\..\source\log\LogManager.hpp" />
+    <ClInclude Include="..\..\source\math\Matrix3.hpp" />
+    <ClInclude Include="..\..\source\math\Matrix4.hpp" />
+    <ClInclude Include="..\..\source\math\ProjectionMatrix.hpp" />
+    <ClInclude Include="..\..\source\math\Vector2.hpp" />
+    <ClInclude Include="..\..\source\math\Vector3.hpp" />
+    <ClInclude Include="..\..\source\mesh\generator\MeshGenerator.hpp" />
+    <ClInclude Include="..\..\source\mesh\Mesh.hpp" />
+    <ClInclude Include="..\..\source\mlstl\MLBase64.hpp" />
+    <ClInclude Include="..\..\source\mlstl\MLGuid.hpp" />
+    <ClInclude Include="..\..\source\mlstl\MLHash.hpp" />
+    <ClInclude Include="..\..\source\perspective\OrthographicProjection.hpp" />
+    <ClInclude Include="..\..\source\perspective\PerspectiveProjection.hpp" />
+    <ClInclude Include="..\..\source\perspective\Viewport.hpp" />
+    <ClInclude Include="..\..\source\perspective\VirtualResolution.hpp" />
+    <ClInclude Include="..\..\source\renderer\AbstractSparkRenderer.hpp" />
+    <ClInclude Include="..\..\source\renderer\common\ERenderEngine.hpp" />
+    <ClInclude Include="..\..\source\renderer\common\TextureFactory.hpp" />
+    <ClInclude Include="..\..\source\renderer\common\VertexBufferFactory.hpp" />
+    <ClInclude Include="..\..\source\renderer\config\OGLConfig.hpp" />
+    <ClInclude Include="..\..\source\renderer\config\VulkanConfig.hpp" />
+    <ClInclude Include="..\..\source\renderer\OpenGLES2Renderer.hpp" />
+    <ClInclude Include="..\..\source\renderer\OpenGLFLES2Renderer.hpp" />
+    <ClInclude Include="..\..\source\renderer\OpenGLRenderer.hpp" />
+    <ClInclude Include="..\..\source\renderer\shader\glsl_for_gles2_feature_level_glsles10\DefaultShader.hpp" />
+    <ClInclude Include="..\..\source\renderer\shader\glsl_for_ogl_feature_level_glsles10\DefaultShader.hpp" />
+    <ClInclude Include="..\..\source\renderer\shader\glsl_for_spir_feature_level_glsles10\DefaultShader.hpp" />
+    <ClInclude Include="..\..\source\renderer\shader\OpenGLShaderProgram.hpp" />
+    <ClInclude Include="..\..\source\renderer\texture\OGLTexture.hpp" />
+    <ClInclude Include="..\..\source\renderer\texture\VulkanTexture.hpp" />
+    <ClInclude Include="..\..\source\renderer\vertexbuffer\OGLVertexBuffer.hpp" />
+    <ClInclude Include="..\..\source\renderer\Vulkan13Renderer.hpp" />
+    <ClInclude Include="..\..\source\renderer\VulkanRenderer.hpp" />
+    <ClInclude Include="..\..\source\scene\SceneGraphManager2D.hpp" />
+    <ClInclude Include="..\..\source\scene\SceneGraphManager3D.hpp" />
+    <ClInclude Include="..\..\source\scene\SceneNode.hpp" />
+    <ClInclude Include="..\..\source\spark\SparkCompilerConfig.hpp" />
+    <ClInclude Include="..\..\source\spark\SparkLibConfig.hpp" />
+    <ClInclude Include="..\..\source\spark\SparkSetup.hpp" />
+    <ClInclude Include="..\..\source\spark\SparkTypes.hpp" />
+    <ClInclude Include="..\..\source\timer\Timer.hpp" />
+    <ClInclude Include="..\..\source\ui\AbstractCanvas.hpp" />
+    <ClInclude Include="..\..\source\ui\Command.hpp" />
+    <ClInclude Include="..\..\testbed\SampleApp.hpp" />
+    <ClInclude Include="..\..\testbed\SampleCanvas1.hpp" />
+    <ClInclude Include="..\..\testbed\SampleCanvas2.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\source\renderer\shader\glsl_for_gles2_feature_level_glsles10\Default.frag" />
+    <None Include="..\..\source\renderer\shader\glsl_for_gles2_feature_level_glsles10\Default.vert" />
+    <None Include="..\..\source\renderer\shader\glsl_for_ogl_feature_level_glsles10\Default.frag" />
+    <None Include="..\..\source\renderer\shader\glsl_for_ogl_feature_level_glsles10\Default.vert" />
+    <None Include="..\..\source\renderer\shader\glsl_for_spir_feature_level_glsles10\Default.frag" />
+    <None Include="..\..\source\renderer\shader\glsl_for_spir_feature_level_glsles10\Default.vert" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

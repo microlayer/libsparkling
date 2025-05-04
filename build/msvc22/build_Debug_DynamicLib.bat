@@ -1,0 +1,2 @@
+SET VisualStudioVersion=17.0
+msbuild libsparkling.vcxproj /p:configuration=Debug_DynamicLib /p:platform=win32

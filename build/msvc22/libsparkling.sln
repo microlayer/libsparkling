@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34302.85
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libsparkling", "libsparkling.vcxproj", "{3F7F4575-1752-4936-BF98-24EDD2340AE7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug_DynamicLib|x86 = Debug_DynamicLib|x86
+		Debug_StaticLib|x86 = Debug_StaticLib|x86
+		Debug|x86 = Debug|x86
+		Release_DynamicLib|x86 = Release_DynamicLib|x86
+		Release_StaticLib|x86 = Release_StaticLib|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3F7F4575-1752-4936-BF98-24EDD2340AE7}.Debug_DynamicLib|x86.ActiveCfg = Debug_DynamicLib|Win32
+		{3F7F4575-1752-4936-BF98-24EDD2340AE7}.Debug_DynamicLib|x86.Build.0 = Debug_DynamicLib|Win32
+		{3F7F4575-1752-4936-BF98-24EDD2340AE7}.Debug_StaticLib|x86.ActiveCfg = Debug_StaticLib|Win32
+		{3F7F4575-1752-4936-BF98-24EDD2340AE7}.Debug_StaticLib|x86.Build.0 = Debug_StaticLib|Win32
+		{3F7F4575-1752-4936-BF98-24EDD2340AE7}.Debug|x86.ActiveCfg = Debug|Win32
+		{3F7F4575-1752-4936-BF98-24EDD2340AE7}.Debug|x86.Build.0 = Debug|Win32
+		{3F7F4575-1752-4936-BF98-24EDD2340AE7}.Release_DynamicLib|x86.ActiveCfg = Release_DynamicLib|Win32
+		{3F7F4575-1752-4936-BF98-24EDD2340AE7}.Release_DynamicLib|x86.Build.0 = Release_DynamicLib|Win32
+		{3F7F4575-1752-4936-BF98-24EDD2340AE7}.Release_StaticLib|x86.ActiveCfg = Release_StaticLib|Win32
+		{3F7F4575-1752-4936-BF98-24EDD2340AE7}.Release_StaticLib|x86.Build.0 = Release_StaticLib|Win32
+		{3F7F4575-1752-4936-BF98-24EDD2340AE7}.Release|x86.ActiveCfg = Release|Win32
+		{3F7F4575-1752-4936-BF98-24EDD2340AE7}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4733083B-C026-4461-A7EE-AAE3F7711AD7}
+	EndGlobalSection
+EndGlobal
