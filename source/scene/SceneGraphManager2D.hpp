@@ -12,7 +12,7 @@ namespace spark {
         class SceneGraphManager2D : public ISceneGraphManager2D
         {
         public:
-            SceneGraphManager2D();
+            SceneGraphManager2D(spark::renderer::ISparkRenderer* renderer);
             ~SceneGraphManager2D();
 
         public:

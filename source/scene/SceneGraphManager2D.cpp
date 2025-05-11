@@ -5,12 +5,12 @@ namespace spark {
         /**
         *
         */
-        SceneGraphManager2D::SceneGraphManager2D()
+        SceneGraphManager2D::SceneGraphManager2D(spark::renderer::ISparkRenderer* renderer)
         {
             b2Vec2 gravity(0.0f, -10.0f);
-            //m_b2World = new b2World(gravity);
+            m_b2World = new b2World(gravity);
         }
-        
+
         /**
         *
         */
@@ -26,7 +26,7 @@ namespace spark {
         {
             return NULL;
         }
-        
+
         /**
         *
         */
@@ -34,7 +34,7 @@ namespace spark {
         {
             return NULL;
         }
-        
+
         /**
         *
         */

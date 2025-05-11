@@ -18,7 +18,7 @@ file(GLOB SOURCES
 	"../../../Box2D/Collision/Shapes/*.cpp" 
 	"../../../Box2D/Common/*.cpp" 
 	"../../../Box2D/Dynamics/*.cpp"
-	"../../../Box2D/Dynamics/Contracts/*.cpp" 
+	"../../../Box2D/Dynamics/Contacts/*.cpp" 
 	"../../../Box2D/Dynamics/Joints/*.cpp" 
 	"../../../Box2D/Rope/*.cpp"
 )
@@ -29,7 +29,7 @@ include_directories(
 	"../../../Box2D/Collision/Shapes"
     "../../../Box2D/Common"
     "../../../Box2D/Dynamics"
-	"../../../Box2D/Dynamics/Contracts"
+	"../../../Box2D/Dynamics/Contacts"
 	"../../../Box2D/Dynamics/Joints"
     "../../../Box2D/Rope"
 )
