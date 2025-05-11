@@ -228,6 +228,7 @@
     <ClCompile Include="..\..\source\fonts\FontPool.cpp" />
     <ClCompile Include="..\..\source\forms\Window.cpp" />
     <ClCompile Include="..\..\source\game\AbstractLayer.cpp" />
+    <ClCompile Include="..\..\source\game\LineLayer.cpp" />
     <ClCompile Include="..\..\source\game\Sprite.cpp" />
     <ClCompile Include="..\..\source\game\TiledLayer.cpp" />
     <ClCompile Include="..\..\source\log\AndroidLogger.cpp" />
@@ -311,6 +312,7 @@
     <ClInclude Include="..\..\source\fonts\FontPool.hpp" />
     <ClInclude Include="..\..\source\forms\Window.hpp" />
     <ClInclude Include="..\..\source\game\AbstractLayer.hpp" />
+    <ClInclude Include="..\..\source\game\LineLayer.hpp" />
     <ClInclude Include="..\..\source\game\PixelToMeterOffsetInfo.hpp" />
     <ClInclude Include="..\..\source\game\Sprite.hpp" />
     <ClInclude Include="..\..\source\game\TiledLayer.hpp" />

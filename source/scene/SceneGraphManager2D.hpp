@@ -6,14 +6,22 @@
 
 namespace spark {
     namespace scene {
-
         /**
         *
         */
         class SceneGraphManager2D : public ISceneGraphManager2D
         {
         public:
+            SceneGraphManager2D();
+            ~SceneGraphManager2D();
+
+        public:
+            spark::game::Sprite* addSprite(spark::drawing::ISparkImage* image);
+            spark::game::LineLayer* addLineLayer(int16_t x1, int16_t y1, int16_t x2, int16_t y2, spark::drawing::Color color);
             void drawGraph(spark::renderer::ISparkRenderer* renderer);
+
+        private:
+            b2World* m_b2World;
         };
     }
 }

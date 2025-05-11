@@ -43,4 +43,5 @@ public:
 
 private:
     spark::device::ISparkDevice* m_device;
+    spark::SparkSharedPointer<spark::scene::ISceneGraphManager2D> m_sceneGraphManager2D;
 };

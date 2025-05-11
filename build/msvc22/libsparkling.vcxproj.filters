@@ -246,6 +246,9 @@
     <ClCompile Include="..\..\source\renderer\config\OGLConfig.cpp">
       <Filter>source\renderer\config</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\game\LineLayer.cpp">
+      <Filter>source\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\spark\SparkCompilerConfig.hpp">
@@ -553,6 +556,9 @@
     </ClInclude>
     <ClInclude Include="..\..\source\mlstl\MLGuid.hpp">
       <Filter>source\mlstl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\game\LineLayer.hpp">
+      <Filter>source\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

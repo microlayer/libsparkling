@@ -3,6 +3,8 @@
 
 #include "ISparkRenderer.hpp"
 #include "scene/SceneNode.hpp"
+#include "game/Sprite.hpp"
+#include "game/LineLayer.hpp"
 
 namespace spark {
     namespace scene {
@@ -12,6 +14,9 @@ namespace spark {
         class ISceneGraphManager2D : public virtual spark::SparkRefCount
         {
         public:
+            spark::game::Sprite* addSprite(spark::drawing::ISparkImage* image);
+            spark::game::LineLayer* addLineLayer(int16_t x1, int16_t y1, int16_t x2, int16_t y2, spark::drawing::Color color);
+
             virtual void drawGraph(spark::renderer::ISparkRenderer* renderer) = 0;
         };
     }

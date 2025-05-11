@@ -18,7 +18,7 @@ MEMORY=-s TOTAL_MEMORY=33554432
 # WASM
 WASM=-s WASM=0
 
-lodepng:$(SRC_FILES) 
+tinyxml2:$(SRC_FILES) 
 	emcc -c -o $(PROJECTNAME).bc $(SRC_FILES) $(CFLAGS) $(OPTIMIZERFLAGS) $(EXCEPTIONS) -flto
 	
 clean:
