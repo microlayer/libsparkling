@@ -11,6 +11,7 @@
 #include "timer/Timer.hpp"
 #include "fonts/FontPool.hpp"
 #include "scene/SceneGraphManager3D.hpp"
+#include "scene/SceneGraphManager2D.hpp"
 #include "ISparkTextureFactory.hpp"
 #include "ISparkVertexBufferFactory.hpp"
 #include "renderer/common/TextureFactory.hpp"
@@ -47,6 +48,7 @@ namespace spark {
 
         public:
             spark::scene::ISceneGraphManager3D* createSceneGraphManager3D();
+            spark::scene::ISceneGraphManager2D* createSceneGraphManager2D();
             spark::game::ISparkSprite* createSprite(spark::drawing::ISparkImage* image);
             spark::game::ISparkTiledLayer* createTiledLayer(spark::drawing::ISparkImage* tilesetImage, uint16_t layerColumns, uint16_t layerRows, uint16_t* gidData, uint16_t tileWidth, uint16_t tileHeight, uint16_t tilesetImageWidth, uint16_t tilesetImageHeight, spark::game::E_LAYER_TYPE layerType);
 

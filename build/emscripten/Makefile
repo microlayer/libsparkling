@@ -48,7 +48,7 @@ WASM=-s WASM=0
 
 # Link bitcode of lib projects 'emcc foo.bc -o bar.html ...'
 sparkling:$(LIBSPARKLING_SRC_FILES) 
-	emcc ../../lib/lodepng/build/emscripten/lodepng.bc ../../lib/tinyxml2/build/emscripten/tinyxml2.bc -o libsparkling_emscripten.html $(LIBSPARKLING_SRC_FILES) $(CFLAGS) $(OGLSUPPORT) $(OPTIMIZERFLAGS) $(EXCEPTIONS) $(WASM) $(MEMORY) -s MODULARIZE=0 
+	emcc ../../lib/lodepng/build/emscripten/lodepng.bc ../../lib/tinyxml2/build/emscripten/tinyxml2.bc ../../lib/box2d/build/emscripten/build/box2d.bc -o libsparkling_emscripten.html $(LIBSPARKLING_SRC_FILES) $(CFLAGS) $(OGLSUPPORT) $(OPTIMIZERFLAGS) $(EXCEPTIONS) $(WASM) $(MEMORY) -s MODULARIZE=0 
 
 clean:
     # TODO

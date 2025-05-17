@@ -132,6 +132,15 @@ namespace spark {
         /**
         *
         */
+        spark::scene::ISceneGraphManager2D* AbstractSparkDevice::createSceneGraphManager2D()
+        {
+            return new spark::scene::SceneGraphManager2D(m_renderer);
+            //return NULL;
+        }
+
+        /**
+        *
+        */
         spark::game::ISparkSprite* AbstractSparkDevice::createSprite(spark::drawing::ISparkImage* image)
         {
             return new spark::game::Sprite(image);

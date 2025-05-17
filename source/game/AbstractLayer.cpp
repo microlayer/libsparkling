@@ -36,7 +36,7 @@ namespace spark {
         */
         void AbstractLayer::setRotation(real32 zAxisRotation)
         {
-
+            m_zAxisRotation = zAxisRotation;
         }
 
         /**

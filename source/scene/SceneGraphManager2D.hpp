@@ -3,6 +3,8 @@
 
 #include "ISparkRenderer.hpp"
 #include "ISceneGraphManager2D.hpp"
+#include "game/Sprite.hpp"
+#include "game/LineLayer.hpp"
 
 namespace spark {
     namespace scene {
@@ -22,6 +24,7 @@ namespace spark {
 
         private:
             b2World* m_b2World;
+            std::vector<std::unique_ptr<spark::game::Sprite>> m_sprites;
         };
     }
 }

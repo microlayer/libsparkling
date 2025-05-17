@@ -53,7 +53,7 @@ all: $(OUT_FILE)
 
 # Merge all .bc files to box2d.bc
 $(OUT_FILE): $(OBJ_FILES)
-	llvm-link $^ -o $@
+	../../../../build/llvm/llvm-link $^ -o $@
 
 clean:
     # TODO

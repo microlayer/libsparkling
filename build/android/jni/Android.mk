@@ -41,12 +41,21 @@ LOCAL_SRC_FILES := ../../../lib/lodepng/build/android/obj/local/$(TARGET_ARCH_AB
 include $(PREBUILT_STATIC_LIBRARY)
 
 #----------------------------------------------------------------------------------------------------
-# Include tinyxml2.a
+# Include libtinyxml2.a
 #----------------------------------------------------------------------------------------------------
 include $(CLEAR_VARS)
-LOCAL_MODULE := tinyxml2
+LOCAL_MODULE := libtinyxml2
 LOCAL_SRC_FILES := ../../../lib/tinyxml2/build/android/obj/local/$(TARGET_ARCH_ABI)/libtinyxml2.a
 include $(PREBUILT_STATIC_LIBRARY)
+
+#----------------------------------------------------------------------------------------------------
+# Include libbox2d.a
+#----------------------------------------------------------------------------------------------------
+include $(CLEAR_VARS)
+LOCAL_MODULE := libbox2d
+LOCAL_SRC_FILES := ../../../lib/Box2D/build/android/obj/local/$(TARGET_ARCH_ABI)/libbox2d.a
+include $(PREBUILT_STATIC_LIBRARY)
+
 
 #----------------------------------------------------------------------------------------------------
 # Build shared library
@@ -58,7 +67,7 @@ LOCAL_SRC_FILES  	:= $(LIBSPARKLING_SRC_FILES)
 LOCAL_LDLIBS		:= -landroid -llog -lEGL -lGLESv3 
 LOCAL_CFLAGS		:= -DSPARK_USE_ROOT_HOME_DIR
 
-LOCAL_STATIC_LIBRARIES := android_native_app_glue liblodepng libtinyxml2
+LOCAL_STATIC_LIBRARIES := android_native_app_glue liblodepng libtinyxml2 libbox2d
 
 include $(BUILD_SHARED_LIBRARY)
 

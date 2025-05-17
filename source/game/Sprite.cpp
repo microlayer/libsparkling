@@ -106,7 +106,16 @@ namespace spark {
                 clipRect.m_width = m_image->getWidth();
                 clipRect.m_height = m_image->getHeight();
             }
+
+            spark::math::Matrix4f m;
+            m.setTranslation(spark::math::Vector3f(m_x, m_y, 0.0f));
+            m.setRotation(spark::math::Vector3f(0.0f, 0.0f, AbstractLayer::getRotation()));
+            renderer->setModelTransformation(m);
+
             renderer->draw2DBitmap(m_image, m_x, m_y, clipRect);
+
+            spark::math::Matrix4f identity;
+            renderer->setModelTransformation(identity);
         }
 
         /**

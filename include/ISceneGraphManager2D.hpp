@@ -1,10 +1,14 @@
 #ifndef __SPARK_SCENE_ISCENEGRAPHMANAGER2D_HPP_INCLUDED__
 #define __SPARK_SCENE_ISCENEGRAPHMANAGER2D_HPP_INCLUDED__
 
-#include "ISparkRenderer.hpp"
-#include "scene/SceneNode.hpp"
-#include "game/Sprite.hpp"
-#include "game/LineLayer.hpp"
+#include "ISparkImage.hpp"
+
+namespace spark {
+    namespace game {
+        class Sprite;
+        class LineLayer;
+    }
+}
 
 namespace spark {
     namespace scene {

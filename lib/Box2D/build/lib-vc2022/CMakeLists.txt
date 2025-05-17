@@ -9,8 +9,8 @@ set(CMAKE_C_FLAGS "")
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Use appropriate runtime libraries automaticall
-#set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreadedDLL$<$<CONFIG:Debug>:Debug>")
+# Use appropriate runtime libraries /MD for Release and /MDd for Debug
+# set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreadedDLL" CACHE STRING "" FORCE)
 
 # Include source files
 file(GLOB SOURCES 
@@ -47,7 +47,7 @@ if(MSVC)
 	set_target_properties(Box2D_DEBUG PROPERTIES OUTPUT_NAME "libbox2dd")
 	set_target_properties(Box2D_RELEASE PROPERTIES OUTPUT_NAME "libbox2d")
     target_compile_options(Box2D_DEBUG PRIVATE /W4)
-	target_compile_options(Box2D_RELEASE PRIVATE /W4)
+	target_compile_options(Box2D_RELEASE PRIVATE /W4 /MD)
 else()
     target_compile_options(Box2D_DEBUG PRIVATE -Wall)
 endif()
