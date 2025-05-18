@@ -10,6 +10,8 @@ namespace spark {
             m_androidApplication(pApplication)
         {
             AbstractSparkDevice::construct();
+
+            copyAssetToExternalStorage();
         }
 
         /**
@@ -93,6 +95,41 @@ namespace spark {
         std::string AndroidDevice::getRootPath()
         {
             return "/";
+        }
+
+        /**
+        * Copies the file to external storage private to the app, no special permissions needed on Android 10+.
+        */
+        void AndroidDevice::copyAssetToExternalStorage()
+        {
+            JNIEnv* env = m_androidApplication->activity->env;
+            AAssetManager* assetManager = m_androidApplication->activity->assetManager;
+
+            jclass activityClass = env->GetObjectClass(m_androidApplication->activity->clazz);
+            jmethodID getExternalFilesDir = env->GetMethodID(activityClass, "getExternalFilesDir", "(Ljava/lang/String;)Ljava/io/File;");
+            jobject fileObj = env->CallObjectMethod(m_androidApplication->activity->clazz, getExternalFilesDir, nullptr);
+
+            jclass fileClass = env->GetObjectClass(fileObj);
+            jmethodID getPath = env->GetMethodID(fileClass, "getAbsolutePath", "()Ljava/lang/String;");
+            jstring pathString = (jstring)env->CallObjectMethod(fileObj, getPath);
+
+            const char* path = env->GetStringUTFChars(pathString, 0);
+
+            // Copy asset
+            std::string assetName = "test.dat";
+
+            // Create full output path
+            char fullDestPath[1024];
+            snprintf(fullDestPath, sizeof(fullDestPath), "%s/%s", path, assetName.c_str());
+            m_logger->info("Saving asset to: %s", fullDestPath);
+
+            // Open asset            
+            AAsset* asset = AAssetManager_open(assetManager, assetName.c_str(), AASSET_MODE_STREAMING);
+            if (!asset)
+            {
+                m_logger->error("Failed to open asset: %s", assetName.c_str());
+                return;
+            }
         }
     } // end namespace device
 } // end namespace spark

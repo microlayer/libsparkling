@@ -25,6 +25,12 @@ namespace spark {
         private:
             b2World* m_b2World;
             std::vector<std::unique_ptr<spark::game::Sprite>> m_sprites;
+            spark::timer::ISparkTimer* m_timer;
+            uint32_t m_startTime;
+            uint32_t m_framePeriod;
+            uint16_t m_velocityIterations;
+            uint16_t m_positionIterations;
+            real32 m_timeStep;
         };
     }
 }

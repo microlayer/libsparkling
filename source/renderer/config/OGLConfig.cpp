@@ -32,12 +32,12 @@ namespace spark {
 
             if (profileMask & GL_CONTEXT_CORE_PROFILE_BIT)
             {
-                logger->info("Running in Core Profile");
+                logger->info("Running in OpenGL Core Profile");
 
             }
             else if (profileMask & GL_CONTEXT_COMPATIBILITY_PROFILE_BIT)
             {
-                logger->info("Running in Compatibility Profile");
+                logger->info("Running in OpenGL Compatibility Profile");
             }
             else
             {

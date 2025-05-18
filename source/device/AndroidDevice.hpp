@@ -31,6 +31,9 @@ namespace spark {
             std::string getRootPath();
 
         private:
+            void copyAssetToExternalStorage();
+
+        private:
             android_app* m_androidApplication;
         };
     } // end namespace device
