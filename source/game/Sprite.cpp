@@ -115,7 +115,7 @@ namespace spark {
             m.setRotation(spark::math::Vector3f(0.0f, 0.0f, AbstractLayer::getRotation()));
             renderer->setModelTransformation(m);
 
-            renderer->draw2DBitmap(m_image, m_x, m_y, clipRect);
+            renderer->draw2DBitmap(m_image, pos.x * PTM_RATIO, -pos.y * PTM_RATIO, clipRect);
 
             spark::math::Matrix4f identity;
             renderer->setModelTransformation(identity);

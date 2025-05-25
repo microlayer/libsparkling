@@ -64,7 +64,7 @@ namespace spark {
             b2Body* body = m_b2World.CreateBody(&lineBodyDef);
 
             b2EdgeShape shape;
-            shape.Set(b2Vec2((x1 / PTM_RATIO) / 2.0f, -(y1 / PTM_RATIO) / 2.0f), b2Vec2((x2 / PTM_RATIO) / 2.0f, -(y2 / PTM_RATIO) / 2.0f));
+            shape.Set(b2Vec2((x1 / PTM_RATIO), -(y1 / PTM_RATIO)), b2Vec2((x2 / PTM_RATIO), -(y2 / PTM_RATIO)));
             body->CreateFixture(&shape, 0.0f);
 
             auto lineLayer = std::make_unique<spark::game::LineLayer>(x1, y1, x2, y2, color, body);
