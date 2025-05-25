@@ -28,6 +28,7 @@ namespace spark {
             int16_t m_x;
             int16_t m_y;
             real32 m_zAxisRotation;
+            b2Body* m_b2Body;
         };
 
     } // end namespace game

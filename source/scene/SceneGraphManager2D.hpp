@@ -14,7 +14,7 @@ namespace spark {
         class SceneGraphManager2D : public ISceneGraphManager2D
         {
         public:
-            SceneGraphManager2D(spark::renderer::ISparkRenderer* renderer);
+            SceneGraphManager2D(spark::renderer::ISparkRenderer* renderer, spark::log::ISparkLogger* logger);
             ~SceneGraphManager2D();
 
         public:
@@ -23,14 +23,16 @@ namespace spark {
             void drawGraph(spark::renderer::ISparkRenderer* renderer);
 
         private:
-            b2World* m_b2World;
-            std::vector<std::unique_ptr<spark::game::Sprite>> m_sprites;
+            b2World m_b2World;
+            std::vector<std::unique_ptr<spark::game::AbstractLayer>> m_worldElements;
             spark::timer::ISparkTimer* m_timer;
             uint32_t m_startTime;
             uint32_t m_framePeriod;
             uint16_t m_velocityIterations;
             uint16_t m_positionIterations;
             real32 m_timeStep;
+            spark::log::ISparkLogger* m_logger;
+            spark::renderer::ISparkRenderer* m_renderer;
         };
     }
 }

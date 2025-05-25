@@ -107,6 +107,9 @@ namespace spark {
                 clipRect.m_height = m_image->getHeight();
             }
 
+            real32 angle = m_b2Body->GetAngle();
+            b2Vec2 pos = m_b2Body->GetPosition();
+
             spark::math::Matrix4f m;
             m.setTranslation(spark::math::Vector3f(m_x, m_y, 0.0f));
             m.setRotation(spark::math::Vector3f(0.0f, 0.0f, AbstractLayer::getRotation()));

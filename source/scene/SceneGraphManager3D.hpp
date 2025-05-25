@@ -12,7 +12,9 @@ namespace spark {
         class SceneGraphManager3D : public ISceneGraphManager3D
         {
         public:
-            SceneGraphManager3D(spark::renderer::ISparkRenderer* renderer, spark::device::ScreenResolution screenResolution);
+            SceneGraphManager3D(spark::renderer::ISparkRenderer* renderer,
+                spark::device::ScreenResolution screenResolution,
+                spark::log::ISparkLogger* logger);
             virtual ~SceneGraphManager3D();
 
         public:

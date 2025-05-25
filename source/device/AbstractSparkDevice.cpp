@@ -126,7 +126,7 @@ namespace spark {
         */
         spark::scene::ISceneGraphManager3D* AbstractSparkDevice::createSceneGraphManager3D()
         {
-            return new spark::scene::SceneGraphManager3D(m_renderer, this->getScreenResolution());
+            return new spark::scene::SceneGraphManager3D(m_renderer, this->getScreenResolution(), m_logger);
         }
 
         /**
@@ -134,8 +134,7 @@ namespace spark {
         */
         spark::scene::ISceneGraphManager2D* AbstractSparkDevice::createSceneGraphManager2D()
         {
-            return new spark::scene::SceneGraphManager2D(m_renderer);
-            //return NULL;
+            return new spark::scene::SceneGraphManager2D(m_renderer, m_logger);
         }
 
         /**

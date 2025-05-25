@@ -9,7 +9,8 @@ namespace spark {
         AbstractLayer::AbstractLayer(b2Body* body) :
             m_x(0),
             m_y(0),
-            m_zAxisRotation(0)
+            m_zAxisRotation(0),
+            m_b2Body(body)
         {
 
         }

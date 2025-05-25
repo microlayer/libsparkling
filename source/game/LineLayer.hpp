@@ -11,11 +11,19 @@ namespace spark {
         class LineLayer : public spark::game::AbstractLayer
         {
         public:
-            LineLayer();
+            LineLayer(int16_t x1, int16_t y1, int16_t x2, int16_t y2, spark::drawing::Color color);
+            LineLayer(int16_t x1, int16_t y1, int16_t x2, int16_t y2, spark::drawing::Color color, b2Body* body);
             ~LineLayer();
 
         public: // AbstractLayer
             void paint(spark::renderer::ISparkRenderer* renderer);
+
+        private:
+            int16_t m_x1;
+            int16_t m_y1;
+            int16_t m_x2;
+            int16_t m_y2;
+            spark::drawing::Color m_color;
         };
     }
 }

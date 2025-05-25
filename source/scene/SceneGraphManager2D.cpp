@@ -5,11 +5,11 @@ namespace spark {
         /**
         *
         */
-        SceneGraphManager2D::SceneGraphManager2D(spark::renderer::ISparkRenderer* renderer)
+        SceneGraphManager2D::SceneGraphManager2D(spark::renderer::ISparkRenderer* renderer, spark::log::ISparkLogger* logger) :
+            m_renderer(renderer),
+            m_logger(logger),
+            m_b2World(b2Vec2(0.0f, -10.0f))
         {
-            b2Vec2 gravity(0.0f, -10.0f);
-            m_b2World = new b2World(gravity);
-
             m_timer = new spark::timer::Timer();
             m_startTime = 0;
             m_timeStep = 1 / 60.0f;		// 60 Hz
@@ -23,7 +23,6 @@ namespace spark {
         */
         SceneGraphManager2D::~SceneGraphManager2D()
         {
-            if (m_b2World != NULL) delete m_b2World;
             if (m_timer != NULL) delete m_timer;
         }
 
@@ -36,7 +35,7 @@ namespace spark {
             spriteBodyDef.type = b2_dynamicBody;
 
             b2PolygonShape spriteShapeDef;
-            spriteShapeDef.SetAsBox(((image->getWidth() / PTM_RATIO) / 4.0f), ((image->getHeight() / PTM_RATIO) / 4.0f));
+            spriteShapeDef.SetAsBox(((image->getWidth() / PTM_RATIO) / 2.0f), ((image->getHeight() / PTM_RATIO) / 2.0f));
 
             b2FixtureDef spriteFixtureDef;
             spriteFixtureDef.shape = &spriteShapeDef;
@@ -44,11 +43,14 @@ namespace spark {
             spriteFixtureDef.friction = 0.9f;
             spriteFixtureDef.restitution = 0.65f;
 
-            b2Body* body = m_b2World->CreateBody(&spriteBodyDef);
+            b2Body* body = m_b2World.CreateBody(&spriteBodyDef);
 
-            auto sprite = std::make_unique<spark::game::Sprite>(image);
+            // Add the shape to the body.
+            body->CreateFixture(&spriteFixtureDef);
+
+            auto sprite = std::make_unique<spark::game::Sprite>(image, body);
             spark::game::Sprite* ptr = sprite.get();
-            m_sprites.push_back(std::move(sprite));
+            m_worldElements.push_back(std::move(sprite));
             return ptr;
         }
 
@@ -57,7 +59,18 @@ namespace spark {
         */
         spark::game::LineLayer* SceneGraphManager2D::addLineLayer(int16_t x1, int16_t y1, int16_t x2, int16_t y2, spark::drawing::Color color)
         {
-            return NULL;
+            b2BodyDef lineBodyDef;
+            lineBodyDef.type = b2_staticBody;
+            b2Body* body = m_b2World.CreateBody(&lineBodyDef);
+
+            b2EdgeShape shape;
+            shape.Set(b2Vec2((x1 / PTM_RATIO) / 2.0f, -(y1 / PTM_RATIO) / 2.0f), b2Vec2((x2 / PTM_RATIO) / 2.0f, -(y2 / PTM_RATIO) / 2.0f));
+            body->CreateFixture(&shape, 0.0f);
+
+            auto lineLayer = std::make_unique<spark::game::LineLayer>(x1, y1, x2, y2, color, body);
+            spark::game::LineLayer* ptr = lineLayer.get();
+            m_worldElements.push_back(std::move(lineLayer));
+            return ptr;
         }
 
         /**
@@ -68,15 +81,15 @@ namespace spark {
             uint32_t currentTimeInMilliseconds = m_timer->getTimestamp();
             int32_t stepTime = currentTimeInMilliseconds - m_startTime;
 
-            for (const auto& sprite : m_sprites)
+            for (const auto& worldElement : m_worldElements)
             {
-                sprite->paint(renderer);
+                worldElement->paint(renderer);
             }
 
             if ((currentTimeInMilliseconds - m_startTime) > m_framePeriod)
             {
                 m_startTime = currentTimeInMilliseconds;
-                m_b2World->Step(m_timeStep, m_velocityIterations, m_positionIterations);
+                m_b2World.Step(m_timeStep, m_velocityIterations, m_positionIterations);
             }
         }
     }

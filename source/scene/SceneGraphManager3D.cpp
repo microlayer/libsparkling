@@ -5,7 +5,9 @@ namespace spark {
         /**
         *
         */
-        SceneGraphManager3D::SceneGraphManager3D(spark::renderer::ISparkRenderer* renderer, spark::device::ScreenResolution screenResolution)
+        SceneGraphManager3D::SceneGraphManager3D(spark::renderer::ISparkRenderer* renderer,
+            spark::device::ScreenResolution screenResolution,
+            spark::log::ISparkLogger* logger)
             : m_renderer(renderer),
             m_screenResolution(screenResolution)
         {
