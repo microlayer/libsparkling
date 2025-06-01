@@ -7,7 +7,7 @@ SRC_FILES := $(wildcard ../../Collision/*.cpp)
 SRC_FILES += $(wildcard ../../Collision/Shapes/*.cpp)
 SRC_FILES += $(wildcard ../../Common/*.cpp)
 SRC_FILES += $(wildcard ../../Dynamics/*.cpp)
-SRC_FILES += $(wildcard ../../Dynamics/Contracts/*.cpp)
+SRC_FILES += $(wildcard ../../Dynamics/Contacts/*.cpp)
 SRC_FILES += $(wildcard ../../Dynamics/Joints/*.cpp)
 SRC_FILES += $(wildcard ../../Rope/*.cpp)
 
