@@ -8,6 +8,7 @@
 #include "PixelToMeterOffsetInfo.hpp"
 #include "timer/Timer.hpp"
 #include "ISparkSprite.hpp"
+#include "../log/LogManager.hpp"
 
 namespace spark {
     namespace game {

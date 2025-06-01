@@ -35,7 +35,12 @@ namespace spark {
             spriteBodyDef.type = b2_dynamicBody;
 
             b2PolygonShape spriteShapeDef;
+
             spriteShapeDef.SetAsBox(((image->getWidth() / PTM_RATIO) / 2.0f), ((image->getHeight() / PTM_RATIO) / 2.0f));
+
+            /*real32 hx = (image->getWidth() / PTM_RATIO) / 2.0f;
+            real32 hy = (image->getHeight() / PTM_RATIO) / 2.0f;
+            spriteShapeDef.SetAsBox(hx, hy, b2Vec2(hx, -hy), 0.0f);*/
 
             b2FixtureDef spriteFixtureDef;
             spriteFixtureDef.shape = &spriteShapeDef;

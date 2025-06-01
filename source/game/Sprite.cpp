@@ -109,13 +109,22 @@ namespace spark {
 
             real32 angle = m_b2Body->GetAngle();
             b2Vec2 pos = m_b2Body->GetPosition();
+            int posXInPixel = pos.x * PTM_RATIO;
+            int posYInPixel = -pos.y * PTM_RATIO;
+
+            int x_offset = (m_image->getWidth() / 2.0f);
+            int y_offset = (m_image->getHeight() / 2.0f);
+
+
+            spark::log::LogManager::getLogger()->info("x: %f | y: %f | angel: %f", pos.x, pos.y, angle);
+
 
             spark::math::Matrix4f m;
-            m.setTranslation(spark::math::Vector3f(m_x, m_y, 0.0f));
-            m.setRotation(spark::math::Vector3f(0.0f, 0.0f, AbstractLayer::getRotation()));
+            m.setTranslation(spark::math::Vector3f(posXInPixel, posYInPixel, 0.0f));
+            m.setRotation(spark::math::Vector3f(0.0f, 0.0f, angle));
             renderer->setModelTransformation(m);
 
-            renderer->draw2DBitmap(m_image, pos.x * PTM_RATIO, -pos.y * PTM_RATIO, clipRect);
+            renderer->draw2DBitmap(m_image, -x_offset, -y_offset, clipRect);
 
             spark::math::Matrix4f identity;
             renderer->setModelTransformation(identity);

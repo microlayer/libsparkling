@@ -20,7 +20,7 @@
 /**
 * @Brief Pixel to meter ratio used for the box2d physics engine
 */
-#define PTM_RATIO					50.0
+#define PTM_RATIO					50.0f
 
 /**
 * @Brief Define logging

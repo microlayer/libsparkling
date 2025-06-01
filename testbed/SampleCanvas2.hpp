@@ -13,10 +13,11 @@ public:
         m_sceneGraphManager2D = m_device->createSceneGraphManager2D();
 
         m_quadImage = m_device->getFileSystem()->loadBitmap("quad.png");
-        m_quadSprite = m_sceneGraphManager2D->addSprite(m_quadImage.get());
-        m_sceneGraphManager2D->addLineLayer(0, 200, 200, 200, spark::drawing::Color(255, 0, 0, 255));
-        //m_quadSprite->setPosition(100, 100);
-        //m_quadSprite->setRotation(25);
+
+        spark::game::Sprite* quadSprite = m_sceneGraphManager2D->addSprite(m_quadImage.get());
+        quadSprite->setPosition(100, 75);
+        quadSprite->setRotation(-0.775);
+        m_sceneGraphManager2D->addLineLayer(0, 300, 500, 300, spark::drawing::Color(255, 0, 0, 255));
     }
 
     /**
@@ -53,5 +54,4 @@ private:
     spark::device::ISparkDevice* m_device;
     spark::SparkSharedPointer<spark::scene::ISceneGraphManager2D> m_sceneGraphManager2D;
     spark::SparkSharedPointer<spark::drawing::ISparkImage> m_quadImage;
-    spark::SparkSharedPointer<spark::game::Sprite> m_quadSprite;
 };
