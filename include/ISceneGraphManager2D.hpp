@@ -18,8 +18,8 @@ namespace spark {
         class ISceneGraphManager2D : public virtual spark::SparkRefCount
         {
         public:
-            virtual spark::game::Sprite* addSprite(spark::drawing::ISparkImage* image) = 0;
-            virtual spark::game::LineLayer* addLineLayer(int16_t x1, int16_t y1, int16_t x2, int16_t y2, spark::drawing::Color color) = 0;
+            virtual spark::game::Sprite* createSprite(spark::drawing::ISparkImage* image) = 0;
+            virtual spark::game::LineLayer* createLineLayer(int16_t x1, int16_t y1, int16_t x2, int16_t y2, spark::drawing::Color color) = 0;
             virtual void drawGraph(spark::renderer::ISparkRenderer* renderer) = 0;
         };
     }

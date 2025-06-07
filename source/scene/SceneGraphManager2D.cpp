@@ -29,7 +29,7 @@ namespace spark {
         /**
         *
         */
-        spark::game::Sprite* SceneGraphManager2D::addSprite(spark::drawing::ISparkImage* image)
+        spark::game::Sprite* SceneGraphManager2D::createSprite(spark::drawing::ISparkImage* image)
         {
             b2BodyDef spriteBodyDef;
             spriteBodyDef.type = b2_dynamicBody;
@@ -62,7 +62,7 @@ namespace spark {
         /**
         *
         */
-        spark::game::LineLayer* SceneGraphManager2D::addLineLayer(int16_t x1, int16_t y1, int16_t x2, int16_t y2, spark::drawing::Color color)
+        spark::game::LineLayer* SceneGraphManager2D::createLineLayer(int16_t x1, int16_t y1, int16_t x2, int16_t y2, spark::drawing::Color color)
         {
             b2BodyDef lineBodyDef;
             lineBodyDef.type = b2_staticBody;

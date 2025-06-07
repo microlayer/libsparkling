@@ -18,8 +18,8 @@ namespace spark {
             ~SceneGraphManager2D();
 
         public:
-            spark::game::Sprite* addSprite(spark::drawing::ISparkImage* image);
-            spark::game::LineLayer* addLineLayer(int16_t x1, int16_t y1, int16_t x2, int16_t y2, spark::drawing::Color color);
+            spark::game::Sprite* createSprite(spark::drawing::ISparkImage* image);
+            spark::game::LineLayer* createLineLayer(int16_t x1, int16_t y1, int16_t x2, int16_t y2, spark::drawing::Color color);
             void drawGraph(spark::renderer::ISparkRenderer* renderer);
 
         private:

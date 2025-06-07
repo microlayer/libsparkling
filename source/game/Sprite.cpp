@@ -16,7 +16,7 @@ namespace spark {
             m_ptmOffsetInfo(0),
             m_animationActivated(false)
         {
-
+            setPosition(0, 0);
         }
 
         /**
@@ -33,7 +33,7 @@ namespace spark {
             m_ptmOffsetInfo(0),
             m_animationActivated(false)
         {
-
+            setPosition(0, 0);
         }
 
         /**
@@ -109,11 +109,11 @@ namespace spark {
 
             real32 angle = m_b2Body->GetAngle();
             b2Vec2 pos = m_b2Body->GetPosition();
-            int posXInPixel = pos.x * PTM_RATIO;
-            int posYInPixel = -pos.y * PTM_RATIO;
+            real32 posXInPixel = pos.x * PTM_RATIO;
+            real32 posYInPixel = -pos.y * PTM_RATIO;
 
-            int x_offset = (m_image->getWidth() / 2.0f);
-            int y_offset = (m_image->getHeight() / 2.0f);
+            real32 x_offset = (m_image->getWidth() / 2.0f);
+            real32 y_offset = (m_image->getHeight() / 2.0f);
 
 
             spark::log::LogManager::getLogger()->info("x: %f | y: %f | angel: %f", pos.x, pos.y, angle);
