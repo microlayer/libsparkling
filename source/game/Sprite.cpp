@@ -49,6 +49,8 @@ namespace spark {
         */
         void Sprite::setPosition(int16_t x, int16_t y)
         {
+            x = (int16_t)(x + m_image->getWidth() / 2.0f);
+            y = (int16_t)(y + m_image->getHeight() / 2.0f);
             AbstractLayer::setPosition(x, y);
         }
 
@@ -107,7 +109,7 @@ namespace spark {
                 clipRect.m_height = m_image->getHeight();
             }
 
-            real32 angle = m_b2Body->GetAngle();
+            real32 angle = -m_b2Body->GetAngle();
             b2Vec2 pos = m_b2Body->GetPosition();
             real32 posXInPixel = pos.x * PTM_RATIO;
             real32 posYInPixel = -pos.y * PTM_RATIO;

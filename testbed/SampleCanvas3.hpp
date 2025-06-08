@@ -22,11 +22,12 @@ public:
         quadSprite1->setPosition(200, 75);
         quadSprite1->setRotation(-0.775f);
 
-        quadSprite2->setPosition(200, 15);
+        quadSprite2->setPosition(250, 15);
 
         quadSprite3->setPosition(200, 40);
 
         m_sceneGraphManager2D->createLineLayer(0, 600, 500, 600, spark::drawing::Color(255, 0, 0, 255));
+        m_sceneGraphManager2D->createLineLayer(0, 300, 200, 300, spark::drawing::Color(255, 0, 0, 255));
     }
 
     /**
@@ -51,10 +52,19 @@ public:
     /**
     *
     */
+    void onKeyPressed()
+    { 
+
+    }
+
+    /**
+    *
+    */
     void paint(spark::renderer::ISparkRenderer* renderer)
     {
         renderer->draw2DBitmap(m_sunsetImage.get(), 0, 0);
-        renderer->drawString(spark::font::ESFT_ARIAL_16, "CPU: 2.8%", spark::drawing::Color(0, 128, 0, 0), 600, 50);
+        renderer->drawString(spark::font::ESFT_ARIAL_16, "CPU: 2,8%", spark::drawing::Color(0, 128, 0, 0), 1000, 50);
+        renderer->drawString(spark::font::ESFT_ARIAL_16, "FPS: 60", spark::drawing::Color(0, 128, 0, 0), 1000, 70);
         m_sceneGraphManager2D->drawGraph(renderer);
     }
 
