@@ -16,10 +16,7 @@ namespace spark {
         */
         TextureFactory::~TextureFactory()
         {
-            for (auto pair : m_textureMap)
-            {
-                delete pair.second;
-            }
+
         }
 
         /**

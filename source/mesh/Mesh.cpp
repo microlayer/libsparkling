@@ -19,7 +19,7 @@ namespace spark {
         */
         Mesh::~Mesh(void)
         {
-            m_vertexBuffer->release();
+            if (m_vertexBuffer != NULL) m_vertexBuffer->release();
         }
 
         /**

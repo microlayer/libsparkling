@@ -16,10 +16,7 @@ namespace spark {
         */
         VertexBufferFactory::~VertexBufferFactory()
         {
-            for (auto pair : m_vertexBufferMap)
-            {
-                delete pair.second;
-            }
+
         }
 
         /**

@@ -19,6 +19,10 @@ namespace spark {
             spark::font::BitmapFontInfo getBitmapFontInfo(uint16_t size) const;
             uc8_t* getFontMap() const;
             std::string getFontName() const;
+            void setTexture(spark::renderer::ISparkTexture* texture);
+
+        private:
+            spark::renderer::ISparkTexture* m_texture;
         };
     } // end namespace font
 } // end namespace spark

@@ -32,6 +32,7 @@ namespace spark {
         Bitmap::~Bitmap(void)
         {
             delete m_stream;
+            if (m_texture != NULL) m_texture->release();
         }
 
         /**
@@ -72,6 +73,14 @@ namespace spark {
         std::string Bitmap::getHash() const
         {
             return m_hash;
+        }
+
+        /**
+        * Sets the assigned Texture on GPU
+        */
+        void Bitmap::setTexture(spark::renderer::ISparkTexture* texture)
+        {
+            m_texture = texture;
         }
     } // end namespace drawing
 } // end namespace spark

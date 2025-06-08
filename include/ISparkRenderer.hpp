@@ -46,8 +46,8 @@ namespace spark {
             virtual void draw2DLine(int16_t x1, int16_t y1, int16_t x2, int16_t y2, spark::drawing::Color color) = 0;
             virtual void draw2DCircle(int16_t centerX, int16_t centerY, int16_t radius) = 0;
             virtual void draw2DRectangle(int16_t x1, int16_t y1, int16_t width, int16_t height) = 0;
-            virtual void draw2DBitmap(const spark::drawing::ISparkImage* image, int16_t x, int16_t y) = 0;
-            virtual void draw2DBitmap(const spark::drawing::ISparkImage* image, int16_t x, int16_t y, const spark::drawing::ClippingRectangle clipRect) = 0;
+            virtual void draw2DBitmap(spark::drawing::ISparkImage* image, int16_t x, int16_t y) = 0;
+            virtual void draw2DBitmap(spark::drawing::ISparkImage* image, int16_t x, int16_t y, const spark::drawing::ClippingRectangle clipRect) = 0;
             virtual void drawTiledLayer(const spark::game::TiledLayer* tiledLayer, int16_t x, int16_t y) = 0;
             virtual void drawString(const spark::font::E_SYSTEM_FONT_TYPE fontType, const std::string text, spark::drawing::Color color, int16_t x, int16_t y) = 0;
             virtual void drawString(const std::string fontFamily, uint32_t size, const std::string text, spark::drawing::Color color, int16_t x, int16_t y) = 0;

@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <fstream>
 #include "PixelFormat.hpp"
+#include "ISparkTexture.hpp"
 
 namespace spark {
     namespace drawing {
@@ -25,6 +26,7 @@ namespace spark {
             uint32_t getHeight() const;
             spark::drawing::E_PIXEL_FORMAT getPixelFormat() const;
             std::string getHash() const;
+            void setTexture(spark::renderer::ISparkTexture* texture);
 
         private:
             uc8_t* m_stream;
@@ -33,6 +35,7 @@ namespace spark {
             uint32_t m_rawSize;
             spark::drawing::E_PIXEL_FORMAT m_pixelFormat;
             std::string m_hash;
+            spark::renderer::ISparkTexture* m_texture;
         };
     } // end namespace drawing
 } // end namespace spark

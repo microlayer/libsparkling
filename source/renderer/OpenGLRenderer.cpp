@@ -175,7 +175,7 @@ namespace spark {
         /**
         *
         */
-        void OpenGLRenderer::draw2DBitmap(const spark::drawing::ISparkImage* image, int16_t x, int16_t y)
+        void OpenGLRenderer::draw2DBitmap(spark::drawing::ISparkImage* image, int16_t x, int16_t y)
         {
             spark::drawing::ClippingRectangle clipRect = { 0,0, (uint16_t)image->getWidth(), (uint16_t)image->getHeight() };
             draw2DBitmap(image, x, y, clipRect);
@@ -184,7 +184,7 @@ namespace spark {
         /**
         *
         */
-        void OpenGLRenderer::draw2DBitmap(const spark::drawing::ISparkImage* image, int16_t x, int16_t y, const spark::drawing::ClippingRectangle clipRect)
+        void OpenGLRenderer::draw2DBitmap(spark::drawing::ISparkImage* image, int16_t x, int16_t y, const spark::drawing::ClippingRectangle clipRect)
         {
             m_shader->setDrawMode(1);
 
@@ -193,6 +193,7 @@ namespace spark {
 
             spark::renderer::ISparkTexture* texture = m_textureFactory->createOrUpdate(image->getHash(), image->getImageAsStream(), image->getWidth(), image->getHeight(), spark::drawing::E_RGBA8);
             texture->bind();
+            image->setTexture(texture);
 
             GLfloat clipStart = (GLfloat)(1.0 / image->getWidth()) * clipRect.m_x;
             GLfloat clipEnd = (GLfloat)(clipStart + (1.0 / image->getWidth()) * clipRect.m_width);
@@ -239,10 +240,11 @@ namespace spark {
             glEnable(GL_BLEND);
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-            const spark::drawing::ISparkImage* tilsetImage = tiledLayer->getTilesetImage();
+            spark::drawing::ISparkImage* tilsetImage = tiledLayer->getTilesetImage();
 
             spark::renderer::ISparkTexture* texture = m_textureFactory->createOrUpdate(tilsetImage->getHash(), tilsetImage->getImageAsStream(), tilsetImage->getWidth(), tilsetImage->getHeight(), spark::drawing::E_RGBA8);
             texture->bind();
+            tilsetImage->setTexture(texture);
 
             if (tiledLayer->getLayerType() == spark::game::E_LAYER_TYPE::ELT_ORTHOGONAL)
             {
@@ -345,8 +347,10 @@ namespace spark {
             uint16_t fontMapHeight = font->getBitmapFontInfo(16).m_textureHeight;
 
             m_shader->setFontColor(color);
+            
             spark::renderer::ISparkTexture* texture = m_textureFactory->createOrUpdate(font->getFontName(), fontMapImageData, fontMapWidth, fontMapHeight, spark::drawing::E_GRAY8);
             texture->bind();
+            font->setTexture(texture);
 
             spark::font::BitmapFontInfo bitmapFontInfo = font->getBitmapFontInfo(16);
             spark::font::BitmapGlyphInfo bitmapGlypInfo = bitmapFontInfo.m_bitmapGlyphs[65];

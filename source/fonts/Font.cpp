@@ -15,7 +15,7 @@ namespace spark {
         */
         Font::~Font()
         {
-
+            if (m_texture != NULL) m_texture->release();
         }
 
         /**
@@ -40,6 +40,15 @@ namespace spark {
         std::string Font::getFontName() const
         {
             return "Arial_16";
+        }
+
+        /**
+        *
+        */
+        void Font::setTexture(spark::renderer::ISparkTexture* texture)
+        {
+
+            m_texture = texture;
         }
     }
 }

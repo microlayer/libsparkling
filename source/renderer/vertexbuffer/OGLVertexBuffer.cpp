@@ -10,7 +10,8 @@ namespace spark {
                 m_bufferSizeVertices(0),
                 m_bufferSizeColor(0)
             {
-                for (auto& vertex : vertices) {
+                for (auto& vertex : vertices) 
+                {
                     m_verticesData.push_back(vertex.m_x);
                     m_verticesData.push_back(vertex.m_y);
                     m_verticesData.push_back(vertex.m_z);

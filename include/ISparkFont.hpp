@@ -3,6 +3,7 @@
 
 #include "SparkRefCount.hpp"
 #include "fonts/BitmapFontInfo.hpp"
+#include "ISparkTexture.hpp"
 #include <string>
 
 namespace spark {
@@ -24,6 +25,7 @@ namespace spark {
             virtual spark::font::BitmapFontInfo getBitmapFontInfo(uint16_t size) const = 0;
             virtual uc8_t* getFontMap() const = 0;
             virtual std::string getFontName() const = 0;
+            virtual void setTexture(spark::renderer::ISparkTexture* texture) = 0;
         };
 
     } // end namespace font
