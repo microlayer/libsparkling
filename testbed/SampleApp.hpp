@@ -12,7 +12,8 @@ public:
     /**
     *
     */
-    SampleApp(spark::device::ISparkDevice* device)
+    SampleApp(spark::device::ISparkDevice* device) :
+        m_device(device)
     {
         m_sampleCanvas1 = new SampleCanvas1(device);
         m_sampleCanvas2 = new SampleCanvas2(device);
@@ -63,6 +64,7 @@ public:
         {
 
         }
+
     }
 
     /**
@@ -87,4 +89,5 @@ private:
     spark::SparkSharedPointer<SampleCanvas3> m_sampleCanvas3;
     spark::ui::AbstractCanvas* m_currentCanvas;
     spark::timer::Timer m_timer;
+    spark::device::ISparkDevice* m_device;
 };

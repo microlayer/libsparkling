@@ -1,10 +1,13 @@
+cls
 :: Copy resources
-xcopy "..\..\res\*.png" "res\drawable" /I /Y /D
+xcopy "..\..\res\*.png" "src\main\assets" /I /Y /D
 xcopy "..\..\res\*.tmx" "src\main\assets" /I /Y /D
 xcopy "..\..\res\*.obj" "src\main\assets" /I /Y /D
 
 :: Build
-gradlew.bat 
+call gradlew.bat 
 
 :: Create APK
-gradlew.bat assembleDebug
+call gradlew.bat assembleDebug
+
+adb -e install jni\build\outputs\apk\debug\libsparkling-debug.apk

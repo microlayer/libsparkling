@@ -15,9 +15,9 @@ public:
         m_quadImage = m_device->getFileSystem()->loadBitmap("quad.png");
         m_sunsetImage = m_device->getFileSystem()->loadBitmap("sunset.png");
 
-        spark::game::Sprite* quadSprite1 = m_sceneGraphManager2D->createSprite(m_quadImage.get());
-        spark::game::Sprite* quadSprite2 = m_sceneGraphManager2D->createSprite(m_quadImage.get());
-        spark::game::Sprite* quadSprite3 = m_sceneGraphManager2D->createSprite(m_quadImage.get());
+        spark::game::ISparkSprite* quadSprite1 = m_sceneGraphManager2D->createSprite(m_quadImage.get());
+        spark::game::ISparkSprite* quadSprite2 = m_sceneGraphManager2D->createSprite(m_quadImage.get());
+        spark::game::ISparkSprite* quadSprite3 = m_sceneGraphManager2D->createSprite(m_quadImage.get());
 
         quadSprite1->setPosition(200, 75);
         quadSprite1->setRotation(-0.775f);
@@ -26,8 +26,10 @@ public:
 
         quadSprite3->setPosition(200, 40);
 
-        m_sceneGraphManager2D->createLineLayer(0, 600, 500, 600, spark::drawing::Color(255, 0, 0, 255));
-        m_sceneGraphManager2D->createLineLayer(0, 300, 200, 300, spark::drawing::Color(255, 0, 0, 255));
+        spark::game::ISparkLineLayer* line1 = m_sceneGraphManager2D->createLineLayer(0, 600, 500, 600, spark::drawing::Color(0, 0, 0, 255));
+        spark::game::ISparkLineLayer* line2 = m_sceneGraphManager2D->createLineLayer(0, 300, 200, 300, spark::drawing::Color(0, 0, 0, 255));
+
+        //line1->setPosition(10, 10);
     }
 
     /**
@@ -62,9 +64,8 @@ public:
     */
     void paint(spark::renderer::ISparkRenderer* renderer)
     {
-        renderer->draw2DBitmap(m_sunsetImage.get(), 0, 0);
-        renderer->drawString(spark::font::ESFT_ARIAL_16, "CPU: 2,8%", spark::drawing::Color(0, 128, 0, 0), 1000, 50);
-        renderer->drawString(spark::font::ESFT_ARIAL_16, "FPS: 60", spark::drawing::Color(0, 128, 0, 0), 1000, 70);
+        renderer->draw2DBitmap(m_sunsetImage.get(), 0, 0);       
+        renderer->drawString(spark::font::ESFT_ARIAL_16, "FPS: 60", spark::drawing::Color(255, 255, 0, 128), 1000, 70);
         m_sceneGraphManager2D->drawGraph(renderer);
     }
 

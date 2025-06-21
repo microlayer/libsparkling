@@ -265,6 +265,7 @@
     <ClInclude Include="..\..\include\ISceneGraphManager2D.hpp" />
     <ClInclude Include="..\..\include\ISceneGraphManager3D.hpp" />
     <ClInclude Include="..\..\include\ISparkFont.hpp" />
+    <ClInclude Include="..\..\include\ISparkLineLayer.hpp" />
     <ClInclude Include="..\..\include\ISparkNodeAnimator.hpp" />
     <ClInclude Include="..\..\include\ISparkRendererApiConfig.hpp" />
     <ClInclude Include="..\..\include\ISparkApp.hpp" />
@@ -365,6 +366,7 @@
     <ClInclude Include="..\..\testbed\SampleCanvas1.hpp" />
     <ClInclude Include="..\..\testbed\SampleCanvas2.hpp" />
     <ClInclude Include="..\..\testbed\SampleCanvas3.hpp" />
+    <ClInclude Include="..\..\testbed\SampleCanvas4.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\source\renderer\shader\glsl_for_gles2_feature_level_glsles10\Default.frag" />

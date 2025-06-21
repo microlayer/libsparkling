@@ -41,6 +41,22 @@ namespace spark {
         /**
         *
         */
+        void LineLayer::setPosition(int16_t x, int16_t y)
+        {
+            spark::game::AbstractLayer::setPosition(x, y);
+        }
+
+        /**
+        *
+        */
+        void LineLayer::setRotation(real32 zAxisRotation)
+        {
+
+        }
+
+        /**
+        *
+        */
         void LineLayer::paint(spark::renderer::ISparkRenderer* renderer)
         {
             renderer->draw2DLine(m_x1, m_y1, m_x2, m_y2, m_color);

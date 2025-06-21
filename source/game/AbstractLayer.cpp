@@ -30,7 +30,11 @@ namespace spark {
         {
             m_x = x;
             m_y = -y;
-            m_b2Body->SetTransform(b2Vec2((m_x / PTM_RATIO), (m_y / PTM_RATIO)), m_zAxisRotation);
+            
+            if (m_b2Body != NULL)
+            {
+                m_b2Body->SetTransform(b2Vec2((m_x / PTM_RATIO), (m_y / PTM_RATIO)), m_zAxisRotation);
+            }
         }
 
         /**
@@ -39,7 +43,11 @@ namespace spark {
         void AbstractLayer::setRotation(real32 zAxisRotation)
         {
             m_zAxisRotation = zAxisRotation;
-            m_b2Body->SetTransform(m_b2Body->GetPosition(), m_zAxisRotation);
+
+            if (m_b2Body != NULL)
+            {
+                m_b2Body->SetTransform(m_b2Body->GetPosition(), m_zAxisRotation);
+            }
         }
 
         /**

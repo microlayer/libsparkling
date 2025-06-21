@@ -10,8 +10,6 @@ namespace spark {
             m_androidApplication(pApplication)
         {
             AbstractSparkDevice::construct();
-
-            copyAssetToExternalStorage();
         }
 
         /**
@@ -44,6 +42,7 @@ namespace spark {
         */
         void AndroidDevice::createFileSystem()
         {
+            copyAssetToExternalStorage();
             m_fileSystem = new spark::file::FileSystem(m_logger, getRootPath());
         }
 
@@ -94,42 +93,93 @@ namespace spark {
         */
         std::string AndroidDevice::getRootPath()
         {
-            return "/";
+            return m_rootPath;
         }
 
         /**
-        * Copies the file to external storage private to the app, no special permissions needed on Android 10+.
+        * Copies the assets to external storage private to the app, no special permissions needed on Android 10+.
         */
         void AndroidDevice::copyAssetToExternalStorage()
         {
-            JNIEnv* env = m_androidApplication->activity->env;
+            m_logger->info("Start to copy assets to local file system");
+
+            JavaVM* javaVM = m_androidApplication->activity->vm;
+            JNIEnv* env;
+            javaVM->AttachCurrentThread(&env, NULL);
+
             AAssetManager* assetManager = m_androidApplication->activity->assetManager;
 
+            // Get external filesystem location
             jclass activityClass = env->GetObjectClass(m_androidApplication->activity->clazz);
             jmethodID getExternalFilesDir = env->GetMethodID(activityClass, "getExternalFilesDir", "(Ljava/lang/String;)Ljava/io/File;");
-            jobject fileObj = env->CallObjectMethod(m_androidApplication->activity->clazz, getExternalFilesDir, nullptr);
+            jobject fileObj = env->CallObjectMethod(m_androidApplication->activity->clazz, getExternalFilesDir, NULL);
 
             jclass fileClass = env->GetObjectClass(fileObj);
             jmethodID getPath = env->GetMethodID(fileClass, "getAbsolutePath", "()Ljava/lang/String;");
             jstring pathString = (jstring)env->CallObjectMethod(fileObj, getPath);
 
             const char* path = env->GetStringUTFChars(pathString, 0);
+            m_logger->info("Path in external filesystem is %s", path);
 
-            // Copy asset
-            std::string assetName = "test.dat";
+            AAssetDir* assetDir = AAssetManager_openDir(assetManager, ""); // "" will open root location 'src/main/assets'
 
-            // Create full output path
-            char fullDestPath[1024];
-            snprintf(fullDestPath, sizeof(fullDestPath), "%s/%s", path, assetName.c_str());
-            m_logger->info("Saving asset to: %s", fullDestPath);
-
-            // Open asset            
-            AAsset* asset = AAssetManager_open(assetManager, assetName.c_str(), AASSET_MODE_STREAMING);
-            if (!asset)
+            if (assetDir != NULL)
             {
-                m_logger->error("Failed to open asset: %s", assetName.c_str());
-                return;
+                m_logger->info("AAssetDir opened successfully");
+
+                // List assets 
+                std::vector<std::string> fileNames;
+                const char* fileName;
+                while ((fileName = AAssetDir_getNextFileName(assetDir)) != NULL)
+                {
+                    m_logger->info("File: %s%s", "/assets/", fileName);
+                    fileNames.push_back(fileName);
+                }
+                m_logger->info("Found %i files in assets folder", fileNames.size());
+
+                // Copy asset to external filesystem location
+                for (std::string fileName : fileNames)
+                {
+                    AAsset* asset = AAssetManager_open(assetManager, fileName.c_str(), AASSET_MODE_STREAMING);
+                    if (!asset)
+                    {
+                        m_logger->error("Failed to open asset: %s", fileName.c_str());
+                    }
+                    else
+                    {
+                        std::string filePath = std::string(path) + "/" + fileName;
+                        FILE* outFile = fopen(filePath.c_str(), "wb");
+                        if (!outFile)
+                        {
+                            m_logger->error("Failed to open destination file: %s\n", path);
+                        }
+                        else
+                        {
+                            // check if file exeeds size
+                            const size_t bufferSize = 500000;
+                            c8_t buffer[bufferSize];
+                            int32_t bytesRead;
+
+                            while ((bytesRead = AAsset_read(asset, buffer, bufferSize)) > 0)
+                            {
+                                fwrite(buffer, 1, bytesRead, outFile);
+                            }
+                            m_logger->info("Copy of file %s to %s was successful", fileName.c_str(), path);
+                            fclose(outFile);
+                            AAsset_close(asset);
+                        }
+                    }
+                }
+
+                AAssetDir_close(assetDir);
             }
+            else
+            {
+                m_logger->error("Failed to open AAssetDir");
+            }
+
+            m_rootPath = std::string(path) + std::string("/");
+            m_logger->info("Setting root path to %s", m_rootPath.c_str());
         }
     } // end namespace device
 } // end namespace spark

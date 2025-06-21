@@ -35,6 +35,7 @@ namespace spark {
 
         private:
             android_app* m_androidApplication;
+            std::string m_rootPath;
         };
     } // end namespace device
 } // end namespace spark

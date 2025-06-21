@@ -38,14 +38,14 @@ namespace spark {
 
             if (error == 0)
             {
-                m_logger->info("Loading '%s' successful", fileName.c_str());
+                m_logger->info("Loading '%s' successful", absolutePathFile.c_str());
                 fileSize = png.size();
                 rawSize = image.size();
                 bmp = new drawing::Bitmap(&image[0], width, height, spark::drawing::E_RGBA8, hash);
             }
             else
             {
-                m_logger->info("Loading '%s' not successful with code %i", fileName.c_str(), error);
+                m_logger->info("Loading '%s' not successful with code %i", absolutePathFile.c_str(), error);
                 fileSize = 0;
                 rawSize = 0;
                 bmp = NULL;

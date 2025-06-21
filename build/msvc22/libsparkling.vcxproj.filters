@@ -563,6 +563,12 @@
     <ClInclude Include="..\..\testbed\SampleCanvas3.hpp">
       <Filter>testbed</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\ISparkLineLayer.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\testbed\SampleCanvas4.hpp">
+      <Filter>testbed</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\source\renderer\shader\glsl_for_ogl_feature_level_glsles10\Default.frag">
