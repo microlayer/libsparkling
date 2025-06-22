@@ -1,6 +1,7 @@
 #include "SampleCanvas1.hpp"
 #include "SampleCanvas2.hpp"
 #include "SampleCanvas3.hpp"
+#include "SampleCanvas4.hpp"
 #include "ISparkCommandListener.hpp"
 
 /**
@@ -18,6 +19,7 @@ public:
         m_sampleCanvas1 = new SampleCanvas1(device);
         m_sampleCanvas2 = new SampleCanvas2(device);
         m_sampleCanvas3 = new SampleCanvas3(device);
+        m_sampleCanvas4 = new SampleCanvas4(device);
         //m_sampleCanvas->registerCommandListener(this);
     }
 
@@ -37,6 +39,7 @@ public:
         this->setActiveCanvas(m_sampleCanvas1.get());
         m_timer.setTimeout([this]() {this->switchToCanvas2(); }, 2000);
         m_timer.setTimeout([this]() {this->switchToCanvas3(); }, 4000);
+        m_timer.setTimeout([this]() {this->switchToCanvas4(); }, 8000);
     }
 
     /**
@@ -58,13 +61,20 @@ public:
     /**
     *
     */
+    void switchToCanvas4()
+    {
+        this->setActiveCanvas(m_sampleCanvas4.get());
+    }
+
+    /**
+    *
+    */
     void executeCommand(spark::ui::Command::E_COMMAND_TYPE cmd, spark::ui::AbstractCanvas* canvas)
     {
         if (spark::ui::Command::ECT_BACK == cmd)
         {
 
         }
-
     }
 
     /**
@@ -87,6 +97,7 @@ private:
     spark::SparkSharedPointer<SampleCanvas1> m_sampleCanvas1;
     spark::SparkSharedPointer<SampleCanvas2> m_sampleCanvas2;
     spark::SparkSharedPointer<SampleCanvas3> m_sampleCanvas3;
+    spark::SparkSharedPointer<SampleCanvas4> m_sampleCanvas4;
     spark::ui::AbstractCanvas* m_currentCanvas;
     spark::timer::Timer m_timer;
     spark::device::ISparkDevice* m_device;

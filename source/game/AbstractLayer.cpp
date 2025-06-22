@@ -29,11 +29,11 @@ namespace spark {
         void AbstractLayer::setPosition(int16_t x, int16_t y)
         {
             m_x = x;
-            m_y = -y;
-            
+            m_y = y;
+
             if (m_b2Body != NULL)
             {
-                m_b2Body->SetTransform(b2Vec2((m_x / PTM_RATIO), (m_y / PTM_RATIO)), m_zAxisRotation);
+                m_b2Body->SetTransform(b2Vec2((m_x / PTM_RATIO), (-m_y / PTM_RATIO)), m_zAxisRotation);
             }
         }
 

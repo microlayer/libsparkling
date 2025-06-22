@@ -13,7 +13,7 @@ public:
         spark::file::ISparkFileSystem* m_fileSystem = device->getFileSystem();
 
         m_level = m_fileSystem->loadTiledLayer("tiles4x4_32_v1-11.tmx");
-        //m_level->setPosition(0, 50);
+        m_level->setPosition(0, 150);
     }
 
     /**
@@ -48,6 +48,7 @@ public:
     */
     void paint(spark::renderer::ISparkRenderer* renderer)
     {
+        renderer->drawBackground(spark::drawing::Color(0, 0, 0, 255));
         renderer->drawString(spark::font::ESFT_ARIAL_16, "FPS: 60", spark::drawing::Color(255, 255, 0, 128), 1000, 70);
         m_level->paint(renderer);
     }
