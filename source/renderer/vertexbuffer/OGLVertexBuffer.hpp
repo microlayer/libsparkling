@@ -37,13 +37,15 @@ namespace spark {
                 void drawTriangles();
 
             private:
-                GLuint m_vao, m_vbo, m_cbo, m_ibo;
+                GLuint m_vao, m_vbo, m_nbo, m_cbo, m_ibo;
 
                 int m_bufferSizeVertices;
+                int m_bufferSizeNormals;
                 int m_bufferSizeColor;
                 int m_bufferSizeIndices;
 
                 std::vector<real32> m_verticesData;
+                std::vector<real32> m_normalData;
                 std::vector<uc8_t> m_colorData;
                 spark::mesh::ISparkMesh* m_mesh;
             };

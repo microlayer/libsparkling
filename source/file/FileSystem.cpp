@@ -21,7 +21,7 @@ namespace spark {
         /**
         *
         */
-        spark::drawing::ISparkImage* FileSystem::loadBitmap(std::string fileName)
+        spark::drawing::ISparkImage* FileSystem::loadBitmap(const std::string& fileName)
         {
             spark::drawing::Bitmap* bmp = NULL;
             std::string absolutePathFile = m_rootPath + fileName;
@@ -56,7 +56,7 @@ namespace spark {
         /**
         *
         */
-        spark::game::ISparkTiledLayer* FileSystem::loadTiledLayer(std::string fileName)
+        spark::game::ISparkTiledLayer* FileSystem::loadTiledLayer(const std::string& fileName)
         {
             spark::game::TiledLayer* tiledLayer = NULL;
             spark::drawing::ISparkImage* tilesetImage = NULL;
@@ -127,11 +127,19 @@ namespace spark {
         /**
         *
         */
+        spark::mesh::ISparkMesh* FileSystem::loadMesh(const std::string& fileName)
+        {
+            spark::mesh::importer::WavefrontFileReader wavefrontImporter(m_rootPath);
+            return wavefrontImporter.loadMesh(fileName);
+        }
+
+        /**
+        *
+        */
         void FileSystem::appendText(std::string filename, std::string text)
         {
 
         }
-
     } // end namespace file
 } // end namespace spark
 

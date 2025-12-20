@@ -49,6 +49,9 @@ namespace spark {
             {
                 Instance = this;
                 glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+                
+                // Multisample Anti-Aliasing (MSAA) 
+                glfwWindowHint(GLFW_SAMPLES, 4);  // 4x MSAA
 
                 // Set OpenGL version and profile
                 glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);

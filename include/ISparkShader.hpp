@@ -24,6 +24,7 @@ namespace spark {
                 virtual void setDrawMode(uint32_t drawMode) = 0;
                 virtual void setTextureUnit(uint32_t unit) = 0;
                 virtual void setFontColor(spark::drawing::Color fontColor) = 0;
+                virtual void setLightDirection(real32 x, real32 y, real32 z) = 0;
             };
         } // end namespace shader
     } // end namespace renderer

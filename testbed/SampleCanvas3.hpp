@@ -45,6 +45,8 @@ public:
     */
     void init()
     {
+        m_device->getLogger()->info("Init Canvas3");
+
         // Set virtual resolution
         spark::perspective::OrthographicProjection orthographicProjection(m_device->getScreenResolution().m_width, m_device->getScreenResolution().m_height);
         orthographicProjection.setVirtualResolution(1196, 720, spark::perspective::VirtualResolution::E_LETTER_OR_PILLARBOX);

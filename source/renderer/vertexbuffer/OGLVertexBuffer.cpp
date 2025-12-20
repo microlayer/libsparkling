@@ -10,11 +10,14 @@ namespace spark {
                 m_bufferSizeVertices(0),
                 m_bufferSizeColor(0)
             {
-                for (auto& vertex : vertices) 
+                for (auto& vertex : vertices)
                 {
                     m_verticesData.push_back(vertex.m_x);
                     m_verticesData.push_back(vertex.m_y);
                     m_verticesData.push_back(vertex.m_z);
+                    m_normalData.push_back(vertex.m_normal.m_x);
+                    m_normalData.push_back(vertex.m_normal.m_y);
+                    m_normalData.push_back(vertex.m_normal.m_z);
                     m_colorData.push_back(vertex.m_color.m_red);
                     m_colorData.push_back(vertex.m_color.m_green);
                     m_colorData.push_back(vertex.m_color.m_blue);
@@ -40,6 +43,9 @@ namespace spark {
                     m_verticesData.push_back(vertex.m_x);
                     m_verticesData.push_back(vertex.m_y);
                     m_verticesData.push_back(vertex.m_z);
+                    m_normalData.push_back(vertex.m_normal.m_x);
+                    m_normalData.push_back(vertex.m_normal.m_y);
+                    m_normalData.push_back(vertex.m_normal.m_z);
                     m_colorData.push_back(vertex.m_color.m_red);
                     m_colorData.push_back(vertex.m_color.m_green);
                     m_colorData.push_back(vertex.m_color.m_blue);
@@ -47,7 +53,8 @@ namespace spark {
                 }
 
                 m_bufferSizeVertices = mesh->getVertices().size() * 3 * sizeof(real32);         // 24*3* 4 bytes=96
-                m_bufferSizeColor = mesh->getColors().size() * 4 * sizeof(uc8_t);               // 24*3* 1 byte=24
+                m_bufferSizeNormals = mesh->getNormals().size() * 3 * sizeof(real32);           // 24*3* 4 bytes=96
+                m_bufferSizeColor = mesh->getColors().size() * 4 * sizeof(uc8_t);               // 24*3* 1 byte=24               
                 m_bufferSizeIndices = m_mesh->getIndices().size() * sizeof(uint16_t);           // 36*1* 2 bytes=72
 
                 allocateBuffer();
@@ -60,6 +67,7 @@ namespace spark {
             OGLVertexBuffer::~OGLVertexBuffer()
             {
                 glDeleteBuffers(1, &m_vbo);
+                glDeleteBuffers(1, &m_nbo);
                 glDeleteBuffers(1, &m_cbo);
                 glDeleteBuffers(1, &m_ibo);
                 glDeleteVertexArrays(1, &m_vao);
@@ -81,12 +89,20 @@ namespace spark {
                 glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
                 glEnableVertexAttribArray(0);
 
+                // Create VBO for normal
+                glGenBuffers(1, &m_nbo);
+                glBindBuffer(GL_ARRAY_BUFFER, m_nbo);
+                glBufferData(GL_ARRAY_BUFFER, m_bufferSizeNormals, NULL, GL_DYNAMIC_DRAW); // Allocate but not upload on GPU yet
+                glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+                glEnableVertexAttribArray(1);
+
                 // Create VBO for colors
                 glGenBuffers(1, &m_cbo);
                 glBindBuffer(GL_ARRAY_BUFFER, m_cbo);
                 glBufferData(GL_ARRAY_BUFFER, m_bufferSizeColor, NULL, GL_DYNAMIC_DRAW); // Allocate but not upload on GPU yet
                 glVertexAttribPointer(2, 4, GL_UNSIGNED_BYTE, GL_TRUE, 0, (void*)0);
                 glEnableVertexAttribArray(2);
+
 
                 // Create VBO for indices
                 glGenBuffers(1, &m_ibo);
@@ -99,6 +115,10 @@ namespace spark {
             {
                 glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
                 glBufferSubData(GL_ARRAY_BUFFER, 0, m_bufferSizeVertices, &m_verticesData[0]);
+                glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+                glBindBuffer(GL_ARRAY_BUFFER, m_nbo);
+                glBufferSubData(GL_ARRAY_BUFFER, 0, m_bufferSizeNormals, &m_normalData[0]);
                 glBindBuffer(GL_ARRAY_BUFFER, 0);
 
                 glBindBuffer(GL_ARRAY_BUFFER, m_cbo);

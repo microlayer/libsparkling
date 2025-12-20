@@ -11,7 +11,7 @@ namespace spark {
             spark::renderer::ISparkVertexBufferFactory* vertexBufferFactory) :
             AbstractSparkRenderer(device, shader, textureFactory, vertexBufferFactory)
         {
-            m_backgroundColor = spark::drawing::Color(0, 128, 0, 0);
+            m_backgroundColor = spark::drawing::Color(48, 48, 48, 255);
         }
 
         /**
@@ -347,7 +347,7 @@ namespace spark {
             uint16_t fontMapHeight = font->getBitmapFontInfo(16).m_textureHeight;
 
             m_shader->setFontColor(color);
-            
+
             spark::renderer::ISparkTexture* texture = m_textureFactory->createOrUpdate(font->getFontName(), fontMapImageData, fontMapWidth, fontMapHeight, spark::drawing::E_GRAY8);
             texture->bind();
             font->setTexture(texture);
@@ -417,6 +417,22 @@ namespace spark {
             spark::renderer::ISparkVertexBuffer* vertexBuffer = m_vertexBufferFactory->createOrUpdate(mesh->getGuid(), mesh);
             mesh->setVertexBuffer(vertexBuffer);
             vertexBuffer->drawTriangles();
+        }
+
+        /**
+        *
+        */
+        void OpenGLRenderer::activateDepthTest(bool flag)
+        {
+            if (flag)
+            {
+                glEnable(GL_DEPTH_TEST);
+                glDepthFunc(GL_LESS);
+            }
+            else
+            {
+                glDisable(GL_DEPTH_TEST);
+            }
         }
     } // end namespace renderer
 } // end namespace spark

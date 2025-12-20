@@ -61,6 +61,9 @@ namespace spark {
             // 3D
             void renderMesh(spark::mesh::ISparkMesh* mesh);
 
+            // Depth-Test
+            void activateDepthTest(bool flag);
+
         private:
             math::Matrix4f m_projectionViewMatrix;
             spark::drawing::Color m_backgroundColor;

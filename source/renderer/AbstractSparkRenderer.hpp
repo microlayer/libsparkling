@@ -24,6 +24,10 @@ namespace spark {
             void endScene();
 
         public:
+            void setDrawMode(uint32_t drawMode);
+            void setLightDirection(real32 x, real32 y, real32 z);
+
+        public:
             virtual void onBeginScene() = 0;
             virtual void onEndScene() = 0;
 

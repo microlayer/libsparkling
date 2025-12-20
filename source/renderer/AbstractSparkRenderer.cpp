@@ -42,5 +42,21 @@ namespace spark {
             onEndScene();
             m_device->flush();
         }
+
+        /**
+        *
+        */
+        void AbstractSparkRenderer::setDrawMode(uint32_t drawMode)
+        {
+            m_shader->setDrawMode(drawMode);
+        }
+
+        /**
+        *
+        */
+        void AbstractSparkRenderer::setLightDirection(real32 x, real32 y, real32 z)
+        {
+            m_shader->setLightDirection(x, y, z);
+        }
     } // end namespace renderer
 } // end namespace spark

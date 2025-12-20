@@ -42,6 +42,7 @@ namespace spark {
                 void setDrawMode(uint32_t drawMode);
                 void setTextureUnit(uint32_t unit);
                 void setFontColor(spark::drawing::Color fontColor);
+                void setLightDirection(real32 x, real32 y, real32 z);
 
             private:
                 void init();

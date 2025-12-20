@@ -37,9 +37,9 @@ public:
     void onInit()
     {
         this->setActiveCanvas(m_sampleCanvas1.get());
-        m_timer.setTimeout([this]() {this->switchToCanvas2(); }, 2000);
-        m_timer.setTimeout([this]() {this->switchToCanvas3(); }, 4000);
-        m_timer.setTimeout([this]() {this->switchToCanvas4(); }, 8000);
+        m_timer1.setTimeout([this]() {this->switchToCanvas2(); }, 4000);
+        m_timer2.setTimeout([this]() {this->switchToCanvas3(); }, 8000);
+        m_timer3.setTimeout([this]() {this->switchToCanvas4(); }, 18000);
     }
 
     /**
@@ -99,6 +99,8 @@ private:
     spark::SparkSharedPointer<SampleCanvas3> m_sampleCanvas3;
     spark::SparkSharedPointer<SampleCanvas4> m_sampleCanvas4;
     spark::ui::AbstractCanvas* m_currentCanvas;
-    spark::timer::Timer m_timer;
     spark::device::ISparkDevice* m_device;
+    spark::timer::Timer m_timer1;
+    spark::timer::Timer m_timer2;
+    spark::timer::Timer m_timer3;
 };

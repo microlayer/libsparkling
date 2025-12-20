@@ -7,7 +7,8 @@ namespace spark {
         *
         */
         SceneNode::SceneNode() :
-            m_mesh(NULL)
+            m_mesh(NULL),
+            m_nodeAnimator(NULL)
         {
 
         }
@@ -56,7 +57,8 @@ namespace spark {
         */
         void SceneNode::setPosition(spark::math::Vector3f position)
         {
-
+            m_position = position;
+            m_modelTransformationMatrix.setTranslation(position);
         }
 
         /**
@@ -64,6 +66,7 @@ namespace spark {
         */
         void SceneNode::setRotation(spark::math::Vector3f rotation)
         {
+            m_rotation = rotation;
             m_modelTransformationMatrix.setRotation(rotation);
         }
 

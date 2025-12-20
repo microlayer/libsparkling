@@ -9,6 +9,7 @@
 #include "scene/SceneGraphManager2D.hpp"
 
 //#define SAMPLE_2D
+//#define SAMPLE_3D_TEAPOT
 
 /**
 *
@@ -20,7 +21,8 @@ public:
     *
     */
     SampleCanvas1(spark::device::ISparkDevice* device) :
-        m_device(device)
+        m_device(device),
+        m_fileSystem(NULL)
     {
 
 #ifdef SAMPLE_2D
@@ -41,6 +43,25 @@ public:
         m_explosionSprite->setPosition(100, 100);
         m_explosionSprite->startAnimation();
         m_explosionSprite->setAnimationDetails(100, 25, 25);
+
+#elif defined(SAMPLE_3D_TEAPOT)
+        // Create SceneGraphManager3D
+        m_sceneGraphManager3D = device->createSceneGraphManager3D();
+        m_sceneGraphManager3D->setNormalVectorDebugVisualizationMode();
+
+        // Create Mesh
+        spark::SparkSharedPointer<spark::mesh::ISparkMesh> mesh = device->getFileSystem()->loadMesh("teapot.obj");
+
+        // Create Animator
+        spark::SparkSharedPointer<spark::animator::NodeRotationAnimator> nodeRotationAnimaror = new spark::animator::NodeRotationAnimator(spark::math::Vector3f(0, 50, 0));
+
+        // Create SceneNode
+        spark::SparkSharedPointer<spark::scene::ISparkSceneNode> node = new spark::scene::SceneNode();
+        node->setPosition(spark::math::Vector3f(0, -1, -4));
+        node->attachMesh(mesh.get());
+        node->addAnimator(nodeRotationAnimaror.get());
+
+        m_sceneGraphManager3D->rootNode()->addChildSceneNode(node.get());
 #else
         // Create SceneGraphManager3D
         m_sceneGraphManager3D = device->createSceneGraphManager3D();
@@ -53,7 +74,7 @@ public:
 
         // Create SceneNode
         spark::SparkSharedPointer<spark::scene::ISparkSceneNode> node = new spark::scene::SceneNode();
-        node->setPosition(spark::math::Vector3f(0, 0, 10));
+        node->setPosition(spark::math::Vector3f(0, 0, -1));
         node->attachMesh(cubeMesh.get());
         node->addAnimator(nodeRotationAnimaror.get());
 
@@ -74,6 +95,8 @@ public:
     */
     void init()
     {
+        m_device->getLogger()->info("Init Canvas1");
+
         // Set virtual resolution
         spark::perspective::OrthographicProjection orthographicProjection(m_device->getScreenResolution().m_width, m_device->getScreenResolution().m_height);
         orthographicProjection.setVirtualResolution(1196, 720, spark::perspective::VirtualResolution::E_LETTER_OR_PILLARBOX);

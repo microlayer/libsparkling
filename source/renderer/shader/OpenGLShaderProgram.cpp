@@ -161,6 +161,14 @@ namespace spark {
             /**
             *
             */
+            void OpenGLShaderProgram::setLightDirection(real32 x, real32 y, real32 z)
+            {
+                glUniform3f(glGetUniformLocation(m_programObject, "uLightDirection"), x, y, z);
+            }
+
+            /**
+            *
+            */
             void OpenGLShaderProgram::init()
             {
                 setTextureUnit(0);

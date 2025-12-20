@@ -20,6 +20,7 @@ LIBSPARKLING_SRC_FILES:= $(call LS_CPP,$(LOCAL_PATH),../../../testbed/bootstrap/
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/file) \
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/mesh) \
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/mesh/generator) \
+			$(call LS_CPP,$(LOCAL_PATH),../../../source/mesh/importer) \
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/scene) \
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/animator) \
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/timer) \

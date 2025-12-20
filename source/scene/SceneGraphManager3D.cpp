@@ -11,7 +11,7 @@ namespace spark {
             : m_renderer(renderer),
             m_screenResolution(screenResolution)
         {
-
+            //m_renderer->setLightDirection(0.0, 0.0, -1.0); // Currently not used
         }
 
         /**
@@ -28,6 +28,14 @@ namespace spark {
         spark::scene::ISparkSceneNode* SceneGraphManager3D::rootNode()
         {
             return &m_rootNode;
+        }
+
+        /**
+        *
+        */
+        void SceneGraphManager3D::setNormalVectorDebugVisualizationMode()
+        {
+            m_renderer->setDrawMode(3);
         }
 
         /**
@@ -57,11 +65,13 @@ namespace spark {
         void SceneGraphManager3D::drawGraph(spark::renderer::ISparkRenderer* renderer)
         {
             setDefaultCamera();
+            renderer->activateDepthTest(true);
 
             //spark::mesh::ISparkMesh* mesh = m_rootNode.getMesh();
             spark::scene::ISparkSceneNode* node = m_rootNode.getChildren().at(0);
             spark::mesh::ISparkMesh* mesh = node->getMesh();
             node->render(renderer);
+            renderer->activateDepthTest(false);
         }
     }
 }

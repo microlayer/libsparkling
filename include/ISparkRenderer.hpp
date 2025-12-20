@@ -54,6 +54,13 @@ namespace spark {
 
             // 3D support
             virtual void renderMesh(spark::mesh::ISparkMesh* mesh) = 0;
+
+            // Shader
+            virtual void setDrawMode(uint32_t drawMode) = 0;
+            virtual void setLightDirection(real32 x, real32 y, real32 z) = 0;
+
+            // Depth-Test
+            virtual void activateDepthTest(bool flag) = 0;
         };
     } // end namespace renderer
 } // end namespace spark

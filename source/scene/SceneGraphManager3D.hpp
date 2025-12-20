@@ -19,6 +19,7 @@ namespace spark {
 
         public:
             spark::scene::ISparkSceneNode* rootNode();
+            void setNormalVectorDebugVisualizationMode();
             void setDefaultCamera();
             void setActiveCamera();
             void drawGraph(spark::renderer::ISparkRenderer* renderer);

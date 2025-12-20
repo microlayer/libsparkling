@@ -106,6 +106,9 @@
     <Filter Include="source\renderer\vertexbuffer">
       <UniqueIdentifier>{62cb945a-567a-4ee0-bc5c-5e1cd686d51e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\mesh\importer">
+      <UniqueIdentifier>{d565f98f-6ff4-4884-a236-f4e63e10468d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\spark\Sparkling.cpp">
@@ -248,6 +251,9 @@
     </ClCompile>
     <ClCompile Include="..\..\source\game\LineLayer.cpp">
       <Filter>source\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\mesh\importer\WavefrontFileReader.cpp">
+      <Filter>source\mesh\importer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -567,6 +573,15 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\testbed\SampleCanvas4.hpp">
+      <Filter>testbed</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\mesh\importer\WavefrontFileReader.hpp">
+      <Filter>source\mesh\importer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkMeshImporter.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\testbed\SampleCanvas5.hpp">
       <Filter>testbed</Filter>
     </ClInclude>
   </ItemGroup>

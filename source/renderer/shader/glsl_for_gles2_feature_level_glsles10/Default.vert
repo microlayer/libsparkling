@@ -6,11 +6,14 @@ attribute vec3 aVertexPosition;
 attribute vec3 aVertexNormal;
 attribute vec4 aVertexColor;
 attribute vec2 aTextureCoord;
+uniform vec3 uLightDirection;
 uniform mat4 uModelViewProjectionMatrix;
 
 // Varying
 varying vec4 color;
+varying vec3 vertexNormal;
 varying vec2 textureCoord;
+varying vec3 lightDirection;
 
 //--------------------------------------------------------------------------------------
 //
@@ -18,7 +21,9 @@ varying vec2 textureCoord;
 void main()
 {
     color = aVertexColor;
+    vertexNormal = aVertexNormal;
     textureCoord = aTextureCoord;
+    lightDirection = uLightDirection;
     gl_Position = uModelViewProjectionMatrix * vec4(aVertexPosition, 1.0);
 }
 

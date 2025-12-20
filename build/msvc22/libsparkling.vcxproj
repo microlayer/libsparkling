@@ -235,6 +235,7 @@
     <ClCompile Include="..\..\source\log\DefaultLogger.cpp" />
     <ClCompile Include="..\..\source\log\LogManager.cpp" />
     <ClCompile Include="..\..\source\mesh\generator\MeshGenerator.cpp" />
+    <ClCompile Include="..\..\source\mesh\importer\WavefrontFileReader.cpp" />
     <ClCompile Include="..\..\source\mesh\Mesh.cpp" />
     <ClCompile Include="..\..\source\mlstl\MLBase64.cpp" />
     <ClCompile Include="..\..\source\perspective\OrthographicProjection.cpp" />
@@ -266,6 +267,7 @@
     <ClInclude Include="..\..\include\ISceneGraphManager3D.hpp" />
     <ClInclude Include="..\..\include\ISparkFont.hpp" />
     <ClInclude Include="..\..\include\ISparkLineLayer.hpp" />
+    <ClInclude Include="..\..\include\ISparkMeshImporter.hpp" />
     <ClInclude Include="..\..\include\ISparkNodeAnimator.hpp" />
     <ClInclude Include="..\..\include\ISparkRendererApiConfig.hpp" />
     <ClInclude Include="..\..\include\ISparkApp.hpp" />
@@ -326,6 +328,7 @@
     <ClInclude Include="..\..\source\math\Vector2.hpp" />
     <ClInclude Include="..\..\source\math\Vector3.hpp" />
     <ClInclude Include="..\..\source\mesh\generator\MeshGenerator.hpp" />
+    <ClInclude Include="..\..\source\mesh\importer\WavefrontFileReader.hpp" />
     <ClInclude Include="..\..\source\mesh\Mesh.hpp" />
     <ClInclude Include="..\..\source\mlstl\MLBase64.hpp" />
     <ClInclude Include="..\..\source\mlstl\MLGuid.hpp" />
@@ -367,6 +370,7 @@
     <ClInclude Include="..\..\testbed\SampleCanvas2.hpp" />
     <ClInclude Include="..\..\testbed\SampleCanvas3.hpp" />
     <ClInclude Include="..\..\testbed\SampleCanvas4.hpp" />
+    <ClInclude Include="..\..\testbed\SampleCanvas5.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\source\renderer\shader\glsl_for_gles2_feature_level_glsles10\Default.frag" />
