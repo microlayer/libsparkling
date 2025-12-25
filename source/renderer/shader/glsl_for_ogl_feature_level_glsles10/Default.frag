@@ -2,7 +2,7 @@
 
 // Varying
 in vec4 color;
-in vec4 vertexNormal;
+in vec3 vertexNormal;
 in vec2 textureCoord;
 in vec3 lightDirection;
 

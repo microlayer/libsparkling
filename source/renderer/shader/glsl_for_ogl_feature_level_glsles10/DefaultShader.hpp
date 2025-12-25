@@ -81,7 +81,7 @@ namespace spark {
 							"\n"
 							"// Varying\n"
 							"in vec4 color;\n"
-							"in vec4 vertexNormal;\n"
+							"in vec3 vertexNormal;\n"
 							"in vec2 textureCoord;\n"
 							"in vec3 lightDirection;\n"
 							"\n"

@@ -106,6 +106,18 @@ namespace spark {
                     glBindAttribLocation(m_programObject, 3, "aTextureCoord");
 
                     glLinkProgram(m_programObject);
+                    GLint linked = 0;
+                    glGetProgramiv(m_programObject, GL_LINK_STATUS, &linked);
+                    if (!linked) {
+                        char infoLog[1024];
+                        glGetProgramInfoLog(m_programObject, sizeof(infoLog), NULL, infoLog);
+                        m_logger->error("Linker failed: %s", infoLog);
+                    }
+                    else
+                    {
+                        m_logger->info("Shader linked successful");
+                    }
+
                     glUseProgram(m_programObject);
 
                     if (vertShaderCompiled && fragShaderCompiled)
@@ -114,7 +126,7 @@ namespace spark {
                     }
                     else
                     {
-                        m_logger->info("Shader failed to use. Cleaning up resources");
+                        m_logger->error("Shader failed to use. Cleaning up resources");
                         glDeleteShader(vertexShader);
                         glDeleteShader(fragmentShader);
                         glDeleteProgram(m_programObject);
