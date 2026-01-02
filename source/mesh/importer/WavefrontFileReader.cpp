@@ -142,7 +142,11 @@ namespace spark {
                         ? math::Vector2f{ 0.0f, 0.0f }
                     : textureCoords[vd.m_uvIndex];
 
-                    mesh->addVertex(drawing::Vertex3(positions[i].m_x, positions[i].m_y, positions[i].m_z, drawing::Color(128, 128, 128, 255), normals[vd.m_normalIndex], uv));
+                    auto n = normals.empty()
+                        ? math::Vector3f{ 0.0f, 0.0f, 0.0f }
+                    : normals[vd.m_normalIndex];
+
+                    mesh->addVertex(drawing::Vertex3(positions[i].m_x, positions[i].m_y, positions[i].m_z, drawing::Color(128, 128, 128, 255), n, uv));
                 }
 
                 timer.stop();
