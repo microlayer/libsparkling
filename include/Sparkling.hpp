@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) [2023] [Thomas Schuebel]
+ * Copyright (c) [2026] [Thomas Schuebel]
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,6 @@
  // Include configuration and symbols
 #include "spark/SparkCompilerConfig.hpp"
 #include "spark/SparkSetup.hpp"
-#include "spark/SparkLibConfig.hpp"
 #include "spark/SparkTypes.hpp"
 #include "ISparkDevice.hpp"
 
@@ -38,9 +37,16 @@
 */
 namespace spark {
 #if (SPARK_PLATFORM == SPARK_PLATFORM_ANDROID)
-	extern "C" SPARKLING_API device::ISparkDevice * SPARKCALLCONV createDevice(spark::renderer::E_RENDER_ENGINE rendererType, android_app * pApplication);
+    extern "C" SPARKLING_API device::ISparkDevice* SPARKCALLCONV createDevice(
+        spark::renderer::E_RENDER_ENGINE rendererType,
+        uint32_t screenWidth,
+        uint32_t screenHeight,
+        android_app* pApplication);
 #else
-	extern "C" SPARKLING_API device::ISparkDevice * SPARKCALLCONV createDevice(spark::renderer::E_RENDER_ENGINE rendererType);
+    extern "C" SPARKLING_API device::ISparkDevice* SPARKCALLCONV createDevice(
+        spark::renderer::E_RENDER_ENGINE rendererType,
+        uint32_t screenWidth,
+        uint32_t screenHeight);
 #endif
 } // end namespace spark
 

@@ -21,7 +21,7 @@ namespace spark {
         class Win32Device : public AbstractSparkDevice
         {
         public:
-            Win32Device(spark::renderer::E_RENDER_ENGINE rendererType);
+            Win32Device(spark::renderer::E_RENDER_ENGINE rendererType, uint32_t screenWidth, uint32_t screenHeight);
             virtual ~Win32Device(void);
 
         public: // AbstractSparkDevice

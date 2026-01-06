@@ -15,7 +15,7 @@ namespace spark {
         class WebGLDevice : public AbstractSparkDevice
         {
         public:
-            WebGLDevice(spark::renderer::E_RENDER_ENGINE rendererType);
+            WebGLDevice(spark::renderer::E_RENDER_ENGINE rendererType, uint32_t screenWidth, uint32_t screenHeight);
             virtual ~WebGLDevice();
 
         public: // AbstractSparkDevice

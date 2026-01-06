@@ -20,8 +20,8 @@ namespace spark {
         */
         struct ScreenResolution
         {
-            int32_t m_width;
-            int32_t m_height;
+            uint32_t m_width;
+            uint32_t m_height;
             real32 m_ratio;
         };
 

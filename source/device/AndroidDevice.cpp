@@ -5,8 +5,8 @@ namespace spark {
         /**
         *
         */
-        AndroidDevice::AndroidDevice(spark::renderer::E_RENDER_ENGINE rendererType, android_app* pApplication) :
-            AbstractSparkDevice(rendererType),
+        AndroidDevice::AndroidDevice(spark::renderer::E_RENDER_ENGINE rendererType, uint32_t screenWidth, uint32_t screenHeight, android_app* pApplication) :
+            AbstractSparkDevice(rendererType, screenWidth, screenHeight),
             m_androidApplication(pApplication)
         {
             AbstractSparkDevice::construct();
@@ -63,7 +63,7 @@ namespace spark {
                 exit(EXIT_FAILURE);
             }
 
-            if (!m_window->createWindow())
+            if (!m_window->createWindow(m_screenWidth, m_screenHeight))
             {
                 m_window->terminate();
                 exit(EXIT_FAILURE);

@@ -18,7 +18,7 @@ namespace spark {
                 m_rendererEngineType(rendererEngineType),
                 m_device(device)
             {
-                m_landscape = true;
+                
             }
 
             /**
@@ -45,9 +45,12 @@ namespace spark {
             /**
             *
             */
-            int32_t GlfwWindow::createWindow()
+            int32_t GlfwWindow::createWindow(uint32_t screenWidth, uint32_t screenHeight)
             {
                 Instance = this;
+                
+                m_screenResolution = { screenWidth, screenHeight, m_screenResolution.m_ratio = (real32)screenWidth/screenHeight };
+
                 glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
                 
                 // Multisample Anti-Aliasing (MSAA) 

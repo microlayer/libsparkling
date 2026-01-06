@@ -8,7 +8,7 @@
 */
 void android_main(android_app* pApplication)
 {
-	spark::device::ISparkDevice* device = spark::createDevice(spark::renderer::ERE_OGLES2);
+	spark::device::ISparkDevice* device = spark::createDevice(spark::renderer::ERE_OGLES2, 1196, 720, pApplication);
 	spark::log::ISparkLogger* logger = device->getLogger();
 	while (device->isDeviceRunning())
 	{
@@ -25,7 +25,7 @@ void android_main(android_app* pApplication)
 */
 void android_main(android_app* pApplication)
 {
-    spark::device::ISparkDevice* device = spark::createDevice(spark::renderer::ERE_OGLES2, pApplication);
+    spark::device::ISparkDevice* device = spark::createDevice(spark::renderer::ERE_OGLES2, 1196, 720, pApplication);
     spark::log::ISparkLogger* logger = device->getLogger();
     {
         std::unique_ptr<SampleApp> sampleApp = std::make_unique<SampleApp>(device);

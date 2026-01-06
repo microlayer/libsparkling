@@ -5,7 +5,7 @@ namespace spark {
         /**
         *
         */
-        AbstractSparkDevice::AbstractSparkDevice(spark::renderer::E_RENDER_ENGINE rendererType) :
+        AbstractSparkDevice::AbstractSparkDevice(spark::renderer::E_RENDER_ENGINE rendererType, uint32_t screenWidth, uint32_t screenHeight) :
             m_rendererEngineType(rendererType),
             m_logger(NULL),
             m_timer(NULL),
@@ -15,7 +15,9 @@ namespace spark {
             m_activeCanvas(NULL),
             m_shader(NULL),
             m_renderer(NULL),
-            m_rendererConfig(NULL)
+            m_rendererConfig(NULL),
+            m_screenWidth(screenWidth),
+            m_screenHeight(screenHeight)
         {
             m_isDeviceRunning = true;
             DeviceInstance::Instance = this;

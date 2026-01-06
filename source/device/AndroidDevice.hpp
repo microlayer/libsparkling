@@ -17,7 +17,7 @@ namespace spark {
         class AndroidDevice : public AbstractSparkDevice
         {
         public:
-            AndroidDevice(spark::renderer::E_RENDER_ENGINE rendererType, android_app* pApplication);
+            AndroidDevice(spark::renderer::E_RENDER_ENGINE rendererType, uint32_t screenWidth, uint32_t screenHeight, android_app* pApplication);
             virtual ~AndroidDevice();
 
         public: // AbstractSparkDevice

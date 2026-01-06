@@ -6,8 +6,8 @@ namespace spark {
         /**
         *
         */
-        WebGLDevice::WebGLDevice(spark::renderer::E_RENDER_ENGINE rendererType) :
-            AbstractSparkDevice(rendererType)
+        WebGLDevice::WebGLDevice(spark::renderer::E_RENDER_ENGINE rendererType, uint32_t screenWidth, uint32_t screenHeight) :
+            AbstractSparkDevice(rendererType, screenWidth, screenHeight)
         {
             AbstractSparkDevice::construct();
         }
@@ -57,7 +57,7 @@ namespace spark {
                 exit(EXIT_FAILURE);
             }
 
-            if (!m_window->createWindow())
+            if (!m_window->createWindow(m_screenWidth, m_screenHeight))
             {
                 m_window->terminate();
                 exit(EXIT_FAILURE);

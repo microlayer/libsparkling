@@ -25,7 +25,6 @@ namespace spark {
             {
                 m_androidApplication->userData = this;
                 m_androidApplication->onAppCmd = callbackEvent;
-                m_landscape = true;
             }
 
             /**
@@ -49,7 +48,7 @@ namespace spark {
             /**
             *
             */
-            int32_t AndroidEGLWindow::createWindow()
+            int32_t AndroidEGLWindow::createWindow(uint32_t screenWidth, uint32_t screenHeight)
             {
                 while (!m_isGLES2ContextAvailable)
                 {
@@ -372,7 +371,7 @@ namespace spark {
             {
                 real32 aspect = (real32)(m_width / m_height);
                 m_logger->info("AndroidEGLWindow::getScreenResolution %i %i %f ", m_width, m_height, aspect);
-                return { m_width, m_height, aspect };
+                return { (uint32_t)m_width, (uint32_t)m_height, aspect };
             }
         } // end namespace window	
     } // end namespace device

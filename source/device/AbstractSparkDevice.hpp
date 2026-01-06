@@ -31,7 +31,7 @@ namespace spark {
         class AbstractSparkDevice : public ISparkDevice
         {
         public:
-            AbstractSparkDevice(spark::renderer::E_RENDER_ENGINE rendererType);
+            AbstractSparkDevice(spark::renderer::E_RENDER_ENGINE rendererType, uint32_t screenWidth, uint32_t screenHeight);
             virtual ~AbstractSparkDevice(void);
             void construct();
 
@@ -96,6 +96,8 @@ namespace spark {
             spark::renderer::ISparkVertexBufferFactory* m_vertexBufferFactory;
             spark::ui::AbstractCanvas* m_activeCanvas;
             spark::app::ISparkApp* m_sparkApp;
+            uint32_t m_screenWidth;
+            uint32_t m_screenHeight;
             bool m_isDeviceRunning;
         };
     } // end namespace device

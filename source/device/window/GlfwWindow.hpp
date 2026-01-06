@@ -23,7 +23,7 @@ namespace spark {
 
             public: // AbstractSparkWindow
                 int32_t init();
-                int32_t createWindow();
+                int32_t createWindow(uint32_t screenWidth, uint32_t screenHeight);
                 void terminate();
                 void setWindowTitle(const char* title);
                 void swapBuffers();

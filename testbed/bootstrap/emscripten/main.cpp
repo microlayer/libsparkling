@@ -12,7 +12,7 @@ void mainLoopWrapper(void* arg);
 
 int main(void)
 {
-	spark::device::ISparkDevice* device = spark::createDevice(spark::renderer::ERE_OGLES2);
+	spark::device::ISparkDevice* device = spark::createDevice(spark::renderer::ERE_OGLES2, 1196, 720);
 	spark::log::ISparkLogger* logger = device->getLogger();	
 	
 	auto mainLoop = [device]() {
@@ -39,7 +39,7 @@ void mainLoopWrapper(void* arg)
 */
 int main()
 {    
-	spark::device::ISparkDevice* device = spark::createDevice(spark::renderer::ERE_OGLES2);    
+	spark::device::ISparkDevice* device = spark::createDevice(spark::renderer::ERE_OGLES2, 1196, 720);    
 	spark::log::ISparkLogger* logger = device->getLogger();
     SampleApp* sampleApp = new SampleApp(device);
     logger->info("Starting application");

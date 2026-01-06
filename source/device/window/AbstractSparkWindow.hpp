@@ -21,7 +21,7 @@ namespace spark {
 
             public:
                 virtual int32_t init() = 0;
-                virtual int32_t createWindow() = 0;
+                virtual int32_t createWindow(uint32_t screenWidth, uint32_t screenHeight) = 0;
                 virtual void terminate() = 0;
                 virtual void setWindowTitle(const char* title) = 0;
                 virtual void swapBuffers() = 0;
@@ -32,7 +32,7 @@ namespace spark {
 
             protected:
                 log::ISparkLogger* m_logger;
-                bool m_landscape;
+                spark::device::ScreenResolution m_screenResolution;
             };
         } // end namespace window
     } // end namespace device

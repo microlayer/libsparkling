@@ -6,8 +6,11 @@ namespace spark {
             /**
             *
             */
-            AbstractSparkWindow::AbstractSparkWindow(log::ISparkLogger* logger) : m_logger(logger)
+            AbstractSparkWindow::AbstractSparkWindow(log::ISparkLogger* logger) :
+                m_logger(logger),
+                m_screenResolution({ 1196, 720 , real32(1196.0f / 720.0f) })
             {
+
             }
 
             /**
@@ -22,16 +25,7 @@ namespace spark {
             */
             ScreenResolution AbstractSparkWindow::getScreenResolution()
             {
-                if (!m_landscape)
-                {
-                    ScreenResolution sr = { 720, 1184, (720.0f / 1184.0f) };	// ratio:0.608
-                    return sr;
-                }
-                else
-                {
-                    ScreenResolution sr = { 1196, 720, (1196.0f / 720.0f) };	// ratio:1.66
-                    return sr;
-                }
+                return m_screenResolution;
             }
         } // end namespace window
     } // end namespace device

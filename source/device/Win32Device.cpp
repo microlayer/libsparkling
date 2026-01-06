@@ -7,8 +7,8 @@ namespace spark {
         /**
         *
         */
-        Win32Device::Win32Device(spark::renderer::E_RENDER_ENGINE rendererType) :
-            AbstractSparkDevice(rendererType)
+        Win32Device::Win32Device(spark::renderer::E_RENDER_ENGINE rendererType, uint32_t screenWidth, uint32_t screenHeight) :
+            AbstractSparkDevice(rendererType, screenWidth, screenHeight)
         {
             AbstractSparkDevice::construct();
         }
@@ -64,7 +64,7 @@ namespace spark {
                 exit(EXIT_FAILURE);
             }
 
-            if (!m_window->createWindow())
+            if (!m_window->createWindow(m_screenWidth, m_screenHeight))
             {
                 m_window->terminate();
                 exit(EXIT_FAILURE);
