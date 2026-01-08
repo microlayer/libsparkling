@@ -1,22 +1,21 @@
 /**
 *
 */
-class SampleCanvas2 : public spark::ui::AbstractCanvas
+class SampleCanvas6 : public spark::ui::AbstractCanvas
 {
 public:
     /**
     *
     */
-    SampleCanvas2(spark::device::ISparkDevice* device) :
+    SampleCanvas6(spark::device::ISparkDevice* device) :
         m_device(device)
     {
-        m_texture1Image = m_device->getFileSystem()->loadBitmap("texture1.png");
     }
 
     /**
     *
     */
-    virtual ~SampleCanvas2()
+    virtual ~SampleCanvas6()
     {
 
     }
@@ -26,7 +25,7 @@ public:
     */
     void init()
     {
-        m_device->getLogger()->info("Init Canvas2");
+        m_device->getLogger()->info("Init Canvas6");
 
         // Set virtual resolution
         spark::perspective::OrthographicProjection orthographicProjection(m_device->getScreenResolution().m_width, m_device->getScreenResolution().m_height);
@@ -37,15 +36,20 @@ public:
     /**
     *
     */
+    void onKeyPressed()
+    {
+
+    }
+
+    /**
+    *
+    */
     void paint(spark::renderer::ISparkRenderer* renderer)
     {
-        renderer->drawString(spark::font::ESFT_ARIAL_16, "Hello Canvas 2", spark::drawing::Color(255, 255, 0, 128), 600, 300);
-        renderer->draw2DLine(0, 0, 1196, 720, spark::drawing::Color(0, 255, 0, 255));
-        renderer->draw2DBitmap(m_texture1Image.get(), 0, 464);
-        renderer->draw2DBitmap(m_texture1Image.get(), 940, 0);
+        renderer->drawBackground(spark::drawing::Color(0, 0, 0, 255));
+        renderer->drawString(spark::font::ESFT_ARIAL_16, "Canvas6  on FPS: 60", spark::drawing::Color(255, 255, 0, 128), 800, 70);
     }
 
 private:
     spark::device::ISparkDevice* m_device;
-    spark::SparkSharedPointer<spark::drawing::ISparkImage> m_texture1Image;
 };

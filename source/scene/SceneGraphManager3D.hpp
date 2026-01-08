@@ -25,9 +25,15 @@ namespace spark {
             void drawGraph(spark::renderer::ISparkRenderer* renderer);
 
         private:
+            void onBeforeDrawGraph();
+            void onAfterDrawGraph();
+
+        private:
             spark::scene::SceneNode m_rootNode;
             spark::renderer::ISparkRenderer* m_renderer;
             spark::device::ScreenResolution m_screenResolution;
+            bool m_setNormalVectorDebugVisualizationMode;
+            spark::log::ISparkLogger* m_logger;
         };
     }
 }

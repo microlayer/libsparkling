@@ -8,7 +8,7 @@ namespace spark {
         */
         VertexBufferFactory::VertexBufferFactory(spark::log::ISparkLogger* logger)
         {
-
+            m_logger = logger;
         }
 
         /**

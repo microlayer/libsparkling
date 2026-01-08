@@ -13,11 +13,18 @@ namespace spark {
             */
             class MLGuid
             {
+            private:
+                inline static bool seeded = false;
+
             public:
                 static std::string createGuid()
                 {
+                    if (!seeded)
+                    {
+                        std::srand(static_cast<unsigned int>(std::time(0)));
+                        seeded = true;
+                    }
                     std::string guid;
-                    std::srand(static_cast<unsigned int>(std::time(0)));
 
                     auto getHexDigit = [](uint32_t val) -> char {
                         return val < 10 ? '0' + val : 'a' + (val - 10);

@@ -584,6 +584,9 @@
     <ClInclude Include="..\..\testbed\SampleCanvas5.hpp">
       <Filter>testbed</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\testbed\SampleCanvas6.hpp">
+      <Filter>testbed</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\source\renderer\shader\glsl_for_ogl_feature_level_glsles10\Default.frag">
