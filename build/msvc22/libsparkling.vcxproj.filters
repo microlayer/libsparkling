@@ -61,9 +61,6 @@
     <Filter Include="source\renderer\shader">
       <UniqueIdentifier>{1ec21dfd-a20b-44b4-8870-8d7028928db9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="source\mesh">
-      <UniqueIdentifier>{21ae06d1-6a61-4cb7-b47d-3d9ed3e6f9c4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="source\mlstl">
       <UniqueIdentifier>{8f6b8672-66a5-4d81-9d9c-cb8052d9a085}</UniqueIdentifier>
     </Filter>
@@ -72,9 +69,6 @@
     </Filter>
     <Filter Include="source\scene">
       <UniqueIdentifier>{d0da75b2-92cb-40bd-b46e-322ee796811d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="source\mesh\generator">
-      <UniqueIdentifier>{30d446dc-9236-4785-89e5-a0261606ac85}</UniqueIdentifier>
     </Filter>
     <Filter Include="source\animator">
       <UniqueIdentifier>{d8844ac0-a697-4c56-9543-daa2ea56451a}</UniqueIdentifier>
@@ -106,14 +100,26 @@
     <Filter Include="source\renderer\vertexbuffer">
       <UniqueIdentifier>{62cb945a-567a-4ee0-bc5c-5e1cd686d51e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="source\mesh\importer">
-      <UniqueIdentifier>{d565f98f-6ff4-4884-a236-f4e63e10468d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="source\material">
       <UniqueIdentifier>{c37adad9-18a0-40fa-bd2a-4fa85ae54d3a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="source\pointcloud">
-      <UniqueIdentifier>{b578b92c-030a-4d12-ab3c-09b07e8a2dd9}</UniqueIdentifier>
+    <Filter Include="source\geometry">
+      <UniqueIdentifier>{a3aa84d0-6525-4618-91fd-318258a73561}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\geometry\mesh">
+      <UniqueIdentifier>{418cef27-4bcb-4ea4-8f6e-86d5278e635b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\geometry\pointcloud">
+      <UniqueIdentifier>{2adf59f5-a66e-47c4-83ea-70053264a70a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\geometry\mesh\generator">
+      <UniqueIdentifier>{1749bf31-b79f-4761-9e81-78d63f982315}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\geometry\mesh\importer">
+      <UniqueIdentifier>{e5fac896-d2ea-4456-adb1-d117d878c821}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\geometry\pointcloud\importer">
+      <UniqueIdentifier>{d4668c25-86ad-435a-96ca-3bf018d82d9d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -186,9 +192,6 @@
     <ClCompile Include="..\..\source\drawing\Bitmap.cpp">
       <Filter>source\drawing</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\mesh\Mesh.cpp">
-      <Filter>source\mesh</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\renderer\OpenGLRenderer.cpp">
       <Filter>source\renderer</Filter>
     </ClCompile>
@@ -212,9 +215,6 @@
     </ClCompile>
     <ClCompile Include="..\..\source\scene\SceneNode.cpp">
       <Filter>source\scene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\mesh\generator\MeshGenerator.cpp">
-      <Filter>source\mesh\generator</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\animator\NodeRotationAnimator.cpp">
       <Filter>source\animator</Filter>
@@ -258,17 +258,23 @@
     <ClCompile Include="..\..\source\game\LineLayer.cpp">
       <Filter>source\game</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\mesh\importer\WavefrontFileReader.cpp">
-      <Filter>source\mesh\importer</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\material\Material.cpp">
       <Filter>source\material</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\material\MaterialLibrary.cpp">
       <Filter>source\material</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\pointcloud\PointCloud.cpp">
-      <Filter>source\pointcloud</Filter>
+    <ClCompile Include="..\..\source\geometry\mesh\Mesh.cpp">
+      <Filter>source\geometry\mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\geometry\mesh\importer\WavefrontFileReader.cpp">
+      <Filter>source\geometry\mesh\importer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\geometry\mesh\generator\MeshGenerator.cpp">
+      <Filter>source\geometry\mesh\generator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\geometry\pointcloud\PointCloud.cpp">
+      <Filter>source\geometry\pointcloud</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -425,9 +431,6 @@
     <ClInclude Include="..\..\source\drawing\Bitmap.hpp">
       <Filter>source\drawing</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\mesh\Mesh.hpp">
-      <Filter>source\mesh</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\ISparkMesh.hpp">
       <Filter>include</Filter>
     </ClInclude>
@@ -463,9 +466,6 @@
     </ClInclude>
     <ClInclude Include="..\..\source\scene\SceneNode.hpp">
       <Filter>source\scene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\mesh\generator\MeshGenerator.hpp">
-      <Filter>source\mesh\generator</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\SparkSharedPointer.hpp">
       <Filter>include</Filter>
@@ -584,9 +584,6 @@
     <ClInclude Include="..\..\testbed\SampleCanvas4.hpp">
       <Filter>testbed</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\mesh\importer\WavefrontFileReader.hpp">
-      <Filter>source\mesh\importer</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\ISparkMeshImporter.hpp">
       <Filter>include</Filter>
     </ClInclude>
@@ -605,9 +602,6 @@
     <ClInclude Include="..\..\source\material\MaterialLibrary.hpp">
       <Filter>source\material</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\pointcloud\PointCloud.hpp">
-      <Filter>source\pointcloud</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\ISparkPointCloud.hpp">
       <Filter>include</Filter>
     </ClInclude>
@@ -616,6 +610,18 @@
     </ClInclude>
     <ClInclude Include="..\..\include\ISparkSceneGraphManager3D.hpp">
       <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\geometry\mesh\Mesh.hpp">
+      <Filter>source\geometry\mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\geometry\mesh\importer\WavefrontFileReader.hpp">
+      <Filter>source\geometry\mesh\importer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\geometry\mesh\generator\MeshGenerator.hpp">
+      <Filter>source\geometry\mesh\generator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\geometry\pointcloud\PointCloud.hpp">
+      <Filter>source\geometry\pointcloud</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

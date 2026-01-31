@@ -4,18 +4,18 @@
 #include "ISparkImage.hpp"
 #include "game/TiledLayer.hpp"
 
-namespace spark {
-    namespace file {
-
-        class ISparkFileSystem : public virtual spark::SparkRefCount
-        {
-        public:
-            virtual spark::drawing::ISparkImage* loadBitmap(const std::string& fileName) = 0;
-            virtual spark::game::ISparkTiledLayer* loadTiledLayer(const std::string& fileName) = 0;
-            virtual spark::mesh::ISparkMesh* loadMesh(const std::string& fileName) = 0;
-            //virtual spark::font::ISparkFont* loadBitmapFont(const std::string& fileName) = 0;
-            virtual void appendText(std::string filename, std::string text) = 0;
-        };
-    } // end namespace file
-} // end namespace spark
+namespace spark::file {
+    /**
+    *
+    */
+    class ISparkFileSystem : public virtual spark::SparkRefCount
+    {
+    public:
+        virtual spark::drawing::ISparkImage* loadBitmap(const std::string& fileName) = 0;
+        virtual spark::game::ISparkTiledLayer* loadTiledLayer(const std::string& fileName) = 0;
+        virtual spark::geometry::mesh::ISparkMesh* loadMesh(const std::string& fileName) = 0;
+        //virtual spark::font::ISparkFont* loadBitmapFont(const std::string& fileName) = 0;
+        virtual void appendText(std::string filename, std::string text) = 0;
+    };
+}
 #endif

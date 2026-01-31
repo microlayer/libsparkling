@@ -8,17 +8,15 @@
 #include <vector>
 #include <ISparkMaterial.hpp>
 
-namespace spark {
-    namespace renderer {
-        /**
-        *
-        */
-        class ISparkVertexBufferFactory : public virtual spark::SparkRefCount
-        {
-        public:
-            virtual spark::renderer::ISparkVertexBuffer* createOrUpdate(std::string id, std::vector<spark::drawing::Vertex3>& vertices) = 0;
-            virtual spark::renderer::ISparkVertexBuffer* createOrUpdate(std::string id, spark::mesh::ISparkMesh* mesh, spark::material::VertexLayout vertexLayout) = 0;
-        };
-    } // end namespace renderer
-} // end namespace spark
+namespace spark::renderer {
+    /**
+    *
+    */
+    class ISparkVertexBufferFactory : public virtual spark::SparkRefCount
+    {
+    public:
+        virtual spark::renderer::ISparkVertexBuffer* createOrUpdate(std::string id, std::vector<spark::drawing::Vertex3>& vertices) = 0;
+        virtual spark::renderer::ISparkVertexBuffer* createOrUpdate(std::string id, spark::geometry::mesh::ISparkMesh* mesh, spark::material::VertexLayout vertexLayout) = 0;
+    };
+}
 #endif

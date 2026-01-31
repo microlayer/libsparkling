@@ -1,4 +1,4 @@
-#include <mesh/generator/MeshGenerator.hpp>
+#include "geometry/mesh/generator/MeshGenerator.hpp"
 #include "SparkSharedPointer.hpp"
 #include "animator/NodeRotationAnimator.hpp"
 
@@ -18,7 +18,7 @@ public:
         m_sceneGraphManager3D = device->createSceneGraphManager3D();
 
         // Create Mesh
-        spark::SparkSharedPointer<spark::mesh::ISparkMesh> cubeMesh(spark::mesh::MeshGenerator::createQuadMesh());
+        spark::SparkSharedPointer<spark::geometry::mesh::ISparkMesh> cubeMesh(spark::geometry::mesh::generator::MeshGenerator::createQuadMesh());
 
         // Create Animator
         spark::SparkSharedPointer<spark::animator::NodeRotationAnimator> nodeRotationAnimaror = new spark::animator::NodeRotationAnimator(spark::math::Vector3f(40, 50, 20));

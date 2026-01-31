@@ -3,50 +3,49 @@
 
 #include "ISparkSceneNode.hpp"
 #include <material/MaterialLibrary.hpp>
+#include <ISparkMesh.hpp>
 
-namespace spark {
-    namespace scene {
-        /**
-        *
-        */
-        class SceneNode : public spark::scene::ISparkSceneNode
-        {
-        public:
-            SceneNode();
-            virtual ~SceneNode();
+namespace spark::scene {
+    /**
+    *
+    */
+    class SceneNode : public spark::scene::ISparkSceneNode
+    {
+    public:
+        SceneNode();
+        virtual ~SceneNode();
 
-        public:
-            bool isRootNode();
-            void addChildSceneNode(spark::scene::ISparkSceneNode* node);
-            std::vector<ISparkSceneNode*> getChildren();
+    public:
+        bool isRootNode();
+        void addChildSceneNode(spark::scene::ISparkSceneNode* node);
+        std::vector<ISparkSceneNode*> getChildren();
 
-        public:
-            void setPosition(spark::math::Vector3f position);
-            void setRotation(spark::math::Vector3f rotation);
+    public:
+        void setPosition(spark::math::Vector3f position);
+        void setRotation(spark::math::Vector3f rotation);
 
-        public:
-            void attachMesh(spark::mesh::ISparkMesh* mesh);
-            spark::mesh::ISparkMesh* getMesh();
-            void addAnimator(spark::animator::ISparkNodeAnimator* nodeAnimator);
+    public:
+        void attachMesh(spark::geometry::mesh::ISparkMesh* mesh);
+        spark::geometry::mesh::ISparkMesh* getMesh();
+        void addAnimator(spark::animator::ISparkNodeAnimator* nodeAnimator);
 
-        public:
-            void render(spark::renderer::ISparkRenderer* renderer);
+    public:
+        void render(spark::renderer::ISparkRenderer* renderer);
 
-        private:
-            void animate();
+    private:
+        void animate();
 
-        public:
-            void setMaterial(spark::material::ISparkMaterial* material);
+    public:
+        void setMaterial(spark::material::ISparkMaterial* material);
 
-        private:
-            std::vector<ISparkSceneNode*> m_children;
-            spark::math::Vector3f m_position;
-            spark::math::Vector3f m_rotation;
-            spark::mesh::ISparkMesh* m_mesh;
-            spark::math::Matrix4f m_modelTransformationMatrix;
-            spark::animator::ISparkNodeAnimator* m_nodeAnimator;
-            spark::material::ISparkMaterial* m_material;
-        };
-    }
+    private:
+        std::vector<ISparkSceneNode*> m_children;
+        spark::math::Vector3f m_position;
+        spark::math::Vector3f m_rotation;
+        spark::geometry::mesh::ISparkMesh* m_mesh;
+        spark::math::Matrix4f m_modelTransformationMatrix;
+        spark::animator::ISparkNodeAnimator* m_nodeAnimator;
+        spark::material::ISparkMaterial* m_material;
+    };
 }
 #endif

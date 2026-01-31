@@ -17,25 +17,23 @@ namespace spark {
     }
 }
 
-namespace spark {
-    namespace renderer {
-        /**
-        *
-        */
-        class VertexBufferFactory : public spark::renderer::ISparkVertexBufferFactory
-        {
-        public:
-            VertexBufferFactory(spark::log::ISparkLogger* logger);
-            ~VertexBufferFactory();
+namespace spark::renderer {
+    /**
+    *
+    */
+    class VertexBufferFactory : public spark::renderer::ISparkVertexBufferFactory
+    {
+    public:
+        VertexBufferFactory(spark::log::ISparkLogger* logger);
+        ~VertexBufferFactory();
 
-        public:
-            spark::renderer::ISparkVertexBuffer* createOrUpdate(std::string id, std::vector<spark::drawing::Vertex3>& vertices);
-            spark::renderer::ISparkVertexBuffer* createOrUpdate(std::string id, spark::mesh::ISparkMesh* mesh, spark::material::VertexLayout vertexLayout);
+    public:
+        spark::renderer::ISparkVertexBuffer* createOrUpdate(std::string id, std::vector<spark::drawing::Vertex3>& vertices);
+        spark::renderer::ISparkVertexBuffer* createOrUpdate(std::string id, spark::geometry::mesh::ISparkMesh* mesh, spark::material::VertexLayout vertexLayout);
 
-        private:
-            std::map<std::string, spark::renderer::vertexbuffer::OGLVertexBuffer*> m_vertexBufferMap;
-            spark::log::ISparkLogger* m_logger;
-        };
-    } // end namespace renderer
-} // end namespace spark
+    private:
+        std::map<std::string, spark::renderer::vertexbuffer::OGLVertexBuffer*> m_vertexBufferMap;
+        spark::log::ISparkLogger* m_logger;
+    };
+}
 #endif

@@ -1,61 +1,59 @@
 #include "VertexBufferFactory.hpp"
 #include "renderer/vertexbuffer/OGLVertexBuffer.hpp"
 
-namespace spark {
-    namespace renderer {
-        /**
-        *
-        */
-        VertexBufferFactory::VertexBufferFactory(spark::log::ISparkLogger* logger)
+namespace spark::renderer {
+    /**
+    *
+    */
+    VertexBufferFactory::VertexBufferFactory(spark::log::ISparkLogger* logger)
+    {
+        m_logger = logger;
+    }
+
+    /**
+    *
+    */
+    VertexBufferFactory::~VertexBufferFactory()
+    {
+
+    }
+
+    /**
+    *
+    */
+    spark::renderer::ISparkVertexBuffer* VertexBufferFactory::createOrUpdate(std::string id, std::vector<spark::drawing::Vertex3>& vertices)
+    {
+        if (m_vertexBufferMap.find(id) == m_vertexBufferMap.end())
         {
-            m_logger = logger;
+            spark::renderer::vertexbuffer::OGLVertexBuffer* vertexBuffer = new spark::renderer::vertexbuffer::OGLVertexBuffer(
+                m_logger,
+                vertices);
+            m_vertexBufferMap[id] = vertexBuffer;
+            return vertexBuffer;
         }
-
-        /**
-        *
-        */
-        VertexBufferFactory::~VertexBufferFactory()
+        else
         {
-
+            return m_vertexBufferMap[id];
         }
+    }
 
-        /**
-        *
-        */
-        spark::renderer::ISparkVertexBuffer* VertexBufferFactory::createOrUpdate(std::string id, std::vector<spark::drawing::Vertex3>& vertices)
+    /**
+    *
+    */
+    spark::renderer::ISparkVertexBuffer* VertexBufferFactory::createOrUpdate(std::string id, spark::geometry::mesh::ISparkMesh* mesh, spark::material::VertexLayout vertexLayout)
+    {
+        if (m_vertexBufferMap.find(id) == m_vertexBufferMap.end())
         {
-            if (m_vertexBufferMap.find(id) == m_vertexBufferMap.end())
-            {
-                spark::renderer::vertexbuffer::OGLVertexBuffer* vertexBuffer = new spark::renderer::vertexbuffer::OGLVertexBuffer(
-                    m_logger,
-                    vertices);
-                m_vertexBufferMap[id] = vertexBuffer;
-                return vertexBuffer;
-            }
-            else
-            {
-                return m_vertexBufferMap[id];
-            }
+            spark::renderer::vertexbuffer::OGLVertexBuffer* vertexBuffer = new spark::renderer::vertexbuffer::OGLVertexBuffer(
+                m_logger,
+                mesh,
+                vertexLayout);
+            m_vertexBufferMap[id] = vertexBuffer;
+            return vertexBuffer;
         }
-
-        /**
-        *
-        */
-        spark::renderer::ISparkVertexBuffer* VertexBufferFactory::createOrUpdate(std::string id, spark::mesh::ISparkMesh* mesh, spark::material::VertexLayout vertexLayout)
+        else
         {
-            if (m_vertexBufferMap.find(id) == m_vertexBufferMap.end())
-            {
-                spark::renderer::vertexbuffer::OGLVertexBuffer* vertexBuffer = new spark::renderer::vertexbuffer::OGLVertexBuffer(
-                    m_logger,
-                    mesh,
-                    vertexLayout);
-                m_vertexBufferMap[id] = vertexBuffer;
-                return vertexBuffer;
-            }
-            else
-            {
-                return m_vertexBufferMap[id];
-            }
+            return m_vertexBufferMap[id];
         }
     }
 }
