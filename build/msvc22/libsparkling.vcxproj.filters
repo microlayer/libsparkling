@@ -276,6 +276,9 @@
     <ClCompile Include="..\..\source\geometry\pointcloud\PointCloud.cpp">
       <Filter>source\geometry\pointcloud</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\geometry\pointcloud\importer\PlyFileReader.cpp">
+      <Filter>source\geometry\pointcloud\importer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\spark\SparkCompilerConfig.hpp">
@@ -622,6 +625,12 @@
     </ClInclude>
     <ClInclude Include="..\..\source\geometry\pointcloud\PointCloud.hpp">
       <Filter>source\geometry\pointcloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\geometry\pointcloud\importer\PlyFileReader.hpp">
+      <Filter>source\geometry\pointcloud\importer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkPointCloudImporter.hpp">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -234,6 +234,7 @@
     <ClCompile Include="..\..\source\geometry\mesh\generator\MeshGenerator.cpp" />
     <ClCompile Include="..\..\source\geometry\mesh\importer\WavefrontFileReader.cpp" />
     <ClCompile Include="..\..\source\geometry\mesh\Mesh.cpp" />
+    <ClCompile Include="..\..\source\geometry\pointcloud\importer\PlyFileReader.cpp" />
     <ClCompile Include="..\..\source\geometry\pointcloud\PointCloud.cpp" />
     <ClCompile Include="..\..\source\log\AndroidLogger.cpp" />
     <ClCompile Include="..\..\source\log\DefaultLogger.cpp" />
@@ -272,6 +273,7 @@
     <ClInclude Include="..\..\include\ISparkMeshImporter.hpp" />
     <ClInclude Include="..\..\include\ISparkNodeAnimator.hpp" />
     <ClInclude Include="..\..\include\ISparkPointCloud.hpp" />
+    <ClInclude Include="..\..\include\ISparkPointCloudImporter.hpp" />
     <ClInclude Include="..\..\include\ISparkRendererApiConfig.hpp" />
     <ClInclude Include="..\..\include\ISparkApp.hpp" />
     <ClInclude Include="..\..\include\ISparkCommandListener.hpp" />
@@ -327,6 +329,7 @@
     <ClInclude Include="..\..\source\geometry\mesh\generator\MeshGenerator.hpp" />
     <ClInclude Include="..\..\source\geometry\mesh\importer\WavefrontFileReader.hpp" />
     <ClInclude Include="..\..\source\geometry\mesh\Mesh.hpp" />
+    <ClInclude Include="..\..\source\geometry\pointcloud\importer\PlyFileReader.hpp" />
     <ClInclude Include="..\..\source\geometry\pointcloud\PointCloud.hpp" />
     <ClInclude Include="..\..\source\log\AndroidLogger.hpp" />
     <ClInclude Include="..\..\source\log\DefaultLogger.hpp" />

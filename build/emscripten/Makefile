@@ -17,9 +17,11 @@ LIBSPARKLING_SRC_FILES += $(wildcard ../../source/perspective/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/ui/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/drawing/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/file/*.cpp)
-LIBSPARKLING_SRC_FILES += $(wildcard ../../source/mesh/*.cpp)
-LIBSPARKLING_SRC_FILES += $(wildcard ../../source/mesh/generator/*.cpp)
-LIBSPARKLING_SRC_FILES += $(wildcard ../../source/mesh/importer/*.cpp)
+LIBSPARKLING_SRC_FILES += $(wildcard ../../source/geometry/mesh/*.cpp)
+LIBSPARKLING_SRC_FILES += $(wildcard ../../source/geometry/mesh/generator/*.cpp)
+LIBSPARKLING_SRC_FILES += $(wildcard ../../source/geometry/mesh/importer/*.cpp)
+LIBSPARKLING_SRC_FILES += $(wildcard ../../source/geometry/pointcloud/*.cpp)
+LIBSPARKLING_SRC_FILES += $(wildcard ../../source/geometry/pointcloud/importer/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/scene/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/animator/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/timer/*.cpp)
@@ -28,7 +30,7 @@ LIBSPARKLING_SRC_FILES += $(wildcard ../../source/forms/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/game/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/fonts/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/material/*.cpp)
-LIBSPARKLING_SRC_FILES += $(wildcard ../../source/pointcloud/*.cpp)
+
 
 IDIRINCLUDE  	:= ../../include
 IDIRSOURCE 	+= ../../source
