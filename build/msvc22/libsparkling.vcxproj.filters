@@ -464,12 +464,6 @@
     <ClInclude Include="..\..\source\scene\SceneNode.hpp">
       <Filter>source\scene</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\ISceneGraphManager2D.hpp">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\ISceneGraphManager3D.hpp">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\source\mesh\generator\MeshGenerator.hpp">
       <Filter>source\mesh\generator</Filter>
     </ClInclude>
@@ -615,6 +609,12 @@
       <Filter>source\pointcloud</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\ISparkPointCloud.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkSceneGraphManager2D.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkSceneGraphManager3D.hpp">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

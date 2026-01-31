@@ -266,8 +266,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\ISparkFontPool.hpp" />
-    <ClInclude Include="..\..\include\ISceneGraphManager2D.hpp" />
-    <ClInclude Include="..\..\include\ISceneGraphManager3D.hpp" />
     <ClInclude Include="..\..\include\ISparkFont.hpp" />
     <ClInclude Include="..\..\include\ISparkLineLayer.hpp" />
     <ClInclude Include="..\..\include\ISparkMaterial.hpp" />
@@ -283,6 +281,8 @@
     <ClInclude Include="..\..\include\ISparkLogger.hpp" />
     <ClInclude Include="..\..\include\ISparkMesh.hpp" />
     <ClInclude Include="..\..\include\ISparkRenderer.hpp" />
+    <ClInclude Include="..\..\include\ISparkSceneGraphManager2D.hpp" />
+    <ClInclude Include="..\..\include\ISparkSceneGraphManager3D.hpp" />
     <ClInclude Include="..\..\include\ISparkSceneNode.hpp" />
     <ClInclude Include="..\..\include\ISparkShader.hpp" />
     <ClInclude Include="..\..\include\ISparkSprite.hpp" />

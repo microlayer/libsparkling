@@ -2,7 +2,7 @@
 #define __SPARK_SCENE_SCENEGRAPHMANAGER2D_HPP_INCLUDED__
 
 #include "ISparkRenderer.hpp"
-#include "ISceneGraphManager2D.hpp"
+#include "ISparkSceneGraphManager2D.hpp"
 #include "game/Sprite.hpp"
 #include "game/LineLayer.hpp"
 

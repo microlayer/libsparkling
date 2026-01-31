@@ -1,7 +1,7 @@
 #ifndef __SPARK_SCENE_SCENEGRAPHMANAGER3D_HPP_INCLUDED__
 #define __SPARK_SCENE_SCENEGRAPHMANAGER3D_HPP_INCLUDED__
 
-#include "ISceneGraphManager3D.hpp"
+#include "ISparkSceneGraphManager3D.hpp"
 #include <Sparkling.hpp>
 
 namespace spark {

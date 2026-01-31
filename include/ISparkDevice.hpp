@@ -5,8 +5,8 @@
 #include "ISparkTimer.hpp"
 #include "ISparkRenderer.hpp"
 #include "ISparkFileSystem.hpp"
-#include "ISceneGraphManager3D.hpp"
-#include "ISceneGraphManager2D.hpp"
+#include "ISparkSceneGraphManager3D.hpp"
+#include "ISparkSceneGraphManager2D.hpp"
 #include "ISparkFontPool.hpp"
 #include <string>
 #include "ISparkApp.hpp"
