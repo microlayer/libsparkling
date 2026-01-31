@@ -632,6 +632,9 @@
     <ClInclude Include="..\..\include\ISparkPointCloudImporter.hpp">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\testbed\SampleCanvas7.hpp">
+      <Filter>testbed</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\source\renderer\shader\glsl_for_ogl_feature_level_glsles10\Default.frag">

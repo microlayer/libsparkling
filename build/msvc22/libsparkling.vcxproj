@@ -383,6 +383,7 @@
     <ClInclude Include="..\..\testbed\SampleCanvas4.hpp" />
     <ClInclude Include="..\..\testbed\SampleCanvas5.hpp" />
     <ClInclude Include="..\..\testbed\SampleCanvas6.hpp" />
+    <ClInclude Include="..\..\testbed\SampleCanvas7.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\source\renderer\shader\glsl_for_gles2_feature_level_glsles10\Default.frag" />

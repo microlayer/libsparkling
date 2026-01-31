@@ -4,6 +4,7 @@
 #include "SampleCanvas4.hpp"
 #include "SampleCanvas5.hpp"
 #include "SampleCanvas6.hpp"
+#include "SampleCanvas7.hpp"
 #include "ISparkCommandListener.hpp"
 
 /**
@@ -24,6 +25,7 @@ public:
         m_sampleCanvas4 = new SampleCanvas4(device);
         m_sampleCanvas5 = new SampleCanvas5(device);
         m_sampleCanvas6 = new SampleCanvas6(device);
+        m_sampleCanvas7 = new SampleCanvas7(device);
         //m_sampleCanvas->registerCommandListener(this);
     }
 
@@ -122,6 +124,7 @@ private:
     spark::SparkSharedPointer<SampleCanvas4> m_sampleCanvas4;
     spark::SparkSharedPointer<SampleCanvas5> m_sampleCanvas5;
     spark::SparkSharedPointer<SampleCanvas6> m_sampleCanvas6;
+    spark::SparkSharedPointer<SampleCanvas7> m_sampleCanvas7;
     spark::ui::AbstractCanvas* m_currentCanvas;
     spark::device::ISparkDevice* m_device;
     spark::timer::Timer m_timer1;
@@ -129,4 +132,5 @@ private:
     spark::timer::Timer m_timer3;
     spark::timer::Timer m_timer4;
     spark::timer::Timer m_timer5;
+    spark::timer::Timer m_timer6;
 };
