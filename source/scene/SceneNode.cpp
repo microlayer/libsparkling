@@ -10,7 +10,7 @@ namespace spark {
             m_mesh(NULL),
             m_nodeAnimator(NULL)
         {
-
+            m_material = spark::material::MaterialLibrary::getDefaultMaterial();
         }
 
         /**
@@ -103,7 +103,7 @@ namespace spark {
         {
             animate();
             renderer->setModelTransformation(m_modelTransformationMatrix);
-            renderer->renderMesh(m_mesh);
+            renderer->renderMesh(m_mesh, m_material);
         }
 
         /**
@@ -112,6 +112,14 @@ namespace spark {
         void SceneNode::animate()
         {
             m_nodeAnimator->animate(this);
+        }
+
+        /**
+        *
+        */
+        void SceneNode::setMaterial(spark::material::ISparkMaterial* material)
+        {
+            m_material = material;
         }
     }
 }

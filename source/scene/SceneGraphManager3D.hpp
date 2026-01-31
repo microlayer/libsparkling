@@ -19,7 +19,6 @@ namespace spark {
 
         public:
             spark::scene::ISparkSceneNode* rootNode();
-            void setNormalVectorDebugVisualizationMode();
             void setDefaultCamera();
             void setActiveCamera();
             void drawGraph(spark::renderer::ISparkRenderer* renderer);
@@ -32,7 +31,6 @@ namespace spark {
             spark::scene::SceneNode m_rootNode;
             spark::renderer::ISparkRenderer* m_renderer;
             spark::device::ScreenResolution m_screenResolution;
-            bool m_setNormalVectorDebugVisualizationMode;
             spark::log::ISparkLogger* m_logger;
         };
     }

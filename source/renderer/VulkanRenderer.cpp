@@ -165,7 +165,7 @@ namespace spark {
         /**
         *
         */
-        void VulkanRenderer::renderMesh(spark::mesh::ISparkMesh* mesh)
+        void VulkanRenderer::renderMesh(spark::mesh::ISparkMesh* mesh, spark::material::ISparkMaterial* material)
         {
 
         }

@@ -104,6 +104,7 @@ namespace spark {
                     glBindAttribLocation(m_programObject, 1, "aVertexNormal");
                     glBindAttribLocation(m_programObject, 2, "aVertexColor");
                     glBindAttribLocation(m_programObject, 3, "aTextureCoord");
+                    glBindAttribLocation(m_programObject, 4, "aBarycentric");
 
                     glLinkProgram(m_programObject);
                     GLint linked = 0;

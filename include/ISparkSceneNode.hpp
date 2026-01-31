@@ -4,6 +4,7 @@
 #include "SparkRefCount.hpp"
 #include "ISparkRenderer.hpp"
 #include "ISparkNodeAnimator.hpp"
+#include <material/Material.hpp>
 
 namespace spark {
     namespace scene {
@@ -21,6 +22,9 @@ namespace spark {
             virtual void addAnimator(spark::animator::ISparkNodeAnimator* nodeAnimator) = 0;
             virtual void render(spark::renderer::ISparkRenderer* renderer) = 0;
             virtual void animate() = 0;
+
+            // Material
+            virtual void setMaterial(spark::material::ISparkMaterial* material) = 0;
         };
     }
 }

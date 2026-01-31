@@ -7,6 +7,7 @@
 #include "ISparkLogger.hpp"
 #include <string>
 #include <map>
+#include "ISparkMaterial.hpp"
 
 namespace spark {
     namespace renderer {
@@ -29,7 +30,7 @@ namespace spark {
 
         public:
             spark::renderer::ISparkVertexBuffer* createOrUpdate(std::string id, std::vector<spark::drawing::Vertex3>& vertices);
-            spark::renderer::ISparkVertexBuffer* createOrUpdate(std::string id, spark::mesh::ISparkMesh* mesh);
+            spark::renderer::ISparkVertexBuffer* createOrUpdate(std::string id, spark::mesh::ISparkMesh* mesh, spark::material::VertexLayout vertexLayout);
 
         private:
             std::map<std::string, spark::renderer::vertexbuffer::OGLVertexBuffer*> m_vertexBufferMap;

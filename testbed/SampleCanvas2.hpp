@@ -8,7 +8,9 @@ public:
         m_device(device)
     {
         m_sceneGraphManager3D = device->createSceneGraphManager3D();
-        m_sceneGraphManager3D->setNormalVectorDebugVisualizationMode();
+
+        // Material
+        m_material = m_device->getRenderer()->createMaterial(spark::material::RenderMode::DebugVisualizationNormals);
 
         // Create Mesh
         spark::SparkSharedPointer<spark::mesh::ISparkMesh> mesh = device->getFileSystem()->loadMesh("teapot.obj");
@@ -18,9 +20,10 @@ public:
 
         // Create SceneNode
         spark::SparkSharedPointer<spark::scene::ISparkSceneNode> node = new spark::scene::SceneNode();
-        node->setPosition(spark::math::Vector3f(0, -1, -3));
+        node->setPosition(spark::math::Vector3f(0, -1, -1));
         node->attachMesh(mesh.get());
         node->addAnimator(nodeRotationAnimaror.get());
+        node->setMaterial(m_material.get());
 
         m_sceneGraphManager3D->rootNode()->addChildSceneNode(node.get());
     }
@@ -52,4 +55,5 @@ public:
 private:
     spark::device::ISparkDevice* m_device;
     spark::SparkSharedPointer<spark::scene::ISceneGraphManager3D> m_sceneGraphManager3D;
+    spark::SparkSharedPointer<spark::material::ISparkMaterial> m_material;
 };

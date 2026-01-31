@@ -2,6 +2,7 @@
 #define __SPARK_SCENE_SCENENODE_HPP_INCLUDED__
 
 #include "ISparkSceneNode.hpp"
+#include <material/MaterialLibrary.hpp>
 
 namespace spark {
     namespace scene {
@@ -34,6 +35,9 @@ namespace spark {
         private:
             void animate();
 
+        public:
+            void setMaterial(spark::material::ISparkMaterial* material);
+
         private:
             std::vector<ISparkSceneNode*> m_children;
             spark::math::Vector3f m_position;
@@ -41,6 +45,7 @@ namespace spark {
             spark::mesh::ISparkMesh* m_mesh;
             spark::math::Matrix4f m_modelTransformationMatrix;
             spark::animator::ISparkNodeAnimator* m_nodeAnimator;
+            spark::material::ISparkMaterial* m_material;
         };
     }
 }

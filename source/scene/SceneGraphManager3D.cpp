@@ -10,8 +10,7 @@ namespace spark {
             spark::log::ISparkLogger* logger)
             : m_renderer(renderer),
             m_screenResolution(screenResolution),
-            m_logger(logger),
-            m_setNormalVectorDebugVisualizationMode(false)
+            m_logger(logger)
         {
             //m_renderer->setLightDirection(0.0, 0.0, -1.0); // Currently not used
             m_renderer->setDrawMode(0);
@@ -31,14 +30,6 @@ namespace spark {
         spark::scene::ISparkSceneNode* SceneGraphManager3D::rootNode()
         {
             return &m_rootNode;
-        }
-
-        /**
-        *
-        */
-        void SceneGraphManager3D::setNormalVectorDebugVisualizationMode()
-        {
-            m_setNormalVectorDebugVisualizationMode = true;
         }
 
         /**
@@ -83,10 +74,6 @@ namespace spark {
         void SceneGraphManager3D::onBeforeDrawGraph()
         {
             m_renderer->activateDepthTest(true);
-            if (m_setNormalVectorDebugVisualizationMode)
-            {
-                m_renderer->setDrawMode(3);
-            }
         }
 
         /**

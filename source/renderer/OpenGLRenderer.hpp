@@ -1,5 +1,6 @@
 #ifndef __SPARK_RENDERER_OPENGLRENDERER_HPP_INCLUDED__
 #define __SPARK_RENDERER_OPENGLRENDERER_HPP_INCLUDED__
+
 #include "spark/SparkSetup.hpp"
 #include "AbstractSparkRenderer.hpp"
 #include "ISparkShader.hpp"
@@ -59,7 +60,10 @@ namespace spark {
             void drawString(const std::string fontFamily, uint32_t size, const std::string text, spark::drawing::Color color, int16_t x, int16_t y);
 
             // 3D
-            void renderMesh(spark::mesh::ISparkMesh* mesh);
+            void renderMesh(spark::mesh::ISparkMesh* mesh, spark::material::ISparkMaterial* material);
+
+            // Material
+            void applyMaterial(spark::material::ISparkMaterial* material);
 
             // Depth-Test
             void activateDepthTest(bool flag);

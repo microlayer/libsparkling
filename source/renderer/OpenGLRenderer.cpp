@@ -412,11 +412,41 @@ namespace spark {
         /**
         *
         */
-        void OpenGLRenderer::renderMesh(spark::mesh::ISparkMesh* mesh)
+        void OpenGLRenderer::renderMesh(spark::mesh::ISparkMesh* mesh, spark::material::ISparkMaterial* material)
         {
-            spark::renderer::ISparkVertexBuffer* vertexBuffer = m_vertexBufferFactory->createOrUpdate(mesh->getGuid(), mesh);
+            spark::material::VertexLayout vertexLayout = material->getRequiredMeshVariant();
+
+            spark::renderer::ISparkVertexBuffer* vertexBuffer = m_vertexBufferFactory->createOrUpdate(mesh->getGuid(), mesh, vertexLayout);
             mesh->setVertexBuffer(vertexBuffer);
+
+            applyMaterial(material);
             vertexBuffer->drawTriangles();
+        }
+
+        /**
+        *
+        */
+        void OpenGLRenderer::applyMaterial(spark::material::ISparkMaterial* material)
+        {
+            if (material != NULL)
+            {
+                if (material->getRenderMode() == spark::material::RenderMode::DebugVisualizationNormals)
+                {
+                    m_shader->setDrawMode(3);
+                }
+                if (material->getRenderMode() == spark::material::RenderMode::DebugVisualizationBarycentric)
+                {
+                    m_shader->setDrawMode(4);
+                }
+                if (material->getRenderMode() == spark::material::RenderMode::Wireframe)
+                {
+                    m_shader->setDrawMode(5);
+                }
+            }
+            else
+            {
+                m_shader->setDrawMode(0);
+            }
         }
 
         /**

@@ -109,6 +109,12 @@
     <Filter Include="source\mesh\importer">
       <UniqueIdentifier>{d565f98f-6ff4-4884-a236-f4e63e10468d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\material">
+      <UniqueIdentifier>{c37adad9-18a0-40fa-bd2a-4fa85ae54d3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\pointcloud">
+      <UniqueIdentifier>{b578b92c-030a-4d12-ab3c-09b07e8a2dd9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\spark\Sparkling.cpp">
@@ -254,6 +260,15 @@
     </ClCompile>
     <ClCompile Include="..\..\source\mesh\importer\WavefrontFileReader.cpp">
       <Filter>source\mesh\importer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\material\Material.cpp">
+      <Filter>source\material</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\material\MaterialLibrary.cpp">
+      <Filter>source\material</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\pointcloud\PointCloud.cpp">
+      <Filter>source\pointcloud</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -586,6 +601,21 @@
     </ClInclude>
     <ClInclude Include="..\..\testbed\SampleCanvas6.hpp">
       <Filter>testbed</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\material\Material.hpp">
+      <Filter>source\material</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkMaterial.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\material\MaterialLibrary.hpp">
+      <Filter>source\material</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\pointcloud\PointCloud.hpp">
+      <Filter>source\pointcloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkPointCloud.hpp">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

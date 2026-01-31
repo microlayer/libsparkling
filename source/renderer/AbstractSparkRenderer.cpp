@@ -58,5 +58,13 @@ namespace spark {
         {
             m_shader->setLightDirection(x, y, z);
         }
+
+        /**
+        *
+        */
+        spark::material::ISparkMaterial* AbstractSparkRenderer::createMaterial(spark::material::RenderMode renderMode)
+        {
+            return new spark::material::Material(renderMode);
+        }
     } // end namespace renderer
 } // end namespace spark

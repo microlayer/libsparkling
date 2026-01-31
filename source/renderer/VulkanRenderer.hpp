@@ -45,7 +45,7 @@ namespace spark {
             void drawString(const std::string fontFamily, uint32_t size, const std::string text, spark::drawing::Color color, int16_t x, int16_t y);
 
             // 3D
-            void renderMesh(spark::mesh::ISparkMesh* mesh);
+            void renderMesh(spark::mesh::ISparkMesh* mesh, spark::material::ISparkMaterial* material);
         };
     } // end namespace renderer
 } // end namespace spark

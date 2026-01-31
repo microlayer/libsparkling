@@ -96,7 +96,7 @@ namespace spark {
             virtual void setColor(spark::drawing::Color color) = 0;
 
             /**
-            * Sets the assigned VertexBuffer
+            *  Assign VertexBuffer
             */
             virtual void setVertexBuffer(spark::renderer::ISparkVertexBuffer* vertexBuffer) = 0;
 

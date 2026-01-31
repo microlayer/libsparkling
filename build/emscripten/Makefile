@@ -27,6 +27,8 @@ LIBSPARKLING_SRC_FILES += $(wildcard ../../source/mlstl/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/forms/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/game/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/fonts/*.cpp)
+LIBSPARKLING_SRC_FILES += $(wildcard ../../source/material/*.cpp)
+LIBSPARKLING_SRC_FILES += $(wildcard ../../source/pointcloud/*.cpp)
 
 IDIRINCLUDE  	:= ../../include
 IDIRSOURCE 	+= ../../source

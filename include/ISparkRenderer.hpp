@@ -13,6 +13,7 @@
 #include "ISparkImage.hpp"
 #include "ISparkFont.hpp"
 #include "math/Matrix4.hpp"
+#include <ISparkMaterial.hpp>
 
 namespace spark {
     namespace game {
@@ -53,7 +54,10 @@ namespace spark {
             virtual void drawString(const std::string fontFamily, uint32_t size, const std::string text, spark::drawing::Color color, int16_t x, int16_t y) = 0;
 
             // 3D support
-            virtual void renderMesh(spark::mesh::ISparkMesh* mesh) = 0;
+            virtual void renderMesh(spark::mesh::ISparkMesh* mesh, spark::material::ISparkMaterial* material) = 0;
+
+            // Material
+            virtual void applyMaterial(spark::material::ISparkMaterial* material) = 0;
 
             // Shader
             virtual void setDrawMode(uint32_t drawMode) = 0;
@@ -61,6 +65,9 @@ namespace spark {
 
             // Depth-Test
             virtual void activateDepthTest(bool flag) = 0;
+
+            // Factory
+            virtual spark::material::ISparkMaterial* createMaterial(spark::material::RenderMode renderMode) = 0;
         };
     } // end namespace renderer
 } // end namespace spark

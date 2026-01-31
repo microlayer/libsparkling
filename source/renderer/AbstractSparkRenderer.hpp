@@ -1,9 +1,11 @@
 #ifndef __SPARK_RENDERER_ABSTRACTSPARKRENDERER_HPP_INCLUDED__
 #define __SPARK_RENDERER_ABSTRACTSPARKRENDERER_HPP_INCLUDED__
+
 #include "ISparkDevice.hpp"
 #include "ISparkShader.hpp"
 #include "ISparkTextureFactory.hpp"
 #include "ISparkVertexBufferFactory.hpp"
+#include "ISparkMaterial.hpp"
 
 namespace spark {
     namespace renderer {
@@ -30,6 +32,9 @@ namespace spark {
         public:
             virtual void onBeginScene() = 0;
             virtual void onEndScene() = 0;
+
+        public:
+            spark::material::ISparkMaterial* createMaterial(spark::material::RenderMode renderMode);
 
         protected:
             spark::device::ISparkDevice* m_device;
