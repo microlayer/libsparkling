@@ -1,13 +1,4 @@
 #include "PointCloud.hpp"
-#include "SparkRefCount.hpp"
-#include "math/Vector3.hpp"
-#include "math/Vector2.hpp"
-#include "drawing/Color.hpp"
-#include "drawing/Vertex3.hpp"
-#include "ISparkVertexBuffer.hpp"
-#include <vector>
-#include <string>
-#include <spark/SparkCompilerConfig.hpp>
 
 namespace spark::geometry::pointcloud {
 
@@ -16,7 +7,10 @@ namespace spark::geometry::pointcloud {
     */
     PointCloud::PointCloud()
     {
-
+        if (m_guid.empty())
+        {
+            m_guid = spark::mlstl::guid::MLGuid::createGuid();
+        }
     }
 
     /**
@@ -24,7 +18,7 @@ namespace spark::geometry::pointcloud {
     */
     PointCloud::~PointCloud()
     {
-
+        if (m_vertexBuffer != NULL) m_vertexBuffer->release();
     }
 
     /**
@@ -86,9 +80,17 @@ namespace spark::geometry::pointcloud {
     /**
     *
     */
+    void PointCloud::addVertex(drawing::Vertex3 vertex)
+    {
+        m_vertices.push_back(vertex);
+    }
+
+    /**
+    *
+    */
     void PointCloud::setVertexBuffer(spark::renderer::ISparkVertexBuffer* vertexBuffer)
     {
-
+        m_vertexBuffer = vertexBuffer;
     }
 
     /**
@@ -96,6 +98,6 @@ namespace spark::geometry::pointcloud {
     */
     std::string PointCloud::getGuid() const
     {
-        return "123";
+        return m_guid;
     }
 }

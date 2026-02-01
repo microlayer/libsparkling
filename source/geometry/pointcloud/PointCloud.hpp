@@ -10,6 +10,7 @@
 #include <vector>
 #include <string>
 #include "ISparkPointCloud.hpp"
+#include <mlstl/MLGuid.hpp>
 
 namespace spark::geometry::pointcloud {
     /**
@@ -31,9 +32,17 @@ namespace spark::geometry::pointcloud {
         void setVertexBuffer(spark::renderer::ISparkVertexBuffer* vertexBuffer);
         std::string getGuid() const;
 
+    public:
+        void addVertex(drawing::Vertex3 vertex);
+
     private:
         std::vector<drawing::Vertex3> m_vertices;
         std::vector<drawing::Color> m_colors;
+
+    private:
+        std::string m_guid;
+    private:
+        spark::renderer::ISparkVertexBuffer* m_vertexBuffer;
     };
 }
 #endif

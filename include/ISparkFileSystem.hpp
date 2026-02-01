@@ -3,6 +3,7 @@
 
 #include "ISparkImage.hpp"
 #include "game/TiledLayer.hpp"
+#include "ISparkPointCloud.hpp"
 
 namespace spark::file {
     /**
@@ -14,6 +15,7 @@ namespace spark::file {
         virtual spark::drawing::ISparkImage* loadBitmap(const std::string& fileName) = 0;
         virtual spark::game::ISparkTiledLayer* loadTiledLayer(const std::string& fileName) = 0;
         virtual spark::geometry::mesh::ISparkMesh* loadMesh(const std::string& fileName) = 0;
+        virtual spark::geometry::pointcloud::ISparkPointCloud* loadPointCloud(const std::string& fileName) = 0;
         //virtual spark::font::ISparkFont* loadBitmapFont(const std::string& fileName) = 0;
         virtual void appendText(std::string filename, std::string text) = 0;
     };

@@ -135,6 +135,15 @@ namespace spark::file {
     /**
     *
     */
+    spark::geometry::pointcloud::ISparkPointCloud* FileSystem::loadPointCloud(const std::string& fileName)
+    {
+        spark::geometry::pointcloud::importer::PlyFileReader plyImporter(m_rootPath);
+        return plyImporter.loadPointCloud(fileName);
+    }
+
+    /**
+    *
+    */
     void FileSystem::appendText(std::string filename, std::string text)
     {
 

@@ -48,6 +48,7 @@ public:
         m_timer3.setTimeout([this]() {this->switchToCanvas4(); }, 12000);
         m_timer4.setTimeout([this]() {this->switchToCanvas5(); }, 22000);
         m_timer5.setTimeout([this]() {this->switchToCanvas6(); }, 26000);
+        m_timer6.setTimeout([this]() {this->switchToCanvas7(); }, 30000);
     }
 
     /**
@@ -88,6 +89,14 @@ public:
     void switchToCanvas6()
     {
         this->setActiveCanvas(m_sampleCanvas6.get());
+    }
+    
+    /**
+    *
+    */
+    void switchToCanvas7()
+    {
+        this->setActiveCanvas(m_sampleCanvas7.get());
     }
 
     /**

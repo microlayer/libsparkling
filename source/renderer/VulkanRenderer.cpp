@@ -172,6 +172,14 @@ namespace spark::renderer {
     /**
     *
     */
+    void VulkanRenderer::renderPointCloud(spark::geometry::pointcloud::ISparkPointCloud* pointCloud)
+    {
+
+    }
+
+    /**
+    *
+    */
     void VulkanRenderer::applyMaterial(spark::material::ISparkMaterial* material)
     {
 

@@ -3,7 +3,8 @@
 
 #include "ISparkSceneNode.hpp"
 #include <material/MaterialLibrary.hpp>
-#include <ISparkMesh.hpp>
+#include "ISparkMesh.hpp"
+#include "ISparkPointCloud.hpp"
 
 namespace spark::scene {
     /**
@@ -27,6 +28,10 @@ namespace spark::scene {
     public:
         void attachMesh(spark::geometry::mesh::ISparkMesh* mesh);
         spark::geometry::mesh::ISparkMesh* getMesh();
+
+        void attachPointCloud(spark::geometry::pointcloud::ISparkPointCloud* pointCloud);
+        spark::geometry::pointcloud::ISparkPointCloud* getPointCloud();
+
         void addAnimator(spark::animator::ISparkNodeAnimator* nodeAnimator);
 
     public:
@@ -43,6 +48,7 @@ namespace spark::scene {
         spark::math::Vector3f m_position;
         spark::math::Vector3f m_rotation;
         spark::geometry::mesh::ISparkMesh* m_mesh;
+        spark::geometry::pointcloud::ISparkPointCloud* m_pointCloud;
         spark::math::Matrix4f m_modelTransformationMatrix;
         spark::animator::ISparkNodeAnimator* m_nodeAnimator;
         spark::material::ISparkMaterial* m_material;

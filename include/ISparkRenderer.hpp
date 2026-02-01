@@ -13,7 +13,8 @@
 #include "ISparkImage.hpp"
 #include "ISparkFont.hpp"
 #include "math/Matrix4.hpp"
-#include <ISparkMaterial.hpp>
+#include "ISparkMaterial.hpp"
+#include "ISparkPointCloud.hpp"
 
 namespace spark {
     namespace game {
@@ -53,6 +54,7 @@ namespace spark::renderer {
 
         // 3D support
         virtual void renderMesh(spark::geometry::mesh::ISparkMesh* mesh, spark::material::ISparkMaterial* material) = 0;
+        virtual void renderPointCloud(spark::geometry::pointcloud::ISparkPointCloud* pointCloud) = 0;
 
         // Material
         virtual void applyMaterial(spark::material::ISparkMaterial* material) = 0;

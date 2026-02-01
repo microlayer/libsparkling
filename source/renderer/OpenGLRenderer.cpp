@@ -425,6 +425,19 @@ namespace spark::renderer {
     /**
     *
     */
+    void OpenGLRenderer::renderPointCloud(spark::geometry::pointcloud::ISparkPointCloud* pointCloud)
+    {
+        auto vertices = pointCloud->getPoints();
+        spark::renderer::ISparkVertexBuffer* vertexBuffer = m_vertexBufferFactory->createOrUpdate(pointCloud->getGuid(), vertices);
+        pointCloud->setVertexBuffer(vertexBuffer);
+        
+        applyMaterial(NULL);
+        vertexBuffer->drawPoints();
+    }
+
+    /**
+    *
+    */
     void OpenGLRenderer::applyMaterial(spark::material::ISparkMaterial* material)
     {
         if (material != NULL)

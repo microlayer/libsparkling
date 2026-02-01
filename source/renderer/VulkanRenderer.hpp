@@ -45,6 +45,7 @@ namespace spark::renderer {
 
         // 3D
         void renderMesh(spark::geometry::mesh::ISparkMesh* mesh, spark::material::ISparkMaterial* material);
+        void renderPointCloud(spark::geometry::pointcloud::ISparkPointCloud* pointCloud);
 
         // Material
         void applyMaterial(spark::material::ISparkMaterial* material);

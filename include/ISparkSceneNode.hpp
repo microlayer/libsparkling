@@ -4,7 +4,8 @@
 #include "SparkRefCount.hpp"
 #include "ISparkRenderer.hpp"
 #include "ISparkNodeAnimator.hpp"
-#include <material/Material.hpp>
+#include "material/Material.hpp"
+#include "ISparkPointCloud.hpp"
 
 namespace spark::scene {
     /**
@@ -18,6 +19,8 @@ namespace spark::scene {
         virtual void setRotation(spark::math::Vector3f rotation) = 0;
         virtual void attachMesh(spark::geometry::mesh::ISparkMesh* mesh) = 0;
         virtual spark::geometry::mesh::ISparkMesh* getMesh() = 0;
+        virtual void attachPointCloud(spark::geometry::pointcloud::ISparkPointCloud* pointCloud) = 0;
+        virtual spark::geometry::pointcloud::ISparkPointCloud* getPointCloud() = 0;
         virtual void addAnimator(spark::animator::ISparkNodeAnimator* nodeAnimator) = 0;
         virtual void render(spark::renderer::ISparkRenderer* renderer) = 0;
         virtual void animate() = 0;

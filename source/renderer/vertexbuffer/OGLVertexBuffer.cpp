@@ -212,17 +212,27 @@ namespace spark::renderer::vertexbuffer {
     */
     void OGLVertexBuffer::uploadBuffer()
     {
-        glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
-        glBufferSubData(GL_ARRAY_BUFFER, 0, m_bufferSizeVertices, &m_verticesData[0]);
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        if (!m_verticesData.empty())
+        {
+            glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
+            glBufferSubData(GL_ARRAY_BUFFER, 0, m_bufferSizeVertices, &m_verticesData[0]);
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
+        }
 
-        glBindBuffer(GL_ARRAY_BUFFER, m_nbo);
-        glBufferSubData(GL_ARRAY_BUFFER, 0, m_bufferSizeNormals, &m_normalData[0]);
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        if (!m_normalData.empty())
+        {
+            glBindBuffer(GL_ARRAY_BUFFER, m_nbo);
+            glBufferSubData(GL_ARRAY_BUFFER, 0, m_bufferSizeNormals, &m_normalData[0]);
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-        glBindBuffer(GL_ARRAY_BUFFER, m_cbo);
-        glBufferSubData(GL_ARRAY_BUFFER, 0, m_bufferSizeColor, &m_colorData[0]);
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        }
+
+        if (!m_colorData.empty())
+        {
+            glBindBuffer(GL_ARRAY_BUFFER, m_cbo);
+            glBufferSubData(GL_ARRAY_BUFFER, 0, m_bufferSizeColor, &m_colorData[0]);
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
+        }
 
         if (!m_barycentricData.empty())
         {
@@ -231,8 +241,11 @@ namespace spark::renderer::vertexbuffer {
             glBindBuffer(GL_ARRAY_BUFFER, 0);
         }
 
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibo);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_bufferSizeIndices, &m_mesh->getIndices()[0], GL_STATIC_DRAW);
+        if (m_bufferSizeIndices > 0)
+        {
+            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibo);
+            glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_bufferSizeIndices, &m_mesh->getIndices()[0], GL_STATIC_DRAW);
+        }
     }
 
     /**
@@ -241,7 +254,7 @@ namespace spark::renderer::vertexbuffer {
     void OGLVertexBuffer::drawPoints()
     {
         glBindVertexArray(m_vao); // The VAO stores all attribute pointer configurations,        
-        glDrawArrays(GL_POINTS, 0, 2);
+        glDrawArrays(GL_POINTS, 0, 0);
         glBindVertexArray(0);
     }
 

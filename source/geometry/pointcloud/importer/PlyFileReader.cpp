@@ -4,7 +4,7 @@ namespace spark::geometry::pointcloud::importer {
     /**
     *
     */
-    PlyFileReader::PlyFileReader()
+    PlyFileReader::PlyFileReader(std::string rootPath)
     {
 
     }
@@ -22,6 +22,8 @@ namespace spark::geometry::pointcloud::importer {
     */
     spark::geometry::pointcloud::ISparkPointCloud* PlyFileReader::loadPointCloud(std::string fileName)
     {
-        return NULL;
+        spark::geometry::pointcloud::PointCloud* pointCloud = new spark::geometry::pointcloud::PointCloud();
+        pointCloud->addVertex(spark::drawing::Vertex3(1.0, 1.0, 0.0, spark::drawing::Color(255, 0, 0, 128)));
+        return pointCloud;
     }
 }
