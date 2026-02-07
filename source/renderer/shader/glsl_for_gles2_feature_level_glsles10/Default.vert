@@ -17,6 +17,8 @@ varying vec2 textureCoord;
 varying vec3 lightDirection;
 varying vec3 barycentric;
 
+const float POINT_SIZE = 3.0;
+
 //--------------------------------------------------------------------------------------
 //
 //--------------------------------------------------------------------------------------
@@ -27,7 +29,8 @@ void main()
     textureCoord = aTextureCoord;
     lightDirection = uLightDirection;
     barycentric = aBarycentric;
-
+        
     gl_Position = uModelViewProjectionMatrix * vec4(aVertexPosition, 1.0);
+    gl_PointSize = POINT_SIZE;
 }
 

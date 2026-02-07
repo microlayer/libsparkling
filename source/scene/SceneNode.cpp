@@ -6,6 +6,7 @@ namespace spark::scene {
     */
     SceneNode::SceneNode() :
         m_mesh(NULL),
+        m_pointCloud(NULL),
         m_nodeAnimator(NULL)
     {
         m_material = spark::material::MaterialLibrary::getDefaultMaterial();

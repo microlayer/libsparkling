@@ -6,7 +6,10 @@ namespace spark::renderer::vertexbuffer {
     */
     OGLVertexBuffer::OGLVertexBuffer(spark::log::ISparkLogger* logger, std::vector<spark::drawing::Vertex3>& vertices) :
         m_bufferSizeVertices(0),
-        m_bufferSizeColor(0)
+        m_bufferSizeNormals(0),
+        m_bufferSizeColor(0),
+        m_bufferSizeBarycentric(0),
+        m_bufferSizeIndices(0)
     {
         for (auto& vertex : vertices)
         {
@@ -22,8 +25,9 @@ namespace spark::renderer::vertexbuffer {
             m_colorData.push_back(vertex.m_color.m_alpha);
         }
 
-        m_bufferSizeVertices = m_verticesData.size() * 4;
-        m_bufferSizeColor = m_colorData.size() * 1;
+        m_bufferSizeVertices = m_verticesData.size() * sizeof(real32);
+        m_bufferSizeNormals = m_normalData.size() * sizeof(real32);
+        m_bufferSizeColor = m_colorData.size() * sizeof(uc8_t);
 
         allocateBuffer();
         uploadBuffer();
@@ -38,6 +42,7 @@ namespace spark::renderer::vertexbuffer {
         m_bufferSizeNormals(0),
         m_bufferSizeColor(0),
         m_bufferSizeBarycentric(0),
+        m_bufferSizeIndices(0),
         m_vertexLayout(vertexLayout)
     {
         if (m_vertexLayout == spark::material::VertexLayout::Indexed)
@@ -244,7 +249,10 @@ namespace spark::renderer::vertexbuffer {
         if (m_bufferSizeIndices > 0)
         {
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibo);
-            glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_bufferSizeIndices, &m_mesh->getIndices()[0], GL_STATIC_DRAW);
+            if (m_mesh != NULL)
+            {
+                glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_bufferSizeIndices, &m_mesh->getIndices()[0], GL_STATIC_DRAW);
+            }
         }
     }
 
@@ -254,7 +262,7 @@ namespace spark::renderer::vertexbuffer {
     void OGLVertexBuffer::drawPoints()
     {
         glBindVertexArray(m_vao); // The VAO stores all attribute pointer configurations,        
-        glDrawArrays(GL_POINTS, 0, 0);
+        glDrawArrays(GL_POINTS, 0, m_verticesData.size() / 3);
         glBindVertexArray(0);
     }
 

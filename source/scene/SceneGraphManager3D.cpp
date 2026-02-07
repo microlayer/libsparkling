@@ -61,7 +61,6 @@ namespace spark::scene {
         onBeforeDrawGraph();
 
         spark::scene::ISparkSceneNode* node = m_rootNode.getChildren().at(0);
-        spark::geometry::mesh::ISparkMesh* mesh = node->getMesh();
         node->render(renderer);
 
         onAfterDrawGraph();

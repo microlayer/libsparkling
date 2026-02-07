@@ -430,8 +430,7 @@ namespace spark::renderer {
         auto vertices = pointCloud->getPoints();
         spark::renderer::ISparkVertexBuffer* vertexBuffer = m_vertexBufferFactory->createOrUpdate(pointCloud->getGuid(), vertices);
         pointCloud->setVertexBuffer(vertexBuffer);
-        
-        applyMaterial(NULL);
+        applyMaterial(spark::material::MaterialLibrary::getDefaultMaterial());
         vertexBuffer->drawPoints();
     }
 
@@ -440,24 +439,24 @@ namespace spark::renderer {
     */
     void OpenGLRenderer::applyMaterial(spark::material::ISparkMaterial* material)
     {
-        if (material != NULL)
-        {
-            if (material->getRenderMode() == spark::material::RenderMode::DebugVisualizationNormals)
-            {
-                m_shader->setDrawMode(3);
-            }
-            if (material->getRenderMode() == spark::material::RenderMode::DebugVisualizationBarycentric)
-            {
-                m_shader->setDrawMode(4);
-            }
-            if (material->getRenderMode() == spark::material::RenderMode::Wireframe)
-            {
-                m_shader->setDrawMode(5);
-            }
-        }
-        else
-        {
+        if (!material) {
             m_shader->setDrawMode(0);
+            return;
+        }
+
+        using RenderMode = spark::material::RenderMode;
+        switch (material->getRenderMode())
+        {
+        case RenderMode::DebugVisualizationNormals:
+            m_shader->setDrawMode(3); break;
+        case RenderMode::DebugVisualizationBarycentric:
+            m_shader->setDrawMode(4); break;
+        case RenderMode::Wireframe:
+            m_shader->setDrawMode(5); break;
+        case RenderMode::Default:
+            m_shader->setDrawMode(0); break;
+        default:
+            m_shader->setDrawMode(0); break;
         }
     }
 

@@ -14,6 +14,7 @@ namespace spark {
             OpenGLRenderer(device, shader, textureFactory, vertexBufferFactory)
         {
             uint32_t ret = glewInit();
+            glEnable(GL_PROGRAM_POINT_SIZE);
         }
 
         /**
