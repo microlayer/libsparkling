@@ -220,6 +220,7 @@ namespace spark {
         void AbstractSparkDevice::onMouseMove(real32 x, real32 y)
         {
             m_logger->info("OnMouseMove x:%i y:%i", x, y);
+            if (m_activeCanvas != NULL) m_activeCanvas->onMouseMove(x, y);
         }
 
         /**
@@ -228,6 +229,7 @@ namespace spark {
         void AbstractSparkDevice::onMouseClick(int button, int action)
         {
             m_logger->info("OnMouseClick button:%i action:%i", button, action);
+            if (m_activeCanvas != NULL) m_activeCanvas->onMouseClick(button, action);
         }
 
         /**

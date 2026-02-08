@@ -44,20 +44,52 @@ public:
     */
     void onKeyPressed(int key, int action)
     {
+        m_rot_x = 0.0f;
+        m_rot_y = 0.0f;
         spark::scene::ISparkSceneNode* root = m_sceneGraphManager3D->rootNode();
-        // 4 / 6: Rotation Y-Axis (left/right).
-        if (key == 324) m_rot_y -= 0.05f;
-        if (key == 326) m_rot_y += 0.05f;
+        root->getChildren()[0]->setRotation(spark::math::Vector3f(m_rot_x, m_rot_y, 0.0f));
+    }
 
-        // 8 / 2: Rotation X-Axis (up/down).
-        if (key == 328) m_rot_x -= 0.05f;
-        if (key == 322) m_rot_x += 0.05f;
+    /**
+    *
+    */
+    void onMouseMove(float x, float y)
+    {
+        if (!m_mouseDown)
+        {
+            m_lastX = x;
+            m_lastY = y;
+            return;
+        }
 
-        // 7 / 9: Rotation Z-Axis (roll).
-        if (key == 327) m_rot_z += 0.05f;
-        if (key == 329) m_rot_z -= 0.05f;
+        float dx = x - m_lastX;
+        float dy = y - m_lastY;
 
-        root->getChildren()[0]->setRotation(spark::math::Vector3f(m_rot_x, m_rot_y, m_rot_z));
+        m_lastX = x;
+        m_lastY = y;
+
+        // Maus right/left Y-Rotation
+        m_rot_y += dx * m_sensitivity;
+
+        // Maus up/down X-Rotation
+        m_rot_x += dy * m_sensitivity;
+
+        spark::scene::ISparkSceneNode* root = m_sceneGraphManager3D->rootNode();
+        root->getChildren()[0]->setRotation(spark::math::Vector3f(m_rot_x, m_rot_y, 0.0f));
+    }
+
+    /**
+    *
+    */
+    void onMouseClick(int button, int action)
+    {
+        if (button == 0)
+        {
+            if (action == 1)
+                m_mouseDown = true;
+            else if (action == 0)
+                m_mouseDown = false;
+        }
     }
 
     /**
@@ -71,9 +103,8 @@ public:
         orthographicProjection.setVirtualResolution(1196, 720, spark::perspective::VirtualResolution::E_LETTER_OR_PILLARBOX);
         m_device->getRenderer()->setOrthographicProjectionMatrix(orthographicProjection);
 
-        renderer->drawString(spark::font::ESFT_ARIAL_16, "X " + std::to_string(m_rot_x), spark::drawing::Color(255, 255, 0, 128), 1000, 70);
-        renderer->drawString(spark::font::ESFT_ARIAL_16, "Y " + std::to_string(m_rot_y), spark::drawing::Color(255, 255, 0, 128), 1000, 90);
-        renderer->drawString(spark::font::ESFT_ARIAL_16, "Z " + std::to_string(m_rot_z), spark::drawing::Color(255, 255, 0, 128), 1000, 110);
+        renderer->drawString(spark::font::ESFT_ARIAL_16, "X: " + std::to_string(m_rot_x), spark::drawing::Color(255, 255, 0, 128), 1000, 70);
+        renderer->drawString(spark::font::ESFT_ARIAL_16, "Y: " + std::to_string(m_rot_y), spark::drawing::Color(255, 255, 0, 128), 1000, 90);
     }
 
 private:
@@ -82,5 +113,9 @@ private:
 
     float m_rot_x;
     float m_rot_y;
-    float m_rot_z;
+
+    bool m_mouseDown = false;
+    float m_lastX = 0.0f;
+    float m_lastY = 0.0f;
+    float m_sensitivity = 0.005;
 };
