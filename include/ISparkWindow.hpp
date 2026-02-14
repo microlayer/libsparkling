@@ -4,18 +4,14 @@
 #include "spark/SparkTypes.hpp"
 #include "SparkRefCount.hpp"
 
-namespace spark {
-    namespace device {
-        namespace window {
-            /**
-            *
-            */
-            class ISparkWindow : public spark::SparkRefCount
-            {
-            public:
-                virtual void* getNativeWindow() = 0;
-            };
-        } // end namespace window
-    } // end namespace device
-} // end namespace spark
+namespace spark::device::window {
+    /**
+    *
+    */
+    class ISparkWindow : public spark::SparkRefCount
+    {
+    public:
+        virtual void* getNativeWindow() = 0;
+    };
+}
 #endif

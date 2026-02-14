@@ -9,16 +9,14 @@ namespace spark {
     }
 }
 
-namespace spark {
-    namespace animator {
-        /**
-        *
-        */
-        class ISparkNodeAnimator : public virtual spark::SparkRefCount
-        {
-        public:
-            virtual void animate(spark::scene::ISparkSceneNode* node) = 0;
-        };
-    } // end namespace animator
-} // end namespace spark
+namespace spark::animator {
+    /**
+    *
+    */
+    class ISparkNodeAnimator : public virtual spark::SparkRefCount
+    {
+    public:
+        virtual void animate(spark::scene::ISparkSceneNode* node) = 0;
+    };
+}
 #endif

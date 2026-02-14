@@ -18,6 +18,7 @@ namespace spark::scene {
         virtual std::vector<ISparkSceneNode*> getChildren() = 0;
         virtual void setPosition(spark::math::Vector3f position) = 0;
         virtual void setRotation(spark::math::Vector3f rotation) = 0;
+        virtual void setScale(const real32 x, const real32 y, const real32 z) = 0;
         virtual void attachMesh(spark::geometry::mesh::ISparkMesh* mesh) = 0;
         virtual spark::geometry::mesh::ISparkMesh* getMesh() = 0;
         virtual void attachPointCloud(spark::geometry::pointcloud::ISparkPointCloud* pointCloud) = 0;

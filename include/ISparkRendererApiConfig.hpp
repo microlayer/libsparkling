@@ -3,15 +3,13 @@
 
 #include "SparkRefCount.hpp"
 
-namespace spark {
-    namespace renderer {
-        /**
-        *
-        */
-        class ISparkRendererApiConfig : public virtual spark::SparkRefCount
-        {
-            
-        };
-    } // end namespace renderer
-} // end namespace spark
+namespace spark::renderer {
+    /**
+    *
+    */
+    class ISparkRendererApiConfig : public virtual spark::SparkRefCount
+    {
+
+    };
+}
 #endif

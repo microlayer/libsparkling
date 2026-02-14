@@ -3,16 +3,14 @@
 
 #include "ui/Command.hpp"
 
-namespace spark {
-    namespace ui {
-        /**
-        *
-        */
-        class ISparkCommandListener
-        {
-        public:
-            virtual void executeCommand(spark::ui::Command::E_COMMAND_TYPE cmd, spark::ui::AbstractCanvas* canvas) = 0;
-        };
-    } // end namespace ui
-} // end namespace spark
+namespace spark::ui {
+    /**
+    *
+    */
+    class ISparkCommandListener
+    {
+    public:
+        virtual void executeCommand(spark::ui::Command::E_COMMAND_TYPE cmd, spark::ui::AbstractCanvas* canvas) = 0;
+    };
+}
 #endif

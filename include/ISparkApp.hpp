@@ -3,18 +3,16 @@
 
 #include "ui/AbstractCanvas.hpp"
 
-namespace spark {
-    namespace app {
-        /**
-        *
-        */
-        class ISparkApp
-        {
-        public:
-            virtual void onInit() = 0;
-            virtual spark::ui::AbstractCanvas* getActiveCanvas() = 0;
-            virtual void setActiveCanvas(spark::ui::AbstractCanvas* canvas) = 0;
-        };
-    } // end namespace application
-} // end namespace spark
+namespace spark::app {
+    /**
+    *
+    */
+    class ISparkApp
+    {
+    public:
+        virtual void onInit() = 0;
+        virtual spark::ui::AbstractCanvas* getActiveCanvas() = 0;
+        virtual void setActiveCanvas(spark::ui::AbstractCanvas* canvas) = 0;
+    };
+}
 #endif
