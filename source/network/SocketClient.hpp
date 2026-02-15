@@ -6,7 +6,8 @@
 #include <functional>
 #include <string>
 #if SPARK_PLATFORM == SPARK_PLATFORM_WEBGL
-#include <emscripten/fetch.h>
+#include <emscripten/websocket.h>
+#define EMSCRIPTEN_WEBSOCKET_T int
 #endif
 #if SPARK_PLATFORM == SPARK_PLATFORM_WINDOWS
 #endif
@@ -17,8 +18,7 @@ namespace spark::network {
     */
     class SocketClient {
     public:
-        using MessageCallback = std::function<void(const std::string&)>;
-        using EventCallback = std::function<void()>;
+
 
     public:
         SocketClient();
@@ -30,12 +30,13 @@ namespace spark::network {
         void close();
 
     private:
-        MessageCallback onMessage;
-        EventCallback onOpen;
-        EventCallback onClose;
+
 
 #if SPARK_PLATFORM == SPARK_PLATFORM_WEBGL
-        EMSCRIPTEN_WEBSOCKET_T m_ws
+        static EM_BOOL onOpen(int eventType, const EmscriptenWebSocketOpenEvent* websocketEvent, void* userData);
+        static EM_BOOL onMessage(int eventType, const EmscriptenWebSocketMessageEvent* websocketEvent, void* userData);
+        static EM_BOOL onClose(int eventType, const EmscriptenWebSocketCloseEvent* websocketEvent, void* userData);
+        EMSCRIPTEN_WEBSOCKET_T m_ws;
 #endif
     };
 }

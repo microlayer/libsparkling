@@ -36,6 +36,10 @@ namespace spark::network {
         void post(const std::string& url, const std::string& jsonBody, std::function<void(std::vector<uc8_t>)> callback);
         void put(const std::string& url, const std::string& jsonBody, std::function<void(std::vector<uc8_t>)> callback);
         void del(const std::string& url, std::function<void(std::vector<uc8_t>)> callback);
+
+    private:
+        static void onSuccess(std::string result);
+        static void onError(std::string error);
     };
 }
 #endif

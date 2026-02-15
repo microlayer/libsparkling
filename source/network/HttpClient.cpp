@@ -1,6 +1,9 @@
 #include "HttpClient.hpp"
+
+#if SPARK_PLATFORM == SPARK_PLATFORM_WINDOWS       
 #include <winsock2.h>
 #include <ws2tcpip.h>
+#endif
 
 namespace spark::network {
     /**
@@ -65,7 +68,7 @@ namespace spark::network {
             WSADATA wsaData;
             int wsaStatus = WSAStartup(MAKEWORD(2, 2), &wsaData);
 
-            const char* hostname = "hellosalut.stefanbohacek.com";
+            const char* hostname = "test.microlayer.org";
             const char* port = "80";
             struct addrinfo hints, * res;
 
@@ -79,8 +82,8 @@ namespace spark::network {
             connect(sock, res->ai_addr, res->ai_addrlen);
 
             const char* request =
-                "GET /?lang=de HTTP/1.1\r\n"
-                "Host: hellosalut.stefanbohacek.com\r\n"
+                "GET /test.html HTTP/1.1\r\n"
+                "Host: test.microlayer.org\r\n"
                 "Connection: close\r\n\r\n";
 
             send(sock, request, strlen(request), 0);
@@ -112,8 +115,9 @@ namespace spark::network {
         strcpy(attr.requestMethod, "POST");
 
         attr.requestHeaders = new const char* [3];
-        attr.requestHeaders[0] = "Content-Type";
-        attr.requestHeaders[1] = "application/json"
+        //attr.requestHeaders[0] = "Content-Type";
+        //attr.requestHeaders[1] = "application/json";
+        //attr.requestHeaders[2] = nullptr;
 #endif
     }
 
@@ -129,6 +133,22 @@ namespace spark::network {
     *
     */
     void HttpClient::del(const std::string& url, std::function<void(std::vector<uc8_t>)> callback)
+    {
+
+    }
+
+    /**
+    *
+    */
+    void HttpClient::onSuccess(std::string result)
+    {
+
+    }
+
+    /**
+    *
+    */
+    void HttpClient::onError(std::string error)
     {
 
     }

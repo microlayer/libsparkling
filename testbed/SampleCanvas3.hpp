@@ -27,9 +27,10 @@ public:
 
         // Load HTTP data
         spark::SparkSharedPointer<spark::network::ISparkHttpClient> httpClient = device->createHttpClient();
-        httpClient.get()->get("http:://localhost:8080/foo", [this](std::vector<spark::uc8_t> data)
+        httpClient.get()->get("http://test.microlayer.org/test.html", [this](std::vector<spark::uc8_t> data)
             {
-                m_device->getLogger()->info("Received data from HTTP request, size: %i bytes", data.size());
+                std::string s(data.begin(), data.end());
+                m_device->getLogger()->info("Received data from HTTP request, size: %i bytes (%s)", data.size(), s.c_str());
             });
     }
 

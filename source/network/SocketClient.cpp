@@ -24,9 +24,9 @@ namespace spark::network {
 #if SPARK_PLATFORM == SPARK_PLATFORM_WEBGL
         EmscriptenWebSocketCreateAttributes attr = { url.c_str(), NULL, EM_TRUE };
         m_ws = emscripten_websocket_new(&attr);
-        emscripten_websocket_set_onopen_callback(m_ws, this, staticOnOpen);
-        emscripten_websocket_set_onmessage_callback(m_ws, this, staticOnMessage);
-        emscripten_websocket_set_onclose_callback(m_ws, this, staticOnClose);
+        emscripten_websocket_set_onopen_callback(m_ws, this, onOpen);
+        emscripten_websocket_set_onmessage_callback(m_ws, this, onMessage);
+        emscripten_websocket_set_onclose_callback(m_ws, this, onClose);
 #endif
         return true;
     }
@@ -55,4 +55,30 @@ namespace spark::network {
         }
 #endif
     }
+
+#if SPARK_PLATFORM == SPARK_PLATFORM_WEBGL
+    /**
+    *
+    */
+    EM_BOOL SocketClient::onOpen(int eventType, const EmscriptenWebSocketOpenEvent* websocketEvent, void* userData)
+    {
+        return true;
+    }
+
+    /**
+    *
+    */
+    EM_BOOL SocketClient::onMessage(int eventType, const EmscriptenWebSocketMessageEvent* websocketEvent, void* userData)
+    {
+        return true;
+    }
+
+    /**
+    *
+    */
+    EM_BOOL SocketClient::onClose(int eventType, const EmscriptenWebSocketCloseEvent* websocketEvent, void* userData)
+    {
+        return true;
+    }
+#endif
 }
