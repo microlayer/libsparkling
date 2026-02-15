@@ -5,6 +5,7 @@
 #include <material/MaterialLibrary.hpp>
 #include "ISparkMesh.hpp"
 #include "ISparkPointCloud.hpp"
+#include "math/Matrix4.hpp"
 
 namespace spark::scene {
     /**
@@ -24,6 +25,7 @@ namespace spark::scene {
     public:
         void setPosition(spark::math::Vector3f position);
         void setRotation(spark::math::Vector3f rotation);
+        void setScale(const real32 x, const real32 y, const real32 z);
 
     public:
         void attachMesh(spark::geometry::mesh::ISparkMesh* mesh);

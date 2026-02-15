@@ -32,6 +32,7 @@ Multibyte Character Set                                                         
 #pragma comment(lib, "box2d/build/lib-vc2022/libbox2d.lib")
 #endif
 #pragma comment(lib, "opengl32.lib")
+#pragma comment(lib, "Ws2_32.lib")
 #if SPARK_COMPILE_VULKAN == 0x1
 #pragma comment(lib, "vulkan-1.lib")
 #endif

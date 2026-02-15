@@ -158,6 +158,14 @@ namespace spark {
         /**
         *
         */
+        spark::network::ISparkHttpClient* AbstractSparkDevice::createHttpClient()
+        {
+            return new spark::network::HttpClient();
+        }
+
+        /**
+        *
+        */
         uint64_t AbstractSparkDevice::getHeapAllocatedSize()
         {
             return 0;

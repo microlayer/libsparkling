@@ -242,6 +242,8 @@
     <ClCompile Include="..\..\source\material\Material.cpp" />
     <ClCompile Include="..\..\source\material\MaterialLibrary.cpp" />
     <ClCompile Include="..\..\source\mlstl\MLBase64.cpp" />
+    <ClCompile Include="..\..\source\network\HttpClient.cpp" />
+    <ClCompile Include="..\..\source\network\SocketClient.cpp" />
     <ClCompile Include="..\..\source\perspective\OrthographicProjection.cpp" />
     <ClCompile Include="..\..\source\renderer\AbstractSparkRenderer.cpp" />
     <ClCompile Include="..\..\source\renderer\common\TextureFactory.cpp" />
@@ -268,6 +270,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\include\ISparkFontPool.hpp" />
     <ClInclude Include="..\..\include\ISparkFont.hpp" />
+    <ClInclude Include="..\..\include\ISparkHttpClient.hpp" />
     <ClInclude Include="..\..\include\ISparkLineLayer.hpp" />
     <ClInclude Include="..\..\include\ISparkMaterial.hpp" />
     <ClInclude Include="..\..\include\ISparkMeshImporter.hpp" />
@@ -318,6 +321,7 @@
     <ClInclude Include="..\..\source\fonts\BitmapFontInfo.hpp" />
     <ClInclude Include="..\..\source\fonts\BitmapGlyphInfo.hpp" />
     <ClInclude Include="..\..\source\fonts\embedded\Arial16.hpp" />
+    <ClInclude Include="..\..\source\fonts\embedded\Arial8.hpp" />
     <ClInclude Include="..\..\source\fonts\Font.hpp" />
     <ClInclude Include="..\..\source\fonts\FontPool.hpp" />
     <ClInclude Include="..\..\source\forms\Window.hpp" />
@@ -344,6 +348,8 @@
     <ClInclude Include="..\..\source\mlstl\MLBase64.hpp" />
     <ClInclude Include="..\..\source\mlstl\MLGuid.hpp" />
     <ClInclude Include="..\..\source\mlstl\MLHash.hpp" />
+    <ClInclude Include="..\..\source\network\HttpClient.hpp" />
+    <ClInclude Include="..\..\source\network\SocketClient.hpp" />
     <ClInclude Include="..\..\source\perspective\OrthographicProjection.hpp" />
     <ClInclude Include="..\..\source\perspective\PerspectiveProjection.hpp" />
     <ClInclude Include="..\..\source\perspective\Viewport.hpp" />

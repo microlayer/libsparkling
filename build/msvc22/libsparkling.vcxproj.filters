@@ -121,6 +121,9 @@
     <Filter Include="source\geometry\pointcloud\importer">
       <UniqueIdentifier>{d4668c25-86ad-435a-96ca-3bf018d82d9d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\network">
+      <UniqueIdentifier>{7fe4af6b-f6ac-4479-9fbd-65d8a7105bca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\spark\Sparkling.cpp">
@@ -278,6 +281,12 @@
     </ClCompile>
     <ClCompile Include="..\..\source\geometry\pointcloud\importer\PlyFileReader.cpp">
       <Filter>source\geometry\pointcloud\importer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\network\HttpClient.cpp">
+      <Filter>source\network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\network\SocketClient.cpp">
+      <Filter>source\network</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -634,6 +643,18 @@
     </ClInclude>
     <ClInclude Include="..\..\testbed\SampleCanvas7.hpp">
       <Filter>testbed</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\network\HttpClient.hpp">
+      <Filter>source\network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\network\SocketClient.hpp">
+      <Filter>source\network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkHttpClient.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\fonts\embedded\Arial8.hpp">
+      <Filter>source\fonts\embedded</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

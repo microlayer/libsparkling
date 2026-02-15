@@ -73,14 +73,24 @@ namespace spark::scene {
     /**
     *
     */
+    void SceneNode::setScale(const real32 x, const real32 y, const real32 z)
+    {
+        spark::math::Matrix4f m;
+        m.setScale(x, y, z);
+        m_modelTransformationMatrix = m_modelTransformationMatrix * m;
+    }
+
+    /**
+    *
+    */
     void SceneNode::attachMesh(spark::geometry::mesh::ISparkMesh* mesh)
     {
-        
+
         if (mesh != NULL)
         {
             mesh->addRef();
-            m_mesh = mesh;            
-        }        
+            m_mesh = mesh;
+        }
     }
 
     /**
@@ -127,7 +137,7 @@ namespace spark::scene {
     {
         animate();
         renderer->setModelTransformation(m_modelTransformationMatrix);
-        
+
         if (m_mesh != NULL)
         {
             renderer->renderMesh(m_mesh, m_material);

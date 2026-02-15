@@ -12,6 +12,7 @@
 #include "ISparkApp.hpp"
 #include "ISparkSprite.hpp"
 #include "ISparkTiledLayer.hpp"
+#include <ISparkHttpClient.hpp>
 
 namespace spark::device {
     /**
@@ -47,6 +48,7 @@ namespace spark::device {
         virtual spark::scene::ISceneGraphManager2D* createSceneGraphManager2D() = 0;
         virtual spark::game::ISparkSprite* createSprite(spark::drawing::ISparkImage* image) = 0;
         virtual spark::game::ISparkTiledLayer* createTiledLayer(spark::drawing::ISparkImage* tilesetImage, uint16_t layerColumns, uint16_t layerRows, uint16_t* gidData, uint16_t tileWidth, uint16_t tileHeight, uint16_t tilesetImageWidth, uint16_t tilesetImageHeight, spark::game::E_LAYER_TYPE layerType) = 0;
+        virtual spark::network::ISparkHttpClient* createHttpClient() = 0;
 
     public:
         virtual uint64_t getHeapAllocatedSize() = 0;

@@ -1,6 +1,7 @@
 /**
 *
 */
+#pragma once
 class SampleCanvas3 : public spark::ui::AbstractCanvas
 {
 public:
@@ -8,7 +9,9 @@ public:
     *
     */
     SampleCanvas3(spark::device::ISparkDevice* device) :
-        m_device(device)
+        m_device(device),
+        m_rot_x(0.0f),
+        m_lastY(0.0f)
     {
         m_sceneGraphManager3D = device->createSceneGraphManager3D();
 
@@ -21,6 +24,13 @@ public:
         node->attachPointCloud(pointCloud.get());
 
         m_sceneGraphManager3D->rootNode()->addChildSceneNode(node.get());
+
+        // Load HTTP data
+        spark::SparkSharedPointer<spark::network::ISparkHttpClient> httpClient = device->createHttpClient();
+        httpClient.get()->get("http:://localhost:8080/foo", [this](std::vector<spark::uc8_t> data)
+            {
+                m_device->getLogger()->info("Received data from HTTP request, size: %i bytes", data.size());
+            });
     }
 
     /**
@@ -53,7 +63,7 @@ public:
     /**
     *
     */
-    void onMouseMove(float x, float y)
+    void onMouseMove(spark::real32 x, spark::real32 y)
     {
         if (!m_mouseDown)
         {
@@ -62,8 +72,8 @@ public:
             return;
         }
 
-        float dx = x - m_lastX;
-        float dy = y - m_lastY;
+        spark::real32 dx = x - m_lastX;
+        spark::real32 dy = y - m_lastY;
 
         m_lastX = x;
         m_lastY = y;
@@ -111,11 +121,11 @@ private:
     spark::device::ISparkDevice* m_device;
     spark::SparkSharedPointer<spark::scene::ISceneGraphManager3D> m_sceneGraphManager3D;
 
-    float m_rot_x;
-    float m_rot_y;
+    spark::real32 m_rot_x;
+    spark::real32 m_rot_y;
 
     bool m_mouseDown = false;
-    float m_lastX = 0.0f;
-    float m_lastY = 0.0f;
-    float m_sensitivity = 0.005;
+    spark::real32 m_lastX = 0.0f;
+    spark::real32 m_lastY = 0.0f;
+    spark::real32 m_sensitivity = 0.005f;
 };

@@ -1,6 +1,7 @@
 /**
 *
 */
+#pragma once
 class SampleCanvas4 : public spark::ui::AbstractCanvas
 {
 public:
