@@ -11,7 +11,7 @@ namespace spark::scene {
     /**
     *
     */
-    class SceneNode : public spark::scene::ISparkSceneNode
+    class SceneNode : public virtual spark::scene::ISparkSceneNode
     {
     public:
         SceneNode();

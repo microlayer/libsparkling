@@ -288,6 +288,9 @@
     <ClCompile Include="..\..\source\network\SocketClient.cpp">
       <Filter>source\network</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\scene\CoordinateSystemNode.cpp">
+      <Filter>source\scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\spark\SparkCompilerConfig.hpp">
@@ -655,6 +658,12 @@
     </ClInclude>
     <ClInclude Include="..\..\source\fonts\embedded\Arial8.hpp">
       <Filter>source\fonts\embedded</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scene\CoordinateSystemNode.hpp">
+      <Filter>source\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkCoordinateSystemNode.hpp">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

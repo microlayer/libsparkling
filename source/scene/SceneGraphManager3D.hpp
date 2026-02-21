@@ -2,6 +2,8 @@
 #define __SPARK_SCENE_SCENEGRAPHMANAGER3D_HPP_INCLUDED__
 
 #include "ISparkSceneGraphManager3D.hpp"
+#include "CoordinateSystemNode.hpp"
+#include "ISparkCoordinateSystemNode.hpp"
 #include <Sparkling.hpp>
 
 namespace spark {
@@ -26,6 +28,10 @@ namespace spark {
         private:
             void onBeforeDrawGraph();
             void onAfterDrawGraph();
+
+        public: // Factory
+            spark::scene::ISparkSceneNode* createSceneNode();
+            spark::scene::ISparkCoordinateSystemNode* createCoordinateSystemNode();
 
         private:
             spark::scene::SceneNode m_rootNode;

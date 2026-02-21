@@ -13,7 +13,8 @@ namespace spark {
 	SPARK_COMPILER == SPARK_COMPILER_VC2015 ||	\
 	SPARK_COMPILER == SPARK_COMPILER_VC2017 ||  \
 	SPARK_COMPILER == SPARK_COMPILER_VC2019 ||	\
-	SPARK_COMPILER == SPARK_COMPILER_VC2022)			
+	SPARK_COMPILER == SPARK_COMPILER_VC2022 ||  \
+    SPARK_COMPILER == SPARK_COMPILER_VC2026)			
     // Integer types
     typedef signed		char			c8_t;			// 8 bit char variable (signed is the default )
     typedef unsigned    char			uc8_t;

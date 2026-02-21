@@ -54,6 +54,7 @@
 #define SPARK_COMPILER_VC2017		0x00400000
 #define SPARK_COMPILER_VC2019		0x00800000
 #define SPARK_COMPILER_VC2022		0x01000000
+#define SPARK_COMPILER_VC2026       0x02000000
 
 /**
 * Define the Compiler:
@@ -78,8 +79,11 @@
 #	if ((_MSC_VER >= 1920) & (_MSC_VER < 1929))
 #		define SPARK_COMPILER SPARK_COMPILER_VC2019
 #	endif
-#	if (_MSC_VER >= 1930)
+#	if ((_MSC_VER >= 1930) && (_MSC_VER < 1940))
 #		define SPARK_COMPILER SPARK_COMPILER_VC2022
+#	endif
+#	if ((_MSC_VER >= 1940))
+#		define SPARK_COMPILER SPARK_COMPILER_VC2026
 #	endif
 #elif defined(__GNUC__)
 #	define SPARK_COMPILER SPARK_COMPILER_GCC

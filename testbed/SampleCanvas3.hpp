@@ -18,12 +18,18 @@ public:
         spark::SparkSharedPointer<spark::geometry::pointcloud::ISparkPointCloud> pointCloud = device->getFileSystem()->loadPointCloud("0036_Schuebel_bDOM.ply");
 
         // Create SceneNode
-        spark::SparkSharedPointer<spark::scene::ISparkSceneNode> node = new spark::scene::SceneNode();
-        node->setPosition(spark::math::Vector3f(0, 0, -23));
-        node->setRotation(spark::math::Vector3f(0, 0, 0));
-        node->attachPointCloud(pointCloud.get());
+        spark::SparkSharedPointer<spark::scene::ISparkSceneNode> sceneNode = m_sceneGraphManager3D->createSceneNode();
+        sceneNode->setPosition(spark::math::Vector3f(0, 0, -23));
+        sceneNode->setRotation(spark::math::Vector3f(0, 0, 0));
+        sceneNode->attachPointCloud(pointCloud.get());
 
-        m_sceneGraphManager3D->rootNode()->addChildSceneNode(node.get());
+
+        spark::SparkSharedPointer<spark::scene::ISparkCoordinateSystemNode> coordinateNode = m_sceneGraphManager3D->createCoordinateSystemNode();
+        coordinateNode->setClamp();
+
+
+        m_sceneGraphManager3D->rootNode()->addChildSceneNode(sceneNode.get());
+        m_sceneGraphManager3D->rootNode()->addChildSceneNode(coordinateNode.get());
 
         // Load HTTP data
         spark::SparkSharedPointer<spark::network::ISparkHttpClient> httpClient = device->createHttpClient();

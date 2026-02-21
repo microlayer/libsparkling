@@ -25,3 +25,10 @@
 #endif
 #endif 
 #endif
+
+/**
+*  @Brief pragma warning disable
+*/
+#ifdef _MSC_VER
+#pragma warning(disable : 4250) // 'class1' : inherits 'class2::member' via dominance
+#endif

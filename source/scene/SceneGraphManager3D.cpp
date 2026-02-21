@@ -60,8 +60,16 @@ namespace spark::scene {
         setDefaultCamera();
         onBeforeDrawGraph();
 
-        spark::scene::ISparkSceneNode* node = m_rootNode.getChildren().at(0);
-        node->render(renderer);
+        if (!m_rootNode.getChildren().empty())
+        {
+            for (spark::scene::ISparkSceneNode* node : m_rootNode.getChildren())
+            {
+                if (node)  
+                {
+                    node->render(renderer);
+                }
+            }
+        }
 
         onAfterDrawGraph();
     }
@@ -81,5 +89,21 @@ namespace spark::scene {
     {
         m_renderer->activateDepthTest(false);
         m_renderer->setDrawMode(0);
+    }
+
+    /**
+    *
+    */
+    spark::scene::ISparkSceneNode* SceneGraphManager3D::createSceneNode()
+    {
+        return new spark::scene::SceneNode();
+    }
+
+    /**
+    *
+    */
+    spark::scene::ISparkCoordinateSystemNode* SceneGraphManager3D::createCoordinateSystemNode()
+    {
+        return new spark::scene::CoordinateSystemNode();
     }
 }

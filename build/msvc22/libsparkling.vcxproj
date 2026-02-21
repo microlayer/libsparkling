@@ -259,6 +259,7 @@
     <ClCompile Include="..\..\source\renderer\vertexbuffer\OGLVertexBuffer.cpp" />
     <ClCompile Include="..\..\source\renderer\Vulkan13Renderer.cpp" />
     <ClCompile Include="..\..\source\renderer\VulkanRenderer.cpp" />
+    <ClCompile Include="..\..\source\scene\CoordinateSystemNode.cpp" />
     <ClCompile Include="..\..\source\scene\SceneGraphManager2D.cpp" />
     <ClCompile Include="..\..\source\scene\SceneGraphManager3D.cpp" />
     <ClCompile Include="..\..\source\scene\SceneNode.cpp" />
@@ -268,6 +269,7 @@
     <ClCompile Include="..\..\testbed\bootstrap\win32\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\ISparkCoordinateSystemNode.hpp" />
     <ClInclude Include="..\..\include\ISparkFontPool.hpp" />
     <ClInclude Include="..\..\include\ISparkFont.hpp" />
     <ClInclude Include="..\..\include\ISparkHttpClient.hpp" />
@@ -372,6 +374,7 @@
     <ClInclude Include="..\..\source\renderer\vertexbuffer\OGLVertexBuffer.hpp" />
     <ClInclude Include="..\..\source\renderer\Vulkan13Renderer.hpp" />
     <ClInclude Include="..\..\source\renderer\VulkanRenderer.hpp" />
+    <ClInclude Include="..\..\source\scene\CoordinateSystemNode.hpp" />
     <ClInclude Include="..\..\source\scene\SceneGraphManager2D.hpp" />
     <ClInclude Include="..\..\source\scene\SceneGraphManager3D.hpp" />
     <ClInclude Include="..\..\source\scene\SceneNode.hpp" />
