@@ -15,25 +15,23 @@ namespace spark {
     }
 }
 
-namespace spark {
-    namespace renderer {
-        /**
-        *
-        */
-        class TextureFactory : public spark::renderer::ISparkTextureFactory
-        {
-        public:
-            TextureFactory(spark::log::ISparkLogger* logger);
-            ~TextureFactory();
+namespace spark::renderer {
+    /**
+    *
+    */
+    class TextureFactory : public spark::renderer::ISparkTextureFactory
+    {
+    public:
+        TextureFactory(spark::log::ISparkLogger* logger);
+        ~TextureFactory();
 
-        public: // ISparkTextureFactory
-            spark::renderer::ISparkTexture* createOrUpdate(std::string id, uc8_t* data, int32_t width, int32_t height, spark::drawing::E_PIXEL_FORMAT pixelFormat);
+    public: // ISparkTextureFactory
+        spark::renderer::ISparkTexture* createOrUpdate(std::string id, uc8_t* data, int32_t width, int32_t height, spark::drawing::E_PIXEL_FORMAT pixelFormat);
 
-        private:
-            std::map<std::string, spark::renderer::texture::OGLTexture*> m_textureMap;
-            spark::log::ISparkLogger* m_logger;
-        };
-    } // end namespace renderer
-} // end namespace spark
+    private:
+        std::map<std::string, spark::renderer::texture::OGLTexture*> m_textureMap;
+        spark::log::ISparkLogger* m_logger;
+    };
+}
 #endif
 

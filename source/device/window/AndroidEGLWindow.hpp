@@ -8,58 +8,54 @@
 #include <EGL/egl.h>
 #include <GLES3/gl3.h>
 
-namespace spark {
-    namespace device {
-        namespace window {
-            /**
-            *
-            */
-            class AndroidEGLWindow : public spark::device::window::AbstractSparkWindow
-            {
-            public:
-                AndroidEGLWindow(spark::log::ISparkLogger* logger, spark::renderer::E_RENDER_ENGINE rendererEngineType, android_app* pApplication, spark::device::ISparkDevice* device);
-                virtual ~AndroidEGLWindow();
+namespace spark::device::window {
+    /**
+    *
+    */
+    class AndroidEGLWindow : public spark::device::window::AbstractSparkWindow
+    {
+    public:
+        AndroidEGLWindow(spark::log::ISparkLogger* logger, spark::renderer::E_RENDER_ENGINE rendererEngineType, android_app* pApplication, spark::device::ISparkDevice* device);
+        virtual ~AndroidEGLWindow();
 
-            public: // AbstractSparkWindow
-                int32_t init();
-                int32_t createWindow(uint32_t screenWidth, uint32_t screenHeight);
-                void terminate();
-                void setWindowTitle(const char* title);
-                void swapBuffers();
-                bool isWindowActive();
+    public: // AbstractSparkWindow
+        int32_t init();
+        int32_t createWindow(uint32_t screenWidth, uint32_t screenHeight);
+        void terminate();
+        void setWindowTitle(const char* title);
+        void swapBuffers();
+        bool isWindowActive();
 
-            public: // ISparkWindow
-                void* getNativeWindow();
+    public: // ISparkWindow
+        void* getNativeWindow();
 
-            private:
-                int32_t initWindow();
-                void eventLoop();
-                void setAppActive();
-                void setAppInactive();
-                void destroyEGL();
-                void setDefaultViewport();
+    private:
+        int32_t initWindow();
+        void eventLoop();
+        void setAppActive();
+        void setAppInactive();
+        void destroyEGL();
+        void setDefaultViewport();
 
-            private: // Event handler
-                static void callbackEvent(android_app* pApplication, int32_t pCommand);
+    private: // Event handler
+        static void callbackEvent(android_app* pApplication, int32_t pCommand);
 
-            public:
-                ScreenResolution getScreenResolution();
+    public:
+        ScreenResolution getScreenResolution();
 
-            private:
-                spark::renderer::E_RENDER_ENGINE m_rendererEngineType;
-                android_app* m_androidApplication;
-                EGLDisplay m_display;
-                EGLSurface m_surface;
-                EGLContext m_context;
-                bool m_enabled;
-                bool m_wantsQuit;
-                bool m_isGLES2ContextAvailable;
-                bool m_isWindowActive;
-                int32_t m_width, m_height;
-                spark::device::ISparkDevice* m_device;
-            };
-        } // end namespace window
-    } // end namespace device
-} // end namespace spark
+    private:
+        spark::renderer::E_RENDER_ENGINE m_rendererEngineType;
+        android_app* m_androidApplication;
+        EGLDisplay m_display;
+        EGLSurface m_surface;
+        EGLContext m_context;
+        bool m_enabled;
+        bool m_wantsQuit;
+        bool m_isGLES2ContextAvailable;
+        bool m_isWindowActive;
+        int32_t m_width, m_height;
+        spark::device::ISparkDevice* m_device;
+    };
+}
 #endif
 #endif

@@ -9,35 +9,33 @@
 #include "window/AndroidEGLWindow.hpp"
 #include "renderer/shader/OpenGLShaderProgram.hpp"
 
-namespace spark {
-    namespace device {
-        /**
-        *
-        */
-        class AndroidDevice : public AbstractSparkDevice
-        {
-        public:
-            AndroidDevice(spark::renderer::E_RENDER_ENGINE rendererType, uint32_t screenWidth, uint32_t screenHeight, android_app* pApplication);
-            virtual ~AndroidDevice();
+namespace spark::device {
+    /**
+    *
+    */
+    class AndroidDevice : public AbstractSparkDevice
+    {
+    public:
+        AndroidDevice(spark::renderer::E_RENDER_ENGINE rendererType, uint32_t screenWidth, uint32_t screenHeight, android_app* pApplication);
+        virtual ~AndroidDevice();
 
-        public: // AbstractSparkDevice
-            void createLogger();
-            void createFileSystem();
-            void createSparkWindow();
-            void createShader();
-            void createRenderer();
+    public: // AbstractSparkDevice
+        void createLogger();
+        void createFileSystem();
+        void createSparkWindow();
+        void createShader();
+        void createRenderer();
 
-        public: // ISparkDevice
-            std::string getRootPath();
+    public: // ISparkDevice
+        std::string getRootPath();
 
-        private:
-            void copyAssetToExternalStorage();
+    private:
+        void copyAssetToExternalStorage();
 
-        private:
-            android_app* m_androidApplication;
-            std::string m_rootPath;
-        };
-    } // end namespace device
-} // end namespace spark
+    private:
+        android_app* m_androidApplication;
+        std::string m_rootPath;
+    };
+}
 #endif
 #endif

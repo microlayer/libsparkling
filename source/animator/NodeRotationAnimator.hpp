@@ -4,28 +4,26 @@
 #include "ISparkNodeAnimator.hpp"
 #include "timer/Timer.hpp"
 
-namespace spark {
-    namespace animator {
-        /**
-        *
-        */
-        class NodeRotationAnimator : public spark::animator::ISparkNodeAnimator
-        {
-        public:
-            NodeRotationAnimator(spark::math::Vector3f degreePerSecond);
-            virtual ~NodeRotationAnimator(void);
+namespace spark::animator {
+    /**
+    *
+    */
+    class NodeRotationAnimator : public spark::animator::ISparkNodeAnimator
+    {
+    public:
+        NodeRotationAnimator(spark::math::Vector3f degreePerSecond);
+        virtual ~NodeRotationAnimator(void);
 
-        public:
-            void animate(spark::scene::ISparkSceneNode* node);
+    public:
+        void animate(spark::scene::ISparkSceneNode* node);
 
-        private:
-            spark::timer::Timer m_timer;
-            uint32_t m_startTime;
-            spark::math::Vector3f m_degreePerSecond;
-            spark::math::Vector3f m_radPerSecond;
-            spark::math::Vector3f m_radPerMillisecond;
-            spark::math::Vector3f m_rotation;
-        };
-    } // end namespace animator
-} // end namespace spark
+    private:
+        spark::timer::Timer m_timer;
+        uint32_t m_startTime;
+        spark::math::Vector3f m_degreePerSecond;
+        spark::math::Vector3f m_radPerSecond;
+        spark::math::Vector3f m_radPerMillisecond;
+        spark::math::Vector3f m_rotation;
+    };
+}
 #endif

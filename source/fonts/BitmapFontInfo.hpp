@@ -4,18 +4,15 @@
 #include "spark/SparkTypes.hpp"
 #include "BitmapGlyphInfo.hpp"
 
-namespace spark {
-    namespace font {
-
-        /**
-        *
-        */
-        struct BitmapFontInfo
-        {
-            uint32_t m_textureWidth;
-            uint32_t m_textureHeight;
-            BitmapGlyphInfo m_bitmapGlyphs[256];
-        };
-    } // end namespace font
-} // end namespace spark
+namespace spark::font {
+    /**
+    *
+    */
+    struct BitmapFontInfo
+    {
+        uint32_t m_textureWidth;
+        uint32_t m_textureHeight;
+        BitmapGlyphInfo m_bitmapGlyphs[256];
+    };
+}
 #endif

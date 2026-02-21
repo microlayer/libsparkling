@@ -6,36 +6,34 @@
 #include <ctime>
 #include <functional>
 
-namespace spark {
-    namespace timer {
-        /**
-        *
-        */
-        class Timer : public ISparkTimer
-        {
-        public:
-            Timer(void);
-            virtual ~Timer(void);
+namespace spark::timer {
+    /**
+    *
+    */
+    class Timer : public ISparkTimer
+    {
+    public:
+        Timer(void);
+        virtual ~Timer(void);
 
-        public:
-            uint32_t getTimestamp();
-            SparkTime getDateTimeNow();
+    public:
+        uint32_t getTimestamp();
+        SparkTime getDateTimeNow();
 
-        public:	// Represents a stop watch
-            void start();
-            void stop();
-            real32 getElapsedTime();
-            void setTimeout(std::function<void()> function, uint32_t millisecond);
+    public:	// Represents a stop watch
+        void start();
+        void stop();
+        real32 getElapsedTime();
+        void setTimeout(std::function<void()> function, uint32_t millisecond);
 
-        private:
-            void static timeoutCallback(void* arg);
-            std::function<void()> m_timeoutCallbackFunction;
+    private:
+        void static timeoutCallback(void* arg);
+        std::function<void()> m_timeoutCallbackFunction;
 
-        private:
-            uint32_t m_measurementTimeStart;
-            uint32_t m_measurementTimeStop;
-        };
-    } // end namespace timer
-} // end namespace spark
+    private:
+        uint32_t m_measurementTimeStart;
+        uint32_t m_measurementTimeStop;
+    };
+}
 #endif
 

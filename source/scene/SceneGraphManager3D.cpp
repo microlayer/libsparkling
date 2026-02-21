@@ -64,7 +64,7 @@ namespace spark::scene {
         {
             for (spark::scene::ISparkSceneNode* node : m_rootNode.getChildren())
             {
-                if (node)  
+                if (node)
                 {
                     node->render(renderer);
                 }

@@ -6,21 +6,19 @@
 #include "log/AndroidLogger.hpp"
 #include "log/DefaultLogger.hpp"
 
-namespace spark {
-    namespace log {
-        /**
-        *
-        */
-        class LogManager
-        {
-        public:
-            static ISparkLogger* getLogger();
-            static void setLogger(ISparkLogger* logger);
+namespace spark::log {
+    /**
+    *
+    */
+    class LogManager
+    {
+    public:
+        static ISparkLogger* getLogger();
+        static void setLogger(ISparkLogger* logger);
 
-        private:
-            static ISparkLogger* m_logger;
-        };
-    } // end namespace log
-} // end namespace spark
+    private:
+        static ISparkLogger* m_logger;
+    };
+}
 #endif
 

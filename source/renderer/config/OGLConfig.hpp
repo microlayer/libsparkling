@@ -6,17 +6,15 @@
 #include "ISparkLogger.hpp"
 #include <GL/glew.h>
 
-namespace spark {
-    namespace renderer {
-        /**
-        *
-        */
-        class OGLConfig : public spark::renderer::ISparkRendererApiConfig
-        {
-        public:
-            OGLConfig(spark::device::window::ISparkWindow* window, spark::log::ISparkLogger* logger);
-            ~OGLConfig();
-        };
-    }
+namespace spark::renderer {
+    /**
+    *
+    */
+    class OGLConfig : public spark::renderer::ISparkRendererApiConfig
+    {
+    public:
+        OGLConfig(spark::device::window::ISparkWindow* window, spark::log::ISparkLogger* logger);
+        ~OGLConfig();
+    };
 }
 #endif

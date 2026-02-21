@@ -13,29 +13,27 @@
 #include "renderer/config/OGLConfig.hpp"
 #include "renderer/shader/OpenGLShaderProgram.hpp"
 
-namespace spark {
-    namespace device {
-        /**
-        *
-        */
-        class Win32Device : public AbstractSparkDevice
-        {
-        public:
-            Win32Device(spark::renderer::E_RENDER_ENGINE rendererType, uint32_t screenWidth, uint32_t screenHeight);
-            virtual ~Win32Device(void);
+namespace spark::device {
+    /**
+    *
+    */
+    class Win32Device : public AbstractSparkDevice
+    {
+    public:
+        Win32Device(spark::renderer::E_RENDER_ENGINE rendererType, uint32_t screenWidth, uint32_t screenHeight);
+        virtual ~Win32Device(void);
 
-        public: // AbstractSparkDevice
-            void createLogger();
-            void createFileSystem();
-            void createSparkWindow();
-            void createShader();
-            void createRenderer();
+    public: // AbstractSparkDevice
+        void createLogger();
+        void createFileSystem();
+        void createSparkWindow();
+        void createShader();
+        void createRenderer();
 
-        public: // ISparkDevice
-            std::string getRootPath();
-        };
-    } // end namespace device
-} // end namespace spark
+    public: // ISparkDevice
+        std::string getRootPath();
+    };
+}
 #endif
 #endif
 

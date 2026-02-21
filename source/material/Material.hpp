@@ -3,25 +3,23 @@
 
 #include "ISparkMaterial.hpp"
 
-namespace spark {
-    namespace material {
-        /**
-        *
-        */
-        class Material : public spark::material::ISparkMaterial
-        {
-        public:
-            Material(RenderMode renderMode);
-            ~Material();
+namespace spark::material {
+    /**
+    *
+    */
+    class Material : public spark::material::ISparkMaterial
+    {
+    public:
+        Material(RenderMode renderMode);
+        ~Material();
 
-        public:
-            RenderMode getRenderMode() const;
-            VertexLayout getRequiredMeshVariant() const;
+    public:
+        RenderMode getRenderMode() const;
+        VertexLayout getRequiredMeshVariant() const;
 
-        private:
-            RenderMode m_renderMode = RenderMode::Default;
-            VertexLayout m_meshVariant = VertexLayout::Indexed;
-        };
-    }
+    private:
+        RenderMode m_renderMode = RenderMode::Default;
+        VertexLayout m_meshVariant = VertexLayout::Indexed;
+    };
 }
 #endif

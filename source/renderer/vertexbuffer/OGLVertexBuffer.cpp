@@ -76,10 +76,10 @@ namespace spark::renderer::vertexbuffer {
             m_colorData.push_back(vertex.m_color.m_alpha);
         }
 
-        m_bufferSizeVertices = m_mesh->getVertices().size() * 3 * sizeof(real32);           // Vertex Count * 3 * 4 bytes=96
-        m_bufferSizeNormals = m_mesh->getNormals().size() * 3 * sizeof(real32);             // Vertex Count * 3 * 4 bytes=96
-        m_bufferSizeColor = m_mesh->getColors().size() * 4 * sizeof(uc8_t);                 // Vertex Count * 3 * 1 byte=24               
-        m_bufferSizeIndices = m_mesh->getIndices().size() * sizeof(uint16_t);               // Vertex Count * 1 * 2 bytes=72
+        m_bufferSizeVertices = m_mesh->getVertices().size() * 3 * sizeof(real32);           // Vertex Count Vc * 3 * 4 bytes=96
+        m_bufferSizeNormals = m_mesh->getNormals().size() * 3 * sizeof(real32);             // Vertex Count Vc * 3 * 4 bytes=96
+        m_bufferSizeColor = m_mesh->getColors().size() * 4 * sizeof(uc8_t);                 // Vertex Count Vc * 3 * 1 byte=24               
+        m_bufferSizeIndices = m_mesh->getIndices().size() * sizeof(uint16_t);               // Vertex Count Vc * 1 * 2 bytes=72
     }
 
     /**

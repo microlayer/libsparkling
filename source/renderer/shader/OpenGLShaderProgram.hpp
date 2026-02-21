@@ -20,39 +20,35 @@
 #include "stdlib.h"
 #endif
 
-namespace spark {
-    namespace renderer {
-        namespace shader {
-            /**
-            *
-            */
-            class OpenGLShaderProgram : public spark::renderer::shader::ISparkShader
-            {
-            public:
-                OpenGLShaderProgram(spark::log::ISparkLogger* logger, spark::renderer::E_RENDER_ENGINE rendererType);
-                virtual ~OpenGLShaderProgram(void);
+namespace spark::renderer::shader {
+    /**
+    *
+    */
+    class OpenGLShaderProgram : public spark::renderer::shader::ISparkShader
+    {
+    public:
+        OpenGLShaderProgram(spark::log::ISparkLogger* logger, spark::renderer::E_RENDER_ENGINE rendererType);
+        virtual ~OpenGLShaderProgram(void);
 
-            public:
-                void loadShader();
-                void compile();
-                ISparkShader* applyShader(std::string shaderName);
+    public:
+        void loadShader();
+        void compile();
+        ISparkShader* applyShader(std::string shaderName);
 
-            public:
-                void setProjectionViewMatrix(const real32* matrix);
-                void setDrawMode(uint32_t drawMode);
-                void setTextureUnit(uint32_t unit);
-                void setFontColor(spark::drawing::Color fontColor);
-                void setLightDirection(real32 x, real32 y, real32 z);
+    public:
+        void setProjectionViewMatrix(const real32* matrix);
+        void setDrawMode(uint32_t drawMode);
+        void setTextureUnit(uint32_t unit);
+        void setFontColor(spark::drawing::Color fontColor);
+        void setLightDirection(real32 x, real32 y, real32 z);
 
-            private:
-                void init();
+    private:
+        void init();
 
-            private:
-                GLuint m_programObject;
-                spark::log::ISparkLogger* m_logger;
-                spark::renderer::E_RENDER_ENGINE m_rendererEngineType;
-            };
-        } // end namespace shader
-    } // end namespace renderer
-} // end namespace spark
+    private:
+        GLuint m_programObject;
+        spark::log::ISparkLogger* m_logger;
+        spark::renderer::E_RENDER_ENGINE m_rendererEngineType;
+    };
+}
 #endif

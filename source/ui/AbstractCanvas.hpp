@@ -4,26 +4,24 @@
 #include "ISparkRenderer.hpp"
 #include "SparkRefCount.hpp"
 
-namespace spark {
-    namespace ui {
-        /**
-        *
-        */
-        class AbstractCanvas : public virtual spark::SparkRefCount
-        {
-        public:
-            AbstractCanvas();
-            virtual ~AbstractCanvas(void);
+namespace spark::ui {
+    /**
+    *
+    */
+    class AbstractCanvas : public virtual spark::SparkRefCount
+    {
+    public:
+        AbstractCanvas();
+        virtual ~AbstractCanvas(void);
 
-        public:
-            virtual void onKeyPressed(int key, int action);
-            virtual void onMouseMove(real32 x, real32 y);
-            virtual void onMouseClick(int button, int action);
+    public:
+        virtual void onKeyPressed(int key, int action);
+        virtual void onMouseMove(real32 x, real32 y);
+        virtual void onMouseClick(int button, int action);
 
-        public:
-            virtual void init() = 0;
-            virtual void paint(spark::renderer::ISparkRenderer* renderer) = 0;
-        };
-    } // end namespace ui
-} // end namespace spark
+    public:
+        virtual void init() = 0;
+        virtual void paint(spark::renderer::ISparkRenderer* renderer) = 0;
+    };
+}
 #endif

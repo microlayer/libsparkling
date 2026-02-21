@@ -1,5 +1,2 @@
-
-namespace spark {
-    namespace forms {
-    }
+namespace spark::forms {
 }

@@ -8,25 +8,23 @@
 #include "ISparkTextureFactory.hpp"
 #include "ISparkVertexBufferFactory.hpp"
 
-namespace spark {
-    namespace renderer {
-        /**
-        *
-        */
-        class OpenGLFLES2Renderer : public spark::renderer::OpenGLRenderer
-        {
-        public:
-            OpenGLFLES2Renderer(spark::device::ISparkDevice* device,
-                spark::renderer::shader::ISparkShader* shader,
-                spark::renderer::ISparkTextureFactory* textureFactory,
-                spark::renderer::ISparkVertexBufferFactory* vertexBufferFactory);
-            virtual ~OpenGLFLES2Renderer(void);
+namespace spark::renderer {
+    /**
+    *
+    */
+    class OpenGLFLES2Renderer : public spark::renderer::OpenGLRenderer
+    {
+    public:
+        OpenGLFLES2Renderer(spark::device::ISparkDevice* device,
+            spark::renderer::shader::ISparkShader* shader,
+            spark::renderer::ISparkTextureFactory* textureFactory,
+            spark::renderer::ISparkVertexBufferFactory* vertexBufferFactory);
+        virtual ~OpenGLFLES2Renderer(void);
 
-        public: // ISparkRenderer
-            // Lifecycle
-            void onInit();
-        };
-    } // end namespace renderer
-} // end namespace spark
+    public: // ISparkRenderer
+        // Lifecycle
+        void onInit();
+    };
+}
 #endif
 #endif

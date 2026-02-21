@@ -4,7 +4,6 @@
 #include "ISparkMaterial.hpp"
 
 namespace spark::material {
-
     /**
     *
     */
