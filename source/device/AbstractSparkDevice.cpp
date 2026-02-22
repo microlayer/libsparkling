@@ -40,6 +40,8 @@ namespace spark::device {
     {
         createLogger();
         createFileSystem();
+        createHttpClient();
+        createAssetManager();
         createSparkWindow();
         createShader();
         createTextureFactory();
@@ -109,6 +111,22 @@ namespace spark::device {
     /**
     *
     */
+    spark::network::ISparkHttpClient* AbstractSparkDevice::getHttpClient() const
+    {
+        return m_httpClient;
+    }
+
+    /**
+    *
+    */
+    asset::ISparkAssetManager* AbstractSparkDevice::getAssetManager() const
+    {
+        return m_assetManager;
+    }
+
+    /**
+    *
+    */
     ScreenResolution AbstractSparkDevice::getScreenResolution() const
     {
         return m_window->getScreenResolution();
@@ -120,6 +138,14 @@ namespace spark::device {
     spark::font::ISparkFontPool* AbstractSparkDevice::getSparkFontPool() const
     {
         return m_fontPool;
+    }
+
+    /**
+    *
+    */
+    void AbstractSparkDevice::createHttpClient()
+    {
+        m_httpClient = new  spark::network::HttpClient();
     }
 
     /**
@@ -152,14 +178,6 @@ namespace spark::device {
     spark::game::ISparkTiledLayer* AbstractSparkDevice::createTiledLayer(spark::drawing::ISparkImage* tilesetImage, uint16_t layerColumns, uint16_t layerRows, uint16_t* gidData, uint16_t tileWidth, uint16_t tileHeight, uint16_t tilesetImageWidth, uint16_t tilesetImageHeight, spark::game::E_LAYER_TYPE layerType)
     {
         return new spark::game::TiledLayer(tilesetImage, layerColumns, layerRows, gidData, tileWidth, tileHeight, tilesetImageWidth, tilesetImageHeight, layerType);
-    }
-
-    /**
-    *
-    */
-    spark::network::ISparkHttpClient* AbstractSparkDevice::createHttpClient()
-    {
-        return new spark::network::HttpClient();
     }
 
     /**

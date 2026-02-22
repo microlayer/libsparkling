@@ -214,6 +214,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\lib\glew\glew.c" />
     <ClCompile Include="..\..\source\animator\NodeRotationAnimator.cpp" />
+    <ClCompile Include="..\..\source\asset\AssetManager.cpp" />
     <ClCompile Include="..\..\source\device\AbstractSparkDevice.cpp" />
     <ClCompile Include="..\..\source\device\AndroidDevice.cpp" />
     <ClCompile Include="..\..\source\device\DeviceInstance.cpp" />
@@ -269,6 +270,7 @@
     <ClCompile Include="..\..\testbed\bootstrap\win32\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\ISparkAssetManager.hpp" />
     <ClInclude Include="..\..\include\ISparkCoordinateSystemNode.hpp" />
     <ClInclude Include="..\..\include\ISparkFontPool.hpp" />
     <ClInclude Include="..\..\include\ISparkFont.hpp" />
@@ -305,6 +307,7 @@
     <ClInclude Include="..\..\include\SparkScopedPointer.hpp" />
     <ClInclude Include="..\..\include\SparkSharedPointer.hpp" />
     <ClInclude Include="..\..\source\animator\NodeRotationAnimator.hpp" />
+    <ClInclude Include="..\..\source\asset\AssetManager.hpp" />
     <ClInclude Include="..\..\source\device\AbstractSparkDevice.hpp" />
     <ClInclude Include="..\..\source\device\AndroidDevice.hpp" />
     <ClInclude Include="..\..\source\device\DeviceInstance.hpp" />

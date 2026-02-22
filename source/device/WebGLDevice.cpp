@@ -47,6 +47,14 @@ namespace spark::device {
     /**
     *
     */
+    void WebGLDevice::createAssetManager()
+    {
+        m_assetManager = new spark::asset::AssetManager(m_fileSystem, m_httpClient, m_logger);
+    }
+
+    /**
+    *
+    */
     void WebGLDevice::createSparkWindow()
     {
         m_window = new spark::device::window::GlfwWindow(m_logger, m_rendererEngineType, this);

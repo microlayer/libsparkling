@@ -124,6 +124,9 @@
     <Filter Include="source\network">
       <UniqueIdentifier>{7fe4af6b-f6ac-4479-9fbd-65d8a7105bca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\asset">
+      <UniqueIdentifier>{9e5f5b29-7462-4b22-95da-63bcdc73de15}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\spark\Sparkling.cpp">
@@ -290,6 +293,9 @@
     </ClCompile>
     <ClCompile Include="..\..\source\scene\CoordinateSystemNode.cpp">
       <Filter>source\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\asset\AssetManager.cpp">
+      <Filter>source\asset</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -663,6 +669,12 @@
       <Filter>source\scene</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\ISparkCoordinateSystemNode.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\asset\AssetManager.hpp">
+      <Filter>source\asset</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkAssetManager.hpp">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

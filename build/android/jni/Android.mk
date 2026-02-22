@@ -31,7 +31,8 @@ LIBSPARKLING_SRC_FILES:= $(call LS_CPP,$(LOCAL_PATH),../../../testbed/bootstrap/
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/game) \
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/fonts) \
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/material) \
-			$(call LS_CPP,$(LOCAL_PATH),../../../source/network)				
+			$(call LS_CPP,$(LOCAL_PATH),../../../source/network) \
+			$(call LS_CPP,$(LOCAL_PATH),../../../source/asset)				
 			
 SPARKLING_C_INCLUDES := $(LOCAL_PATH)/../../../include
 SPARKLING_C_INCLUDES += $(LOCAL_PATH)/../../../source

@@ -49,6 +49,14 @@ namespace spark::device {
     /**
     *
     */
+    void Win32Device::createAssetManager()
+    {
+        m_assetManager = new spark::asset::AssetManager(m_fileSystem, m_httpClient, m_logger);
+    }
+
+    /**
+    *
+    */
     void Win32Device::createSparkWindow()
     {
         if (m_rendererEngineType == spark::renderer::ERE_OGLFLES2 ||

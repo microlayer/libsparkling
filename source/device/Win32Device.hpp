@@ -12,6 +12,7 @@
 #include "renderer/config/VulkanConfig.hpp"
 #include "renderer/config/OGLConfig.hpp"
 #include "renderer/shader/OpenGLShaderProgram.hpp"
+#include "asset/AssetManager.hpp"
 
 namespace spark::device {
     /**
@@ -26,6 +27,7 @@ namespace spark::device {
     public: // AbstractSparkDevice
         void createLogger();
         void createFileSystem();
+        void createAssetManager();
         void createSparkWindow();
         void createShader();
         void createRenderer();

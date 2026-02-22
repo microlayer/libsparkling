@@ -8,6 +8,7 @@
 #include "renderer/OpenGLES2Renderer.hpp"
 #include "window/AndroidEGLWindow.hpp"
 #include "renderer/shader/OpenGLShaderProgram.hpp"
+#include "asset/AssetManager.hpp"
 
 namespace spark::device {
     /**
@@ -22,6 +23,7 @@ namespace spark::device {
     public: // AbstractSparkDevice
         void createLogger();
         void createFileSystem();
+        void createAssetManager();
         void createSparkWindow();
         void createShader();
         void createRenderer();

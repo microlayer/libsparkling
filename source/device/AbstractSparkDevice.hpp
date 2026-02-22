@@ -43,15 +43,17 @@ namespace spark::device {
         virtual log::ISparkLogger* getLogger() const;
         virtual timer::ISparkTimer* getTimer() const;
         virtual file::ISparkFileSystem* getFileSystem() const;
+        virtual spark::network::ISparkHttpClient* getHttpClient() const;
+        virtual asset::ISparkAssetManager* getAssetManager() const;
         virtual ScreenResolution getScreenResolution() const;
         virtual spark::font::ISparkFontPool* getSparkFontPool() const;
 
-    public:
+    public: // Factory
         spark::scene::ISceneGraphManager3D* createSceneGraphManager3D();
         spark::scene::ISceneGraphManager2D* createSceneGraphManager2D();
         spark::game::ISparkSprite* createSprite(spark::drawing::ISparkImage* image);
         spark::game::ISparkTiledLayer* createTiledLayer(spark::drawing::ISparkImage* tilesetImage, uint16_t layerColumns, uint16_t layerRows, uint16_t* gidData, uint16_t tileWidth, uint16_t tileHeight, uint16_t tilesetImageWidth, uint16_t tilesetImageHeight, spark::game::E_LAYER_TYPE layerType);
-        spark::network::ISparkHttpClient* createHttpClient();
+
 
     public:
         virtual uint64_t getHeapAllocatedSize();
@@ -75,10 +77,12 @@ namespace spark::device {
         virtual void createFontPool();
         virtual void createTextureFactory();
         virtual void createVertexBufferFactory();
+        virtual void createHttpClient();
 
     private:
         virtual void createLogger() = 0;
         virtual void createFileSystem() = 0;
+        virtual void createAssetManager() = 0;
         virtual void createSparkWindow() = 0;
         virtual void createShader() = 0;
         virtual void createRenderer() = 0;
@@ -88,6 +92,8 @@ namespace spark::device {
         spark::font::ISparkFontPool* m_fontPool;
         spark::log::ISparkLogger* m_logger;
         spark::file::ISparkFileSystem* m_fileSystem;
+        spark::network::ISparkHttpClient* m_httpClient;
+        spark::asset::ISparkAssetManager* m_assetManager;
         spark::device::window::AbstractSparkWindow* m_window;
         spark::renderer::shader::ISparkShader* m_shader;
         spark::renderer::ISparkRenderer* m_renderer;

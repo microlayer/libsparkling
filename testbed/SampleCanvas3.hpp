@@ -17,6 +17,9 @@ public:
 
         spark::SparkSharedPointer<spark::geometry::pointcloud::ISparkPointCloud> pointCloud = device->getFileSystem()->loadPointCloud("0036_Schuebel_bDOM.ply");
 
+
+        //spark::SparkSharedPointer<spark::geometry::pointcloud::ISparkPointCloud> pointCloud = device->getAssetManager()->loadPointCloud("0036_Schuebel_bDOM.ply");
+
         // Create SceneNode
         spark::SparkSharedPointer<spark::scene::ISparkSceneNode> sceneNode = m_sceneGraphManager3D->createSceneNode();
         sceneNode->setPosition(spark::math::Vector3f(0, 0, -23));
@@ -32,7 +35,7 @@ public:
         m_sceneGraphManager3D->rootNode()->addChildSceneNode(coordinateNode.get());
 
         // Load HTTP data
-        spark::SparkSharedPointer<spark::network::ISparkHttpClient> httpClient = device->createHttpClient();
+        spark::SparkSharedPointer<spark::network::ISparkHttpClient> httpClient = device->getHttpClient();
         httpClient.get()->get("http://test.microlayer.org/test.html", [this](std::vector<spark::uc8_t> data)
             {
                 std::string s(data.begin(), data.end());

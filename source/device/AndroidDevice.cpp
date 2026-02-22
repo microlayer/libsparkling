@@ -48,6 +48,14 @@ namespace spark::device {
     /**
     *
     */
+    void AndroidDevice::createAssetManager()
+    {
+        m_assetManager = new spark::asset::AssetManager(m_fileSystem, m_httpClient, m_logger);
+    }
+
+    /**
+    *
+    */
     void AndroidDevice::createSparkWindow()
     {
         if (m_rendererEngineType == spark::renderer::ERE_OGLES2 ||

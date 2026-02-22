@@ -31,6 +31,7 @@ LIBSPARKLING_SRC_FILES += $(wildcard ../../source/game/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/fonts/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/material/*.cpp)
 LIBSPARKLING_SRC_FILES += $(wildcard ../../source/network/*.cpp)
+LIBSPARKLING_SRC_FILES += $(wildcard ../../source/asset/*.cpp)
 
 
 IDIRINCLUDE  	:= ../../include
