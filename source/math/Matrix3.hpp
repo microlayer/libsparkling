@@ -117,7 +117,7 @@ namespace spark::math {
         }
 
         /**
-        * @Brief Multiply this matrix with a scalar.
+        * @brief Multiply this matrix with a scalar.
         */
         inline Matrix3<T> operator*(const T& scalar) const
         {

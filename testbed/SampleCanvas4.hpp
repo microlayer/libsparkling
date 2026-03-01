@@ -11,7 +11,7 @@ public:
     SampleCanvas4(spark::device::ISparkDevice* device) :
         m_device(device)
     {
-        m_texture1Image = m_device->getFileSystem()->loadBitmap("texture1.png");
+        m_texture1Image = device->getAssetManager()->loadBitmap("file://texture1.png");
     }
 
     /**

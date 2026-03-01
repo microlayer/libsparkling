@@ -13,8 +13,8 @@ public:
     {
         m_sceneGraphManager2D = m_device->createSceneGraphManager2D();
 
-        m_quadImage = m_device->getFileSystem()->loadBitmap("quad.png");
-        m_sunsetImage = m_device->getFileSystem()->loadBitmap("sunset.png");
+        m_quadImage = device->getAssetManager()->loadBitmap("file://quad.png");
+        m_sunsetImage = device->getAssetManager()->loadBitmap("file://sunset.png");
 
         spark::game::ISparkSprite* quadSprite1 = m_sceneGraphManager2D->createSprite(m_quadImage.get());
         spark::game::ISparkSprite* quadSprite2 = m_sceneGraphManager2D->createSprite(m_quadImage.get());

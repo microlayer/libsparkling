@@ -15,10 +15,11 @@ public:
     {
         m_sceneGraphManager3D = device->createSceneGraphManager3D();
 
-        spark::SparkSharedPointer<spark::geometry::pointcloud::ISparkPointCloud> pointCloud = device->getFileSystem()->loadPointCloud("0036_Schuebel_bDOM.ply");
+        spark::SparkSharedPointer<spark::geometry::pointcloud::ISparkPointCloud> pointCloud
+            = device->getAssetManager()->loadPointCloud("file://0036_Schuebel_bDOM.ply");
 
-
-        //spark::SparkSharedPointer<spark::geometry::pointcloud::ISparkPointCloud> pointCloud = device->getAssetManager()->loadPointCloud("0036_Schuebel_bDOM.ply");
+        //spark::SparkSharedPointer<spark::geometry::pointcloud::ISparkPointCloud> pointCloud
+        //    = device->getAssetManager()->loadPointCloud("http://www.microlayer.org/libsparkling/0036_Schuebel_bDOM.ply");
 
         // Create SceneNode
         spark::SparkSharedPointer<spark::scene::ISparkSceneNode> sceneNode = m_sceneGraphManager3D->createSceneNode();
@@ -88,10 +89,10 @@ public:
         m_lastX = x;
         m_lastY = y;
 
-        // Maus right/left Y-Rotation
+        // Mouse right/left Y-Rotation
         m_rot_y += dx * m_sensitivity;
 
-        // Maus up/down X-Rotation
+        // Mouse up/down X-Rotation
         m_rot_x += dy * m_sensitivity;
 
         spark::scene::ISparkSceneNode* root = m_sceneGraphManager3D->rootNode();

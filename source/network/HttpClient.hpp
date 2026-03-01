@@ -1,11 +1,10 @@
 #ifndef __SPARK_NETWORK_HTTPCLIENT_HPP_INCLUDED__
 #define __SPARK_NETWORK_HTTPCLIENT_HPP_INCLUDED__
 
-#include "spark/SparkSetup.hpp"
-#include <spark/SparkTypes.hpp>
 #include <string>
 #include <cstring>
 #include <functional>
+#include <regex>
 #include "ISparkHttpClient.hpp"
 #if SPARK_PLATFORM == SPARK_PLATFORM_WEBGL
 #include <emscripten/fetch.h>
@@ -40,6 +39,11 @@ namespace spark::network {
     private:
         static void onSuccess(std::string result);
         static void onError(std::string error);
+
+    private:
+        std::string extractHostname(const std::string& url);
+        std::string extractPath(const std::string& url);
+        std::string buildHttpGetRequest(const std::string& host, const std::string& path);
     };
 }
 #endif

@@ -11,7 +11,7 @@ namespace spark::geometry::mesh::importer {
     class ISparkMeshImporter : public virtual spark::SparkRefCount
     {
     public:
-        virtual spark::geometry::mesh::ISparkMesh* loadMesh(std::string fileName) = 0;
+        virtual spark::geometry::mesh::ISparkMesh* loadMesh() = 0;
     };
 }
 #endif

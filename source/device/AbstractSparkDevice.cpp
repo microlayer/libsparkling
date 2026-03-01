@@ -61,7 +61,7 @@ namespace spark::device {
     }
 
     /**
-    * @Brief Callback to swap/flush the video-buffer
+    * @brief Callback to swap/flush the video-buffer
     */
     void AbstractSparkDevice::flush()
     {

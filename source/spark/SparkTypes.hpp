@@ -5,7 +5,7 @@
 
 namespace spark {
     /**
-    * @Brief Microsoft Compiler Version: symbol _MSC_VER defined
+    * @brief Microsoft Compiler Version: symbol _MSC_VER defined
     */
 #if (SPARK_COMPILER == SPARK_COMPILER_VC2010 || \
 	SPARK_COMPILER == SPARK_COMPILER_VC2012 ||	\
@@ -29,7 +29,7 @@ namespace spark {
     typedef             double			real64;
 
     /**
-    * @Brief GNUC Compiler Version: symbol __GNUC__ defined
+    * @brief GNUC Compiler Version: symbol __GNUC__ defined
     */
 #elif (SPARK_COMPILER == SPARK_COMPILER_GCC)
     // Integer types

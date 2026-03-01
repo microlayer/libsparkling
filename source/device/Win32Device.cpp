@@ -23,6 +23,7 @@ namespace spark::device {
         m_shader->release();
         if (m_rendererConfig != NULL) m_rendererConfig->release();
         m_renderer->release();
+        m_assetManager->release();
     }
 
     /**
@@ -88,7 +89,7 @@ namespace spark::device {
     }
 
     /**
-    * @Brief The last instance which is created by the bootstrap phase.
+    * @brief The last instance which is created by the bootstrap phase.
     */
     void Win32Device::createRenderer()
     {

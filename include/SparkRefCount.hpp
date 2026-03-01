@@ -25,7 +25,7 @@ namespace spark {
         }
 
         /**
-        * @Brief If reference count is 0, object will be deleted
+        * @brief If reference count is 0, object will be deleted
         */
         bool release() const
         {

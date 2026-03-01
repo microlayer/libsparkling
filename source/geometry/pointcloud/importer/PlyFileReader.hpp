@@ -7,11 +7,8 @@
 #include "log/LogManager.hpp"
 #include "ISparkLogger.hpp"
 #include "timer/Timer.hpp"
+#include <string>
 #include <sstream>
-#include <fstream>
-#include <algorithm>
-#include <cmath>
-#include <cfloat>
 
 #undef min
 #undef max
@@ -23,17 +20,19 @@ namespace spark::geometry::pointcloud::importer {
     class PlyFileReader : public ISparkPointCloudImporter
     {
     public:
-        PlyFileReader(std::string rootPath);
+        PlyFileReader(std::vector<uint8_t> data, std::string fileName);
         ~PlyFileReader();
+
     public: // ISparkPointCloudImporter
-        spark::geometry::pointcloud::ISparkPointCloud* loadPointCloud(std::string fileName);
+        spark::geometry::pointcloud::ISparkPointCloud* loadPointCloud();
 
     private:
         spark::drawing::Color IntensityToTurboColor(uint16_t intensity);
         spark::drawing::Color HeightToViridisColor(float z, float minZ, float maxZ);
 
     private:
-        std::string m_rootPath;
+        std::string m_fileName;
+        std::vector<uint8_t> m_data;
     };
 }
 #endif

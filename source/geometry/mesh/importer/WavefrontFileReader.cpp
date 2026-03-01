@@ -5,8 +5,9 @@ namespace spark::geometry::mesh::importer {
     /**
     *
     */
-    WavefrontFileReader::WavefrontFileReader(std::string rootPath) :
-        m_rootPath(rootPath),
+    WavefrontFileReader::WavefrontFileReader(std::vector<uint8_t> data, std::string fileName) :
+        m_data(data),
+        m_fileName(fileName),
         m_polygonCount(0)
     {
     }
@@ -25,7 +26,7 @@ namespace spark::geometry::mesh::importer {
     * 'vn' vertices normals
     * 'f'  faces, 3 values that contain 3 values which are separated by / and <space>
     */
-    spark::geometry::mesh::ISparkMesh* WavefrontFileReader::loadMesh(std::string fileName)
+    spark::geometry::mesh::ISparkMesh* WavefrontFileReader::loadMesh()
     {
         spark::log::ISparkLogger* logger = log::LogManager::getLogger();
 
@@ -41,11 +42,14 @@ namespace spark::geometry::mesh::importer {
 
         // [1] Reading the obj file and parsing data
         timer.start();
-        std::ifstream ifs((m_rootPath.append(fileName.c_str())).c_str(), std::ifstream::in);
+
+        // Copy bytes into std::string
+        std::string content(m_data.begin(), m_data.end());
+        std::istringstream iss(content);
 
         std::string line, key;
 
-        while (ifs.good() && !ifs.eof() && std::getline(ifs, line))
+        while (std::getline(iss, line))
         {
             std::stringstream sbuffer(line);
             sbuffer >> key;
@@ -106,7 +110,7 @@ namespace spark::geometry::mesh::importer {
             }
         }
         timer.stop();
-        logger->info("Loading wavefront '%s' file in %f sec.", fileName.c_str(), timer.getElapsedTime());
+        logger->info("Loading wavefront '%s' file in %f sec.", m_fileName.c_str(), timer.getElapsedTime());
 
 
         // [2] Post processing mesh data
@@ -149,7 +153,7 @@ namespace spark::geometry::mesh::importer {
         }
 
         timer.stop();
-        logger->info("Postprocessing wavefront '%s' mesh done in in %f sec. (Polygon count: %i)", fileName.c_str(), timer.getElapsedTime(), m_polygonCount);
+        logger->info("Postprocessing wavefront '%s' mesh done in in %f sec. (Polygon count: %i)", m_fileName.c_str(), timer.getElapsedTime(), m_polygonCount);
 
         return mesh;
     }

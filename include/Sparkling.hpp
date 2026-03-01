@@ -33,7 +33,7 @@
 #endif
 
 /**
-* @Brief Create sparkling device. Rerturns pure virtual interface to keep.
+* @brief Create sparkling device. Rerturns pure virtual interface to keep.
 */
 namespace spark {
 #if (SPARK_PLATFORM == SPARK_PLATFORM_ANDROID)

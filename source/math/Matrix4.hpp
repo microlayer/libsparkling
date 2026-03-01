@@ -10,7 +10,7 @@ namespace spark::math {
     {
     public:
         /**
-        * @Brief Init matrix4 with a Identity matrix.
+        * @brief Init matrix4 with a Identity matrix.
         */
         Matrix4(void)
         {
@@ -168,7 +168,7 @@ namespace spark::math {
         }
 
         /**
-        * @Brief Multiply this matrix with a scalar
+        * @brief Multiply this matrix with a scalar
         */
         inline Matrix4<T> operator*(const T& scalar) const
         {
@@ -195,7 +195,7 @@ namespace spark::math {
         }
 
         /**
-        * @Brief Multiply this matrix with another matrix.
+        * @brief Multiply this matrix with another matrix.
         */
         inline Matrix4<T> operator*(const Matrix4<T>& matrix) const
         {
@@ -228,7 +228,7 @@ namespace spark::math {
         }
 
         /**
-        * @Brief Multiply this matrix with an vector
+        * @brief Multiply this matrix with an vector
         */
         inline math::Vector3<T> operator*(const math::Vector3<T>& vector) const
         {

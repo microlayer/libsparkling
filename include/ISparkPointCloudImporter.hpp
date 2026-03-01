@@ -11,7 +11,7 @@ namespace spark::geometry::pointcloud::importer {
     class ISparkPointCloudImporter : public virtual spark::SparkRefCount
     {
     public:
-        virtual spark::geometry::pointcloud::ISparkPointCloud* loadPointCloud(std::string fileName) = 0;
+        virtual spark::geometry::pointcloud::ISparkPointCloud* loadPointCloud() = 0;
     };
 }
 #endif

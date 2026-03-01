@@ -11,13 +11,11 @@ public:
     SampleCanvas6(spark::device::ISparkDevice* device) :
         m_device(device)
     {
-        spark::file::ISparkFileSystem* m_fileSystem = device->getFileSystem();
-
-        m_level = m_fileSystem->loadTiledLayer("tiles4x4_32_v1-11.tmx");
+        m_level = device->getAssetManager()->loadTiledLayer("file://tiles4x4_32_v1-11.tmx");
         m_level->setPosition(200, 150);
 
         //       
-        m_explosionImage = m_fileSystem->loadBitmap("explosion.png");
+        m_explosionImage = device->getAssetManager()->loadBitmap("file://explosion.png");
         m_explosionSprite = m_device->createSprite(m_explosionImage.get());
         m_explosionSprite->setPosition(100, 100);
         m_explosionSprite->startAnimation();

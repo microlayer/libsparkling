@@ -44,14 +44,15 @@ namespace spark::geometry::mesh::importer {
     class WavefrontFileReader : public ISparkMeshImporter
     {
     public:
-        WavefrontFileReader(std::string rootPath);
+        WavefrontFileReader(std::vector<uint8_t> data, std::string fileName);
         virtual ~WavefrontFileReader(void);
 
     public: // ISparkMeshImporter
-        spark::geometry::mesh::ISparkMesh* loadMesh(std::string fileName);
+        spark::geometry::mesh::ISparkMesh* loadMesh();
 
     private:
-        std::string m_rootPath;
+        std::string m_fileName;
+        std::vector<uint8_t> m_data;
         uint32_t m_polygonCount;
     };
 }

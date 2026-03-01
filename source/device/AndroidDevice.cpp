@@ -20,7 +20,9 @@ namespace spark::device {
         m_fileSystem->release();
         m_window->release();
         m_shader->release();
+        if (m_rendererConfig != NULL) m_rendererConfig->release();
         m_renderer->release();
+        m_assetManager->release();
     }
 
     /**

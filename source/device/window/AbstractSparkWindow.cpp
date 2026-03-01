@@ -19,7 +19,7 @@ namespace spark::device::window {
     }
 
     /**
-    * @Brief Hardcoded Screen Resolution as default for this win32 and webgl Device
+    * @brief Hardcoded Screen Resolution as default for this win32 and webgl Device
     */
     ScreenResolution AbstractSparkWindow::getScreenResolution()
     {

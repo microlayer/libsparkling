@@ -3,14 +3,14 @@
 
 #include "SparkLibConfig.hpp"
 /**
-* @Brief Version of the sparkling library:
+* @brief Version of the sparkling library:
 */
 #define SPARK_VERSION				0x001
 #define SPARK_VERSION_MAJOR			0x001
 #define SPARK_VERSION_MINOR			0x000
 
 /**
-* @Brief Supported Platforms:
+* @brief Supported Platforms:
 */
 #define SPARK_PLATFORM_UNKNOWN		0x00000000
 #define SPARK_PLATFORM_WINDOWS		0x00010000
@@ -23,7 +23,7 @@
 #define SPARK_PLATFORM_WEBGL		0x00800000
 
 /**
-* @Brief Define the platform:
+* @brief Define the platform:
 */
 #ifdef __WEBGL__
 #   define SPARK_PLATFORM SPARK_PLATFORM_WEBGL
@@ -42,7 +42,7 @@
 #endif
 
 /**
-* @Brief Supported Compilers
+* @brief Supported Compilers
 */
 #define SPARK_COMPILER_UNKNOWN		0x00000000
 #define SPARK_COMPILER_VC2010		0x00010000

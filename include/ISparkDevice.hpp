@@ -17,7 +17,7 @@
 
 namespace spark::device {
     /**
-    * @Brief Holds the physical display information of the device
+    * @brief Holds the physical display information of the device
     */
     struct ScreenResolution
     {
@@ -27,7 +27,7 @@ namespace spark::device {
     };
 
     /**
-    * @Brief Acts as a container.
+    * @brief Acts as a container.
     */
     class ISparkDevice : public virtual spark::SparkRefCount
     {

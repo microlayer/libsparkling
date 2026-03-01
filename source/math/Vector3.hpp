@@ -79,7 +79,7 @@ namespace spark::math {
         }
 
         /**
-        * @Brief Returns the normalized vector of this.
+        * @brief Returns the normalized vector of this.
         */
         Vector3<T>& normalize()
         {
@@ -97,7 +97,7 @@ namespace spark::math {
         }
 
         /**
-        * @Brief Returns the cross product between this and the given vector.
+        * @brief Returns the cross product between this and the given vector.
         */
         Vector3<T>& getCrossProduct(math::Vector3<T>& vector)
         {
@@ -109,7 +109,7 @@ namespace spark::math {
         }
 
         /**
-        * @Brief Returns the dot product of this and the given vector.
+        * @brief Returns the dot product of this and the given vector.
         */
         real32 getDotProduct(math::Vector3<T>& vector)
         {
@@ -119,7 +119,7 @@ namespace spark::math {
         }
 
         /**
-        * @Brief Returns the angel between this and the given vector.
+        * @brief Returns the angel between this and the given vector.
         */
         real32 getAngelBetween(math::Vector3<T>& vector)
         {
@@ -144,7 +144,7 @@ namespace spark::math {
         }
 
         /**
-        * @Brief Returns the reflection vector between this and the given normal vector N as shown in this formula: a(e) = e - 2*(e dot N) * N
+        * @brief Returns the reflection vector between this and the given normal vector N as shown in this formula: a(e) = e - 2*(e dot N) * N
         */
         Vector3<T>& getReflection(math::Vector3<T>& n)
         {
@@ -154,7 +154,7 @@ namespace spark::math {
         }
 
         /**
-        * @Brief Projects this vector (F) in the direction of s; Fs = ((F dot s) / |s|^2) * s
+        * @brief Projects this vector (F) in the direction of s; Fs = ((F dot s) / |s|^2) * s
         */
         Vector3<T>& getProjection(math::Vector3<T>& s)
         {

@@ -25,13 +25,11 @@ namespace spark::file {
         FileSystem(spark::log::ISparkLogger* logger, std::string rootPath);
         virtual ~FileSystem(void);
 
-    public: // ISparkFileSystem
-        spark::drawing::ISparkImage* loadBitmap(const std::string& fileName);
-        spark::game::ISparkTiledLayer* loadTiledLayer(const std::string& fileName);
-        spark::geometry::mesh::ISparkMesh* loadMesh(const std::string& fileName);
-        spark::geometry::pointcloud::ISparkPointCloud* loadPointCloud(const std::string& fileName);
-        //spark::font::ISparkFont* loadBitmapFont(const std::string& fileName);
-        void appendText(std::string filename, std::string text);
+    public: // ISparkFileSystem       
+        bool exists(const std::string& fileName);
+        void readBinaryAsync(const std::string& fileName, std::function<void(std::vector<uint8_t>)> callback);
+        std::vector<uint8_t> readBinary(const std::string& fileName);
+        void writeBinary(const std::string& fileName, const std::vector<uint8_t>& data);
 
     private:
         spark::log::ISparkLogger* m_logger;

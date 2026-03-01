@@ -4,7 +4,7 @@
 #include "spark/SparkSetup.hpp"
 
 /**
-*  @Brief Calling convention.
+*  @brief Calling convention.
 */
 #if (SPARK_PLATFORM == SPARK_PLATFORM_WINDOWS )
 #	define SPARKCALLCONV __cdecl
@@ -15,7 +15,7 @@
 #endif
 
 /**
-*  @Brief NULL pointer definition
+*  @brief NULL pointer definition
 */
 #ifndef NULL
 #ifdef __cplusplus
@@ -27,7 +27,7 @@
 #endif
 
 /**
-*  @Brief pragma warning disable
+*  @brief pragma warning disable
 */
 #ifdef _MSC_VER
 #pragma warning(disable : 4250) // 'class1' : inherits 'class2::member' via dominance

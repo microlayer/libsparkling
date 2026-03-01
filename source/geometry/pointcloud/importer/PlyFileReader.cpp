@@ -4,8 +4,9 @@ namespace spark::geometry::pointcloud::importer {
     /**
     *
     */
-    PlyFileReader::PlyFileReader(std::string rootPath) :
-        m_rootPath(rootPath)
+    PlyFileReader::PlyFileReader(std::vector<uint8_t> data, std::string fileName) :
+        m_data(data),
+        m_fileName(fileName)
     {
 
     }
@@ -21,7 +22,7 @@ namespace spark::geometry::pointcloud::importer {
     /**
     *
     */
-    spark::geometry::pointcloud::ISparkPointCloud* PlyFileReader::loadPointCloud(std::string fileName)
+    spark::geometry::pointcloud::ISparkPointCloud* PlyFileReader::loadPointCloud()
     {
         spark::log::ISparkLogger* logger = log::LogManager::getLogger();
         timer::Timer timer;
@@ -29,14 +30,17 @@ namespace spark::geometry::pointcloud::importer {
         spark::geometry::pointcloud::PointCloud* pointCloud = new spark::geometry::pointcloud::PointCloud();
 
         timer.start();
-        std::ifstream ifs((m_rootPath.append(fileName.c_str())).c_str(), std::ifstream::in);
+
+        // Copy bytes into std::string
+        std::string content(m_data.begin(), m_data.end());
+        std::istringstream iss(content);
 
         std::string line, key;
         int vertexCount = 0;
         int faceCount = 0;
         bool headerEnded = false;
 
-        while (ifs.good() && !ifs.eof() && std::getline(ifs, line))
+        while (std::getline(iss, line))
         {
             std::stringstream sbuffer(line);
             std::string key;
@@ -72,7 +76,7 @@ namespace spark::geometry::pointcloud::importer {
         math::Vector3f position;
         for (int i = 0; i < vertexCount; i++)
         {
-            std::getline(ifs, line);
+            std::getline(iss, line);
             std::stringstream sbuffer(line);
 
 
@@ -94,7 +98,7 @@ namespace spark::geometry::pointcloud::importer {
         }
 
         timer.stop();
-        logger->info("Loading Polygon File Format (ply) '%s' file in %f sec.", fileName.c_str(), timer.getElapsedTime());
+        logger->info("Loading Polygon File Format (ply) '%s' file in %f sec.", m_fileName.c_str(), timer.getElapsedTime());
 
 
         // [2] Post processing point data
@@ -132,7 +136,7 @@ namespace spark::geometry::pointcloud::importer {
 
         timer.stop();
         logger->info("Postprocessing done using turbo color map");
-        logger->info("Postprocessing Polygon File Format (ply) '%s' point cloud done in in %f sec. (Point count: %i)", fileName.c_str(), timer.getElapsedTime(), vertexCount);
+        logger->info("Postprocessing Polygon File Format (ply) '%s' point cloud done in in %f sec. (Point count: %i)", m_fileName.c_str(), timer.getElapsedTime(), vertexCount);
 
         return pointCloud;
     }

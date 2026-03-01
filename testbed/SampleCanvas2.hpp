@@ -13,8 +13,8 @@ public:
         // Material
         m_material = m_device->getRenderer()->createMaterial(spark::material::RenderMode::DebugVisualizationNormals);
 
-        // Create Mesh
-        spark::SparkSharedPointer<spark::geometry::mesh::ISparkMesh> mesh = device->getFileSystem()->loadMesh("teapot.obj");
+        // Create Mesh        
+        spark::SparkSharedPointer<spark::geometry::mesh::ISparkMesh> mesh = device->getAssetManager()->loadMesh("file://teapot.obj");
 
         // Create Animator
         spark::SparkSharedPointer<spark::animator::NodeRotationAnimator> nodeRotationAnimaror = new spark::animator::NodeRotationAnimator(spark::math::Vector3f(0, 50, 0));

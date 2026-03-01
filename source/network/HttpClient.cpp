@@ -61,14 +61,15 @@ namespace spark::network {
 #endif
 
 #if SPARK_PLATFORM == SPARK_PLATFORM_WINDOWS
-        std::thread([url, callback]() mutable {
-
+        std::thread([this, url, callback]() mutable {
             std::vector<uc8_t> result = {};
 
             WSADATA wsaData;
             int wsaStatus = WSAStartup(MAKEWORD(2, 2), &wsaData);
 
-            const char* hostname = "test.microlayer.org";
+            std::string host = this->extractHostname(url);
+            std::string path = this->extractPath(url);
+
             const char* port = "80";
             struct addrinfo hints, * res;
 
@@ -76,17 +77,15 @@ namespace spark::network {
             hints.ai_family = AF_UNSPEC;        // IPv4 oder IPv6
             hints.ai_socktype = SOCK_STREAM;    // TCP
 
-            int status = getaddrinfo(hostname, port, &hints, &res);
+            int status = getaddrinfo(host.c_str(), port, &hints, &res);
 
             int sock = socket(res->ai_family, res->ai_socktype, res->ai_protocol);
             connect(sock, res->ai_addr, res->ai_addrlen);
 
-            const char* request =
-                "GET /test.html HTTP/1.1\r\n"
-                "Host: test.microlayer.org\r\n"
-                "Connection: close\r\n\r\n";
+            // Build Http GET request
+            std::string request = this->buildHttpGetRequest(host, path);
 
-            send(sock, request, strlen(request), 0);
+            send(sock, request.c_str(), strlen(request.c_str()), 0);
 
             char buffer[1024];
             int bytes;
@@ -151,5 +150,53 @@ namespace spark::network {
     void HttpClient::onError(std::string error)
     {
 
+    }
+
+    /**
+    *
+    */
+    std::string HttpClient::buildHttpGetRequest(const std::string& host, const std::string& path)
+    {
+        std::string request;
+        request += "GET " + path + " HTTP/1.1\r\n";
+        request += "Host: " + host + "\r\n";
+        request += "User-Agent: libsparkling/1.0\r\n";
+        request += "Accept: */*\r\n";
+        request += "Connection: close\r\n";
+        request += "\r\n";
+
+        return request;
+    }
+
+    /**
+    *
+    */
+    std::string HttpClient::extractHostname(const std::string& url)
+    {
+        std::regex regex(R"(^(http?)://([^/]+))");
+        std::smatch match;
+        std::string host;
+        if (std::regex_search(url, match, regex))
+        {
+            host = match[2].str();
+        }
+        return host;
+    }
+
+    /**
+    *
+    */
+    std::string HttpClient::extractPath(const std::string& url)
+    {
+        size_t protocolEnd = url.find("://");
+        if (protocolEnd == std::string::npos)
+            return "/";
+
+        size_t pathStart = url.find('/', protocolEnd + 3);
+
+        if (pathStart == std::string::npos)
+            return "/";
+
+        return url.substr(pathStart);
     }
 }

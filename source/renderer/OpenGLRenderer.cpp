@@ -439,6 +439,8 @@ namespace spark::renderer {
     */
     void OpenGLRenderer::applyMaterial(spark::material::ISparkMaterial* material)
     {
+        
+        // TODO Render State cache
         if (!material) {
             m_shader->setDrawMode(0);
             return;
