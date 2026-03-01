@@ -411,6 +411,14 @@ namespace spark::renderer {
     /**
     *
     */
+    void OpenGLRenderer::draw3DLine(math::Vector3f start, math::Vector3f end, spark::drawing::Color color)
+    {
+
+    }
+
+    /**
+    *
+    */
     void OpenGLRenderer::renderMesh(spark::geometry::mesh::ISparkMesh* mesh, spark::material::ISparkMaterial* material)
     {
         spark::material::VertexLayout vertexLayout = material->getRequiredMeshVariant();
@@ -439,7 +447,7 @@ namespace spark::renderer {
     */
     void OpenGLRenderer::applyMaterial(spark::material::ISparkMaterial* material)
     {
-        
+
         // TODO Render State cache
         if (!material) {
             m_shader->setDrawMode(0);

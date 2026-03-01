@@ -29,7 +29,6 @@ namespace spark::renderer {
     class ISparkRenderer : public virtual spark::SparkRefCount
     {
     public:
-
         virtual void onInit() = 0;
 
         virtual void beginScene() = 0;
@@ -53,6 +52,7 @@ namespace spark::renderer {
         virtual void drawString(const std::string fontFamily, uint32_t size, const std::string text, spark::drawing::Color color, int16_t x, int16_t y) = 0;
 
         // 3D support
+        virtual void draw3DLine(math::Vector3f start, math::Vector3f end, spark::drawing::Color color) = 0;
         virtual void renderMesh(spark::geometry::mesh::ISparkMesh* mesh, spark::material::ISparkMaterial* material) = 0;
         virtual void renderPointCloud(spark::geometry::pointcloud::ISparkPointCloud* pointCloud) = 0;
 
