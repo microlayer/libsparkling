@@ -31,10 +31,10 @@ namespace spark::asset {
         auto data = loadBinary(uri);
 
         spark::drawing::Bitmap* bmp = NULL;
-      
+
         std::vector<uc8_t> image;					// the raw pixels
         uint32_t width, height, fileSize, rawSize;	// width, height and size of the png
- 
+
         int32_t error = lodepng::decode(image, width, height, data);
 
         std::string hash = mlstl::hash::MLHash::hashFNV1a(image);
@@ -62,16 +62,16 @@ namespace spark::asset {
     spark::game::ISparkTiledLayer* AssetManager::loadTiledLayer(const std::string& uri)
     {
         auto data = loadBinary(uri);
-        
+
         spark::game::TiledLayer* tiledLayer = NULL;
         spark::drawing::ISparkImage* tilesetImage = NULL;
 
-        tinyxml2::XMLDocument xmlDoc;        
+        tinyxml2::XMLDocument xmlDoc;
         tinyxml2::XMLError result = xmlDoc.Parse(
             reinterpret_cast<const char*>(data.data()),
             data.size()
         );
-        if(result == tinyxml2::XML_SUCCESS)
+        if (result == tinyxml2::XML_SUCCESS)
         {
             m_logger->info("Loading '%s' successful - start analysing", uri.c_str());
 
@@ -117,7 +117,7 @@ namespace spark::asset {
             {
                 size_t pos = uri.find_last_of('/');
 
-                if (pos != std::string::npos) 
+                if (pos != std::string::npos)
                 {
                     tilesetImage = loadBitmap(uri.substr(0, pos + 1) + tilesetImageName);
                 }
