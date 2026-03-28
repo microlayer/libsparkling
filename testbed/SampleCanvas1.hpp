@@ -22,7 +22,7 @@ public:
         spark::SparkSharedPointer<spark::geometry::mesh::ISparkMesh> cubeMesh(spark::geometry::mesh::generator::MeshGenerator::createQuadMesh());
 
         // Create Animator
-        spark::SparkSharedPointer<spark::animator::ISparkNodeAnimator> nodeRotationAnimaror = spark::animator::NodeRotationAnimator::create(spark::math::Vector3f(0, 50, 0));
+        spark::SparkSharedPointer<spark::animator::ISparkNodeAnimator> nodeRotationAnimaror = spark::animator::NodeRotationAnimator::create(spark::math::Vector3f(40, 50, 20));
 
     
         // Create SceneNode
