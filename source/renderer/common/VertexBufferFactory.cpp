@@ -56,4 +56,17 @@ namespace spark::renderer {
             return m_vertexBufferMap[id];
         }
     }
+
+    /**
+    *
+    */
+    void VertexBufferFactory::deleteBuffer(std::string id)
+    {
+        if (m_vertexBufferMap.find(id) != m_vertexBufferMap.end())
+        {
+            spark::renderer::vertexbuffer::OGLVertexBuffer* vertexBuffer = m_vertexBufferMap[id];
+            vertexBuffer->release();
+            m_vertexBufferMap.erase(id);
+        }
+    }
 }

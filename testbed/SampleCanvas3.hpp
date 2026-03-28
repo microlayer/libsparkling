@@ -18,6 +18,8 @@ public:
         spark::SparkSharedPointer<spark::geometry::pointcloud::ISparkPointCloud> pointCloud
             = device->getAssetManager()->loadPointCloud("file://0036_Schuebel_bDOM.ply");
 
+        m_pointsCount = pointCloud->getPointCount();
+
         //spark::SparkSharedPointer<spark::geometry::pointcloud::ISparkPointCloud> pointCloud
         //    = device->getAssetManager()->loadPointCloud("http://www.microlayer.org/libsparkling/0036_Schuebel_bDOM.ply");
 
@@ -124,8 +126,11 @@ public:
         orthographicProjection.setVirtualResolution(1196, 720, spark::perspective::VirtualResolution::E_LETTER_OR_PILLARBOX);
         m_device->getRenderer()->setOrthographicProjectionMatrix(orthographicProjection);
 
-        renderer->drawString(spark::font::ESFT_ARIAL_16, "X: " + std::to_string(m_rot_x), spark::drawing::Color(255, 255, 0, 128), 1000, 70);
-        renderer->drawString(spark::font::ESFT_ARIAL_16, "Y: " + std::to_string(m_rot_y), spark::drawing::Color(255, 255, 0, 128), 1000, 90);
+        renderer->drawString(spark::font::ESFT_ARIAL_16, "X: " + std::to_string(180 / 3.14 * m_rot_x), spark::drawing::Color(255, 255, 0, 128), 1000, 70);
+        renderer->drawString(spark::font::ESFT_ARIAL_16, "Y: " + std::to_string(180 / 3.14 * m_rot_y), spark::drawing::Color(255, 255, 0, 128), 1000, 90);
+
+        renderer->drawString(spark::font::ESFT_ARIAL_8, "File: 0036_Schuebel_bDOM.ply", spark::drawing::Color(128, 128, 128, 128), 1000, 680);
+        renderer->drawString(spark::font::ESFT_ARIAL_8, "Number of points: " + std::to_string(m_pointsCount), spark::drawing::Color(128, 128, 128, 128), 1000, 700);
     }
 
 private:
@@ -139,4 +144,6 @@ private:
     spark::real32 m_lastX = 0.0f;
     spark::real32 m_lastY = 0.0f;
     spark::real32 m_sensitivity = 0.005f;
+
+    uint32_t m_pointsCount;
 };

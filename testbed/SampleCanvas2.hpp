@@ -16,8 +16,8 @@ public:
         // Create Mesh        
         spark::SparkSharedPointer<spark::geometry::mesh::ISparkMesh> mesh = device->getAssetManager()->loadMesh("file://teapot.obj");
 
-        // Create Animator
-        spark::SparkSharedPointer<spark::animator::NodeRotationAnimator> nodeRotationAnimaror = new spark::animator::NodeRotationAnimator(spark::math::Vector3f(0, 50, 0));
+        // Create Animator       
+        spark::SparkSharedPointer<spark::animator::ISparkNodeAnimator> nodeRotationAnimaror = spark::animator::NodeRotationAnimator::create(spark::math::Vector3f(0, 50, 0));
 
         // Create SceneNode
         spark::SparkSharedPointer<spark::scene::ISparkSceneNode> node = m_sceneGraphManager3D->createSceneNode();

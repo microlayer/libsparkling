@@ -53,4 +53,12 @@ namespace spark::animator {
             //spark::log::LogManager::GetLogger()->Info("diffTime: %i - FPS: %f - Inc X-axis: %f - Inc Y-axis: %f - Inc Z-axis: %f", diffTime, 1/(diffTime/1000.0f), valX, valY , valZ);
         }
     }
+
+    /**
+    *
+    */
+    ISparkNodeAnimator* NodeRotationAnimator::create(spark::math::Vector3f degreePerSecond)
+    {
+        return new NodeRotationAnimator(degreePerSecond);
+    }
 }

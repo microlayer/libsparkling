@@ -12,7 +12,8 @@ namespace spark::font {
     */
     enum E_SYSTEM_FONT_TYPE
     {
-        ESFT_ARIAL_16 = 1
+        ESFT_ARIAL_8 = 8,
+        ESFT_ARIAL_16 = 16
     };
 
     /**
@@ -21,7 +22,7 @@ namespace spark::font {
     class ISparkFont : public spark::SparkRefCount
     {
     public:
-        virtual spark::font::BitmapFontInfo getBitmapFontInfo(uint16_t size) const = 0;
+        virtual spark::font::BitmapFontInfo getBitmapFontInfo() const = 0;
         virtual uc8_t* getFontMap() const = 0;
         virtual std::string getFontName() const = 0;
         virtual void setTexture(spark::renderer::ISparkTexture* texture) = 0;

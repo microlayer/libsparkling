@@ -66,6 +66,8 @@ namespace spark::renderer {
         // Depth-Test
         virtual void activateDepthTest(bool flag) = 0;
 
+        virtual void flush3DLines() = 0;
+
         // Factory
         virtual spark::material::ISparkMaterial* createMaterial(spark::material::RenderMode renderMode) = 0;
     };

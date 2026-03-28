@@ -69,9 +69,14 @@ namespace spark::renderer {
         // Depth-Test
         void activateDepthTest(bool flag);
 
+        void flush3DLines();
+
     private:
         math::Matrix4f m_projectionViewMatrix;
         spark::drawing::Color m_backgroundColor;
+
+        std::vector<drawing::Vertex3> m_lineVertices;
+        spark::renderer::ISparkVertexBuffer* m_lineVertexBuffer;
     };
 }
 #endif

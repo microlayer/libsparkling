@@ -34,7 +34,7 @@ namespace spark::geometry::pointcloud {
     */
     uint32_t PointCloud::getPointCount() const
     {
-        return 0;
+        return m_vertices.size();
     }
 
     /**

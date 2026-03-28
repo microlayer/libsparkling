@@ -10,12 +10,16 @@ namespace spark::animator {
     */
     class NodeRotationAnimator : public spark::animator::ISparkNodeAnimator
     {
-    public:
+    private:
         NodeRotationAnimator(spark::math::Vector3f degreePerSecond);
+    public:
         virtual ~NodeRotationAnimator(void);
 
     public:
         void animate(spark::scene::ISparkSceneNode* node);
+
+    public:
+        static ISparkNodeAnimator* create(spark::math::Vector3f degreePerSecond);
 
     private:
         spark::timer::Timer m_timer;

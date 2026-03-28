@@ -7,7 +7,11 @@ namespace spark::font {
     FontPool::FontPool() :
         m_font(NULL)
     {
-        m_font = new spark::font::Font();
+        m_fonts[spark::font::E_SYSTEM_FONT_TYPE::ESFT_ARIAL_16] =
+            new spark::font::Font(spark::font::E_SYSTEM_FONT_TYPE::ESFT_ARIAL_16);
+
+        m_fonts[spark::font::E_SYSTEM_FONT_TYPE::ESFT_ARIAL_8] =
+            new spark::font::Font(spark::font::E_SYSTEM_FONT_TYPE::ESFT_ARIAL_8);
     }
 
     /**
@@ -15,17 +19,26 @@ namespace spark::font {
     */
     FontPool::~FontPool()
     {
-        if (m_font != NULL)
+        for (auto& it : m_fonts)
         {
-            m_font->release();
+            if (it.second != nullptr)
+            {
+                it.second->release();
+            }
         }
+
+        m_fonts.clear();
     }
 
     /**
     *
     */
-    spark::font::ISparkFont* FontPool::getFont()
+    spark::font::ISparkFont* FontPool::getFont(spark::font::E_SYSTEM_FONT_TYPE fontType)
     {
-        return m_font;
+        auto it = m_fonts.find(fontType);
+
+        if (it != m_fonts.end())
+            return it->second;
+        return NULL;
     }
 }

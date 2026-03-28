@@ -87,6 +87,8 @@ namespace spark::scene {
     */
     void SceneGraphManager3D::onAfterDrawGraph()
     {
+        m_renderer->flush3DLines();
+
         m_renderer->activateDepthTest(false);
         m_renderer->setDrawMode(0);
     }

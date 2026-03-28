@@ -30,6 +30,7 @@ namespace spark::renderer {
     public:
         spark::renderer::ISparkVertexBuffer* createOrUpdate(std::string id, std::vector<spark::drawing::Vertex3>& vertices);
         spark::renderer::ISparkVertexBuffer* createOrUpdate(std::string id, spark::geometry::mesh::ISparkMesh* mesh, spark::material::VertexLayout vertexLayout);
+        void deleteBuffer(std::string id);
 
     private:
         std::map<std::string, spark::renderer::vertexbuffer::OGLVertexBuffer*> m_vertexBufferMap;

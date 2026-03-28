@@ -18,7 +18,11 @@ namespace spark::renderer {
     */
     OpenGLRenderer::~OpenGLRenderer()
     {
-
+        if (m_lineVertexBuffer)
+        {
+            m_vertexBufferFactory->deleteBuffer("3DLines");
+            m_lineVertexBuffer = NULL;
+        }
     }
 
     /**
@@ -340,10 +344,10 @@ namespace spark::renderer {
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-        spark::font::ISparkFont* font = m_device->getSparkFontPool()->getFont();
+        spark::font::ISparkFont* font = m_device->getSparkFontPool()->getFont(fontType);
         spark::uc8_t* fontMapImageData = font->getFontMap();
-        uint16_t fontMapWidth = font->getBitmapFontInfo(16).m_textureWidth;
-        uint16_t fontMapHeight = font->getBitmapFontInfo(16).m_textureHeight;
+        uint16_t fontMapWidth = font->getBitmapFontInfo().m_textureWidth;
+        uint16_t fontMapHeight = font->getBitmapFontInfo().m_textureHeight;
 
         m_shader->setFontColor(color);
 
@@ -351,7 +355,7 @@ namespace spark::renderer {
         texture->bind();
         font->setTexture(texture);
 
-        spark::font::BitmapFontInfo bitmapFontInfo = font->getBitmapFontInfo(16);
+        spark::font::BitmapFontInfo bitmapFontInfo = font->getBitmapFontInfo();
         spark::font::BitmapGlyphInfo bitmapGlypInfo = bitmapFontInfo.m_bitmapGlyphs[65];
         spark::uc8_t charId = bitmapGlypInfo.m_charId;
 
@@ -360,7 +364,7 @@ namespace spark::renderer {
         std::vector<spark::drawing::Vertex3> vertices;
         for (uint16_t index = 0; ch[index] != '\0'; index++)
         {
-            spark::font::BitmapGlyphInfo gi = font->getBitmapFontInfo(index).m_bitmapGlyphs[ch[index]];
+            spark::font::BitmapGlyphInfo gi = font->getBitmapFontInfo().m_bitmapGlyphs[ch[index]];
             int16_t px = x + gi.m_xOffset + advance;
             int16_t py = y + (gi.m_height + gi.m_yOffset);
             advance += gi.m_xAdvance;
@@ -413,7 +417,8 @@ namespace spark::renderer {
     */
     void OpenGLRenderer::draw3DLine(math::Vector3f start, math::Vector3f end, spark::drawing::Color color)
     {
-
+        m_lineVertices.push_back({ start.m_x, start.m_y, start.m_z, color });
+        m_lineVertices.push_back({ end.m_x, end.m_y, end.m_z, color });
     }
 
     /**
@@ -483,6 +488,21 @@ namespace spark::renderer {
         else
         {
             glDisable(GL_DEPTH_TEST);
+        }
+    }
+
+    /**
+    *
+    */
+    void OpenGLRenderer::flush3DLines()
+    {
+        if (m_lineVertices.size() > 0)
+        {
+            glLineWidth(1.0f);
+            m_lineVertexBuffer = m_vertexBufferFactory->createOrUpdate("3DLines", m_lineVertices);
+            applyMaterial(spark::material::MaterialLibrary::getDefaultMaterial());
+            m_lineVertexBuffer->drawLines();
+            m_lineVertices.clear();
         }
     }
 }

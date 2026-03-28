@@ -272,7 +272,7 @@ namespace spark::renderer::vertexbuffer {
     void OGLVertexBuffer::drawLines()
     {
         glBindVertexArray(m_vao); // The VAO stores all attribute pointer configurations,        
-        glDrawArrays(GL_LINES, 0, 2);
+        glDrawArrays(GL_LINES, 0, m_verticesData.size() / 3);
         glBindVertexArray(0);
     }
 
