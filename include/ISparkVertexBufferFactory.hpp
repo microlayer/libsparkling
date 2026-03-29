@@ -15,9 +15,9 @@ namespace spark::renderer {
     class ISparkVertexBufferFactory : public virtual spark::SparkRefCount
     {
     public:
-        virtual spark::renderer::ISparkVertexBuffer* createOrUpdate(std::string id, std::vector<spark::drawing::Vertex3>& vertices) = 0;
-        virtual spark::renderer::ISparkVertexBuffer* createOrUpdate(std::string id, spark::geometry::mesh::ISparkMesh* mesh, spark::material::VertexLayout vertexLayout) = 0;
-        virtual void deleteBuffer(std::string id) = 0;
+        virtual spark::renderer::ISparkVertexBuffer* getOrCreateVertexBuffer(std::string id, std::vector<spark::drawing::Vertex3>& vertices) = 0;
+        virtual spark::renderer::ISparkVertexBuffer* getOrCreateVertexBuffer(std::string id, spark::geometry::mesh::ISparkMesh* mesh, spark::material::VertexLayout vertexLayout) = 0;
+        virtual void deleteVertexBuffer(std::string id) = 0;
     };
 }
 #endif

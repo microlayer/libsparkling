@@ -14,6 +14,7 @@ namespace spark::renderer::texture {
         m_data(data),
         m_width(width),
         m_height(height),
+        m_pixelFormat(pixelFormat),
         m_textureId(0)
     {
         m_logger->info("Start creating texture");
@@ -21,22 +22,23 @@ namespace spark::renderer::texture {
         glGenTextures(1, &m_textureId);
         glBindTexture(GL_TEXTURE_2D, m_textureId);
 
-        if (!glIsTexture(m_textureId))
-        {
-            m_logger->error("Invalid texture ID!");
-        }
-
         if (spark::drawing::E_RGBA8 == pixelFormat)
         {
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width, m_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_data);
         }
-        if (spark::drawing::E_GRAY8 == pixelFormat)
+        else if (spark::drawing::E_GRAY8 == pixelFormat)
         {
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, m_width, m_height, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, m_data);
+            // Core Profile compatible replacement for the deprecated internal format GL_LUMINANCE
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_R8, m_width, m_height, 0, GL_RED, GL_UNSIGNED_BYTE, m_data);
+        }
+        else
+        {
+            m_logger->error("Unsupported pixel format, creating empty texture");
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_R8, m_width, m_height, 0, GL_RED, GL_UNSIGNED_BYTE, NULL);
         }
 
         GLenum err = glGetError();
-        if (glGetError() != err)
+        if (err != GL_NO_ERROR)
         {
             m_logger->error("Error loading texture into OpenGL with reason: %s code: %i", "Undefined", err);
         }
@@ -54,7 +56,10 @@ namespace spark::renderer::texture {
     */
     OGLTexture::~OGLTexture()
     {
-
+        if (m_textureId != 0)
+        {
+            glDeleteTextures(1, &m_textureId);
+        }
     }
 
     /**
@@ -86,7 +91,7 @@ namespace spark::renderer::texture {
     */
     spark::drawing::E_PIXEL_FORMAT OGLTexture::getPixelFormat() const
     {
-        return spark::drawing::E_PIXEL_FORMAT::E_GRAY8;
+        return m_pixelFormat;
     }
 
     /**

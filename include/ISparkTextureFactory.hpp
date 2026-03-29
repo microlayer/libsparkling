@@ -12,7 +12,7 @@ namespace spark::renderer {
     class ISparkTextureFactory : public virtual spark::SparkRefCount
     {
     public:
-        virtual spark::renderer::ISparkTexture* createOrUpdate(std::string id, uc8_t* data, int32_t width, int32_t height, spark::drawing::E_PIXEL_FORMAT pixelFormat) = 0;
+        virtual spark::renderer::ISparkTexture* getOrCreateTexture(std::string id, uc8_t* data, int32_t width, int32_t height, spark::drawing::E_PIXEL_FORMAT pixelFormat) = 0;
     };
 }
 #endif

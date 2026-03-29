@@ -20,7 +20,7 @@ namespace spark::renderer {
     {
         if (m_lineVertexBuffer)
         {
-            m_vertexBufferFactory->deleteBuffer("3DLines");
+            m_vertexBufferFactory->deleteVertexBuffer("3DLines");
             m_lineVertexBuffer = NULL;
         }
     }
@@ -194,7 +194,7 @@ namespace spark::renderer {
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-        spark::renderer::ISparkTexture* texture = m_textureFactory->createOrUpdate(image->getHash(), image->getImageAsStream(), image->getWidth(), image->getHeight(), spark::drawing::E_RGBA8);
+        spark::renderer::ISparkTexture* texture = m_textureFactory->getOrCreateTexture(image->getHash(), image->getImageAsStream(), image->getWidth(), image->getHeight(), spark::drawing::E_RGBA8);
         texture->bind();
         image->setTexture(texture);
 
@@ -245,7 +245,7 @@ namespace spark::renderer {
 
         spark::drawing::ISparkImage* tilsetImage = tiledLayer->getTilesetImage();
 
-        spark::renderer::ISparkTexture* texture = m_textureFactory->createOrUpdate(tilsetImage->getHash(), tilsetImage->getImageAsStream(), tilsetImage->getWidth(), tilsetImage->getHeight(), spark::drawing::E_RGBA8);
+        spark::renderer::ISparkTexture* texture = m_textureFactory->getOrCreateTexture(tilsetImage->getHash(), tilsetImage->getImageAsStream(), tilsetImage->getWidth(), tilsetImage->getHeight(), spark::drawing::E_RGBA8);
         texture->bind();
         tilsetImage->setTexture(texture);
 
@@ -351,7 +351,7 @@ namespace spark::renderer {
 
         m_shader->setFontColor(color);
 
-        spark::renderer::ISparkTexture* texture = m_textureFactory->createOrUpdate(font->getFontName(), fontMapImageData, fontMapWidth, fontMapHeight, spark::drawing::E_GRAY8);
+        spark::renderer::ISparkTexture* texture = m_textureFactory->getOrCreateTexture(font->getFontName(), fontMapImageData, fontMapWidth, fontMapHeight, spark::drawing::E_GRAY8);
         texture->bind();
         font->setTexture(texture);
 
@@ -428,7 +428,7 @@ namespace spark::renderer {
     {
         spark::material::VertexLayout vertexLayout = material->getRequiredMeshVariant();
 
-        spark::renderer::ISparkVertexBuffer* vertexBuffer = m_vertexBufferFactory->createOrUpdate(mesh->getGuid(), mesh, vertexLayout);
+        spark::renderer::ISparkVertexBuffer* vertexBuffer = m_vertexBufferFactory->getOrCreateVertexBuffer(mesh->getGuid(), mesh, vertexLayout);
         mesh->setVertexBuffer(vertexBuffer);
 
         applyMaterial(material);
@@ -441,7 +441,7 @@ namespace spark::renderer {
     void OpenGLRenderer::renderPointCloud(spark::geometry::pointcloud::ISparkPointCloud* pointCloud)
     {
         auto vertices = pointCloud->getPoints();
-        spark::renderer::ISparkVertexBuffer* vertexBuffer = m_vertexBufferFactory->createOrUpdate(pointCloud->getGuid(), vertices);
+        spark::renderer::ISparkVertexBuffer* vertexBuffer = m_vertexBufferFactory->getOrCreateVertexBuffer(pointCloud->getGuid(), vertices);
         pointCloud->setVertexBuffer(vertexBuffer);
         applyMaterial(spark::material::MaterialLibrary::getDefaultMaterial());
         vertexBuffer->drawPoints();
@@ -499,7 +499,7 @@ namespace spark::renderer {
         if (m_lineVertices.size() > 0)
         {
             glLineWidth(1.0f);
-            m_lineVertexBuffer = m_vertexBufferFactory->createOrUpdate("3DLines", m_lineVertices);
+            m_lineVertexBuffer = m_vertexBufferFactory->getOrCreateVertexBuffer("3DLines", m_lineVertices);
             applyMaterial(spark::material::MaterialLibrary::getDefaultMaterial());
             m_lineVertexBuffer->drawLines();
             m_lineVertices.clear();

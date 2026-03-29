@@ -43,6 +43,7 @@ namespace spark::renderer::texture {
         uc8_t* m_data;
         uint32_t m_width;
         uint32_t m_height;
+        spark::drawing::E_PIXEL_FORMAT m_pixelFormat;
     };
 }
 #endif

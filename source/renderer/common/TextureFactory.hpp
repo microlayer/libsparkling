@@ -26,7 +26,7 @@ namespace spark::renderer {
         ~TextureFactory();
 
     public: // ISparkTextureFactory
-        spark::renderer::ISparkTexture* createOrUpdate(std::string id, uc8_t* data, int32_t width, int32_t height, spark::drawing::E_PIXEL_FORMAT pixelFormat);
+        spark::renderer::ISparkTexture* getOrCreateTexture(std::string id, uc8_t* data, int32_t width, int32_t height, spark::drawing::E_PIXEL_FORMAT pixelFormat);
 
     private:
         std::map<std::string, spark::renderer::texture::OGLTexture*> m_textureMap;

@@ -21,7 +21,7 @@ namespace spark::renderer {
     /**
     *
     */
-    spark::renderer::ISparkVertexBuffer* VertexBufferFactory::createOrUpdate(std::string id, std::vector<spark::drawing::Vertex3>& vertices)
+    spark::renderer::ISparkVertexBuffer* VertexBufferFactory::getOrCreateVertexBuffer(std::string id, std::vector<spark::drawing::Vertex3>& vertices)
     {
         if (m_vertexBufferMap.find(id) == m_vertexBufferMap.end())
         {
@@ -40,7 +40,7 @@ namespace spark::renderer {
     /**
     *
     */
-    spark::renderer::ISparkVertexBuffer* VertexBufferFactory::createOrUpdate(std::string id, spark::geometry::mesh::ISparkMesh* mesh, spark::material::VertexLayout vertexLayout)
+    spark::renderer::ISparkVertexBuffer* VertexBufferFactory::getOrCreateVertexBuffer(std::string id, spark::geometry::mesh::ISparkMesh* mesh, spark::material::VertexLayout vertexLayout)
     {
         if (m_vertexBufferMap.find(id) == m_vertexBufferMap.end())
         {
@@ -60,7 +60,7 @@ namespace spark::renderer {
     /**
     *
     */
-    void VertexBufferFactory::deleteBuffer(std::string id)
+    void VertexBufferFactory::deleteVertexBuffer(std::string id)
     {
         if (m_vertexBufferMap.find(id) != m_vertexBufferMap.end())
         {
