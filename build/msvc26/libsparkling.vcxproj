@@ -388,14 +388,14 @@
     <ClInclude Include="..\..\source\timer\Timer.hpp" />
     <ClInclude Include="..\..\source\ui\AbstractCanvas.hpp" />
     <ClInclude Include="..\..\source\ui\Command.hpp" />
+    <ClInclude Include="..\..\testbed\FallingBlocksPhysicsCanvas.hpp" />
+    <ClInclude Include="..\..\testbed\PointCloudCanvas.hpp" />
+    <ClInclude Include="..\..\testbed\RotatingCubeCanvas.hpp" />
     <ClInclude Include="..\..\testbed\SampleApp.hpp" />
-    <ClInclude Include="..\..\testbed\SampleCanvas1.hpp" />
-    <ClInclude Include="..\..\testbed\SampleCanvas2.hpp" />
-    <ClInclude Include="..\..\testbed\SampleCanvas3.hpp" />
     <ClInclude Include="..\..\testbed\SampleCanvas4.hpp" />
-    <ClInclude Include="..\..\testbed\SampleCanvas5.hpp" />
     <ClInclude Include="..\..\testbed\SampleCanvas6.hpp" />
     <ClInclude Include="..\..\testbed\SampleCanvas7.hpp" />
+    <ClInclude Include="..\..\testbed\TeapotCanvas.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\source\renderer\shader\glsl_for_gles2_feature_level_glsles10\Default.frag" />

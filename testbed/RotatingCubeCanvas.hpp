@@ -6,13 +6,13 @@
 *
 */
 #pragma once
-class SampleCanvas1 : public spark::ui::AbstractCanvas
+class RotatingCubeCanvas : public spark::ui::AbstractCanvas
 {
 public:
     /**
     *
     */
-    SampleCanvas1(spark::device::ISparkDevice* device) :
+    RotatingCubeCanvas(spark::device::ISparkDevice* device) :
         m_device(device)
     {
         // Create SceneGraphManager3D
@@ -24,7 +24,7 @@ public:
         // Create Animator
         spark::SparkSharedPointer<spark::animator::ISparkNodeAnimator> nodeRotationAnimaror = spark::animator::NodeRotationAnimator::create(spark::math::Vector3f(40, 50, 20));
 
-    
+
         // Create SceneNode
         spark::SparkSharedPointer<spark::scene::ISparkSceneNode> node = m_sceneGraphManager3D->createSceneNode();
         node->setPosition(spark::math::Vector3f(0, 0, 0));
@@ -37,7 +37,7 @@ public:
     /**
     *
     */
-    virtual ~SampleCanvas1()
+    virtual ~RotatingCubeCanvas()
     {
 
     }
@@ -47,7 +47,7 @@ public:
     */
     void init()
     {
-        m_device->getLogger()->info("Init Canvas1");
+        m_device->getLogger()->info("Init RotatingCubeCanvas");
 
         // Set virtual resolution
         spark::perspective::OrthographicProjection orthographicProjection(m_device->getScreenResolution().m_width, m_device->getScreenResolution().m_height);

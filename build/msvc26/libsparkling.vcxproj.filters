@@ -377,9 +377,6 @@
     <ClInclude Include="..\..\include\ISparkApp.hpp">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\testbed\SampleCanvas1.hpp">
-      <Filter>testbed</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\ISparkCommandListener.hpp">
       <Filter>include</Filter>
     </ClInclude>
@@ -560,9 +557,6 @@
     <ClInclude Include="..\..\source\mlstl\MLHash.hpp">
       <Filter>source\mlstl</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\testbed\SampleCanvas2.hpp">
-      <Filter>testbed</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\ISparkTiledLayer.hpp">
       <Filter>include</Filter>
     </ClInclude>
@@ -596,9 +590,6 @@
     <ClInclude Include="..\..\source\game\LineLayer.hpp">
       <Filter>source\game</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\testbed\SampleCanvas3.hpp">
-      <Filter>testbed</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\ISparkLineLayer.hpp">
       <Filter>include</Filter>
     </ClInclude>
@@ -607,9 +598,6 @@
     </ClInclude>
     <ClInclude Include="..\..\include\ISparkMeshImporter.hpp">
       <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\testbed\SampleCanvas5.hpp">
-      <Filter>testbed</Filter>
     </ClInclude>
     <ClInclude Include="..\..\testbed\SampleCanvas6.hpp">
       <Filter>testbed</Filter>
@@ -676,6 +664,18 @@
     </ClInclude>
     <ClInclude Include="..\..\include\ISparkAssetManager.hpp">
       <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\testbed\RotatingCubeCanvas.hpp">
+      <Filter>testbed</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\testbed\PointCloudCanvas.hpp">
+      <Filter>testbed</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\testbed\TeapotCanvas.hpp">
+      <Filter>testbed</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\testbed\FallingBlocksPhysicsCanvas.hpp">
+      <Filter>testbed</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

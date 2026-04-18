@@ -2,10 +2,10 @@
 *
 */
 #pragma once
-class SampleCanvas2 : public spark::ui::AbstractCanvas
+class TeapotCanvas : public spark::ui::AbstractCanvas
 {
 public:
-    SampleCanvas2(spark::device::ISparkDevice* device) :
+    TeapotCanvas(spark::device::ISparkDevice* device) :
         m_device(device)
     {
         m_sceneGraphManager3D = device->createSceneGraphManager3D();
@@ -32,7 +32,7 @@ public:
     /**
     *
     */
-    virtual ~SampleCanvas2()
+    virtual ~TeapotCanvas()
     {
 
     }
@@ -42,7 +42,7 @@ public:
     */
     void init()
     {
-        m_device->getLogger()->info("Init Canvas2");
+        m_device->getLogger()->info("Init TeapotCanvas");
     }
 
     /**

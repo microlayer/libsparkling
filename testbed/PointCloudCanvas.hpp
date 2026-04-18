@@ -2,13 +2,13 @@
 *
 */
 #pragma once
-class SampleCanvas3 : public spark::ui::AbstractCanvas
+class PointCloudCanvas : public spark::ui::AbstractCanvas
 {
 public:
     /**
     *
     */
-    SampleCanvas3(spark::device::ISparkDevice* device) :
+    PointCloudCanvas(spark::device::ISparkDevice* device) :
         m_device(device),
         m_rot_x(0.0f),
         m_lastY(0.0f)
@@ -49,7 +49,7 @@ public:
     /**
     *
     */
-    virtual ~SampleCanvas3()
+    virtual ~PointCloudCanvas()
     {
 
     }
@@ -59,7 +59,7 @@ public:
     */
     void init()
     {
-        m_device->getLogger()->info("Init Canvas3");
+        m_device->getLogger()->info("Init PointCloudCanvas");
     }
 
     /**

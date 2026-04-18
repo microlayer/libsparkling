@@ -2,13 +2,13 @@
 *
 */
 #pragma once
-class SampleCanvas5 : public spark::ui::AbstractCanvas
+class FallingBlocksPhysicsCanvas : public spark::ui::AbstractCanvas
 {
 public:
     /**
     *
     */
-    SampleCanvas5(spark::device::ISparkDevice* device) :
+    FallingBlocksPhysicsCanvas(spark::device::ISparkDevice* device) :
         m_device(device)
     {
         m_sceneGraphManager2D = m_device->createSceneGraphManager2D();
@@ -36,7 +36,7 @@ public:
     /**
     *
     */
-    virtual ~SampleCanvas5()
+    virtual ~FallingBlocksPhysicsCanvas()
     {
 
     }
@@ -46,7 +46,7 @@ public:
     */
     void init()
     {
-        m_device->getLogger()->info("Init Canvas5");
+        m_device->getLogger()->info("Init FallingBlocksPhysicsCanvas");
 
         // Set virtual resolution
         spark::perspective::OrthographicProjection orthographicProjection(m_device->getScreenResolution().m_width, m_device->getScreenResolution().m_height);

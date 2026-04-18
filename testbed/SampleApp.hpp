@@ -1,8 +1,8 @@
-#include "SampleCanvas1.hpp"
-#include "SampleCanvas2.hpp"
-#include "SampleCanvas3.hpp"
+#include "RotatingCubeCanvas.hpp"
+#include "TeapotCanvas.hpp"
+#include "PointCloudCanvas.hpp"
 #include "SampleCanvas4.hpp"
-#include "SampleCanvas5.hpp"
+#include "FallingBlocksPhysicsCanvas.hpp"
 #include "SampleCanvas6.hpp"
 #include "SampleCanvas7.hpp"
 #include "ISparkCommandListener.hpp"
@@ -19,11 +19,11 @@ public:
     SampleApp(spark::device::ISparkDevice* device) :
         m_device(device)
     {
-        m_sampleCanvas1 = new SampleCanvas1(device);
-        m_sampleCanvas2 = new SampleCanvas2(device);
-        m_sampleCanvas3 = new SampleCanvas3(device);
+        m_rotatingCubeCanvas = new RotatingCubeCanvas(device);
+        m_teapotCanvas = new TeapotCanvas(device);
+        m_pointCloudCanvas = new PointCloudCanvas(device);
         m_sampleCanvas4 = new SampleCanvas4(device);
-        m_sampleCanvas5 = new SampleCanvas5(device);
+        m_fallingBlocksPhysicsCanvas = new FallingBlocksPhysicsCanvas(device);
         m_sampleCanvas6 = new SampleCanvas6(device);
         m_sampleCanvas7 = new SampleCanvas7(device);
         //m_sampleCanvas->registerCommandListener(this);
@@ -42,7 +42,7 @@ public:
     */
     void onInit()
     {
-        this->setActiveCanvas(m_sampleCanvas1.get());
+        this->setActiveCanvas(m_rotatingCubeCanvas.get());
         m_timer1.setTimeout([this]() {this->switchToCanvas2(); }, 4000);
         m_timer2.setTimeout([this]() {this->switchToCanvas3(); }, 8000);
         m_timer3.setTimeout([this]() {this->switchToCanvas4(); }, 12000);
@@ -56,7 +56,7 @@ public:
     */
     void switchToCanvas2()
     {
-        this->setActiveCanvas(m_sampleCanvas2.get());
+        this->setActiveCanvas(m_teapotCanvas.get());
     }
 
     /**
@@ -64,7 +64,7 @@ public:
     */
     void switchToCanvas3()
     {
-        this->setActiveCanvas(m_sampleCanvas3.get());
+        this->setActiveCanvas(m_pointCloudCanvas.get());
     }
 
     /**
@@ -80,7 +80,7 @@ public:
     */
     void switchToCanvas5()
     {
-        this->setActiveCanvas(m_sampleCanvas5.get());
+        this->setActiveCanvas(m_fallingBlocksPhysicsCanvas.get());
     }
 
     /**
@@ -90,7 +90,7 @@ public:
     {
         this->setActiveCanvas(m_sampleCanvas6.get());
     }
-    
+
     /**
     *
     */
@@ -127,11 +127,11 @@ public:
     }
 
 private:
-    spark::SparkSharedPointer<SampleCanvas1> m_sampleCanvas1;
-    spark::SparkSharedPointer<SampleCanvas2> m_sampleCanvas2;
-    spark::SparkSharedPointer<SampleCanvas3> m_sampleCanvas3;
+    spark::SparkSharedPointer<RotatingCubeCanvas> m_rotatingCubeCanvas;
+    spark::SparkSharedPointer<TeapotCanvas> m_teapotCanvas;
+    spark::SparkSharedPointer<PointCloudCanvas> m_pointCloudCanvas;
     spark::SparkSharedPointer<SampleCanvas4> m_sampleCanvas4;
-    spark::SparkSharedPointer<SampleCanvas5> m_sampleCanvas5;
+    spark::SparkSharedPointer<FallingBlocksPhysicsCanvas> m_fallingBlocksPhysicsCanvas;
     spark::SparkSharedPointer<SampleCanvas6> m_sampleCanvas6;
     spark::SparkSharedPointer<SampleCanvas7> m_sampleCanvas7;
     spark::ui::AbstractCanvas* m_currentCanvas;
