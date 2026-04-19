@@ -5,6 +5,7 @@
 #include "FallingBlocksPhysicsCanvas.hpp"
 #include "SampleCanvas6.hpp"
 #include "SampleCanvas7.hpp"
+#include "LambertLightCanvas.hpp"
 #include "ISparkCommandListener.hpp"
 
 /**
@@ -17,7 +18,8 @@ public:
     *
     */
     SampleApp(spark::device::ISparkDevice* device) :
-        m_device(device)
+        m_device(device),
+        m_currentCanvas(NULL)
     {
         m_rotatingCubeCanvas = new RotatingCubeCanvas(device);
         m_teapotCanvas = new TeapotCanvas(device);
@@ -26,6 +28,8 @@ public:
         m_fallingBlocksPhysicsCanvas = new FallingBlocksPhysicsCanvas(device);
         m_sampleCanvas6 = new SampleCanvas6(device);
         m_sampleCanvas7 = new SampleCanvas7(device);
+        m_lambertLightCanvas = new LambertLightCanvas(device);
+
         //m_sampleCanvas->registerCommandListener(this);
     }
 
@@ -42,13 +46,22 @@ public:
     */
     void onInit()
     {
-        this->setActiveCanvas(m_rotatingCubeCanvas.get());
-        m_timer1.setTimeout([this]() {this->switchToCanvas2(); }, 4000);
-        m_timer2.setTimeout([this]() {this->switchToCanvas3(); }, 8000);
-        m_timer3.setTimeout([this]() {this->switchToCanvas4(); }, 12000);
-        m_timer4.setTimeout([this]() {this->switchToCanvas5(); }, 22000);
-        m_timer5.setTimeout([this]() {this->switchToCanvas6(); }, 26000);
+        this->switchToCanvas1();
+        m_timer1.setTimeout([this]() {this->switchToCanvas2(); }, 5000);
+        m_timer2.setTimeout([this]() {this->switchToCanvas3(); }, 10000);
+        m_timer3.setTimeout([this]() {this->switchToCanvas4(); }, 15000);
+        m_timer4.setTimeout([this]() {this->switchToCanvas5(); }, 20000);
+        m_timer5.setTimeout([this]() {this->switchToCanvas6(); }, 25000);
         m_timer6.setTimeout([this]() {this->switchToCanvas7(); }, 30000);
+        m_timer7.setTimeout([this]() {this->switchToCanvas8(); }, 35000);
+    }
+
+    /**
+    *
+    */
+    void switchToCanvas1()
+    {
+        this->setActiveCanvas(m_rotatingCubeCanvas.get());
     }
 
     /**
@@ -102,6 +115,14 @@ public:
     /**
     *
     */
+    void switchToCanvas8()
+    {
+        this->setActiveCanvas(m_lambertLightCanvas.get());
+    }
+
+    /**
+    *
+    */
     void executeCommand(spark::ui::Command::E_COMMAND_TYPE cmd, spark::ui::AbstractCanvas* canvas)
     {
         if (spark::ui::Command::ECT_BACK == cmd)
@@ -134,6 +155,8 @@ private:
     spark::SparkSharedPointer<FallingBlocksPhysicsCanvas> m_fallingBlocksPhysicsCanvas;
     spark::SparkSharedPointer<SampleCanvas6> m_sampleCanvas6;
     spark::SparkSharedPointer<SampleCanvas7> m_sampleCanvas7;
+    spark::SparkSharedPointer<LambertLightCanvas> m_lambertLightCanvas;
+
     spark::ui::AbstractCanvas* m_currentCanvas;
     spark::device::ISparkDevice* m_device;
     spark::timer::Timer m_timer1;
@@ -142,4 +165,5 @@ private:
     spark::timer::Timer m_timer4;
     spark::timer::Timer m_timer5;
     spark::timer::Timer m_timer6;
+    spark::timer::Timer m_timer7;
 };

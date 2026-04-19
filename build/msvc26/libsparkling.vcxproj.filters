@@ -297,6 +297,9 @@
     <ClCompile Include="..\..\source\asset\AssetManager.cpp">
       <Filter>source\asset</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\scene\LightNode.cpp">
+      <Filter>source\scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\spark\SparkCompilerConfig.hpp">
@@ -676,6 +679,15 @@
     </ClInclude>
     <ClInclude Include="..\..\testbed\FallingBlocksPhysicsCanvas.hpp">
       <Filter>testbed</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\testbed\LambertLightCanvas.hpp">
+      <Filter>testbed</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scene\LightNode.hpp">
+      <Filter>source\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkLightNode.hpp">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -108,4 +108,12 @@ namespace spark::scene {
     {
         return new spark::scene::CoordinateSystemNode();
     }
+
+    /**
+    *
+    */
+    spark::scene::ISparkLightNode* SceneGraphManager3D::createLightNode()
+    {
+        return new spark::scene::LightNode();
+    }
 }

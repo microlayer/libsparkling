@@ -261,6 +261,7 @@
     <ClCompile Include="..\..\source\renderer\Vulkan13Renderer.cpp" />
     <ClCompile Include="..\..\source\renderer\VulkanRenderer.cpp" />
     <ClCompile Include="..\..\source\scene\CoordinateSystemNode.cpp" />
+    <ClCompile Include="..\..\source\scene\LightNode.cpp" />
     <ClCompile Include="..\..\source\scene\SceneGraphManager2D.cpp" />
     <ClCompile Include="..\..\source\scene\SceneGraphManager3D.cpp" />
     <ClCompile Include="..\..\source\scene\SceneNode.cpp" />
@@ -275,6 +276,7 @@
     <ClInclude Include="..\..\include\ISparkFontPool.hpp" />
     <ClInclude Include="..\..\include\ISparkFont.hpp" />
     <ClInclude Include="..\..\include\ISparkHttpClient.hpp" />
+    <ClInclude Include="..\..\include\ISparkLightNode.hpp" />
     <ClInclude Include="..\..\include\ISparkLineLayer.hpp" />
     <ClInclude Include="..\..\include\ISparkMaterial.hpp" />
     <ClInclude Include="..\..\include\ISparkMeshImporter.hpp" />
@@ -378,6 +380,7 @@
     <ClInclude Include="..\..\source\renderer\Vulkan13Renderer.hpp" />
     <ClInclude Include="..\..\source\renderer\VulkanRenderer.hpp" />
     <ClInclude Include="..\..\source\scene\CoordinateSystemNode.hpp" />
+    <ClInclude Include="..\..\source\scene\LightNode.hpp" />
     <ClInclude Include="..\..\source\scene\SceneGraphManager2D.hpp" />
     <ClInclude Include="..\..\source\scene\SceneGraphManager3D.hpp" />
     <ClInclude Include="..\..\source\scene\SceneNode.hpp" />
@@ -389,6 +392,7 @@
     <ClInclude Include="..\..\source\ui\AbstractCanvas.hpp" />
     <ClInclude Include="..\..\source\ui\Command.hpp" />
     <ClInclude Include="..\..\testbed\FallingBlocksPhysicsCanvas.hpp" />
+    <ClInclude Include="..\..\testbed\LambertLightCanvas.hpp" />
     <ClInclude Include="..\..\testbed\PointCloudCanvas.hpp" />
     <ClInclude Include="..\..\testbed\RotatingCubeCanvas.hpp" />
     <ClInclude Include="..\..\testbed\SampleApp.hpp" />

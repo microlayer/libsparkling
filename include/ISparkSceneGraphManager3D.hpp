@@ -4,6 +4,7 @@
 #include "ISparkRenderer.hpp"
 #include "scene/SceneNode.hpp"
 #include "ISparkCoordinateSystemNode.hpp"
+#include "ISparkLightNode.hpp"
 
 namespace spark::scene {
     /**
@@ -18,6 +19,7 @@ namespace spark::scene {
     public: // Factory
         virtual spark::scene::ISparkSceneNode* createSceneNode() = 0;
         virtual spark::scene::ISparkCoordinateSystemNode* createCoordinateSystemNode() = 0;
+        virtual spark::scene::ISparkLightNode* createLightNode() = 0;
     };
 }
 #endif
