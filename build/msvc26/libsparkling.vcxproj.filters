@@ -127,6 +127,9 @@
     <Filter Include="source\asset">
       <UniqueIdentifier>{9e5f5b29-7462-4b22-95da-63bcdc73de15}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\scene\nodes">
+      <UniqueIdentifier>{ae83ce13-8b70-4032-ae36-bb459cd3d6a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\spark\Sparkling.cpp">
@@ -219,9 +222,6 @@
     <ClCompile Include="..\..\source\scene\SceneGraphManager3D.cpp">
       <Filter>source\scene</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\scene\SceneNode.cpp">
-      <Filter>source\scene</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\animator\NodeRotationAnimator.cpp">
       <Filter>source\animator</Filter>
     </ClCompile>
@@ -291,14 +291,17 @@
     <ClCompile Include="..\..\source\network\SocketClient.cpp">
       <Filter>source\network</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\scene\CoordinateSystemNode.cpp">
-      <Filter>source\scene</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\asset\AssetManager.cpp">
       <Filter>source\asset</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\scene\LightNode.cpp">
-      <Filter>source\scene</Filter>
+    <ClCompile Include="..\..\source\scene\nodes\CoordinateSystemNode.cpp">
+      <Filter>source\scene\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scene\nodes\LightNode.cpp">
+      <Filter>source\scene\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scene\nodes\SceneNode.cpp">
+      <Filter>source\scene\nodes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -485,9 +488,6 @@
     <ClInclude Include="..\..\source\scene\SceneGraphManager3D.hpp">
       <Filter>source\scene</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\scene\SceneNode.hpp">
-      <Filter>source\scene</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\SparkSharedPointer.hpp">
       <Filter>include</Filter>
     </ClInclude>
@@ -656,9 +656,6 @@
     <ClInclude Include="..\..\source\fonts\embedded\Arial8.hpp">
       <Filter>source\fonts\embedded</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\scene\CoordinateSystemNode.hpp">
-      <Filter>source\scene</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\ISparkCoordinateSystemNode.hpp">
       <Filter>include</Filter>
     </ClInclude>
@@ -683,9 +680,6 @@
     <ClInclude Include="..\..\testbed\LambertLightCanvas.hpp">
       <Filter>testbed</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\scene\LightNode.hpp">
-      <Filter>source\scene</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\ISparkLightNode.hpp">
       <Filter>include</Filter>
     </ClInclude>
@@ -697,6 +691,15 @@
     </ClInclude>
     <ClInclude Include="..\..\include\ISparkSpotLightNode.hpp">
       <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scene\nodes\CoordinateSystemNode.hpp">
+      <Filter>source\scene\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scene\nodes\LightNode.hpp">
+      <Filter>source\scene\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scene\nodes\SceneNode.hpp">
+      <Filter>source\scene\nodes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
