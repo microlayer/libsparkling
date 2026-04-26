@@ -273,6 +273,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\include\ISparkAssetManager.hpp" />
     <ClInclude Include="..\..\include\ISparkCoordinateSystemNode.hpp" />
+    <ClInclude Include="..\..\include\ISparkDirectionalLightNode.hpp" />
     <ClInclude Include="..\..\include\ISparkFontPool.hpp" />
     <ClInclude Include="..\..\include\ISparkFont.hpp" />
     <ClInclude Include="..\..\include\ISparkHttpClient.hpp" />
@@ -283,6 +284,7 @@
     <ClInclude Include="..\..\include\ISparkNodeAnimator.hpp" />
     <ClInclude Include="..\..\include\ISparkPointCloud.hpp" />
     <ClInclude Include="..\..\include\ISparkPointCloudImporter.hpp" />
+    <ClInclude Include="..\..\include\ISparkPointLightNode.hpp" />
     <ClInclude Include="..\..\include\ISparkRendererApiConfig.hpp" />
     <ClInclude Include="..\..\include\ISparkApp.hpp" />
     <ClInclude Include="..\..\include\ISparkCommandListener.hpp" />
@@ -296,6 +298,7 @@
     <ClInclude Include="..\..\include\ISparkSceneGraphManager3D.hpp" />
     <ClInclude Include="..\..\include\ISparkSceneNode.hpp" />
     <ClInclude Include="..\..\include\ISparkShader.hpp" />
+    <ClInclude Include="..\..\include\ISparkSpotLightNode.hpp" />
     <ClInclude Include="..\..\include\ISparkSprite.hpp" />
     <ClInclude Include="..\..\include\ISparkTexture.hpp" />
     <ClInclude Include="..\..\include\ISparkTextureFactory.hpp" />

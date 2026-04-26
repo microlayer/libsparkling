@@ -4,6 +4,7 @@
 #include "ISparkSceneGraphManager3D.hpp"
 #include "CoordinateSystemNode.hpp"
 #include "ISparkCoordinateSystemNode.hpp"
+#include "ISparkDirectionalLightNode.hpp"
 #include <Sparkling.hpp>
 #include <ISparkLightNode.hpp>
 #include "LightNode.hpp"
@@ -33,7 +34,7 @@ namespace spark::scene {
     public: // Factory
         spark::scene::ISparkSceneNode* createSceneNode();
         spark::scene::ISparkCoordinateSystemNode* createCoordinateSystemNode();
-        spark::scene::ISparkLightNode* createLightNode();
+        spark::scene::ISparkDirectionalLightNode* createDirectionalLightNode();
 
     private:
         spark::scene::SceneNode m_rootNode;

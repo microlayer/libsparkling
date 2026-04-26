@@ -112,8 +112,8 @@ namespace spark::scene {
     /**
     *
     */
-    spark::scene::ISparkLightNode* SceneGraphManager3D::createLightNode()
+    spark::scene::ISparkDirectionalLightNode* SceneGraphManager3D::createDirectionalLightNode()
     {
-        return new spark::scene::LightNode();
+        return NULL;
     }
 }

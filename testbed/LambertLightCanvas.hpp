@@ -25,7 +25,10 @@ public:
         node->attachMesh(cubeMesh.get());
 
         // Create Light
-        spark::SparkSharedPointer<spark::scene::ISparkLightNode> lightNode = m_sceneGraphManager3D->createLightNode();
+        spark::SparkSharedPointer<spark::scene::ISparkDirectionalLightNode> lightNode = m_sceneGraphManager3D->createDirectionalLightNode();
+        lightNode->setIntensity(100);
+        lightNode->setLightColor(spark::math::Vector3f(0, 0, 0));
+        lightNode->setDirection(spark::math::Vector3f(0, 0, 0));
 
         m_sceneGraphManager3D->rootNode()->addChildSceneNode(node.get());
         m_sceneGraphManager3D->rootNode()->addChildSceneNode(lightNode.get());

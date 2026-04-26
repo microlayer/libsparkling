@@ -11,7 +11,8 @@ namespace spark::scene {
     class ISparkLightNode : public virtual ISparkSceneNode
     {
     public:
-        virtual void setLight() = 0;
+        virtual void setLightColor(spark::math::Vector3f lightColor) = 0;
+        virtual void setIntensity(real32 intensity) = 0;
     };
 }
 #endif
