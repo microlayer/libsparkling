@@ -2,10 +2,10 @@
 #define __SPARK_SCENE_ISPARKSCENEGRAPHMANAGER3D_HPP_INCLUDED__
 
 #include "ISparkRenderer.hpp"
-#include "scene/SceneNode.hpp"
+#include "scene/nodes/SceneNode.hpp"
 #include "ISparkCoordinateSystemNode.hpp"
 #include "ISparkLightNode.hpp"
-#include <ISparkDirectionalLightNode.hpp>
+#include "ISparkDirectionalLightNode.hpp"
 
 namespace spark::scene {
     /**
@@ -14,13 +14,13 @@ namespace spark::scene {
     class ISceneGraphManager3D : public virtual spark::SparkRefCount
     {
     public:
-        virtual spark::scene::ISparkSceneNode* rootNode() = 0;
+        virtual spark::scene::nodes::ISparkSceneNode* rootNode() = 0;
         virtual void drawGraph(spark::renderer::ISparkRenderer* renderer) = 0;
 
     public: // Factory
-        virtual spark::scene::ISparkSceneNode* createSceneNode() = 0;
-        virtual spark::scene::ISparkCoordinateSystemNode* createCoordinateSystemNode() = 0;
-        virtual spark::scene::ISparkDirectionalLightNode* createDirectionalLightNode() = 0;
+        virtual spark::scene::nodes::ISparkSceneNode* createSceneNode() = 0;
+        virtual spark::scene::nodes::ISparkCoordinateSystemNode* createCoordinateSystemNode() = 0;
+        virtual spark::scene::nodes::ISparkDirectionalLightNode* createDirectionalLightNode() = 0;
     };
 }
 #endif

@@ -261,6 +261,7 @@
     <ClCompile Include="..\..\source\renderer\Vulkan13Renderer.cpp" />
     <ClCompile Include="..\..\source\renderer\VulkanRenderer.cpp" />
     <ClCompile Include="..\..\source\scene\nodes\CoordinateSystemNode.cpp" />
+    <ClCompile Include="..\..\source\scene\nodes\DirectionalLightNode.cpp" />
     <ClCompile Include="..\..\source\scene\nodes\LightNode.cpp" />
     <ClCompile Include="..\..\source\scene\nodes\SceneNode.cpp" />
     <ClCompile Include="..\..\source\scene\SceneGraphManager2D.cpp" />
@@ -383,6 +384,7 @@
     <ClInclude Include="..\..\source\renderer\Vulkan13Renderer.hpp" />
     <ClInclude Include="..\..\source\renderer\VulkanRenderer.hpp" />
     <ClInclude Include="..\..\source\scene\nodes\CoordinateSystemNode.hpp" />
+    <ClInclude Include="..\..\source\scene\nodes\DirectionalLightNode.hpp" />
     <ClInclude Include="..\..\source\scene\nodes\LightNode.hpp" />
     <ClInclude Include="..\..\source\scene\nodes\SceneNode.hpp" />
     <ClInclude Include="..\..\source\scene\SceneGraphManager2D.hpp" />

@@ -1,15 +1,15 @@
-#ifndef __SPARK_SCENE_COORDINATESYSTEMNODE_HPP_INCLUDED__
-#define __SPARK_SCENE_COORDINATESYSTEMNODE_HPP_INCLUDED__
+#ifndef __SPARK_SCENE_NODES_COORDINATESYSTEMNODE_HPP_INCLUDED__
+#define __SPARK_SCENE_NODES_COORDINATESYSTEMNODE_HPP_INCLUDED__
 
 #include "SparkRefCount.hpp"
-#include "scene/SceneNode.hpp"
+#include "scene/nodes/SceneNode.hpp"
 #include "ISparkCoordinateSystemNode.hpp"
 
-namespace spark::scene {
+namespace spark::scene::nodes {
     /**
     *
     */
-    class CoordinateSystemNode : public spark::scene::SceneNode, public  spark::scene::ISparkCoordinateSystemNode
+    class CoordinateSystemNode : public spark::scene::nodes::SceneNode, public  spark::scene::nodes::ISparkCoordinateSystemNode
     {
     public:
         CoordinateSystemNode();

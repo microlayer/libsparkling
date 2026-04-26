@@ -303,6 +303,9 @@
     <ClCompile Include="..\..\source\scene\nodes\SceneNode.cpp">
       <Filter>source\scene\nodes</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\scene\nodes\DirectionalLightNode.cpp">
+      <Filter>source\scene\nodes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\spark\SparkCompilerConfig.hpp">
@@ -699,6 +702,9 @@
       <Filter>source\scene\nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\scene\nodes\SceneNode.hpp">
+      <Filter>source\scene\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scene\nodes\DirectionalLightNode.hpp">
       <Filter>source\scene\nodes</Filter>
     </ClInclude>
   </ItemGroup>

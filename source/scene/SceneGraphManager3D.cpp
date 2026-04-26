@@ -26,7 +26,7 @@ namespace spark::scene {
     /**
     *
     */
-    spark::scene::ISparkSceneNode* SceneGraphManager3D::rootNode()
+    spark::scene::nodes::ISparkSceneNode* SceneGraphManager3D::rootNode()
     {
         return &m_rootNode;
     }
@@ -62,7 +62,7 @@ namespace spark::scene {
 
         if (!m_rootNode.getChildren().empty())
         {
-            for (spark::scene::ISparkSceneNode* node : m_rootNode.getChildren())
+            for (spark::scene::nodes::ISparkSceneNode* node : m_rootNode.getChildren())
             {
                 if (node)
                 {
@@ -96,24 +96,24 @@ namespace spark::scene {
     /**
     *
     */
-    spark::scene::ISparkSceneNode* SceneGraphManager3D::createSceneNode()
+    spark::scene::nodes::ISparkSceneNode* SceneGraphManager3D::createSceneNode()
     {
-        return new spark::scene::SceneNode();
+        return new spark::scene::nodes::SceneNode();
     }
 
     /**
     *
     */
-    spark::scene::ISparkCoordinateSystemNode* SceneGraphManager3D::createCoordinateSystemNode()
+    spark::scene::nodes::ISparkCoordinateSystemNode* SceneGraphManager3D::createCoordinateSystemNode()
     {
-        return new spark::scene::CoordinateSystemNode();
+        return new spark::scene::nodes::CoordinateSystemNode();
     }
 
     /**
     *
     */
-    spark::scene::ISparkDirectionalLightNode* SceneGraphManager3D::createDirectionalLightNode()
+    spark::scene::nodes::ISparkDirectionalLightNode* SceneGraphManager3D::createDirectionalLightNode()
     {
-        return NULL;
+        return new spark::scene::nodes::DirectionalLightNode();
     }
 }

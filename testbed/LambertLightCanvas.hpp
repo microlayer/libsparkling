@@ -17,18 +17,19 @@ public:
         m_sceneGraphManager3D = device->createSceneGraphManager3D();
 
         // Create Mesh
-        spark::SparkSharedPointer<spark::geometry::mesh::ISparkMesh> cubeMesh(spark::geometry::mesh::generator::MeshGenerator::createQuadMesh());
+        spark::SparkSharedPointer<spark::geometry::mesh::ISparkMesh> planeMesh(spark::geometry::mesh::generator::MeshGenerator::createPlaneMesh());
 
         // Create SceneNode
-        spark::SparkSharedPointer<spark::scene::ISparkSceneNode> node = m_sceneGraphManager3D->createSceneNode();
-        node->setPosition(spark::math::Vector3f(0, 0, 0));
-        node->attachMesh(cubeMesh.get());
+        spark::SparkSharedPointer<spark::scene::nodes::ISparkSceneNode> node = m_sceneGraphManager3D->createSceneNode();
+        node->setPosition(spark::math::Vector3f(0, 0, -3));
+        node->setRotation(spark::math::Vector3f(1, 0, -0));
+        node->attachMesh(planeMesh.get());
 
         // Create Light
-        spark::SparkSharedPointer<spark::scene::ISparkDirectionalLightNode> lightNode = m_sceneGraphManager3D->createDirectionalLightNode();
-        lightNode->setIntensity(100);
-        lightNode->setLightColor(spark::math::Vector3f(0, 0, 0));
-        lightNode->setDirection(spark::math::Vector3f(0, 0, 0));
+        spark::SparkSharedPointer<spark::scene::nodes::ISparkDirectionalLightNode> lightNode = m_sceneGraphManager3D->createDirectionalLightNode();
+        //lightNode->setIntensity(100);
+        //lightNode->setLightColor(spark::math::Vector3f(0, 0, 0));
+        //lightNode->setDirection(spark::math::Vector3f(0, 0, 0));
 
         m_sceneGraphManager3D->rootNode()->addChildSceneNode(node.get());
         m_sceneGraphManager3D->rootNode()->addChildSceneNode(lightNode.get());

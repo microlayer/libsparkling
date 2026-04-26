@@ -1,10 +1,10 @@
-#ifndef __SPARK_SCENE_ISPARKDIRECTIONALLIGHTNODE_HPP_INCLUDED__
-#define __SPARK_SCENE_ISPARKDIRECTIONALLIGHTNODE_HPP_INCLUDED__
+#ifndef __SPARK_SCENE_NODES_ISPARKDIRECTIONALLIGHTNODE_HPP_INCLUDED__
+#define __SPARK_SCENE_NODES_ISPARKDIRECTIONALLIGHTNODE_HPP_INCLUDED__
 
 #include "SparkRefCount.hpp"
-#include "ISparkSceneNode.hpp"
+#include "ISparkLightNode.hpp"
 
-namespace spark::scene {
+namespace spark::scene::nodes {
     /**
     *
     */

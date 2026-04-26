@@ -5,7 +5,9 @@
 
 namespace spark {
     namespace scene {
-        class ISparkSceneNode;
+        namespace nodes {
+            class ISparkSceneNode;
+        }
     }
 }
 
@@ -16,7 +18,7 @@ namespace spark::animator {
     class ISparkNodeAnimator : public virtual spark::SparkRefCount
     {
     public:
-        virtual void animate(spark::scene::ISparkSceneNode* node) = 0;
+        virtual void animate(spark::scene::nodes::ISparkSceneNode* node) = 0;
     };
 }
 #endif

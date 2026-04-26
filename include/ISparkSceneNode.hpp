@@ -1,5 +1,5 @@
-#ifndef __SPARK_SCENE_ISPARKSCENENODE_HPP_INCLUDED__
-#define __SPARK_SCENE_ISPARKSCENENODE_HPP_INCLUDED__
+#ifndef __SPARK_SCENE_NODES_ISPARKSCENENODE_HPP_INCLUDED__
+#define __SPARK_SCENE_NODES_ISPARKSCENENODE_HPP_INCLUDED__
 
 #include "SparkRefCount.hpp"
 #include "ISparkRenderer.hpp"
@@ -7,14 +7,14 @@
 #include "material/Material.hpp"
 #include "ISparkPointCloud.hpp"
 
-namespace spark::scene {
+namespace spark::scene::nodes {
     /**
     *
     */
     class ISparkSceneNode : public virtual SparkRefCount
     {
     public:
-        virtual void addChildSceneNode(spark::scene::ISparkSceneNode* node) = 0;
+        virtual void addChildSceneNode(spark::scene::nodes::ISparkSceneNode* node) = 0;
         virtual std::vector<ISparkSceneNode*> getChildren() = 0;
         virtual void setPosition(spark::math::Vector3f position) = 0;
         virtual void setRotation(spark::math::Vector3f rotation) = 0;

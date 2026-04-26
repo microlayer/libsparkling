@@ -1,6 +1,6 @@
-#include "scene/SceneNode.hpp"
+#include "SceneNode.hpp"
 
-namespace spark::scene {
+namespace spark::scene::nodes {
     /**
     *
     */
@@ -38,7 +38,7 @@ namespace spark::scene {
     /**
     *
     */
-    void SceneNode::addChildSceneNode(spark::scene::ISparkSceneNode* node)
+    void SceneNode::addChildSceneNode(spark::scene::nodes::ISparkSceneNode* node)
     {
         node->addRef();
         m_children.push_back(node);

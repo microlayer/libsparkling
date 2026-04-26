@@ -1,5 +1,5 @@
-#ifndef __SPARK_SCENE_SCENENODE_HPP_INCLUDED__
-#define __SPARK_SCENE_SCENENODE_HPP_INCLUDED__
+#ifndef __SPARK_SCENE_NODES_SCENENODE_HPP_INCLUDED__
+#define __SPARK_SCENE_NODES_SCENENODE_HPP_INCLUDED__
 
 #include "ISparkSceneNode.hpp"
 #include <material/MaterialLibrary.hpp>
@@ -7,11 +7,11 @@
 #include "ISparkPointCloud.hpp"
 #include "math/Matrix4.hpp"
 
-namespace spark::scene {
+namespace spark::scene::nodes {
     /**
     *
     */
-    class SceneNode : public virtual spark::scene::ISparkSceneNode
+    class SceneNode : public virtual spark::scene::nodes::ISparkSceneNode
     {
     public:
         SceneNode();
@@ -19,7 +19,7 @@ namespace spark::scene {
 
     public:
         bool isRootNode();
-        void addChildSceneNode(spark::scene::ISparkSceneNode* node);
+        void addChildSceneNode(spark::scene::nodes::ISparkSceneNode* node);
         std::vector<ISparkSceneNode*> getChildren();
 
     public:

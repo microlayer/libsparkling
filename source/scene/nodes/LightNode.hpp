@@ -1,15 +1,15 @@
-#ifndef __SPARK_SCENE_LIGHTNODE_HPP_INCLUDED__
-#define __SPARK_SCENE_LIGHTNODE_HPP_INCLUDED__
+#ifndef __SPARK_SCENE_NODES_LIGHTNODE_HPP_INCLUDED__
+#define __SPARK_SCENE_NODES_LIGHTNODE_HPP_INCLUDED__
 
 #include "SparkRefCount.hpp"
-#include "scene/SceneNode.hpp"
+#include "scene/nodes/SceneNode.hpp"
 #include "ISparkLightNode.hpp"
 
-namespace spark::scene {
+namespace spark::scene::nodes {
     /**
     *
     */
-    class LightNode : public spark::scene::SceneNode, public  spark::scene::ISparkLightNode
+    class LightNode : public spark::scene::nodes::SceneNode, public virtual spark::scene::nodes::ISparkLightNode
     {
     public:
         LightNode();

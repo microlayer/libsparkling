@@ -32,7 +32,7 @@ namespace spark::animator {
     /**
     *
     */
-    void NodeRotationAnimator::animate(spark::scene::ISparkSceneNode* node)
+    void NodeRotationAnimator::animate(spark::scene::nodes::ISparkSceneNode* node)
     {
         const uint32_t timestamp = m_timer.getTimestamp();
         const uint32_t diffTime = timestamp - m_startTime;

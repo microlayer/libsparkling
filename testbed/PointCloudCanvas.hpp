@@ -24,13 +24,13 @@ public:
         //    = device->getAssetManager()->loadPointCloud("http://www.microlayer.org/libsparkling/0036_Schuebel_bDOM.ply");
 
         // Create SceneNode
-        spark::SparkSharedPointer<spark::scene::ISparkSceneNode> sceneNode = m_sceneGraphManager3D->createSceneNode();
+        spark::SparkSharedPointer<spark::scene::nodes::ISparkSceneNode> sceneNode = m_sceneGraphManager3D->createSceneNode();
         sceneNode->setPosition(spark::math::Vector3f(0, 0, -23));
         sceneNode->setRotation(spark::math::Vector3f(0, 0, 0));
         sceneNode->attachPointCloud(pointCloud.get());
 
 
-        spark::SparkSharedPointer<spark::scene::ISparkCoordinateSystemNode> coordinateNode = m_sceneGraphManager3D->createCoordinateSystemNode();
+        spark::SparkSharedPointer<spark::scene::nodes::ISparkCoordinateSystemNode> coordinateNode = m_sceneGraphManager3D->createCoordinateSystemNode();
         coordinateNode->setClamp();
 
 
@@ -69,7 +69,7 @@ public:
     {
         m_rot_x = 0.0f;
         m_rot_y = 0.0f;
-        spark::scene::ISparkSceneNode* root = m_sceneGraphManager3D->rootNode();
+        spark::scene::nodes::ISparkSceneNode* root = m_sceneGraphManager3D->rootNode();
         root->getChildren()[0]->setRotation(spark::math::Vector3f(m_rot_x, m_rot_y, 0.0f));
     }
 
@@ -97,7 +97,7 @@ public:
         // Mouse up/down X-Rotation
         m_rot_x += dy * m_sensitivity;
 
-        spark::scene::ISparkSceneNode* root = m_sceneGraphManager3D->rootNode();
+        spark::scene::nodes::ISparkSceneNode* root = m_sceneGraphManager3D->rootNode();
         root->getChildren()[0]->setRotation(spark::math::Vector3f(m_rot_x, m_rot_y, 0.0f));
     }
 

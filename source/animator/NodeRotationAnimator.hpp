@@ -16,7 +16,7 @@ namespace spark::animator {
         virtual ~NodeRotationAnimator(void);
 
     public:
-        void animate(spark::scene::ISparkSceneNode* node);
+        void animate(spark::scene::nodes::ISparkSceneNode* node);
 
     public:
         static ISparkNodeAnimator* create(spark::math::Vector3f degreePerSecond);

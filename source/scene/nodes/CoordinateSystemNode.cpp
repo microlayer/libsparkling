@@ -1,6 +1,6 @@
-#include "scene/CoordinateSystemNode.hpp"
+#include "CoordinateSystemNode.hpp"
 
-namespace spark::scene {
+namespace spark::scene::nodes {
     /**
     *
     */

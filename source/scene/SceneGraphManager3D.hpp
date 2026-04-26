@@ -2,12 +2,13 @@
 #define __SPARK_SCENE_SCENEGRAPHMANAGER3D_HPP_INCLUDED__
 
 #include "ISparkSceneGraphManager3D.hpp"
-#include "CoordinateSystemNode.hpp"
+#include "nodes/CoordinateSystemNode.hpp"
+#include "nodes/LightNode.hpp"
 #include "ISparkCoordinateSystemNode.hpp"
 #include "ISparkDirectionalLightNode.hpp"
-#include <Sparkling.hpp>
-#include <ISparkLightNode.hpp>
-#include "LightNode.hpp"
+#include "nodes/DirectionalLightNode.hpp"
+#include "Sparkling.hpp"
+#include "ISparkLightNode.hpp"
 
 namespace spark::scene {
     /**
@@ -22,7 +23,7 @@ namespace spark::scene {
         virtual ~SceneGraphManager3D();
 
     public:
-        spark::scene::ISparkSceneNode* rootNode();
+        spark::scene::nodes::ISparkSceneNode* rootNode();
         void setDefaultCamera();
         void setActiveCamera();
         void drawGraph(spark::renderer::ISparkRenderer* renderer);
@@ -32,12 +33,12 @@ namespace spark::scene {
         void onAfterDrawGraph();
 
     public: // Factory
-        spark::scene::ISparkSceneNode* createSceneNode();
-        spark::scene::ISparkCoordinateSystemNode* createCoordinateSystemNode();
-        spark::scene::ISparkDirectionalLightNode* createDirectionalLightNode();
+        spark::scene::nodes::ISparkSceneNode* createSceneNode();
+        spark::scene::nodes::ISparkCoordinateSystemNode* createCoordinateSystemNode();
+        spark::scene::nodes::ISparkDirectionalLightNode* createDirectionalLightNode();
 
     private:
-        spark::scene::SceneNode m_rootNode;
+        spark::scene::nodes::SceneNode m_rootNode;
         spark::renderer::ISparkRenderer* m_renderer;
         spark::device::ScreenResolution m_screenResolution;
         spark::log::ISparkLogger* m_logger;

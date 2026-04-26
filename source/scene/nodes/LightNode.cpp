@@ -1,6 +1,6 @@
-#include "scene/LightNode.hpp"
+#include "LightNode.hpp"
 
-namespace spark::scene {
+namespace spark::scene::nodes {
     /**
     *
     */
