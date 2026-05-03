@@ -4,8 +4,9 @@
 #include "ISparkRenderer.hpp"
 #include "scene/nodes/SceneNode.hpp"
 #include "ISparkCoordinateSystemNode.hpp"
-#include "ISparkLightNode.hpp"
 #include "ISparkDirectionalLightNode.hpp"
+#include "ISparkMeshSceneNode.hpp"
+#include "ISparkPointCloudSceneNode.hpp"
 
 namespace spark::scene {
     /**
@@ -18,7 +19,8 @@ namespace spark::scene {
         virtual void drawGraph(spark::renderer::ISparkRenderer* renderer) = 0;
 
     public: // Factory
-        virtual spark::scene::nodes::ISparkSceneNode* createSceneNode() = 0;
+        virtual spark::scene::nodes::ISparkMeshSceneNode* createMeshSceneNode() = 0;
+        virtual spark::scene::nodes::ISparkPointCloudSceneNode* createPointCloudSceneNode() = 0;
         virtual spark::scene::nodes::ISparkCoordinateSystemNode* createCoordinateSystemNode() = 0;
         virtual spark::scene::nodes::ISparkDirectionalLightNode* createDirectionalLightNode() = 0;
     };

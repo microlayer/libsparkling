@@ -306,6 +306,12 @@
     <ClCompile Include="..\..\source\scene\nodes\DirectionalLightNode.cpp">
       <Filter>source\scene\nodes</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\scene\nodes\MeshSceneNode.cpp">
+      <Filter>source\scene\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scene\nodes\PointCloudSceneNode.cpp">
+      <Filter>source\scene\nodes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\spark\SparkCompilerConfig.hpp">
@@ -705,6 +711,18 @@
       <Filter>source\scene\nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\scene\nodes\DirectionalLightNode.hpp">
+      <Filter>source\scene\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkMeshSceneNode.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkPointCloudSceneNode.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scene\nodes\MeshSceneNode.hpp">
+      <Filter>source\scene\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scene\nodes\PointCloudSceneNode.hpp">
       <Filter>source\scene\nodes</Filter>
     </ClInclude>
   </ItemGroup>

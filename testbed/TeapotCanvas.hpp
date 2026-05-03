@@ -20,7 +20,7 @@ public:
         spark::SparkSharedPointer<spark::animator::ISparkNodeAnimator> nodeRotationAnimaror = spark::animator::NodeRotationAnimator::create(spark::math::Vector3f(0, 50, 0));
 
         // Create SceneNode
-        spark::SparkSharedPointer<spark::scene::nodes::ISparkSceneNode> node = m_sceneGraphManager3D->createSceneNode();
+        spark::SparkSharedPointer<spark::scene::nodes::ISparkMeshSceneNode> node = m_sceneGraphManager3D->createMeshSceneNode();
         node->setPosition(spark::math::Vector3f(0, -1, -1));
         node->attachMesh(mesh.get());
         node->addAnimator(nodeRotationAnimaror.get());

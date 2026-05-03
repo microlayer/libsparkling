@@ -5,8 +5,6 @@ namespace spark::scene::nodes {
     *
     */
     SceneNode::SceneNode() :
-        m_mesh(NULL),
-        m_pointCloud(NULL),
         m_nodeAnimator(NULL)
     {
         m_material = spark::material::MaterialLibrary::getDefaultMaterial();
@@ -22,8 +20,6 @@ namespace spark::scene::nodes {
             node->release();
         }
         m_children.clear();
-        if (m_mesh != NULL) m_mesh->release();
-        if (m_pointCloud != NULL) m_pointCloud->release();
         if (m_nodeAnimator != NULL) m_nodeAnimator->release();
     }
 
@@ -83,47 +79,6 @@ namespace spark::scene::nodes {
     /**
     *
     */
-    void SceneNode::attachMesh(spark::geometry::mesh::ISparkMesh* mesh)
-    {
-
-        if (mesh != NULL)
-        {
-            mesh->addRef();
-            m_mesh = mesh;
-        }
-    }
-
-    /**
-    *
-    */
-    spark::geometry::mesh::ISparkMesh* SceneNode::getMesh()
-    {
-        return m_mesh;
-    }
-
-    /**
-    *
-    */
-    void SceneNode::attachPointCloud(spark::geometry::pointcloud::ISparkPointCloud* pointCloud)
-    {
-        if (pointCloud != NULL)
-        {
-            pointCloud->addRef();
-            m_pointCloud = pointCloud;
-        }
-    }
-
-    /**
-    *
-    */
-    spark::geometry::pointcloud::ISparkPointCloud* SceneNode::getPointCloud()
-    {
-        return m_pointCloud;
-    }
-
-    /**
-    *
-    */
     void SceneNode::addAnimator(spark::animator::ISparkNodeAnimator* nodeAnimator)
     {
         nodeAnimator->addRef();
@@ -135,17 +90,7 @@ namespace spark::scene::nodes {
     */
     void SceneNode::render(spark::renderer::ISparkRenderer* renderer)
     {
-        animate();
-        renderer->setModelTransformation(m_modelTransformationMatrix);
 
-        if (m_mesh != NULL)
-        {
-            renderer->renderMesh(m_mesh, m_material);
-        }
-        if (m_pointCloud != NULL)
-        {
-            renderer->renderPointCloud(m_pointCloud);
-        }
     }
 
     /**

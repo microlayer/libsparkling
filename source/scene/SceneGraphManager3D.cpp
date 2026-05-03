@@ -96,9 +96,17 @@ namespace spark::scene {
     /**
     *
     */
-    spark::scene::nodes::ISparkSceneNode* SceneGraphManager3D::createSceneNode()
+    spark::scene::nodes::ISparkMeshSceneNode* SceneGraphManager3D::createMeshSceneNode()
     {
-        return new spark::scene::nodes::SceneNode();
+        return new spark::scene::nodes::MeshSceneNode();
+    }
+
+    /**
+    *
+    */
+    spark::scene::nodes::ISparkPointCloudSceneNode* SceneGraphManager3D::createPointCloudSceneNode()
+    {
+        return new spark::scene::nodes::PointCloudSceneNode();
     }
 
     /**

@@ -2,7 +2,7 @@
 #define __SPARK_SCENE_NODES_ISPARKPOINTLIGHTNODE_HPP_INCLUDED__
 
 #include "SparkRefCount.hpp"
-#include "ISparkSceneNode.hpp"
+#include "ISparkLightNode.hpp"
 
 namespace spark::scene::nodes {
     /**

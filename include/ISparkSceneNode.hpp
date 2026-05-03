@@ -5,7 +5,6 @@
 #include "ISparkRenderer.hpp"
 #include "ISparkNodeAnimator.hpp"
 #include "material/Material.hpp"
-#include "ISparkPointCloud.hpp"
 
 namespace spark::scene::nodes {
     /**
@@ -14,15 +13,12 @@ namespace spark::scene::nodes {
     class ISparkSceneNode : public virtual SparkRefCount
     {
     public:
+        virtual bool isRootNode() = 0;
         virtual void addChildSceneNode(spark::scene::nodes::ISparkSceneNode* node) = 0;
         virtual std::vector<ISparkSceneNode*> getChildren() = 0;
         virtual void setPosition(spark::math::Vector3f position) = 0;
         virtual void setRotation(spark::math::Vector3f rotation) = 0;
         virtual void setScale(const real32 x, const real32 y, const real32 z) = 0;
-        virtual void attachMesh(spark::geometry::mesh::ISparkMesh* mesh) = 0;
-        virtual spark::geometry::mesh::ISparkMesh* getMesh() = 0;
-        virtual void attachPointCloud(spark::geometry::pointcloud::ISparkPointCloud* pointCloud) = 0;
-        virtual spark::geometry::pointcloud::ISparkPointCloud* getPointCloud() = 0;
         virtual void addAnimator(spark::animator::ISparkNodeAnimator* nodeAnimator) = 0;
         virtual void render(spark::renderer::ISparkRenderer* renderer) = 0;
         virtual void animate() = 0;

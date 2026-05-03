@@ -263,6 +263,8 @@
     <ClCompile Include="..\..\source\scene\nodes\CoordinateSystemNode.cpp" />
     <ClCompile Include="..\..\source\scene\nodes\DirectionalLightNode.cpp" />
     <ClCompile Include="..\..\source\scene\nodes\LightNode.cpp" />
+    <ClCompile Include="..\..\source\scene\nodes\MeshSceneNode.cpp" />
+    <ClCompile Include="..\..\source\scene\nodes\PointCloudSceneNode.cpp" />
     <ClCompile Include="..\..\source\scene\nodes\SceneNode.cpp" />
     <ClCompile Include="..\..\source\scene\SceneGraphManager2D.cpp" />
     <ClCompile Include="..\..\source\scene\SceneGraphManager3D.cpp" />
@@ -282,9 +284,11 @@
     <ClInclude Include="..\..\include\ISparkLineLayer.hpp" />
     <ClInclude Include="..\..\include\ISparkMaterial.hpp" />
     <ClInclude Include="..\..\include\ISparkMeshImporter.hpp" />
+    <ClInclude Include="..\..\include\ISparkMeshSceneNode.hpp" />
     <ClInclude Include="..\..\include\ISparkNodeAnimator.hpp" />
     <ClInclude Include="..\..\include\ISparkPointCloud.hpp" />
     <ClInclude Include="..\..\include\ISparkPointCloudImporter.hpp" />
+    <ClInclude Include="..\..\include\ISparkPointCloudSceneNode.hpp" />
     <ClInclude Include="..\..\include\ISparkPointLightNode.hpp" />
     <ClInclude Include="..\..\include\ISparkRendererApiConfig.hpp" />
     <ClInclude Include="..\..\include\ISparkApp.hpp" />
@@ -386,6 +390,8 @@
     <ClInclude Include="..\..\source\scene\nodes\CoordinateSystemNode.hpp" />
     <ClInclude Include="..\..\source\scene\nodes\DirectionalLightNode.hpp" />
     <ClInclude Include="..\..\source\scene\nodes\LightNode.hpp" />
+    <ClInclude Include="..\..\source\scene\nodes\MeshSceneNode.hpp" />
+    <ClInclude Include="..\..\source\scene\nodes\PointCloudSceneNode.hpp" />
     <ClInclude Include="..\..\source\scene\nodes\SceneNode.hpp" />
     <ClInclude Include="..\..\source\scene\SceneGraphManager2D.hpp" />
     <ClInclude Include="..\..\source\scene\SceneGraphManager3D.hpp" />

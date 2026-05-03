@@ -20,7 +20,7 @@ public:
         spark::SparkSharedPointer<spark::geometry::mesh::ISparkMesh> planeMesh(spark::geometry::mesh::generator::MeshGenerator::createPlaneMesh());
 
         // Create SceneNode
-        spark::SparkSharedPointer<spark::scene::nodes::ISparkSceneNode> node = m_sceneGraphManager3D->createSceneNode();
+        spark::SparkSharedPointer<spark::scene::nodes::ISparkMeshSceneNode> node = m_sceneGraphManager3D->createMeshSceneNode();
         node->setPosition(spark::math::Vector3f(0, 0, -3));
         node->setRotation(spark::math::Vector3f(1, 0, -0));
         node->attachMesh(planeMesh.get());

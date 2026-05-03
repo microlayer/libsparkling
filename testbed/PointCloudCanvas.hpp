@@ -24,7 +24,7 @@ public:
         //    = device->getAssetManager()->loadPointCloud("http://www.microlayer.org/libsparkling/0036_Schuebel_bDOM.ply");
 
         // Create SceneNode
-        spark::SparkSharedPointer<spark::scene::nodes::ISparkSceneNode> sceneNode = m_sceneGraphManager3D->createSceneNode();
+        spark::SparkSharedPointer<spark::scene::nodes::ISparkPointCloudSceneNode> sceneNode = m_sceneGraphManager3D->createPointCloudSceneNode();
         sceneNode->setPosition(spark::math::Vector3f(0, 0, -23));
         sceneNode->setRotation(spark::math::Vector3f(0, 0, 0));
         sceneNode->attachPointCloud(pointCloud.get());

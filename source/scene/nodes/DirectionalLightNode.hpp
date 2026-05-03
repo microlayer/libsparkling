@@ -8,7 +8,7 @@ namespace spark::scene::nodes {
     /**
     *
     */
-    class DirectionalLightNode : public spark::scene::nodes::LightNode, public  spark::scene::nodes::ISparkDirectionalLightNode
+    class DirectionalLightNode : public spark::scene::nodes::LightNode, public spark::scene::nodes::ISparkDirectionalLightNode
     {
     public:
         DirectionalLightNode();

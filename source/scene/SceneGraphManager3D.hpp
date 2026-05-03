@@ -9,6 +9,9 @@
 #include "nodes/DirectionalLightNode.hpp"
 #include "Sparkling.hpp"
 #include "ISparkLightNode.hpp"
+#include "ISparkMeshSceneNode.hpp"
+#include "nodes/MeshSceneNode.hpp"
+#include "nodes/PointCloudSceneNode.hpp"
 
 namespace spark::scene {
     /**
@@ -33,7 +36,8 @@ namespace spark::scene {
         void onAfterDrawGraph();
 
     public: // Factory
-        spark::scene::nodes::ISparkSceneNode* createSceneNode();
+        spark::scene::nodes::ISparkMeshSceneNode* createMeshSceneNode();
+        spark::scene::nodes::ISparkPointCloudSceneNode* createPointCloudSceneNode();
         spark::scene::nodes::ISparkCoordinateSystemNode* createCoordinateSystemNode();
         spark::scene::nodes::ISparkDirectionalLightNode* createDirectionalLightNode();
 

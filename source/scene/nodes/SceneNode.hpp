@@ -2,9 +2,7 @@
 #define __SPARK_SCENE_NODES_SCENENODE_HPP_INCLUDED__
 
 #include "ISparkSceneNode.hpp"
-#include <material/MaterialLibrary.hpp>
-#include "ISparkMesh.hpp"
-#include "ISparkPointCloud.hpp"
+#include "material/MaterialLibrary.hpp"
 #include "math/Matrix4.hpp"
 
 namespace spark::scene::nodes {
@@ -22,35 +20,27 @@ namespace spark::scene::nodes {
         void addChildSceneNode(spark::scene::nodes::ISparkSceneNode* node);
         std::vector<ISparkSceneNode*> getChildren();
 
-    public:
+    protected:
         void setPosition(spark::math::Vector3f position);
         void setRotation(spark::math::Vector3f rotation);
         void setScale(const real32 x, const real32 y, const real32 z);
 
-    public:
-        void attachMesh(spark::geometry::mesh::ISparkMesh* mesh);
-        spark::geometry::mesh::ISparkMesh* getMesh();
-
-        void attachPointCloud(spark::geometry::pointcloud::ISparkPointCloud* pointCloud);
-        spark::geometry::pointcloud::ISparkPointCloud* getPointCloud();
-
+    protected:
         void addAnimator(spark::animator::ISparkNodeAnimator* nodeAnimator);
 
-    public:
+    protected:
         void render(spark::renderer::ISparkRenderer* renderer);
 
-    private:
+    protected:
         void animate();
 
-    public:
+    protected:
         void setMaterial(spark::material::ISparkMaterial* material);
 
-    private:
+    protected:
         std::vector<ISparkSceneNode*> m_children;
         spark::math::Vector3f m_position;
         spark::math::Vector3f m_rotation;
-        spark::geometry::mesh::ISparkMesh* m_mesh;
-        spark::geometry::pointcloud::ISparkPointCloud* m_pointCloud;
         spark::math::Matrix4f m_modelTransformationMatrix;
         spark::animator::ISparkNodeAnimator* m_nodeAnimator;
         spark::material::ISparkMaterial* m_material;

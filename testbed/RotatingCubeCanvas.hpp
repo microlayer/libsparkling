@@ -26,7 +26,7 @@ public:
 
 
         // Create SceneNode
-        spark::SparkSharedPointer<spark::scene::nodes::ISparkSceneNode> node = m_sceneGraphManager3D->createSceneNode();
+        spark::SparkSharedPointer<spark::scene::nodes::ISparkMeshSceneNode> node = m_sceneGraphManager3D->createMeshSceneNode();
         node->setPosition(spark::math::Vector3f(0, 0, 0));
         node->attachMesh(cubeMesh.get());
         node->addAnimator(nodeRotationAnimaror.get());
