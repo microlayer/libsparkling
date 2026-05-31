@@ -136,7 +136,7 @@ namespace spark::renderer::shader {
     }
 
     /**
-    *
+    * TODO: remove glGetUniformLocation replace with cached uniform location in shader init O(n)
     */
     void OpenGLShaderProgram::setProjectionViewMatrix(const real32* matrix)
     {
@@ -144,7 +144,7 @@ namespace spark::renderer::shader {
     }
 
     /**
-    *
+    * TODO: remove glGetUniformLocation replace with cached uniform location in shader init O(n)
     */
     void OpenGLShaderProgram::setDrawMode(uint32_t drawMode)
     {
@@ -152,7 +152,7 @@ namespace spark::renderer::shader {
     }
 
     /**
-    *
+    * TODO: remove glGetUniformLocation replace with cached uniform location in shader init O(n)
     */
     void OpenGLShaderProgram::setTextureUnit(uint32_t unit)
     {
@@ -162,7 +162,7 @@ namespace spark::renderer::shader {
     }
 
     /**
-    *
+    * TODO: remove glGetUniformLocation replace with cached uniform location in shader init O(n)
     */
     void OpenGLShaderProgram::setFontColor(spark::drawing::Color fontColor)
     {
@@ -170,7 +170,7 @@ namespace spark::renderer::shader {
     }
 
     /**
-    *
+    * TODO: remove glGetUniformLocation replace with cached uniform location in shader init O(n)
     */
     void OpenGLShaderProgram::setLightDirection(real32 x, real32 y, real32 z)
     {

@@ -1,17 +1,14 @@
-#include <ISparkLightNode.hpp>
-#include <ISparkPerspectiveCamera.hpp>
-
 /**
 *
 */
 #pragma once
-class LambertLightCanvas : public spark::ui::AbstractCanvas
+class PerspectiveCameraTestCanvas : public spark::ui::AbstractCanvas
 {
 public:
     /**
     *
     */
-    LambertLightCanvas(spark::device::ISparkDevice* device) :
+    PerspectiveCameraTestCanvas(spark::device::ISparkDevice* device) :
         m_device(device)
     {
         // Create SceneGraphManager3D
@@ -28,26 +25,11 @@ public:
 
         // Create SceneNode
         spark::SparkSharedPointer<spark::scene::nodes::ISparkMeshSceneNode> node = m_sceneGraphManager3D->createMeshSceneNode();
-        node->setPosition(spark::math::Vector3f(0, 0, 0));
-        node->setRotation(spark::math::Vector3f(0.05f, 0, 0));
+        node->setPosition(spark::math::Vector3f(0, 0, -0));
+        node->setRotation(spark::math::Vector3f(1.57f, 0, -0));
         node->attachMesh(planeMesh.get());
 
-        // Create Light
-        spark::SparkSharedPointer<spark::scene::nodes::ISparkDirectionalLightNode> lightNode = m_sceneGraphManager3D->createDirectionalLightNode();
-        //lightNode->setIntensity(100);
-        //lightNode->setLightColor(spark::math::Vector3f(0, 0, 0));
-        //lightNode->setDirection(spark::math::Vector3f(0, 0, 0));
-
         m_sceneGraphManager3D->rootNode()->addChildSceneNode(node.get());
-        m_sceneGraphManager3D->rootNode()->addChildSceneNode(lightNode.get());
-    }
-
-    /**
-    *
-    */
-    virtual ~LambertLightCanvas()
-    {
-
     }
 
     /**
@@ -55,20 +37,7 @@ public:
     */
     void init()
     {
-        m_device->getLogger()->info("Init LambertLightCanvas");
-
-        // Set virtual resolution
-        spark::perspective::OrthographicProjection orthographicProjection(m_device->getScreenResolution().m_width, m_device->getScreenResolution().m_height);
-        orthographicProjection.setVirtualResolution(1196, 720, spark::perspective::VirtualResolution::E_LETTER_OR_PILLARBOX);
-        m_device->getRenderer()->setOrthographicProjectionMatrix(orthographicProjection);
-    }
-
-    /**
-    *
-    */
-    void onKeyPressed()
-    {
-
+        m_device->getLogger()->info("Init PerspectiveCameraTestCanvas");
     }
 
     /**

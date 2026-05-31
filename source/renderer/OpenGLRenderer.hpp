@@ -40,8 +40,8 @@ namespace spark::renderer {
 
     public: // ISparkRenderer
         // Perspective
-        void setOrthographicProjectionMatrix(spark::perspective::OrthographicProjection& orthographicProjection);
-        void setPerspectiveProjectionMatrix(spark::perspective::PerspectiveProjection& perspectiveProjection);
+        void setOrthographicProjectionMatrix(spark::perspective::OrthographicProjection& orthographicProjection);        
+        void setPerspectiveProjectionMatrix(const spark::math::Matrix4f& projectionViewMatrix);
         void setModelTransformation(math::Matrix4f& modelTransformation);
 
         // Common

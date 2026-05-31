@@ -130,6 +130,9 @@
     <Filter Include="source\scene\nodes">
       <UniqueIdentifier>{ae83ce13-8b70-4032-ae36-bb459cd3d6a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\scene\camera">
+      <UniqueIdentifier>{bbaf8b4f-6570-45b8-97f3-73beb7c7800f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\spark\Sparkling.cpp">
@@ -311,6 +314,12 @@
     </ClCompile>
     <ClCompile Include="..\..\source\scene\nodes\PointCloudSceneNode.cpp">
       <Filter>source\scene\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scene\camera\OrthographicCamera.cpp">
+      <Filter>source\scene\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scene\camera\PerspectiveCamera.cpp">
+      <Filter>source\scene\camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -724,6 +733,24 @@
     </ClInclude>
     <ClInclude Include="..\..\source\scene\nodes\PointCloudSceneNode.hpp">
       <Filter>source\scene\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scene\camera\OrthographicCamera.hpp">
+      <Filter>source\scene\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scene\camera\PerspectiveCamera.hpp">
+      <Filter>source\scene\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkCamera.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkPerspectiveCamera.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkOrthoCamera.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\testbed\PerspectiveCameraTestCanvas.hpp">
+      <Filter>testbed</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

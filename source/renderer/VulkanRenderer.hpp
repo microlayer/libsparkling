@@ -26,7 +26,7 @@ namespace spark::renderer {
     public: // ISparkRenderer
         // Perspective
         void setOrthographicProjectionMatrix(spark::perspective::OrthographicProjection& orthographicProjection);
-        void setPerspectiveProjectionMatrix(spark::perspective::PerspectiveProjection& perspectiveProjection);
+        void setPerspectiveProjectionMatrix(const spark::math::Matrix4f& projectionViewMatrix);
         void setModelTransformation(math::Matrix4f& modelTransformation);
 
         // Common
@@ -44,6 +44,7 @@ namespace spark::renderer {
         void drawString(const std::string fontFamily, uint32_t size, const std::string text, spark::drawing::Color color, int16_t x, int16_t y);
 
         // 3D
+        void draw3DLine(math::Vector3f start, math::Vector3f end, spark::drawing::Color color);
         void renderMesh(spark::geometry::mesh::ISparkMesh* mesh, spark::material::ISparkMaterial* material);
         void renderPointCloud(spark::geometry::pointcloud::ISparkPointCloud* pointCloud);
 
@@ -52,6 +53,8 @@ namespace spark::renderer {
 
         // Depth-Test
         void activateDepthTest(bool flag);
+
+        void flush3DLines();
     };
 }
 #endif

@@ -4,6 +4,8 @@
 #define USE_DIRECTX_PERSPECTIVE
 #define PI 3.14159265358979323846
 
+#include <cstring>
+
 namespace spark::math {
     template <class T> class ProjectionMatrix
     {
@@ -66,7 +68,8 @@ namespace spark::math {
             m[1][1] = yScale;
             m[2][2] = zFar / (zNear - zFar);			//  OpenGL clipping default - mapped to z:-1..1 (zFar + zNear) / (zNear - zFar) 
             m[2][3] = -1.0f;
-            m[3][2] = (zFar * zNear) / (zNear - zFar);	//  OpenGL clipping default - mapped to z:-1..1 (2.0f * zFar*zNear) / (zNear - zFar);
+            m[3][2] = (-zNear * zFar) / (zFar - zNear);	//  OpenGL clipping default - mapped to z:-1..1 (2.0f * zFar*zNear) / (zNear - zFar);
+            m[3][3] = 0.0f;
 #endif
             memcpy(matrix, m, sizeof(m));
         }

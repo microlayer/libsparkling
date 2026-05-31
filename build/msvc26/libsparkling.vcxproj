@@ -260,6 +260,8 @@
     <ClCompile Include="..\..\source\renderer\vertexbuffer\OGLVertexBuffer.cpp" />
     <ClCompile Include="..\..\source\renderer\Vulkan13Renderer.cpp" />
     <ClCompile Include="..\..\source\renderer\VulkanRenderer.cpp" />
+    <ClCompile Include="..\..\source\scene\camera\OrthographicCamera.cpp" />
+    <ClCompile Include="..\..\source\scene\camera\PerspectiveCamera.cpp" />
     <ClCompile Include="..\..\source\scene\nodes\CoordinateSystemNode.cpp" />
     <ClCompile Include="..\..\source\scene\nodes\DirectionalLightNode.cpp" />
     <ClCompile Include="..\..\source\scene\nodes\LightNode.cpp" />
@@ -275,6 +277,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\ISparkAssetManager.hpp" />
+    <ClInclude Include="..\..\include\ISparkCamera.hpp" />
     <ClInclude Include="..\..\include\ISparkCoordinateSystemNode.hpp" />
     <ClInclude Include="..\..\include\ISparkDirectionalLightNode.hpp" />
     <ClInclude Include="..\..\include\ISparkFontPool.hpp" />
@@ -286,6 +289,8 @@
     <ClInclude Include="..\..\include\ISparkMeshImporter.hpp" />
     <ClInclude Include="..\..\include\ISparkMeshSceneNode.hpp" />
     <ClInclude Include="..\..\include\ISparkNodeAnimator.hpp" />
+    <ClInclude Include="..\..\include\ISparkOrthoCamera.hpp" />
+    <ClInclude Include="..\..\include\ISparkPerspectiveCamera.hpp" />
     <ClInclude Include="..\..\include\ISparkPointCloud.hpp" />
     <ClInclude Include="..\..\include\ISparkPointCloudImporter.hpp" />
     <ClInclude Include="..\..\include\ISparkPointCloudSceneNode.hpp" />
@@ -387,6 +392,8 @@
     <ClInclude Include="..\..\source\renderer\vertexbuffer\OGLVertexBuffer.hpp" />
     <ClInclude Include="..\..\source\renderer\Vulkan13Renderer.hpp" />
     <ClInclude Include="..\..\source\renderer\VulkanRenderer.hpp" />
+    <ClInclude Include="..\..\source\scene\camera\OrthographicCamera.hpp" />
+    <ClInclude Include="..\..\source\scene\camera\PerspectiveCamera.hpp" />
     <ClInclude Include="..\..\source\scene\nodes\CoordinateSystemNode.hpp" />
     <ClInclude Include="..\..\source\scene\nodes\DirectionalLightNode.hpp" />
     <ClInclude Include="..\..\source\scene\nodes\LightNode.hpp" />
@@ -404,6 +411,7 @@
     <ClInclude Include="..\..\source\ui\Command.hpp" />
     <ClInclude Include="..\..\testbed\FallingBlocksPhysicsCanvas.hpp" />
     <ClInclude Include="..\..\testbed\LambertLightCanvas.hpp" />
+    <ClInclude Include="..\..\testbed\PerspectiveCameraTestCanvas.hpp" />
     <ClInclude Include="..\..\testbed\PointCloudCanvas.hpp" />
     <ClInclude Include="..\..\testbed\RotatingCubeCanvas.hpp" />
     <ClInclude Include="..\..\testbed\SampleApp.hpp" />

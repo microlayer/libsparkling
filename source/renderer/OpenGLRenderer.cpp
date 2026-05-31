@@ -77,24 +77,14 @@ namespace spark::renderer {
     /**
     *
     */
-    void OpenGLRenderer::setPerspectiveProjectionMatrix(spark::perspective::PerspectiveProjection& perspectiveProjection)
+    void OpenGLRenderer::setPerspectiveProjectionMatrix(const spark::math::Matrix4f& projectionViewMatrix)
     {
         uint16_t screenWidth = m_device->getScreenResolution().m_width;
         uint16_t screenHeight = m_device->getScreenResolution().m_height;
-        real32 perspectiveArray[16];
-        spark::math::ProjectionMatrixf::createPerspectiveMatrix(perspectiveProjection.m_fovy, perspectiveProjection.m_aspect, perspectiveProjection.m_zNear, perspectiveProjection.m_zFar, perspectiveArray);
-        spark::math::Matrix4f projectionMatrix;
-        memcpy(projectionMatrix.m_matrix, perspectiveArray, sizeof(perspectiveArray));
-
-        real32 lookAtArray[16];
-        spark::math::ProjectionMatrixf::createLookAtMatrix(0, 0, 5, 0, 0, 0, 0, 1, 0, lookAtArray);
-        spark::math::Matrix4f lookAtMatrix;
-        memcpy(lookAtMatrix.m_matrix, lookAtArray, sizeof(lookAtArray));
-
-        m_projectionViewMatrix = projectionMatrix * lookAtMatrix;
-
         glViewport(0, 0, screenWidth, screenHeight);
         glScissor(0, 0, screenWidth, screenHeight);
+
+        m_projectionViewMatrix = projectionViewMatrix;
         m_shader->setProjectionViewMatrix(m_projectionViewMatrix.getPointer());
     }
 

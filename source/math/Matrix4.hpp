@@ -4,6 +4,7 @@
 #include "spark/SparkTypes.hpp"
 #include "math/Vector3.hpp"
 #include <math.h>
+#include <cstring>
 
 namespace spark::math {
     template <class T> class Matrix4

@@ -4,12 +4,14 @@ namespace spark::scene {
     /**
     *
     */
-    SceneGraphManager3D::SceneGraphManager3D(spark::renderer::ISparkRenderer* renderer,
+    SceneGraphManager3D::SceneGraphManager3D(
+        spark::renderer::ISparkRenderer* renderer,
         spark::device::ScreenResolution screenResolution,
-        spark::log::ISparkLogger* logger)
-        : m_renderer(renderer),
+        spark::log::ISparkLogger* logger) : m_renderer(renderer),
         m_screenResolution(screenResolution),
-        m_logger(logger)
+        m_logger(logger),
+        m_activeCamera(NULL),
+        m_defaultCamera(screenResolution.m_ratio)
     {
         //m_renderer->setLightDirection(0.0, 0.0, -1.0); // Currently not used
         m_renderer->setDrawMode(0);
@@ -36,20 +38,15 @@ namespace spark::scene {
     */
     void SceneGraphManager3D::setDefaultCamera()
     {
-        spark::perspective::PerspectiveProjection perspectiveProjection;
-        perspectiveProjection.m_aspect = m_screenResolution.m_ratio;
-        perspectiveProjection.m_fovy = 45;
-        perspectiveProjection.m_zFar = 100.0f;
-        perspectiveProjection.m_zNear = 1.0f;
-        m_renderer->setPerspectiveProjectionMatrix(perspectiveProjection);
+        m_renderer->setPerspectiveProjectionMatrix(m_defaultCamera.getProjectionViewMatrix());
     }
 
     /**
     *
     */
-    void SceneGraphManager3D::setActiveCamera()
+    void SceneGraphManager3D::setActiveCamera(spark::scene::camera::ISparkPerspectiveCamera* camera)
     {
-
+        m_activeCamera = camera;
     }
 
     /**
@@ -57,7 +54,8 @@ namespace spark::scene {
     */
     void SceneGraphManager3D::drawGraph(spark::renderer::ISparkRenderer* renderer)
     {
-        setDefaultCamera();
+        applyCamera();
+
         onBeforeDrawGraph();
 
         if (!m_rootNode.getChildren().empty())
@@ -77,6 +75,22 @@ namespace spark::scene {
     /**
     *
     */
+    void SceneGraphManager3D::applyCamera()
+    {
+        if (m_activeCamera == NULL)
+        {
+            setDefaultCamera();
+        }
+        else
+        {
+            auto projectionViewMatrix = m_activeCamera->getProjectionViewMatrix();
+            m_renderer->setPerspectiveProjectionMatrix(projectionViewMatrix);
+        }
+    }
+
+    /**
+    *
+    */
     void SceneGraphManager3D::onBeforeDrawGraph()
     {
         m_renderer->activateDepthTest(true);
@@ -91,6 +105,14 @@ namespace spark::scene {
 
         m_renderer->activateDepthTest(false);
         m_renderer->setDrawMode(0);
+    }
+
+    /**
+    *
+    */
+    spark::scene::camera::ISparkPerspectiveCamera* SceneGraphManager3D::createPerspectiveCamera()
+    {
+        return new spark::scene::camera::PerspectiveCamera(m_screenResolution.m_ratio);
     }
 
     /**

@@ -35,7 +35,8 @@ namespace spark::renderer {
         virtual void endScene() = 0;
 
         virtual void setOrthographicProjectionMatrix(spark::perspective::OrthographicProjection& orthographicProjection) = 0;
-        virtual void setPerspectiveProjectionMatrix(spark::perspective::PerspectiveProjection& perspectiveProjection) = 0;
+        virtual void setPerspectiveProjectionMatrix(const spark::math::Matrix4f& projectionViewMatrix) = 0;
+
         virtual void setModelTransformation(math::Matrix4f& modelTransformation) = 0;
 
         virtual void drawBackground(const spark::drawing::Color& color) = 0;

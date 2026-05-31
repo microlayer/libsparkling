@@ -48,7 +48,7 @@ namespace spark::renderer {
     /**
     *
     */
-    void VulkanRenderer::setPerspectiveProjectionMatrix(spark::perspective::PerspectiveProjection& perspectiveProjection)
+    void VulkanRenderer::setPerspectiveProjectionMatrix(const spark::math::Matrix4f& projectionViewMatrix)
     {
     }
 
@@ -164,6 +164,14 @@ namespace spark::renderer {
     /**
     *
     */
+    void VulkanRenderer::draw3DLine(math::Vector3f start, math::Vector3f end, spark::drawing::Color color)
+    {
+
+    }
+
+    /**
+    *
+    */
     void VulkanRenderer::renderMesh(spark::geometry::mesh::ISparkMesh* mesh, spark::material::ISparkMaterial* material)
     {
 
@@ -189,6 +197,14 @@ namespace spark::renderer {
     *
     */
     void VulkanRenderer::activateDepthTest(bool flag)
+    {
+
+    }
+
+    /**
+    *
+    */
+    void VulkanRenderer::flush3DLines()
     {
 
     }

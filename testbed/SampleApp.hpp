@@ -7,6 +7,7 @@
 #include "SampleCanvas7.hpp"
 #include "LambertLightCanvas.hpp"
 #include "ISparkCommandListener.hpp"
+#include "PerspectiveCameraTestCanvas.hpp"
 
 /**
 *
@@ -29,6 +30,7 @@ public:
         m_sampleCanvas6 = new SampleCanvas6(device);
         m_sampleCanvas7 = new SampleCanvas7(device);
         m_lambertLightCanvas = new LambertLightCanvas(device);
+        m_perspectiveCameraTestCanvas = new PerspectiveCameraTestCanvas(device);
 
         //m_sampleCanvas->registerCommandListener(this);
     }
@@ -54,6 +56,7 @@ public:
         m_timer5.setTimeout([this]() {this->switchToCanvas6(); }, 25000);
         m_timer6.setTimeout([this]() {this->switchToCanvas7(); }, 30000);
         m_timer7.setTimeout([this]() {this->switchToCanvas8(); }, 35000);
+        m_timer8.setTimeout([this]() {this->switchToCanvas9(); }, 40000);
     }
 
     /**
@@ -123,6 +126,14 @@ public:
     /**
     *
     */
+    void switchToCanvas9()
+    {
+        this->setActiveCanvas(m_perspectiveCameraTestCanvas.get());
+    }
+
+    /**
+    *
+    */
     void executeCommand(spark::ui::Command::E_COMMAND_TYPE cmd, spark::ui::AbstractCanvas* canvas)
     {
         if (spark::ui::Command::ECT_BACK == cmd)
@@ -156,6 +167,7 @@ private:
     spark::SparkSharedPointer<SampleCanvas6> m_sampleCanvas6;
     spark::SparkSharedPointer<SampleCanvas7> m_sampleCanvas7;
     spark::SparkSharedPointer<LambertLightCanvas> m_lambertLightCanvas;
+    spark::SparkSharedPointer<PerspectiveCameraTestCanvas> m_perspectiveCameraTestCanvas;
 
     spark::ui::AbstractCanvas* m_currentCanvas;
     spark::device::ISparkDevice* m_device;
@@ -166,4 +178,5 @@ private:
     spark::timer::Timer m_timer5;
     spark::timer::Timer m_timer6;
     spark::timer::Timer m_timer7;
+    spark::timer::Timer m_timer8;
 };
