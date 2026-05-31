@@ -25,6 +25,7 @@ LIBSPARKLING_SRC_FILES:= $(call LS_CPP,$(LOCAL_PATH),../../../testbed/bootstrap/
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/geometry/pointcloud/importer) \
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/scene) \
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/scene/nodes) \
+			$(call LS_CPP,$(LOCAL_PATH),../../../source/scene/camera) \
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/animator) \
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/timer) \
 			$(call LS_CPP,$(LOCAL_PATH),../../../source/mlstl) \
