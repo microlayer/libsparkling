@@ -60,7 +60,7 @@ namespace spark::math {
 
             fovyRad = (T)((fovy / 180.0f) * PI);
 
-            yScale = 1.0f / (tan(fovyRad * 0.5f));
+            yScale = 1.0f / static_cast<real32>(tan(fovyRad * 0.5f));
             xScale = yScale / aspect;
 
             // DirectX clipping default - mapped to z:0..1 (nearPlane/farPlane) 
@@ -156,7 +156,7 @@ namespace spark::math {
         static void normalize(T v[3])
         {
             real32 r;
-            r = sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
+            r = static_cast<real32>(sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]));
             if (r == 0.0) return;
             v[0] /= r;
             v[1] /= r;

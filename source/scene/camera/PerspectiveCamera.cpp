@@ -7,9 +7,9 @@ namespace spark::scene::camera {
     PerspectiveCamera::PerspectiveCamera(spark::real32 aspect) :
         m_fovy(20.0),
         m_aspect(aspect),
-        m_zNear(0.1),
+        m_zNear(0.1f),
         m_zFar(100.0),
-        m_position(0, 0, 5.67),
+        m_position(0, 0, 5.67f),
         m_target(0, 0, 0),
         m_up(0, 1.0, 0)
     {
