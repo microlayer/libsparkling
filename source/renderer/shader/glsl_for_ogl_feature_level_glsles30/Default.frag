@@ -1,4 +1,4 @@
-#version 130
+#version 330
 
 // Varying
 in vec4 color;

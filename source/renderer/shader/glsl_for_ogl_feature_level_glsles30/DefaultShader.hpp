@@ -38,7 +38,7 @@ namespace spark {
 					const char* GetVertexShader() const
 					{
 						const char* vertexShaderStr =
-							"#version 130\n"
+							"#version 330\n"
 							"\n"
 							"// Input\n"
 							"in vec3 aVertexPosition;\n"
@@ -89,7 +89,7 @@ namespace spark {
 					const char* GetFragmentShader() const
 					{
 						const char* fragmentShaderStr =
-							"#version 130\n"
+							"#version 330\n"
 							"\n"
 							"// Varying\n"
 							"in vec4 color;\n"

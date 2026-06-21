@@ -1,12 +1,12 @@
-#version 100
+#version 300 es
 precision mediump float;
 
 // Input
-attribute vec3 aVertexPosition;
-attribute vec3 aVertexNormal;
-attribute vec4 aVertexColor;
-attribute vec2 aTextureCoord;
-attribute vec3 aBarycentric;
+in vec3 aVertexPosition;
+in vec3 aVertexNormal;
+in vec4 aVertexColor;
+in vec2 aTextureCoord;
+in vec3 aBarycentric;
 
 uniform mat4 uModelViewProjectionMatrix;
 uniform mat4 uModelViewMatrix;
@@ -14,12 +14,12 @@ uniform mat4 uModelMatrix;
 uniform mat3 uNormalMatrix;
 
 // Varying
-varying vec4 color;
-varying vec3 vertexNormal;
-varying vec2 textureCoord;
-varying vec3 barycentric;
+out vec4 color;
+out vec3 vertexNormal;
+out vec2 textureCoord;
+out vec3 barycentric;
 
-varying vec3 fragPosition;
+out vec3 fragPosition;
 
 const float POINT_SIZE = 3.0;
 

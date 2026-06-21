@@ -1,12 +1,12 @@
-#version 100
+#version 300 es
 precision mediump float;
 
 // Varying
-varying vec4 color;
-varying vec3 vertexNormal;
-varying vec2 textureCoord;
-varying vec3 barycentric;
-varying vec3 fragPosition;
+in vec4 color;
+in vec3 vertexNormal;
+in vec2 textureCoord;
+in vec3 barycentric;
+in vec3 fragPosition;
 
 // Input
 uniform sampler2D uTexture0;
@@ -30,6 +30,9 @@ uniform vec3 uAlbedo;
 uniform float uRoughness;
 uniform float uMetallic;
 
+// Out
+out vec4 fragColor;
+
 #define MAX_LIGHTS 16
 
 //--------------------------------------------------------------------------------------
@@ -47,28 +50,28 @@ void main()
 {
     if(uDrawMode == DRAW_TEXTURE)
     {
-        gl_FragColor = texture2D(uTexture0, textureCoord);
+        fragColor = texture(uTexture0, textureCoord);
     }
     else if(uDrawMode == DRAW_FONT)
     {
-        float alpha = texture2D(uTexture0, textureCoord.xy).x;
-        gl_FragColor = vec4(uFontColor, alpha);
+        float alpha = texture(uTexture0, textureCoord.xy).x;
+        fragColor = vec4(uFontColor, alpha);
     }
     else if(uDrawMode == DRAW_NORMALS)
     {
         vec3 n = normalize(vertexNormal.xyz);
-        gl_FragColor = vec4(n * 0.5 + 0.5, 1.0);
+        fragColor = vec4(n * 0.5 + 0.5, 1.0);
     }
     else if(uDrawMode == DRAW_BARYCENTRIC)
     {
-        gl_FragColor = vec4(barycentric, 1.0);
+        fragColor = vec4(barycentric, 1.0);
     }
     else if(uDrawMode == DRAW_WIREFRAME)
     {
         float edge = min(min(barycentric.x, barycentric.y), barycentric.z);
         float thickness = 0.001;        
         if (edge < thickness)
-            gl_FragColor = vec4(0.75, 0.75, 0.75, 1.0);
+            fragColor = vec4(0.75, 0.75, 0.75, 1.0);
         else
             discard;
     }
@@ -114,14 +117,14 @@ void main()
             result += diffuse;
         }
         
-        gl_FragColor = vec4(result, 1.0);
+        fragColor = vec4(result, 1.0);
     }
     else if(uDrawMode == DRAW_PBR)
     {
     }
     else
     {        
-        gl_FragColor = color;
+        fragColor = color;
     }
 }
 
