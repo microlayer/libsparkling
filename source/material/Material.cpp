@@ -48,22 +48,6 @@ namespace spark::material {
     /**
     *
     */
-    void Material::setRoughness(spark::real32 roughness)
-    {
-        m_roughness = roughness;
-    }
-
-    /**
-    *
-    */
-    void Material::setMetallic(spark::real32 metallic)
-    {
-        m_metallic = metallic;
-    }
-
-    /**
-    *
-    */
     spark::math::Vector3f Material::getAlbedo() const
     {
         return m_albedo;
@@ -72,16 +56,8 @@ namespace spark::material {
     /**
     *
     */
-    spark::real32 Material::getRoughness() const
+    void Material::apply(spark::renderer::shader::ISparkShader* shader) const
     {
-        return m_roughness;
-    }
 
-    /**
-    *
-    */
-    spark::real32 Material::getMetallic() const
-    {
-        return m_metallic;
     }
 }

@@ -3,6 +3,7 @@
 
 #include "SparkRefCount.hpp"
 #include "math/Vector3.hpp"
+#include "ISparkShader.hpp"
 
 namespace spark::material {
     /**
@@ -35,13 +36,12 @@ namespace spark::material {
         virtual RenderMode getRenderMode() const = 0;
         virtual VertexLayout getRequiredMeshVariant() const = 0;
 
-    public: // PBR
+    public:
         virtual void setAlbedo(spark::math::Vector3f albedo) = 0;
-        virtual void setRoughness(spark::real32 roughness) = 0;
-        virtual void setMetallic(spark::real32 metallic) = 0;
         virtual spark::math::Vector3f getAlbedo() const = 0;
-        virtual spark::real32 getRoughness() const = 0;
-        virtual spark::real32 getMetallic() const = 0;
+
+    public:
+        virtual void apply(spark::renderer::shader::ISparkShader* shader) const = 0;
     };
 }
 #endif

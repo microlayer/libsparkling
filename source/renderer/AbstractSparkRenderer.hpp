@@ -8,6 +8,8 @@
 #include "ISparkMaterial.hpp"
 #include "scene/camera/PerspectiveCamera.hpp"
 #include "ISparkLightBuffer.hpp"
+#include "../material/DiffuseMaterial.hpp"
+#include "../material/PBRMaterial.hpp"
 
 namespace spark::renderer {
     /**

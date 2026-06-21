@@ -101,7 +101,7 @@ namespace spark::renderer {
     *
     */
     void OpenGLRenderer::setModelTransformation(math::Matrix4f& modelTransformation)
-    {        
+    {
         // Sets PVM
         math::Matrix4f m = m_projectionViewMatrix * modelTransformation;
         m_shader->setProjectionViewMatrix(m.getPointer());
@@ -113,19 +113,19 @@ namespace spark::renderer {
         // Sets MV
         math::Matrix4f modelViewMatrix = m_viewMatrix * modelTransformation;
         m_shader->setModelViewMatrix(modelViewMatrix.getPointer());
-        
+
         // Sets nomalMatrix
         math::Matrix3f modelViewMatrix3x3 = modelViewMatrix.getMatrix3x3();
         math::Matrix3f normalMatrixInverse = modelViewMatrix3x3.getInverseMatrix();
         math::Matrix3f normalMatrixTransposed = normalMatrixInverse.getTransposedMatrix();
-        
-            
-        math::Matrix3f test1 = modelViewMatrix3x3  * normalMatrixInverse; // OK
-      
+
+
+        math::Matrix3f test1 = modelViewMatrix3x3 * normalMatrixInverse; // OK
+
         math::Matrix3f test2 = normalMatrixTransposed.getTransposedMatrix();
         //Es muss gelten: test2 == normalMatrixInverse
 
-        
+
         // Final
         math::Matrix3f normalMatrix = modelViewMatrix
             .getMatrix3x3()
@@ -492,23 +492,25 @@ namespace spark::renderer {
         {
         case RenderMode::DebugVisualizationNormals:
             m_shader->setDrawMode(3); break;
+
         case RenderMode::DebugVisualizationBarycentric:
             m_shader->setDrawMode(4); break;
+
         case RenderMode::Wireframe:
             m_shader->setDrawMode(5); break;
+
         case RenderMode::Default:
             m_shader->setDrawMode(0); break;
+
         case RenderMode::DIFFUSE:
             m_shader->setDrawMode(6);
-            //m_shader->setLightColor();
-            m_shader->setAlbedo(material->getAlbedo());            
+            material->apply(m_shader);
             break;
+
         case RenderMode::PBR:
-            m_shader->setDrawMode(7);
-            m_shader->setAlbedo(material->getAlbedo());
-            m_shader->setRoughness(material->getRoughness());
-            m_shader->setMetallic(material->getMetallic());
+            material->apply(m_shader);
             break;
+
         default:
             m_shader->setDrawMode(0); break;
         }

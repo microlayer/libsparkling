@@ -240,8 +240,10 @@
     <ClCompile Include="..\..\source\log\AndroidLogger.cpp" />
     <ClCompile Include="..\..\source\log\DefaultLogger.cpp" />
     <ClCompile Include="..\..\source\log\LogManager.cpp" />
+    <ClCompile Include="..\..\source\material\DiffuseMaterial.cpp" />
     <ClCompile Include="..\..\source\material\Material.cpp" />
     <ClCompile Include="..\..\source\material\MaterialLibrary.cpp" />
+    <ClCompile Include="..\..\source\material\PBRMaterial.cpp" />
     <ClCompile Include="..\..\source\mlstl\MLBase64.cpp" />
     <ClCompile Include="..\..\source\network\HttpClient.cpp" />
     <ClCompile Include="..\..\source\network\SocketClient.cpp" />
@@ -281,6 +283,7 @@
     <ClInclude Include="..\..\include\ISparkAssetManager.hpp" />
     <ClInclude Include="..\..\include\ISparkCamera.hpp" />
     <ClInclude Include="..\..\include\ISparkCoordinateSystemNode.hpp" />
+    <ClInclude Include="..\..\include\ISparkDiffuseMaterial.hpp" />
     <ClInclude Include="..\..\include\ISparkDirectionalLightNode.hpp" />
     <ClInclude Include="..\..\include\ISparkFontPool.hpp" />
     <ClInclude Include="..\..\include\ISparkFont.hpp" />
@@ -293,6 +296,7 @@
     <ClInclude Include="..\..\include\ISparkMeshSceneNode.hpp" />
     <ClInclude Include="..\..\include\ISparkNodeAnimator.hpp" />
     <ClInclude Include="..\..\include\ISparkOrthoCamera.hpp" />
+    <ClInclude Include="..\..\include\ISparkPBRMaterial.hpp" />
     <ClInclude Include="..\..\include\ISparkPerspectiveCamera.hpp" />
     <ClInclude Include="..\..\include\ISparkPointCloud.hpp" />
     <ClInclude Include="..\..\include\ISparkPointCloudImporter.hpp" />
@@ -361,8 +365,10 @@
     <ClInclude Include="..\..\source\log\AndroidLogger.hpp" />
     <ClInclude Include="..\..\source\log\DefaultLogger.hpp" />
     <ClInclude Include="..\..\source\log\LogManager.hpp" />
+    <ClInclude Include="..\..\source\material\DiffuseMaterial.hpp" />
     <ClInclude Include="..\..\source\material\Material.hpp" />
     <ClInclude Include="..\..\source\material\MaterialLibrary.hpp" />
+    <ClInclude Include="..\..\source\material\PBRMaterial.hpp" />
     <ClInclude Include="..\..\source\math\Matrix3.hpp" />
     <ClInclude Include="..\..\source\math\Matrix4.hpp" />
     <ClInclude Include="..\..\source\math\ProjectionMatrix.hpp" />

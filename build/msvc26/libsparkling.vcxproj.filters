@@ -330,6 +330,12 @@
     <ClCompile Include="..\..\source\renderer\lightbuffer\OGLLightBuffer.cpp">
       <Filter>source\renderer\lightbuffer</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\material\PBRMaterial.cpp">
+      <Filter>source\material</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\material\DiffuseMaterial.cpp">
+      <Filter>source\material</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\spark\SparkCompilerConfig.hpp">
@@ -778,6 +784,18 @@
     </ClInclude>
     <ClInclude Include="..\..\source\renderer\lightbuffer\GPUPointLight.hpp">
       <Filter>source\renderer\lightbuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\material\PBRMaterial.hpp">
+      <Filter>source\material</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\material\DiffuseMaterial.hpp">
+      <Filter>source\material</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkDiffuseMaterial.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkPBRMaterial.hpp">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

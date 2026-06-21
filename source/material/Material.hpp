@@ -8,34 +8,29 @@ namespace spark::material {
     /**
     *
     */
-    class Material : public spark::material::ISparkMaterial
+    class Material : public virtual spark::material::ISparkMaterial
     {
     public:
         Material(RenderMode renderMode);
         ~Material();
 
     public:
-        RenderMode getRenderMode() const;
-        VertexLayout getRequiredMeshVariant() const;
+        RenderMode getRenderMode() const override;
+        VertexLayout getRequiredMeshVariant() const override;
+
+    public: // Used in Diffuse and PBR Lightning model
+        void setAlbedo(spark::math::Vector3f albedo) override;
+        spark::math::Vector3f getAlbedo() const override;
 
     public:
-        void setAlbedo(spark::math::Vector3f albedo);
-        void setRoughness(spark::real32 roughness);
-        void setMetallic(spark::real32 metallic);
-
-        spark::math::Vector3f getAlbedo() const;
-        spark::real32 getRoughness() const;
-        spark::real32 getMetallic() const;
+        void apply(spark::renderer::shader::ISparkShader* shader) const override;
 
     private:
         RenderMode m_renderMode = RenderMode::Default;
         VertexLayout m_meshVariant = VertexLayout::Indexed;
 
-    private: // PBR Core
+    private:
         spark::math::Vector3f m_albedo = { 1.0f, 1.0f, 1.0f };
-        real32 m_metallic = 0.0f;
-        real32 m_roughness = 1.0f;
-        real32 m_ao = 1.0f;
     };
 }
 #endif

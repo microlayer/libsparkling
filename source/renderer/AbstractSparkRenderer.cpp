@@ -68,7 +68,18 @@ namespace spark {
         */
         spark::material::ISparkMaterial* AbstractSparkRenderer::createMaterial(spark::material::RenderMode renderMode)
         {
-            return new spark::material::Material(renderMode);
+            if (renderMode == spark::material::RenderMode::DIFFUSE)
+            {
+                return new spark::material::DiffuseMaterial();
+            }
+            else if (renderMode == spark::material::RenderMode::PBR)
+            {
+                return new spark::material::PBRMaterial();
+            }
+            else
+            {
+                return new spark::material::Material(renderMode);
+            }
         }
 
         /**
