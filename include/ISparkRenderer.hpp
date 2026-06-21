@@ -15,6 +15,9 @@
 #include "math/Matrix4.hpp"
 #include "ISparkMaterial.hpp"
 #include "ISparkPointCloud.hpp"
+#include "ISparkPerspectiveCamera.hpp"
+#include "renderer/lightbuffer/GPUDirectionalLight.hpp"
+#include "renderer/lightbuffer/GPUPointLight.hpp"
 
 namespace spark {
     namespace game {
@@ -37,6 +40,7 @@ namespace spark::renderer {
         virtual void setOrthographicProjectionMatrix(spark::perspective::OrthographicProjection& orthographicProjection) = 0;
         virtual void setPerspectiveProjectionMatrix(const spark::math::Matrix4f& projectionViewMatrix) = 0;
 
+        virtual void setViewMatrix(const spark::math::Matrix4f& viewMatrix) = 0;
         virtual void setModelTransformation(math::Matrix4f& modelTransformation) = 0;
 
         virtual void drawBackground(const spark::drawing::Color& color) = 0;
@@ -62,7 +66,9 @@ namespace spark::renderer {
 
         // Shader
         virtual void setDrawMode(uint32_t drawMode) = 0;
-        virtual void setLightDirection(real32 x, real32 y, real32 z) = 0;
+        virtual void uploadLights(
+            std::vector<renderer::lightbuffer::GPUDirectionalLight> gpuDirectionalLights,
+            std::vector<renderer::lightbuffer::GPUPointLight> gpuPointLights) = 0;
 
         // Depth-Test
         virtual void activateDepthTest(bool flag) = 0;
@@ -71,6 +77,7 @@ namespace spark::renderer {
 
         // Factory
         virtual spark::material::ISparkMaterial* createMaterial(spark::material::RenderMode renderMode) = 0;
+        virtual spark::scene::camera::ISparkPerspectiveCamera* createPerspectiveCamera() = 0;
     };
 }
 #endif

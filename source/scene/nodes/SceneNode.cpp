@@ -60,10 +60,26 @@ namespace spark::scene::nodes {
     /**
     *
     */
+    spark::math::Vector3f SceneNode::getPosition()
+    {
+        return m_position;
+    }
+
+    /**
+    *
+    */
     void SceneNode::setRotation(spark::math::Vector3f rotation)
     {
         m_rotation = rotation;
         m_modelTransformationMatrix.setRotation(rotation);
+    }
+
+    /**
+    *
+    */
+    spark::math::Vector3f SceneNode::getRotation()
+    {
+        return m_rotation;
     }
 
     /**

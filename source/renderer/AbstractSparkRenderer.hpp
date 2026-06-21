@@ -6,6 +6,8 @@
 #include "ISparkTextureFactory.hpp"
 #include "ISparkVertexBufferFactory.hpp"
 #include "ISparkMaterial.hpp"
+#include "scene/camera/PerspectiveCamera.hpp"
+#include "ISparkLightBuffer.hpp"
 
 namespace spark::renderer {
     /**
@@ -17,7 +19,8 @@ namespace spark::renderer {
         AbstractSparkRenderer(spark::device::ISparkDevice* device,
             spark::renderer::shader::ISparkShader* shader,
             spark::renderer::ISparkTextureFactory* textureFactory,
-            spark::renderer::ISparkVertexBufferFactory* vertexBufferFactory);
+            spark::renderer::ISparkVertexBufferFactory* vertexBufferFactory,
+            spark::renderer::lightbuffer::ISparkLightBuffer* lightBuffer);
         virtual ~AbstractSparkRenderer();
 
     public: // ISparkRenderer
@@ -26,14 +29,19 @@ namespace spark::renderer {
 
     public:
         void setDrawMode(uint32_t drawMode);
-        void setLightDirection(real32 x, real32 y, real32 z);
+
+    public: // Light
+        void uploadLights(
+            std::vector<renderer::lightbuffer::GPUDirectionalLight> gpuDirectionalLights,
+            std::vector<renderer::lightbuffer::GPUPointLight> gpuPointLights);
 
     public:
         virtual void onBeginScene() = 0;
         virtual void onEndScene() = 0;
 
-    public:
+    public: // Factory
         spark::material::ISparkMaterial* createMaterial(spark::material::RenderMode renderMode);
+        spark::scene::camera::ISparkPerspectiveCamera* createPerspectiveCamera();
 
     protected:
         spark::device::ISparkDevice* m_device;
@@ -41,6 +49,7 @@ namespace spark::renderer {
         spark::renderer::ISparkTextureFactory* m_textureFactory;
         spark::renderer::ISparkVertexBufferFactory* m_vertexBufferFactory;
         spark::log::ISparkLogger* m_logger;
+        spark::renderer::lightbuffer::ISparkLightBuffer* m_lightBuffer;
     };
 }
 #endif

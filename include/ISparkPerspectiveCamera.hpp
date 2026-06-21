@@ -15,6 +15,9 @@ namespace spark::scene::camera {
     public:
         virtual void setPosition(const math::Vector3f& position) = 0;
         virtual void lookAt(const math::Vector3f& target, const math::Vector3f& up) = 0;
+
+    public:
+        virtual spark::math::Matrix4f getViewMatrix() const = 0;
     };
 }
 #endif

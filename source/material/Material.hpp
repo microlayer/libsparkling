@@ -18,6 +18,15 @@ namespace spark::material {
         RenderMode getRenderMode() const;
         VertexLayout getRequiredMeshVariant() const;
 
+    public:
+        void setAlbedo(spark::math::Vector3f albedo);
+        void setRoughness(spark::real32 roughness);
+        void setMetallic(spark::real32 metallic);
+
+        spark::math::Vector3f getAlbedo() const;
+        spark::real32 getRoughness() const;
+        spark::real32 getMetallic() const;
+
     private:
         RenderMode m_renderMode = RenderMode::Default;
         VertexLayout m_meshVariant = VertexLayout::Indexed;

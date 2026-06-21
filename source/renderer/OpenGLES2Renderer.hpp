@@ -5,6 +5,7 @@
     SPARK_PLATFORM == SPARK_PLATFORM_WEBGL
 #include "OpenGLRenderer.hpp"
 #include "ISparkTextureFactory.hpp"
+#include "ISparkLightBuffer.hpp"
 
 namespace spark::renderer {
     /**
@@ -16,7 +17,8 @@ namespace spark::renderer {
         OpenGLES2Renderer(spark::device::ISparkDevice* device,
             spark::renderer::shader::ISparkShader* shader,
             spark::renderer::ISparkTextureFactory* textureFactory,
-            spark::renderer::ISparkVertexBufferFactory* vertexBufferFactory);
+            spark::renderer::ISparkVertexBufferFactory* vertexBufferFactory,
+            spark::renderer::lightbuffer::ISparkLightBuffer* lightBuffer);
         virtual ~OpenGLES2Renderer(void);
 
     public: // ISparkRenderer

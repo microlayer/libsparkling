@@ -22,7 +22,9 @@ namespace spark::scene::nodes {
 
     protected:
         void setPosition(spark::math::Vector3f position);
+        spark::math::Vector3f getPosition();
         void setRotation(spark::math::Vector3f rotation);
+        spark::math::Vector3f getRotation();
         void setScale(const real32 x, const real32 y, const real32 z);
 
     protected:

@@ -7,6 +7,7 @@
 #include "renderer/OpenGLES2Renderer.hpp"
 #include "renderer/shader/OpenGLShaderProgram.hpp"
 #include "asset/AssetManager.hpp"
+#include "renderer/lightbuffer/OGLLightBuffer.hpp"
 
 namespace spark::device {
     /**

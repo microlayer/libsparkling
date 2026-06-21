@@ -20,6 +20,23 @@ namespace spark::scene::nodes {
     */
     void DirectionalLightNode::setDirection(spark::math::Vector3f lightDirection)
     {
+        m_lightDirection = lightDirection;
+    }
+
+    /**
+    *
+    */
+    spark::math::Vector3f DirectionalLightNode::getDirection()
+    {
+        return m_lightDirection;
+    }
+
+    /**
+    *
+    */
+    LightType DirectionalLightNode::getLightType()
+    {
+        return spark::scene::nodes::LightType::Directional;
     }
 
     /**
@@ -27,5 +44,6 @@ namespace spark::scene::nodes {
     */
     void DirectionalLightNode::render(spark::renderer::ISparkRenderer* renderer)
     {
+
     }
 }

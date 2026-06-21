@@ -36,4 +36,52 @@ namespace spark::material {
     {
         return m_meshVariant;
     }
+
+    /**
+    *
+    */
+    void Material::setAlbedo(spark::math::Vector3f albedo)
+    {
+        m_albedo = albedo;
+    }
+
+    /**
+    *
+    */
+    void Material::setRoughness(spark::real32 roughness)
+    {
+        m_roughness = roughness;
+    }
+
+    /**
+    *
+    */
+    void Material::setMetallic(spark::real32 metallic)
+    {
+        m_metallic = metallic;
+    }
+
+    /**
+    *
+    */
+    spark::math::Vector3f Material::getAlbedo() const
+    {
+        return m_albedo;
+    }
+
+    /**
+    *
+    */
+    spark::real32 Material::getRoughness() const
+    {
+        return m_roughness;
+    }
+
+    /**
+    *
+    */
+    spark::real32 Material::getMetallic() const
+    {
+        return m_metallic;
+    }
 }

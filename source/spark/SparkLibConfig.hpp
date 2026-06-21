@@ -33,4 +33,10 @@
 */
 #define ML_PI						3.14159265f;
 #define EPSILON						0.0001f;
+
+/**
+* @brief GPU
+*/
+#define MAX_DIR_LIGHTS              4
+#define MAX_POINT_LIGHTS            64
 #endif

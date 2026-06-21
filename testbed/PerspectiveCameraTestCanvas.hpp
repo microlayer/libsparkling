@@ -14,7 +14,7 @@ public:
         // Create SceneGraphManager3D
         m_sceneGraphManager3D = device->createSceneGraphManager3D();
 
-        m_camera = m_sceneGraphManager3D->createPerspectiveCamera();
+        m_camera = m_device->getRenderer()->createPerspectiveCamera();
         m_camera->setPerspective(20.0f, m_device->getScreenResolution().m_ratio, 0.1f, 100.0f);
         m_camera->setPosition(spark::math::Vector3f(0, 0, 5.67f));
         m_camera->lookAt(spark::math::Vector3f(0, 0, 0), spark::math::Vector3f(0, 1, 0));
@@ -27,7 +27,7 @@ public:
         spark::SparkSharedPointer<spark::scene::nodes::ISparkMeshSceneNode> node = m_sceneGraphManager3D->createMeshSceneNode();
         node->setPosition(spark::math::Vector3f(0, 0, -0));
         node->setRotation(spark::math::Vector3f(1.57f, 0, -0));
-        node->attachMesh(planeMesh.get());
+        node->setMesh(planeMesh.get());
 
         m_sceneGraphManager3D->rootNode()->addChildSceneNode(node.get());
     }

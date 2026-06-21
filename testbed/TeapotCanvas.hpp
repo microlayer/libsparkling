@@ -22,7 +22,7 @@ public:
         // Create SceneNode
         spark::SparkSharedPointer<spark::scene::nodes::ISparkMeshSceneNode> node = m_sceneGraphManager3D->createMeshSceneNode();
         node->setPosition(spark::math::Vector3f(0, -1.5, -6));
-        node->attachMesh(mesh.get());
+        node->setMesh(mesh.get());
         node->addAnimator(nodeRotationAnimaror.get());
         node->setMaterial(m_material.get());
 

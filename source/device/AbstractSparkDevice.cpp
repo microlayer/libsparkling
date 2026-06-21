@@ -31,6 +31,7 @@ namespace spark::device {
         m_fontPool->release();
         m_texureFactory->release();
         m_vertexBufferFactory->release();
+        m_lightBuffer->release();
     }
 
     /**

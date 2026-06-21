@@ -251,6 +251,7 @@
     <ClCompile Include="..\..\source\renderer\common\VertexBufferFactory.cpp" />
     <ClCompile Include="..\..\source\renderer\config\OGLConfig.cpp" />
     <ClCompile Include="..\..\source\renderer\config\VulkanConfig.cpp" />
+    <ClCompile Include="..\..\source\renderer\lightbuffer\OGLLightBuffer.cpp" />
     <ClCompile Include="..\..\source\renderer\OpenGLES2Renderer.cpp" />
     <ClCompile Include="..\..\source\renderer\OpenGLFLES2Renderer.cpp" />
     <ClCompile Include="..\..\source\renderer\OpenGLRenderer.cpp" />
@@ -267,6 +268,7 @@
     <ClCompile Include="..\..\source\scene\nodes\LightNode.cpp" />
     <ClCompile Include="..\..\source\scene\nodes\MeshSceneNode.cpp" />
     <ClCompile Include="..\..\source\scene\nodes\PointCloudSceneNode.cpp" />
+    <ClCompile Include="..\..\source\scene\nodes\PointLightNode.cpp" />
     <ClCompile Include="..\..\source\scene\nodes\SceneNode.cpp" />
     <ClCompile Include="..\..\source\scene\SceneGraphManager2D.cpp" />
     <ClCompile Include="..\..\source\scene\SceneGraphManager3D.cpp" />
@@ -283,6 +285,7 @@
     <ClInclude Include="..\..\include\ISparkFontPool.hpp" />
     <ClInclude Include="..\..\include\ISparkFont.hpp" />
     <ClInclude Include="..\..\include\ISparkHttpClient.hpp" />
+    <ClInclude Include="..\..\include\ISparkLightBuffer.hpp" />
     <ClInclude Include="..\..\include\ISparkLightNode.hpp" />
     <ClInclude Include="..\..\include\ISparkLineLayer.hpp" />
     <ClInclude Include="..\..\include\ISparkMaterial.hpp" />
@@ -380,6 +383,10 @@
     <ClInclude Include="..\..\source\renderer\common\VertexBufferFactory.hpp" />
     <ClInclude Include="..\..\source\renderer\config\OGLConfig.hpp" />
     <ClInclude Include="..\..\source\renderer\config\VulkanConfig.hpp" />
+    <ClInclude Include="..\..\source\renderer\lightbuffer\GPUDirectionalLight.hpp" />
+    <ClInclude Include="..\..\source\renderer\lightbuffer\GPULightBuffer.hpp" />
+    <ClInclude Include="..\..\source\renderer\lightbuffer\GPUPointLight.hpp" />
+    <ClInclude Include="..\..\source\renderer\lightbuffer\OGLLightBuffer.hpp" />
     <ClInclude Include="..\..\source\renderer\OpenGLES2Renderer.hpp" />
     <ClInclude Include="..\..\source\renderer\OpenGLFLES2Renderer.hpp" />
     <ClInclude Include="..\..\source\renderer\OpenGLRenderer.hpp" />
@@ -399,6 +406,7 @@
     <ClInclude Include="..\..\source\scene\nodes\LightNode.hpp" />
     <ClInclude Include="..\..\source\scene\nodes\MeshSceneNode.hpp" />
     <ClInclude Include="..\..\source\scene\nodes\PointCloudSceneNode.hpp" />
+    <ClInclude Include="..\..\source\scene\nodes\PointLightNode.hpp" />
     <ClInclude Include="..\..\source\scene\nodes\SceneNode.hpp" />
     <ClInclude Include="..\..\source\scene\SceneGraphManager2D.hpp" />
     <ClInclude Include="..\..\source\scene\SceneGraphManager3D.hpp" />

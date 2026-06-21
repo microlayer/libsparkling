@@ -7,8 +7,9 @@ namespace spark::renderer {
     OpenGLRenderer::OpenGLRenderer(spark::device::ISparkDevice* device,
         spark::renderer::shader::ISparkShader* shader,
         spark::renderer::ISparkTextureFactory* textureFactory,
-        spark::renderer::ISparkVertexBufferFactory* vertexBufferFactory) :
-        AbstractSparkRenderer(device, shader, textureFactory, vertexBufferFactory)
+        spark::renderer::ISparkVertexBufferFactory* vertexBufferFactory,
+        spark::renderer::lightbuffer::ISparkLightBuffer* lightBuffer) :
+        AbstractSparkRenderer(device, shader, textureFactory, vertexBufferFactory, lightBuffer)
     {
         m_backgroundColor = spark::drawing::Color(48, 48, 48, 255);
     }
@@ -91,10 +92,47 @@ namespace spark::renderer {
     /**
     *
     */
-    void OpenGLRenderer::setModelTransformation(math::Matrix4f& modelTransformation)
+    void OpenGLRenderer::setViewMatrix(const spark::math::Matrix4f& viewMatrix)
     {
+        m_viewMatrix = viewMatrix;
+    }
+
+    /**
+    *
+    */
+    void OpenGLRenderer::setModelTransformation(math::Matrix4f& modelTransformation)
+    {        
+        // Sets PVM
         math::Matrix4f m = m_projectionViewMatrix * modelTransformation;
         m_shader->setProjectionViewMatrix(m.getPointer());
+
+        // sets M
+        m_shader->setModelMatrix(modelTransformation.getPointer());
+
+
+        // Sets MV
+        math::Matrix4f modelViewMatrix = m_viewMatrix * modelTransformation;
+        m_shader->setModelViewMatrix(modelViewMatrix.getPointer());
+        
+        // Sets nomalMatrix
+        math::Matrix3f modelViewMatrix3x3 = modelViewMatrix.getMatrix3x3();
+        math::Matrix3f normalMatrixInverse = modelViewMatrix3x3.getInverseMatrix();
+        math::Matrix3f normalMatrixTransposed = normalMatrixInverse.getTransposedMatrix();
+        
+            
+        math::Matrix3f test1 = modelViewMatrix3x3  * normalMatrixInverse; // OK
+      
+        math::Matrix3f test2 = normalMatrixTransposed.getTransposedMatrix();
+        //Es muss gelten: test2 == normalMatrixInverse
+
+        
+        // Final
+        math::Matrix3f normalMatrix = modelViewMatrix
+            .getMatrix3x3()
+            .getInverseMatrix()
+            .getTransposedMatrix();
+
+        m_shader->setNormalMatrix(normalMatrix.getPointer());
     }
 
     /**
@@ -460,6 +498,17 @@ namespace spark::renderer {
             m_shader->setDrawMode(5); break;
         case RenderMode::Default:
             m_shader->setDrawMode(0); break;
+        case RenderMode::DIFFUSE:
+            m_shader->setDrawMode(6);
+            //m_shader->setLightColor();
+            m_shader->setAlbedo(material->getAlbedo());            
+            break;
+        case RenderMode::PBR:
+            m_shader->setDrawMode(7);
+            m_shader->setAlbedo(material->getAlbedo());
+            m_shader->setRoughness(material->getRoughness());
+            m_shader->setMetallic(material->getMetallic());
+            break;
         default:
             m_shader->setDrawMode(0); break;
         }

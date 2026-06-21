@@ -20,9 +20,17 @@ namespace spark::scene::nodes {
     /**
     *
     */
-    void LightNode::setLightColor(spark::math::Vector3f lightColor)
+    void LightNode::setLightColor(spark::drawing::Color lightColor)
     {
+        m_lightColor = lightColor;
+    }
 
+    /**
+    *
+    */
+    spark::drawing::Color LightNode::getLightColor()
+    {
+        return m_lightColor;
     }
 
     /**
@@ -30,7 +38,15 @@ namespace spark::scene::nodes {
     */
     void LightNode::setIntensity(real32 intensity)
     {
+        m_intensity = intensity;
+    }
 
+    /**
+    *
+    */
+    real32 LightNode::getIntesity()
+    {
+        return m_intensity;
     }
 
     /**
@@ -38,7 +54,6 @@ namespace spark::scene::nodes {
     */
     void LightNode::render(spark::renderer::ISparkRenderer* renderer)
     {
-        renderer->setLightDirection(0, 0, 0);
-        //renderer->setLightColor(/* default white */)
+
     }
 }

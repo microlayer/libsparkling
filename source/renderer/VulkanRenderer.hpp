@@ -16,7 +16,9 @@ namespace spark::renderer {
     public:
         VulkanRenderer(spark::device::ISparkDevice* device,
             spark::renderer::shader::ISparkShader* shader,
-            spark::renderer::ISparkTextureFactory* textureFactory);
+            spark::renderer::ISparkTextureFactory* textureFactory,
+            spark::renderer::ISparkVertexBufferFactory* vertexBufferFactory,
+            spark::renderer::lightbuffer::ISparkLightBuffer* lightBuffer);
         virtual ~VulkanRenderer(void);
 
     public: // AbstractSparkRenderer
@@ -27,6 +29,7 @@ namespace spark::renderer {
         // Perspective
         void setOrthographicProjectionMatrix(spark::perspective::OrthographicProjection& orthographicProjection);
         void setPerspectiveProjectionMatrix(const spark::math::Matrix4f& projectionViewMatrix);
+        void setViewMatrix(const spark::math::Matrix4f& viewMatrix);
         void setModelTransformation(math::Matrix4f& modelTransformation);
 
         // Common

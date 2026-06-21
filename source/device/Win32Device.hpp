@@ -13,6 +13,7 @@
 #include "renderer/config/OGLConfig.hpp"
 #include "renderer/shader/OpenGLShaderProgram.hpp"
 #include "asset/AssetManager.hpp"
+#include "renderer/lightbuffer/OGLLightBuffer.hpp"
 
 namespace spark::device {
     /**

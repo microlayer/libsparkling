@@ -3,10 +3,14 @@
 
 #include "spark/SparkTypes.hpp"
 #include "math/Vector3.hpp"
+#include "Matrix3.hpp"
 #include <math.h>
 #include <cstring>
 
 namespace spark::math {
+    /**
+    * @brief Hint: OpenGL matrices are Column-major
+    */
     template <class T> class Matrix4
     {
     public:
@@ -40,7 +44,6 @@ namespace spark::math {
         */
         Matrix4<T> setRotation(const spark::math::Vector3f rotation)
         {
-            // Attention: OpenGL matrices are Column-major
             const real32 cr = cos(rotation.m_x);
             const real32 sr = sin(rotation.m_x);
             const real32 cp = cos(rotation.m_y);
@@ -48,12 +51,12 @@ namespace spark::math {
             const real32 cy = cos(rotation.m_z);
             const real32 sy = sin(rotation.m_z);
 
+            const real32 srsp = sr * sp;
+            const real32 crsp = cr * sp;
+
             m_matrix[0] = (T)(cp * cy);
             m_matrix[1] = (T)(cp * sy);
             m_matrix[2] = (T)(-sp);
-
-            const real32 srsp = sr * sp;
-            const real32 crsp = cr * sp;
 
             m_matrix[4] = (T)(srsp * cy - cr * sy);
             m_matrix[5] = (T)(srsp * sy + cr * cy);
@@ -71,7 +74,6 @@ namespace spark::math {
         */
         Matrix4<T> setTranslation(const spark::math::Vector3f translation)
         {
-            // Attention: OpenGL matrices are Column-major
             m_matrix[12] = translation.m_x;
             m_matrix[13] = translation.m_y;
             m_matrix[14] = translation.m_z;
@@ -108,23 +110,31 @@ namespace spark::math {
         */
         Matrix4<T> getInverseMatrix() const
         {
-            // The invert of a translation matrix is the negation of its translation coordinates
-            math::Matrix4<T> invertOfTranslation;
-            invertOfTranslation[12] = -m_matrix[12]; invertOfTranslation[13] = -m_matrix[13]; invertOfTranslation[14] = -m_matrix[14];
+            Matrix4<T> inv;
 
-            // The invert of a rotation matrix is its transposed matrix
-            math::Matrix4<T> invertOfRotation;
-            memcpy(invertOfRotation.m_matrix, m_matrix, sizeof(m_matrix));
-            invertOfRotation[12] = 0; // Reset translation X to copy the rotation part of this matrix
-            invertOfRotation[13] = 0; // Reset translation Y to copy the rotation part of this matrix
-            invertOfRotation[14] = 0; // Reset translation Z to copy the rotation part of this matrix
+            // Rotation transponieren (3x3)
+            inv[0] = m_matrix[0];
+            inv[1] = m_matrix[4];
+            inv[2] = m_matrix[8];
 
-            invertOfRotation = invertOfRotation.getTransposedMatrix();
+            inv[4] = m_matrix[1];
+            inv[5] = m_matrix[5];
+            inv[6] = m_matrix[9];
 
-            // The multiplication is the result
-            math::Matrix4<T> m = invertOfRotation * invertOfTranslation;
+            inv[8] = m_matrix[2];
+            inv[9] = m_matrix[6];
+            inv[10] = m_matrix[10];
 
-            return m;
+            // Last Line
+            inv[3] = inv[7] = inv[11] = 0;
+            inv[15] = 1;
+
+            // Translation = -R^T * t
+            inv[12] = -(inv[0] * m_matrix[12] + inv[4] * m_matrix[13] + inv[8] * m_matrix[14]);
+            inv[13] = -(inv[1] * m_matrix[12] + inv[5] * m_matrix[13] + inv[9] * m_matrix[14]);
+            inv[14] = -(inv[2] * m_matrix[12] + inv[6] * m_matrix[13] + inv[10] * m_matrix[14]);
+
+            return inv;
         }
 
         /**
@@ -138,6 +148,28 @@ namespace spark::math {
             m[4] = m_matrix[1]; m[5] = m_matrix[5]; m[6] = m_matrix[9]; m[7] = m_matrix[13];
             m[8] = m_matrix[2]; m[9] = m_matrix[6]; m[10] = m_matrix[10]; m[11] = m_matrix[14];
             m[12] = m_matrix[3]; m[13] = m_matrix[7]; m[14] = m_matrix[11]; m[15] = m_matrix[15];
+
+            return m;
+        }
+
+        /**
+        *
+        */
+        Matrix3<T> getMatrix3x3() const
+        {
+            Matrix3<T> m;
+
+            m[0] = m_matrix[0];
+            m[1] = m_matrix[1];
+            m[2] = m_matrix[2];
+
+            m[3] = m_matrix[4];
+            m[4] = m_matrix[5];
+            m[5] = m_matrix[6];
+
+            m[6] = m_matrix[8];
+            m[7] = m_matrix[9];
+            m[8] = m_matrix[10];
 
             return m;
         }

@@ -7,8 +7,10 @@ namespace spark::renderer {
     */
     VulkanRenderer::VulkanRenderer(spark::device::ISparkDevice* device,
         spark::renderer::shader::ISparkShader* shader,
-        spark::renderer::ISparkTextureFactory* textureFactory) :
-        AbstractSparkRenderer(device, shader, textureFactory, NULL)
+        spark::renderer::ISparkTextureFactory* textureFactory,
+        spark::renderer::ISparkVertexBufferFactory* vertexBufferFactory,
+        spark::renderer::lightbuffer::ISparkLightBuffer* lightBuffer) :
+        AbstractSparkRenderer(device, shader, textureFactory, vertexBufferFactory, lightBuffer)
     {
 
     }
@@ -50,6 +52,14 @@ namespace spark::renderer {
     */
     void VulkanRenderer::setPerspectiveProjectionMatrix(const spark::math::Matrix4f& projectionViewMatrix)
     {
+    }
+
+    /**
+    *
+    */
+    void VulkanRenderer::setViewMatrix(const spark::math::Matrix4f& viewMatrix)
+    {
+
     }
 
     /**

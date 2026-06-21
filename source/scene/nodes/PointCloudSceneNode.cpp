@@ -21,7 +21,7 @@ namespace spark::scene::nodes {
     /**
     *
     */
-    void PointCloudSceneNode::attachPointCloud(spark::geometry::pointcloud::ISparkPointCloud* pointCloud)
+    void PointCloudSceneNode::setPointCloud(spark::geometry::pointcloud::ISparkPointCloud* pointCloud)
     {
         if (pointCloud != NULL)
         {

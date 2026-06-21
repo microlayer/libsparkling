@@ -12,6 +12,7 @@ namespace spark::scene::nodes {
     {
     public:
         virtual void setDirection(spark::math::Vector3f lightDirection) = 0;
+        virtual spark::math::Vector3f getDirection() = 0;
     };
 }
 #endif

@@ -6,6 +6,7 @@
 #include "ISparkLogger.hpp"
 #include "renderer/common/ERenderEngine.hpp"
 #include "drawing/Color.hpp"
+#include <math/Vector3.hpp>
 #include "glsl_for_ogl_feature_level_glsles10/DefaultShader.hpp"
 #include "glsl_for_gles2_feature_level_glsles10/DefaultShader.hpp"
 #if SPARK_PLATFORM == SPARK_PLATFORM_WINDOWS || \
@@ -37,10 +38,22 @@ namespace spark::renderer::shader {
 
     public:
         void setProjectionViewMatrix(const real32* matrix);
+        void setModelViewMatrix(const real32* matrix);
+        void setModelMatrix(const real32* matrix);
+        void setNormalMatrix(const real32* matrix);
+
+    public:
         void setDrawMode(uint32_t drawMode);
         void setTextureUnit(uint32_t unit);
         void setFontColor(spark::drawing::Color fontColor);
-        void setLightDirection(real32 x, real32 y, real32 z);
+
+    public: // Light
+        void setLightBuffer(spark::renderer::lightbuffer::GPULightBuffer& lightBuffer);
+
+    public: // PBR
+        void setAlbedo(spark::math::Vector3f albedo);
+        void setRoughness(spark::real32 roughness);
+        void setMetallic(spark::real32 metallic);
 
     private:
         void init();

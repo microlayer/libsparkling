@@ -15,7 +15,7 @@ namespace spark::scene::nodes {
         virtual ~MeshSceneNode();
 
     public:
-        void attachMesh(spark::geometry::mesh::ISparkMesh* mesh) override;
+        void setMesh(spark::geometry::mesh::ISparkMesh* mesh) override;
         spark::geometry::mesh::ISparkMesh* getMesh() override;
         virtual void render(spark::renderer::ISparkRenderer* renderer) override;
 

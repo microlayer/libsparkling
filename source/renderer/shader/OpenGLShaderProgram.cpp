@@ -146,6 +146,30 @@ namespace spark::renderer::shader {
     /**
     * TODO: remove glGetUniformLocation replace with cached uniform location in shader init O(n)
     */
+    void OpenGLShaderProgram::setModelViewMatrix(const real32* matrix)
+    {
+        glUniformMatrix4fv(glGetUniformLocation(m_programObject, "uModelViewMatrix"), 1, GL_FALSE, matrix);
+    }
+
+    /**
+    * TODO: remove glGetUniformLocation replace with cached uniform location in shader init O(n)
+    */
+    void OpenGLShaderProgram::setModelMatrix(const real32* matrix)
+    {
+        glUniformMatrix4fv(glGetUniformLocation(m_programObject, "uModelMatrix"), 1, GL_FALSE, matrix);
+    }
+
+    /**
+    * TODO: remove glGetUniformLocation replace with cached uniform location in shader init O(n)
+    */
+    void OpenGLShaderProgram::setNormalMatrix(const real32* matrix)
+    {
+        glUniformMatrix3fv(glGetUniformLocation(m_programObject, "uNormalMatrix"), 1, GL_FALSE, matrix);
+    }
+
+    /**
+    * TODO: remove glGetUniformLocation replace with cached uniform location in shader init O(n)
+    */
     void OpenGLShaderProgram::setDrawMode(uint32_t drawMode)
     {
         glUniform1i(glGetUniformLocation(m_programObject, "uDrawMode"), drawMode);
@@ -172,9 +196,107 @@ namespace spark::renderer::shader {
     /**
     * TODO: remove glGetUniformLocation replace with cached uniform location in shader init O(n)
     */
-    void OpenGLShaderProgram::setLightDirection(real32 x, real32 y, real32 z)
+    void OpenGLShaderProgram::setLightBuffer(spark::renderer::lightbuffer::GPULightBuffer& lightBuffer)
     {
-        glUniform3f(glGetUniformLocation(m_programObject, "uLightDirection"), x, y, z);
+        GLint locDirectionalLightCount = glGetUniformLocation(m_programObject, "uDirectionalLightCount");
+        GLint locDirectionallLightDirections = glGetUniformLocation(m_programObject, "uDirectionalLightDirection");
+        GLint locDirectionallLightColors = glGetUniformLocation(m_programObject, "uDirectionalLightColor");
+        GLint locDirectionallLightIntensitys = glGetUniformLocation(m_programObject, "uDirectionalLightIntensity");
+
+
+        GLint locPointLightCount = glGetUniformLocation(m_programObject, "uPointLightCount");
+        GLint locPointlLightPositions = glGetUniformLocation(m_programObject, "uPointLightPosition");
+        GLint locPointlLightColors = glGetUniformLocation(m_programObject, "uPointLightColor");
+        GLint locPointlLightIntensitys = glGetUniformLocation(m_programObject, "uPointLightIntensity");
+        GLint locPointlLightRanges = glGetUniformLocation(m_programObject, "uPointLightRange");
+
+        int directionalLightCount = std::min(static_cast<int>(lightBuffer.directionalLightCount), 4);
+        if (locDirectionalLightCount != -1) glUniform1i(locDirectionalLightCount, directionalLightCount);
+
+        if (directionalLightCount > 0)
+        {
+            real32 directions[4 * 3] = { 0.0f };
+            real32 colors[4 * 3] = { 0.0f };
+            real32 intensities[4] = { 0.0f };
+
+            for (int i = 0; i < directionalLightCount; ++i)
+            {
+                const auto& light = lightBuffer.directionalLights[i];
+
+                directions[i * 3 + 0] = light.direction.m_x;
+                directions[i * 3 + 1] = light.direction.m_y;
+                directions[i * 3 + 2] = light.direction.m_z;
+
+                colors[i * 3 + 0] = (real32)light.color.m_redf;
+                colors[i * 3 + 1] = (real32)light.color.m_greenf;
+                colors[i * 3 + 2] = (real32)light.color.m_bluef;
+
+                intensities[i] = light.intensity;
+            }
+
+            if (locDirectionallLightDirections != -1)  glUniform3fv(locDirectionallLightDirections, directionalLightCount, directions);
+            if (locDirectionallLightColors != -1)     glUniform3fv(locDirectionallLightColors, directionalLightCount, colors);
+            if (locDirectionallLightIntensitys != -1) glUniform1fv(locDirectionallLightIntensitys, directionalLightCount, intensities);
+        }
+
+        int pointLightCount = std::min(static_cast<int>(lightBuffer.pointLightCount), 4);
+        if (locPointLightCount != -1) glUniform1i(locPointLightCount, pointLightCount);
+
+        if (pointLightCount > 0)
+        {
+            real32 positions[4 * 3] = { 0.0f };
+            real32 colors[4 * 3] = { 0.0f };
+            real32 intensities[4] = { 0.0f };
+            real32 ranges[4] = { 0.0f };
+
+            for (int i = 0; i < pointLightCount; ++i)
+            {
+                const auto& light = lightBuffer.pointLights[i];
+
+                positions[i * 3 + 0] = light.position.m_x;
+                positions[i * 3 + 1] = light.position.m_y;
+                positions[i * 3 + 2] = light.position.m_z;
+
+                colors[i * 3 + 0] = (real32)light.color.m_redf;
+                colors[i * 3 + 1] = (real32)light.color.m_greenf;
+                colors[i * 3 + 2] = (real32)light.color.m_bluef;
+
+                intensities[i] = light.intensity;
+                ranges[i] = light.range;
+            }
+
+            if (locPointlLightPositions != -1)  glUniform3fv(locPointlLightPositions, pointLightCount, positions);
+            if (locPointlLightColors != -1)     glUniform3fv(locPointlLightColors, pointLightCount, colors);
+            if (locPointlLightIntensitys != -1) glUniform1fv(locPointlLightIntensitys, pointLightCount, intensities);
+            if (locPointlLightRanges != -1)     glUniform1fv(locPointlLightRanges, pointLightCount, ranges);
+        }
+    }
+
+    /**
+    *
+    */
+    void OpenGLShaderProgram::setAlbedo(spark::math::Vector3f albedo)
+    {
+        GLint loc = glGetUniformLocation(m_programObject, "uAlbedo");
+        glUniform3f(loc, albedo.m_x, albedo.m_y, albedo.m_z);
+    }
+
+    /**
+    *
+    */
+    void OpenGLShaderProgram::setRoughness(spark::real32 roughness)
+    {
+        GLint loc = glGetUniformLocation(m_programObject, "uRoughness");
+        glUniform1f(loc, roughness);
+    }
+
+    /**
+    *
+    */
+    void OpenGLShaderProgram::setMetallic(spark::real32 metallic)
+    {
+        GLint loc = glGetUniformLocation(m_programObject, "uMetallic");
+        glUniform1f(loc, metallic);
     }
 
     /**

@@ -133,6 +133,9 @@
     <Filter Include="source\scene\camera">
       <UniqueIdentifier>{bbaf8b4f-6570-45b8-97f3-73beb7c7800f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\renderer\lightbuffer">
+      <UniqueIdentifier>{157879df-171a-4c1c-b836-b03b395d7744}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\spark\Sparkling.cpp">
@@ -320,6 +323,12 @@
     </ClCompile>
     <ClCompile Include="..\..\source\scene\camera\PerspectiveCamera.cpp">
       <Filter>source\scene\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scene\nodes\PointLightNode.cpp">
+      <Filter>source\scene\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\renderer\lightbuffer\OGLLightBuffer.cpp">
+      <Filter>source\renderer\lightbuffer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -751,6 +760,24 @@
     </ClInclude>
     <ClInclude Include="..\..\testbed\PerspectiveCameraTestCanvas.hpp">
       <Filter>testbed</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scene\nodes\PointLightNode.hpp">
+      <Filter>source\scene\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\renderer\lightbuffer\OGLLightBuffer.hpp">
+      <Filter>source\renderer\lightbuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkLightBuffer.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\renderer\lightbuffer\GPULightBuffer.hpp">
+      <Filter>source\renderer\lightbuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\renderer\lightbuffer\GPUDirectionalLight.hpp">
+      <Filter>source\renderer\lightbuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\renderer\lightbuffer\GPUPointLight.hpp">
+      <Filter>source\renderer\lightbuffer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

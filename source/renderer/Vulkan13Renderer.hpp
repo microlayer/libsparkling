@@ -18,7 +18,9 @@ namespace spark::renderer {
     public:
         Vulkan13Renderer(spark::device::ISparkDevice* device,
             spark::renderer::shader::ISparkShader* shader,
-            spark::renderer::ISparkTextureFactory* textureFactory);
+            spark::renderer::ISparkTextureFactory* textureFactory,
+            spark::renderer::ISparkVertexBufferFactory* vertexBufferFactory,
+            spark::renderer::lightbuffer::ISparkLightBuffer* lightBuffer);
         virtual ~Vulkan13Renderer(void);
 
     public: // ISparkRenderer

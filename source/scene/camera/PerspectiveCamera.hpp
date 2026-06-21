@@ -21,6 +21,7 @@ namespace spark::scene::camera {
 
     public:
         spark::math::Matrix4f getProjectionViewMatrix() const;
+        spark::math::Matrix4f getViewMatrix() const;
 
     private:
         void updateView();

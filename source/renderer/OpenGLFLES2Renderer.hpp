@@ -7,6 +7,7 @@
 #include "OpenGLRenderer.hpp"
 #include "ISparkTextureFactory.hpp"
 #include "ISparkVertexBufferFactory.hpp"
+#include "ISparkLightBuffer.hpp"
 
 namespace spark::renderer {
     /**
@@ -18,7 +19,8 @@ namespace spark::renderer {
         OpenGLFLES2Renderer(spark::device::ISparkDevice* device,
             spark::renderer::shader::ISparkShader* shader,
             spark::renderer::ISparkTextureFactory* textureFactory,
-            spark::renderer::ISparkVertexBufferFactory* vertexBufferFactory);
+            spark::renderer::ISparkVertexBufferFactory* vertexBufferFactory,
+            spark::renderer::lightbuffer::ISparkLightBuffer* lightBuffer);
         virtual ~OpenGLFLES2Renderer(void);
 
     public: // ISparkRenderer

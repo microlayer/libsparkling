@@ -9,8 +9,9 @@ namespace spark::renderer {
     OpenGLES2Renderer::OpenGLES2Renderer(spark::device::ISparkDevice* device,
         spark::renderer::shader::ISparkShader* shader,
         spark::renderer::ISparkTextureFactory* textureFactory,
-        spark::renderer::ISparkVertexBufferFactory* vertexBufferFactory) :
-        OpenGLRenderer(device, shader, textureFactory, vertexBufferFactory)
+        spark::renderer::ISparkVertexBufferFactory* vertexBufferFactory,
+        spark::renderer::lightbuffer::ISparkLightBuffer* lightBuffer) :
+        OpenGLRenderer(device, shader, textureFactory, vertexBufferFactory, lightBuffer)
     {
 
     }

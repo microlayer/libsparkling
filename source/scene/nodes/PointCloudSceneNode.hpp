@@ -2,7 +2,7 @@
 #define __SPARK_SCENE_NODES_POINTCLOUDSCENENODE_HPP_INCLUDED__
 
 #include "SceneNode.hpp"
-#include <ISparkPointCloudSceneNode.hpp>
+#include "ISparkPointCloudSceneNode.hpp"
 
 namespace spark::scene::nodes {
     /**
@@ -15,7 +15,7 @@ namespace spark::scene::nodes {
         virtual ~PointCloudSceneNode();
 
     public:
-        void attachPointCloud(spark::geometry::pointcloud::ISparkPointCloud* pointCloud) override;
+        void setPointCloud(spark::geometry::pointcloud::ISparkPointCloud* pointCloud) override;
         spark::geometry::pointcloud::ISparkPointCloud* getPointCloud() override;
         virtual void render(spark::renderer::ISparkRenderer* renderer) override;
 

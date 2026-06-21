@@ -12,6 +12,7 @@ namespace spark::scene::nodes {
     {
     public:
         virtual void setRange(real32 range) = 0;
+        virtual real32 getRange() const = 0;
     };
 }
 #endif

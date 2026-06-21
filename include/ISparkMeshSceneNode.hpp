@@ -10,7 +10,7 @@ namespace spark::scene::nodes {
     class ISparkMeshSceneNode : public virtual ISparkSceneNode
     {
     public:
-        virtual void attachMesh(spark::geometry::mesh::ISparkMesh* mesh) = 0;
+        virtual void setMesh(spark::geometry::mesh::ISparkMesh* mesh) = 0;
         virtual spark::geometry::mesh::ISparkMesh* getMesh() = 0;
     };
 }

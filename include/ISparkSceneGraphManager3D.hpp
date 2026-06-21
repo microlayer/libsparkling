@@ -5,6 +5,7 @@
 #include "scene/nodes/SceneNode.hpp"
 #include "ISparkCoordinateSystemNode.hpp"
 #include "ISparkDirectionalLightNode.hpp"
+#include "ISparkPointLightNode.hpp"
 #include "ISparkMeshSceneNode.hpp"
 #include "ISparkPointCloudSceneNode.hpp"
 #include "ISparkPerspectiveCamera.hpp"
@@ -18,14 +19,17 @@ namespace spark::scene {
     public:
         virtual spark::scene::nodes::ISparkSceneNode* rootNode() = 0;
         virtual void setActiveCamera(spark::scene::camera::ISparkPerspectiveCamera* camera) = 0;
+        virtual void addLight(spark::scene::nodes::ISparkLightNode* lightNode) = 0;
         virtual void drawGraph(spark::renderer::ISparkRenderer* renderer) = 0;
 
-    public: // Factory
-        virtual spark::scene::camera::ISparkPerspectiveCamera* createPerspectiveCamera() = 0;
+    public: // Factory        
         virtual spark::scene::nodes::ISparkMeshSceneNode* createMeshSceneNode() = 0;
         virtual spark::scene::nodes::ISparkPointCloudSceneNode* createPointCloudSceneNode() = 0;
         virtual spark::scene::nodes::ISparkCoordinateSystemNode* createCoordinateSystemNode() = 0;
+
+        // Light
         virtual spark::scene::nodes::ISparkDirectionalLightNode* createDirectionalLightNode() = 0;
+        virtual spark::scene::nodes::ISparkPointLightNode* createPointLightNode() = 0;
     };
 }
 #endif

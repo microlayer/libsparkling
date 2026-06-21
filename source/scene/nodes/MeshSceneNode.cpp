@@ -20,7 +20,7 @@ namespace spark::scene::nodes {
     /**
     *
     */
-    void MeshSceneNode::attachMesh(spark::geometry::mesh::ISparkMesh* mesh)
+    void MeshSceneNode::setMesh(spark::geometry::mesh::ISparkMesh* mesh)
     {
 
         if (mesh != NULL)

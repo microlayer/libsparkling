@@ -16,14 +16,20 @@ namespace spark::scene::nodes {
         virtual ~LightNode();
 
     public:
-        void setLightColor(spark::math::Vector3f lightColor) override;
+        void setLightColor(spark::drawing::Color lightColor) override;
+        spark::drawing::Color getLightColor() override;
         void setIntensity(real32 intensity) override;
+        real32 getIntesity() override;
+
+    public:
+        virtual LightType getLightType() override = 0;
 
     public:
         void render(spark::renderer::ISparkRenderer* renderer) override;
 
     private:
-        spark::math::Vector3f m_light;
+        spark::drawing::Color m_lightColor;
+        real32 m_intensity;
     };
 }
 #endif

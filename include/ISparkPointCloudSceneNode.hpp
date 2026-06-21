@@ -10,7 +10,7 @@ namespace spark::scene::nodes {
     class ISparkPointCloudSceneNode : public virtual ISparkSceneNode
     {
     public:
-        virtual void attachPointCloud(spark::geometry::pointcloud::ISparkPointCloud* pointCloud) = 0;
+        virtual void setPointCloud(spark::geometry::pointcloud::ISparkPointCloud* pointCloud) = 0;
         virtual spark::geometry::pointcloud::ISparkPointCloud* getPointCloud() = 0;
     };
 }

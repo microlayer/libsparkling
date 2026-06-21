@@ -69,6 +69,14 @@ namespace spark::scene::camera {
     /**
     *
     */
+    spark::math::Matrix4f PerspectiveCamera::getViewMatrix() const
+    {
+        return m_viewMatrix;
+    }
+
+    /**
+    *
+    */
     void PerspectiveCamera::updateView()
     {
         real32 perspectiveArray[16];

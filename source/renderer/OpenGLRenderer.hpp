@@ -31,7 +31,8 @@ namespace spark::renderer {
         OpenGLRenderer(spark::device::ISparkDevice* device,
             spark::renderer::shader::ISparkShader* shader,
             spark::renderer::ISparkTextureFactory* textureFactory,
-            spark::renderer::ISparkVertexBufferFactory* vertexBufferFactory);
+            spark::renderer::ISparkVertexBufferFactory* vertexBufferFactory,
+            spark::renderer::lightbuffer::ISparkLightBuffer* lightBuffer);
         virtual ~OpenGLRenderer(void);
 
     public: // AbstractSparkRenderer
@@ -40,8 +41,9 @@ namespace spark::renderer {
 
     public: // ISparkRenderer
         // Perspective
-        void setOrthographicProjectionMatrix(spark::perspective::OrthographicProjection& orthographicProjection);        
+        void setOrthographicProjectionMatrix(spark::perspective::OrthographicProjection& orthographicProjection);
         void setPerspectiveProjectionMatrix(const spark::math::Matrix4f& projectionViewMatrix);
+        void setViewMatrix(const spark::math::Matrix4f& viewMatrix);
         void setModelTransformation(math::Matrix4f& modelTransformation);
 
         // Common
@@ -73,6 +75,7 @@ namespace spark::renderer {
 
     private:
         math::Matrix4f m_projectionViewMatrix;
+        math::Matrix4f m_viewMatrix;
         spark::drawing::Color m_backgroundColor;
 
         std::vector<drawing::Vertex3> m_lineVertices;

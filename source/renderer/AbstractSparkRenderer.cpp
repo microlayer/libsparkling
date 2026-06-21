@@ -8,11 +8,13 @@ namespace spark {
         AbstractSparkRenderer::AbstractSparkRenderer(spark::device::ISparkDevice* device,
             spark::renderer::shader::ISparkShader* shader,
             spark::renderer::ISparkTextureFactory* textureFactory,
-            spark::renderer::ISparkVertexBufferFactory* vertexBufferFactory) :
+            spark::renderer::ISparkVertexBufferFactory* vertexBufferFactory,
+            spark::renderer::lightbuffer::ISparkLightBuffer* lightBuffer) :
             m_device(device),
             m_shader(shader),
             m_textureFactory(textureFactory),
             m_vertexBufferFactory(vertexBufferFactory),
+            m_lightBuffer(lightBuffer),
             m_logger(device->getLogger())
         {
 
@@ -54,9 +56,11 @@ namespace spark {
         /**
         *
         */
-        void AbstractSparkRenderer::setLightDirection(real32 x, real32 y, real32 z)
+        void AbstractSparkRenderer::uploadLights(
+            std::vector<renderer::lightbuffer::GPUDirectionalLight> gpuDirectionalLights,
+            std::vector<renderer::lightbuffer::GPUPointLight> gpuPointLights)
         {
-            m_shader->setLightDirection(x, y, z);
+            m_lightBuffer->uploadLights(m_shader, gpuDirectionalLights, gpuPointLights);
         }
 
         /**
@@ -65,6 +69,14 @@ namespace spark {
         spark::material::ISparkMaterial* AbstractSparkRenderer::createMaterial(spark::material::RenderMode renderMode)
         {
             return new spark::material::Material(renderMode);
+        }
+
+        /**
+        *
+        */
+        spark::scene::camera::ISparkPerspectiveCamera* AbstractSparkRenderer::createPerspectiveCamera()
+        {
+            return new spark::scene::camera::PerspectiveCamera(m_device->getScreenResolution().m_ratio);
         }
     } // end namespace renderer
 } // end namespace spark

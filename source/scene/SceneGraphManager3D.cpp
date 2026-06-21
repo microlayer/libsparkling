@@ -13,7 +13,6 @@ namespace spark::scene {
         m_activeCamera(NULL),
         m_defaultCamera(screenResolution.m_ratio)
     {
-        //m_renderer->setLightDirection(0.0, 0.0, -1.0); // Currently not used
         m_renderer->setDrawMode(0);
     }
 
@@ -22,7 +21,11 @@ namespace spark::scene {
     */
     SceneGraphManager3D::~SceneGraphManager3D()
     {
-
+        for (auto& light : m_lights)
+        {
+            light->release();
+        }
+        m_lights.clear();
     }
 
     /**
@@ -38,6 +41,7 @@ namespace spark::scene {
     */
     void SceneGraphManager3D::setDefaultCamera()
     {
+        m_renderer->setViewMatrix(m_defaultCamera.getViewMatrix());
         m_renderer->setPerspectiveProjectionMatrix(m_defaultCamera.getProjectionViewMatrix());
     }
 
@@ -52,9 +56,19 @@ namespace spark::scene {
     /**
     *
     */
+    void SceneGraphManager3D::addLight(spark::scene::nodes::ISparkLightNode* lightNode)
+    {
+        lightNode->addRef();
+        m_lights.push_back(lightNode);
+    }
+
+    /**
+    *
+    */
     void SceneGraphManager3D::drawGraph(spark::renderer::ISparkRenderer* renderer)
     {
         applyCamera();
+        applyLight();
 
         onBeforeDrawGraph();
 
@@ -84,7 +98,52 @@ namespace spark::scene {
         else
         {
             auto projectionViewMatrix = m_activeCamera->getProjectionViewMatrix();
+            m_renderer->setViewMatrix(m_defaultCamera.getViewMatrix());
             m_renderer->setPerspectiveProjectionMatrix(projectionViewMatrix);
+        }
+    }
+
+    /**
+    *
+    */
+    void SceneGraphManager3D::applyLight()
+    {
+        if (m_lights.size() > 0)
+        {
+            std::vector<renderer::lightbuffer::GPUDirectionalLight> gpuDirectionalLights;
+            std::vector<renderer::lightbuffer::GPUPointLight> gpuPointLights;
+
+            for (auto* light : m_lights)
+            {
+                switch (light->getLightType())
+                {
+                case spark::scene::nodes::LightType::Directional:
+                {
+                    renderer::lightbuffer::GPUDirectionalLight gpuDirectionalLight;
+                    spark::scene::nodes::ISparkDirectionalLightNode* l = dynamic_cast<spark::scene::nodes::ISparkDirectionalLightNode*>(light);
+                    gpuDirectionalLight.color = l->getLightColor();
+                    gpuDirectionalLight.direction = l->getDirection();
+                    gpuDirectionalLight.intensity = l->getIntesity();
+
+                    gpuDirectionalLights.push_back(gpuDirectionalLight);
+                    break;
+                }
+                case spark::scene::nodes::LightType::Point:
+                {
+                    renderer::lightbuffer::GPUPointLight gpuPointLight;
+                    spark::scene::nodes::ISparkPointLightNode* l = dynamic_cast<spark::scene::nodes::ISparkPointLightNode*>(light);
+                    gpuPointLight.position = l->getPosition();
+                    gpuPointLight.color = l->getLightColor();
+                    gpuPointLight.intensity = l->getIntesity();
+                    gpuPointLight.range = l->getRange();
+
+                    gpuPointLights.push_back(gpuPointLight);
+                    break;
+                }
+                }
+            }
+
+            m_renderer->uploadLights(gpuDirectionalLights, gpuPointLights);
         }
     }
 
@@ -105,14 +164,6 @@ namespace spark::scene {
 
         m_renderer->activateDepthTest(false);
         m_renderer->setDrawMode(0);
-    }
-
-    /**
-    *
-    */
-    spark::scene::camera::ISparkPerspectiveCamera* SceneGraphManager3D::createPerspectiveCamera()
-    {
-        return new spark::scene::camera::PerspectiveCamera(m_screenResolution.m_ratio);
     }
 
     /**
@@ -145,5 +196,13 @@ namespace spark::scene {
     spark::scene::nodes::ISparkDirectionalLightNode* SceneGraphManager3D::createDirectionalLightNode()
     {
         return new spark::scene::nodes::DirectionalLightNode();
+    }
+
+    /**
+    *
+    */
+    spark::scene::nodes::ISparkPointLightNode* SceneGraphManager3D::createPointLightNode()
+    {
+        return new spark::scene::nodes::PointLightNode();
     }
 }

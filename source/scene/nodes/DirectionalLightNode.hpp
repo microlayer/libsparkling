@@ -16,9 +16,16 @@ namespace spark::scene::nodes {
 
     public:
         void setDirection(spark::math::Vector3f lightDirection) override;
+        spark::math::Vector3f getDirection() override;
+
+    public:
+        LightType getLightType() override;
 
     public:
         void render(spark::renderer::ISparkRenderer* renderer) override;
+
+    private:
+        spark::math::Vector3f m_lightDirection;
     };
 }
 #endif

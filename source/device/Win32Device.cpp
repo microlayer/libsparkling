@@ -96,13 +96,15 @@ namespace spark::device {
         if (m_rendererEngineType == spark::renderer::E_RENDER_ENGINE::ERE_OGLFLES2)
         {
             m_rendererConfig = new spark::renderer::OGLConfig(m_window, m_logger);
-            m_renderer = new spark::renderer::OpenGLFLES2Renderer(this, m_shader, m_texureFactory, m_vertexBufferFactory);
+            m_lightBuffer = new spark::renderer::lightbuffer::OGLLightBuffer();
+
+            m_renderer = new spark::renderer::OpenGLFLES2Renderer(this, m_shader, m_texureFactory, m_vertexBufferFactory, m_lightBuffer);
         }
 #if SPARK_COMPILE_VULKAN == 0x1
         else
         {
             m_rendererConfig = new spark::renderer::VulkanConfig(m_window, m_logger);
-            m_renderer = new spark::renderer::Vulkan13Renderer(this, m_shader, m_texureFactory);
+            m_renderer = new spark::renderer::Vulkan13Renderer(this, m_shader, m_texureFactory, m_vertexBufferFactory, m_lightBuffer);
         }
 #endif
         m_renderer->onInit();

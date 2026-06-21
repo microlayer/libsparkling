@@ -23,6 +23,7 @@
 #if SPARK_PLATFORM == SPARK_PLATFORM_WEBGL
 #include <emscripten/emscripten.h>
 #endif
+#include <ISparkLightBuffer.hpp>
 
 namespace spark::device {
     /**
@@ -101,6 +102,7 @@ namespace spark::device {
         spark::renderer::ISparkRendererApiConfig* m_rendererConfig;
         spark::renderer::ISparkTextureFactory* m_texureFactory;
         spark::renderer::ISparkVertexBufferFactory* m_vertexBufferFactory;
+        spark::renderer::lightbuffer::ISparkLightBuffer* m_lightBuffer;
         spark::ui::AbstractCanvas* m_activeCanvas;
         spark::app::ISparkApp* m_sparkApp;
         uint32_t m_screenWidth;
