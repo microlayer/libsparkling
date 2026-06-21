@@ -4,13 +4,13 @@
 //	Changes will be lost if code is regenerated
 // </auto-generated>
 //------------------------------------------------------------------------------
-#ifndef __SPARK_RENDERER_SHADER_GLSL_FOR_GLES2_FEATURE_LEVEL_GLSLES10_DEFAULTSHADER_HPP_INCLUDED__
-#define __SPARK_RENDERER_SHADER_GLSL_FOR_GLES2_FEATURE_LEVEL_GLSLES10_DEFAULTSHADER_HPP_INCLUDED__
+#ifndef __SPARK_RENDERER_SHADER_GLSL_FOR_GLES3_FEATURE_LEVEL_GLSLES30_DEFAULTSHADER_HPP_INCLUDED__
+#define __SPARK_RENDERER_SHADER_GLSL_FOR_GLES3_FEATURE_LEVEL_GLSLES30_DEFAULTSHADER_HPP_INCLUDED__
 
 namespace spark {
 	namespace renderer {
 		namespace shader {
-			namespace glsl_for_gles2_feature_level_glsles10 {
+			namespace glsl_for_gles3_feature_level_glsles30 {
 				/// <summary>
 				///
 				/// <summary>

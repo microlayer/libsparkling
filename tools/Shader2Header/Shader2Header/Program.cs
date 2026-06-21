@@ -10,7 +10,7 @@ var parser = new FileIniDataParser();
 var defaultShader1 = new DefaultShader
 {
     RootFolder = @"..\..\..\..\..\..\source\renderer\shader",
-    Version = "glsl_for_ogl_feature_level_glsles10",
+    Version = "glsl_for_ogl_feature_level_glsles30",
     ClassName = "DefaultShader",
     VertexName = "Default.vert",
     FragmentName = "Default.frag"
@@ -19,7 +19,7 @@ var defaultShader1 = new DefaultShader
 var defaultShader2 = new DefaultShader
 {
     RootFolder = @"..\..\..\..\..\..\source\renderer\shader",
-    Version = "glsl_for_gles2_feature_level_glsles10",
+    Version = "glsl_for_gles3_feature_level_glsles30",
     ClassName = "DefaultShader",
     VertexName = "Default.vert",
     FragmentName = "Default.frag"

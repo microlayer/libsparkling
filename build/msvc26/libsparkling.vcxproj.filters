@@ -76,15 +76,6 @@
     <Filter Include="source\forms">
       <UniqueIdentifier>{909a5867-ebd0-4fd7-b0b0-2b4fa87acfb9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="source\renderer\shader\glsl_for_ogl_feature_level_glsles10">
-      <UniqueIdentifier>{34c4a2d2-aa1a-472e-870b-cf94813b61a0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="source\renderer\shader\glsl_for_gles2_feature_level_glsles10">
-      <UniqueIdentifier>{28b2e3c3-c2d7-4124-8ac0-d9767d594916}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="source\renderer\shader\glsl_for_spir_feature_level_glsles10">
-      <UniqueIdentifier>{0b9947a8-380d-46e3-95e6-de45192e416a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="source\game">
       <UniqueIdentifier>{459f3f40-dcb2-4f68-af95-97b75c17fa8c}</UniqueIdentifier>
     </Filter>
@@ -135,6 +126,15 @@
     </Filter>
     <Filter Include="source\renderer\lightbuffer">
       <UniqueIdentifier>{157879df-171a-4c1c-b836-b03b395d7744}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\renderer\shader\glsl_for_gles3_feature_level_glsles30">
+      <UniqueIdentifier>{28b2e3c3-c2d7-4124-8ac0-d9767d594916}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\renderer\shader\glsl_for_ogl_feature_level_glsles30">
+      <UniqueIdentifier>{34c4a2d2-aa1a-472e-870b-cf94813b61a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\renderer\shader\glsl_for_spir_feature_level_glsles30">
+      <UniqueIdentifier>{0b9947a8-380d-46e3-95e6-de45192e416a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -539,15 +539,6 @@
     <ClInclude Include="..\..\source\forms\Window.hpp">
       <Filter>source\forms</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\renderer\shader\glsl_for_ogl_feature_level_glsles10\DefaultShader.hpp">
-      <Filter>source\renderer\shader\glsl_for_ogl_feature_level_glsles10</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\renderer\shader\glsl_for_spir_feature_level_glsles10\DefaultShader.hpp">
-      <Filter>source\renderer\shader\glsl_for_spir_feature_level_glsles10</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\renderer\shader\glsl_for_gles2_feature_level_glsles10\DefaultShader.hpp">
-      <Filter>source\renderer\shader\glsl_for_gles2_feature_level_glsles10</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\source\game\TiledLayer.hpp">
       <Filter>source\game</Filter>
     </ClInclude>
@@ -797,25 +788,34 @@
     <ClInclude Include="..\..\include\ISparkPBRMaterial.hpp">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\source\renderer\shader\glsl_for_gles3_feature_level_glsles30\DefaultShader.hpp">
+      <Filter>source\renderer\shader\glsl_for_gles3_feature_level_glsles30</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\renderer\shader\glsl_for_ogl_feature_level_glsles30\DefaultShader.hpp">
+      <Filter>source\renderer\shader\glsl_for_ogl_feature_level_glsles30</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\renderer\shader\glsl_for_spir_feature_level_glsles30\DefaultShader.hpp">
+      <Filter>source\renderer\shader\glsl_for_spir_feature_level_glsles30</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\source\renderer\shader\glsl_for_ogl_feature_level_glsles10\Default.frag">
-      <Filter>source\renderer\shader\glsl_for_ogl_feature_level_glsles10</Filter>
+    <None Include="..\..\source\renderer\shader\glsl_for_gles3_feature_level_glsles30\Default.frag">
+      <Filter>source\renderer\shader\glsl_for_gles3_feature_level_glsles30</Filter>
     </None>
-    <None Include="..\..\source\renderer\shader\glsl_for_ogl_feature_level_glsles10\Default.vert">
-      <Filter>source\renderer\shader\glsl_for_ogl_feature_level_glsles10</Filter>
+    <None Include="..\..\source\renderer\shader\glsl_for_gles3_feature_level_glsles30\Default.vert">
+      <Filter>source\renderer\shader\glsl_for_gles3_feature_level_glsles30</Filter>
     </None>
-    <None Include="..\..\source\renderer\shader\glsl_for_spir_feature_level_glsles10\Default.frag">
-      <Filter>source\renderer\shader\glsl_for_spir_feature_level_glsles10</Filter>
+    <None Include="..\..\source\renderer\shader\glsl_for_ogl_feature_level_glsles30\Default.frag">
+      <Filter>source\renderer\shader\glsl_for_ogl_feature_level_glsles30</Filter>
     </None>
-    <None Include="..\..\source\renderer\shader\glsl_for_spir_feature_level_glsles10\Default.vert">
-      <Filter>source\renderer\shader\glsl_for_spir_feature_level_glsles10</Filter>
+    <None Include="..\..\source\renderer\shader\glsl_for_ogl_feature_level_glsles30\Default.vert">
+      <Filter>source\renderer\shader\glsl_for_ogl_feature_level_glsles30</Filter>
     </None>
-    <None Include="..\..\source\renderer\shader\glsl_for_gles2_feature_level_glsles10\Default.frag">
-      <Filter>source\renderer\shader\glsl_for_gles2_feature_level_glsles10</Filter>
+    <None Include="..\..\source\renderer\shader\glsl_for_spir_feature_level_glsles30\Default.frag">
+      <Filter>source\renderer\shader\glsl_for_spir_feature_level_glsles30</Filter>
     </None>
-    <None Include="..\..\source\renderer\shader\glsl_for_gles2_feature_level_glsles10\Default.vert">
-      <Filter>source\renderer\shader\glsl_for_gles2_feature_level_glsles10</Filter>
+    <None Include="..\..\source\renderer\shader\glsl_for_spir_feature_level_glsles30\Default.vert">
+      <Filter>source\renderer\shader\glsl_for_spir_feature_level_glsles30</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -60,13 +60,13 @@ namespace spark::renderer::shader {
             const char* fragShaderSource = 0;
             if (m_rendererEngineType == spark::renderer::ERE_OGLFLES2)
             {
-                spark::renderer::shader::glsl_for_ogl_feature_level_glsles10::DefaultShader defaultShader;
+                spark::renderer::shader::glsl_for_ogl_feature_level_glsles30::DefaultShader defaultShader;
                 vertShaderSource = defaultShader.GetVertexShader();
                 fragShaderSource = defaultShader.GetFragmentShader();
             }
             if (m_rendererEngineType == spark::renderer::ERE_OGLES2)
             {
-                spark::renderer::shader::glsl_for_gles2_feature_level_glsles10::DefaultShader defaultShader;
+                spark::renderer::shader::glsl_for_gles3_feature_level_glsles30::DefaultShader defaultShader;
                 vertShaderSource = defaultShader.GetVertexShader();
                 fragShaderSource = defaultShader.GetFragmentShader();
             }

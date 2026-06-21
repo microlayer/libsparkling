@@ -7,8 +7,8 @@
 #include "renderer/common/ERenderEngine.hpp"
 #include "drawing/Color.hpp"
 #include <math/Vector3.hpp>
-#include "glsl_for_ogl_feature_level_glsles10/DefaultShader.hpp"
-#include "glsl_for_gles2_feature_level_glsles10/DefaultShader.hpp"
+#include "glsl_for_ogl_feature_level_glsles30/DefaultShader.hpp"
+#include "glsl_for_gles3_feature_level_glsles30/DefaultShader.hpp"
 #if SPARK_PLATFORM == SPARK_PLATFORM_WINDOWS || \
     SPARK_PLATFORM == SPARK_PLATFORM_LINUX   || \
     SPARK_PLATFORM == SPARK_PLATFORM_APPLE
