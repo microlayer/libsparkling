@@ -21,6 +21,7 @@ namespace spark::ui {
 
     public:
         virtual void init() = 0;
+        virtual void destroy() = 0;
         virtual void paint(spark::renderer::ISparkRenderer* renderer) = 0;
     };
 }

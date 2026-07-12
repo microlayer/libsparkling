@@ -65,6 +65,13 @@ public:
     /**
     *
     */
+    void destroy()
+    {
+    }
+
+    /**
+    *
+    */
     void onKeyPressed(int key, int action)
     {
         m_rot_x = 0.0f;

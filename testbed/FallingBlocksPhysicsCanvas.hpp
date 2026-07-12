@@ -57,6 +57,13 @@ public:
     /**
     *
     */
+    void destroy()
+    {
+    }
+
+    /**
+    *
+    */
     void onKeyPressed()
     {
 

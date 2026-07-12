@@ -274,6 +274,7 @@ namespace spark::device {
     {
         if (m_activeCanvas != m_sparkApp->getActiveCanvas())
         {
+            m_activeCanvas->destroy();
             m_activeCanvas = m_sparkApp->getActiveCanvas();
             m_activeCanvas->init();
         }

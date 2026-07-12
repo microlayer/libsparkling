@@ -48,6 +48,13 @@ public:
     /**
     *
     */
+    void destroy()
+    {
+    }
+
+    /**
+    *
+    */
     void paint(spark::renderer::ISparkRenderer* renderer)
     {
         m_sceneGraphManager3D->drawGraph(renderer);

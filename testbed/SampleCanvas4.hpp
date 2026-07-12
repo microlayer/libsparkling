@@ -38,6 +38,13 @@ public:
     /**
     *
     */
+    void destroy()
+    {
+    }
+
+    /**
+    *
+    */
     void paint(spark::renderer::ISparkRenderer* renderer)
     {
         renderer->drawString(spark::font::ESFT_ARIAL_16, "Hello Canvas 4", spark::drawing::Color(255, 255, 0, 128), 600, 300);

@@ -17,7 +17,7 @@ public:
     {
         // Create SceneGraphManager3D                
         m_sceneGraphManager3D = device->createSceneGraphManager3D();
-        
+
         // Material
         m_material = m_device->getRenderer()->createPBRMaterial();
         m_material->setAlbedo({ 1.0, 1.0, 1.0 });
@@ -38,6 +38,13 @@ public:
     *
     */
     void init()
+    {
+    }
+
+    /**
+    *
+    */
+    void destroy()
     {
     }
 
