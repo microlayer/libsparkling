@@ -38,6 +38,10 @@ namespace spark::scene {
         void drawGraph(spark::renderer::ISparkRenderer* renderer);
 
     private:
+        void renderScene(spark::renderer::ISparkRenderer* renderer);
+        void renderShadowMaps(spark::renderer::ISparkRenderer* renderer);
+
+    private:
         void applyCamera();
         void applyLight();
 
@@ -64,6 +68,8 @@ namespace spark::scene {
         spark::scene::camera::PerspectiveCamera m_defaultCamera;
 
         std::vector<spark::scene::nodes::ISparkLightNode*> m_lights;
+
+        bool m_isShadowMappingEnabled;
     };
 }
 #endif

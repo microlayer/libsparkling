@@ -46,7 +46,9 @@ namespace spark::renderer {
         void setViewMatrix(const spark::math::Matrix4f& viewMatrix);
         void setModelTransformation(math::Matrix4f& modelTransformation);
 
-        // Render Target
+        // Shadow map
+        void beginShadowPass(/*spark::scene::nodes::ISparkLightNode* light*/);
+        void endShadowPass();
         void setActiveRenderTarget(spark::renderer::E_RENDER_TARGET renderTarget);
 
         // Common

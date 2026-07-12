@@ -67,11 +67,23 @@ namespace spark::scene {
     */
     void SceneGraphManager3D::drawGraph(spark::renderer::ISparkRenderer* renderer)
     {
+        renderShadowMaps(renderer);
+
         applyCamera();
         applyLight();
 
         onBeforeDrawGraph();
 
+        renderScene(renderer);
+
+        onAfterDrawGraph();
+    }
+
+    /**
+    *
+    */
+    void SceneGraphManager3D::renderScene(spark::renderer::ISparkRenderer* renderer)
+    {
         if (!m_rootNode.getChildren().empty())
         {
             for (spark::scene::nodes::ISparkSceneNode* node : m_rootNode.getChildren())
@@ -82,8 +94,26 @@ namespace spark::scene {
                 }
             }
         }
+    }
 
-        onAfterDrawGraph();
+    /**
+    *
+    */
+    void SceneGraphManager3D::renderShadowMaps(spark::renderer::ISparkRenderer* renderer)
+    {
+        if (m_isShadowMappingEnabled)
+        {
+            for (auto* light : m_lights)
+            {
+                renderer->beginShadowPass(/*light*/);
+
+                //applyLightCamera(light);
+
+                renderScene(renderer);
+
+                renderer->endShadowPass();
+            }
+        }
     }
 
     /**

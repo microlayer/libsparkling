@@ -138,6 +138,28 @@ namespace spark::renderer {
     /**
     *
     */
+    void OpenGLRenderer::beginShadowPass(/*spark::scene::nodes::ISparkLightNode* light*/)
+    {
+        //glBindFramebuffer(GL_FRAMEBUFFER, light->shadowMap().fbo);
+
+        //glViewport(0, 0, light->shadowMap().width, light->shadowMap().height);
+
+        //glClear(GL_DEPTH_BUFFER_BIT);
+
+        //glCullFace(GL_FRONT);
+    }
+
+    /**
+    *
+    */
+    void OpenGLRenderer::endShadowPass()
+    {
+        //setActiveRenderTarget(ERT_WINDOW);    
+    }
+
+    /**
+    *
+    */
     void OpenGLRenderer::setActiveRenderTarget(spark::renderer::E_RENDER_TARGET renderTarget)
     {
         switch (renderTarget)

@@ -47,6 +47,11 @@ namespace spark::renderer {
         virtual void setViewMatrix(const spark::math::Matrix4f& viewMatrix) = 0;
         virtual void setModelTransformation(math::Matrix4f& modelTransformation) = 0;
 
+        // Shadow map
+        virtual void beginShadowPass(/*spark::scene::nodes::ISparkLightNode* light*/) = 0;
+        virtual void endShadowPass() = 0;
+
+        // Common
         virtual void drawBackground(const spark::drawing::Color& color) = 0;
 
         // 2D support            
