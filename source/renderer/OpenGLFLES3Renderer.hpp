@@ -13,15 +13,15 @@ namespace spark::renderer {
     /**
     *
     */
-    class OpenGLFLES2Renderer : public spark::renderer::OpenGLRenderer
+    class OpenGLFLES3Renderer : public spark::renderer::OpenGLRenderer
     {
     public:
-        OpenGLFLES2Renderer(spark::device::ISparkDevice* device,
+        OpenGLFLES3Renderer(spark::device::ISparkDevice* device,
             spark::renderer::shader::ISparkShader* shader,
             spark::renderer::ISparkTextureFactory* textureFactory,
             spark::renderer::ISparkVertexBufferFactory* vertexBufferFactory,
             spark::renderer::lightbuffer::ISparkLightBuffer* lightBuffer);
-        virtual ~OpenGLFLES2Renderer(void);
+        virtual ~OpenGLFLES3Renderer(void);
 
     public: // ISparkRenderer
         // Lifecycle

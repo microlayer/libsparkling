@@ -159,7 +159,7 @@
     <ClCompile Include="..\..\source\device\window\GlfwWindow.cpp">
       <Filter>source\device\window</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\renderer\OpenGLFLES2Renderer.cpp">
+    <ClCompile Include="..\..\source\renderer\OpenGLFLES3Renderer.cpp">
       <Filter>source\renderer</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\renderer\AbstractSparkRenderer.cpp">
@@ -183,7 +183,7 @@
     <ClCompile Include="..\..\source\device\WebGLDevice.cpp">
       <Filter>source\device</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\renderer\OpenGLES2Renderer.cpp">
+    <ClCompile Include="..\..\source\renderer\OpenGLES3Renderer.cpp">
       <Filter>source\renderer</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\device\window\AndroidEGLWindow.cpp">
@@ -389,7 +389,7 @@
     <ClInclude Include="..\..\source\device\window\GlfwWindow.hpp">
       <Filter>source\device\window</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\renderer\OpenGLFLES2Renderer.hpp">
+    <ClInclude Include="..\..\source\renderer\OpenGLFLES3Renderer.hpp">
       <Filter>source\renderer</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\Sparkling.hpp">
@@ -437,7 +437,7 @@
     <ClInclude Include="..\..\source\device\WebGLDevice.hpp">
       <Filter>source\device</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\renderer\OpenGLES2Renderer.hpp">
+    <ClInclude Include="..\..\source\renderer\OpenGLES3Renderer.hpp">
       <Filter>source\renderer</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\device\window\AndroidEGLWindow.hpp">

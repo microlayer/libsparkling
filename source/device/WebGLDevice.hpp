@@ -4,7 +4,7 @@
 #include "spark/SparkSetup.hpp"
 #if SPARK_PLATFORM == SPARK_PLATFORM_WEBGL
 #include "AbstractSparkDevice.hpp"
-#include "renderer/OpenGLES2Renderer.hpp"
+#include "renderer/OpenGLES3Renderer.hpp"
 #include "renderer/shader/OpenGLShaderProgram.hpp"
 #include "asset/AssetManager.hpp"
 #include "renderer/lightbuffer/OGLLightBuffer.hpp"

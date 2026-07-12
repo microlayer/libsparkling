@@ -98,7 +98,7 @@ namespace spark::device {
             m_rendererConfig = new spark::renderer::OGLConfig(m_window, m_logger);
             m_lightBuffer = new spark::renderer::lightbuffer::OGLLightBuffer();
 
-            m_renderer = new spark::renderer::OpenGLFLES2Renderer(this, m_shader, m_texureFactory, m_vertexBufferFactory, m_lightBuffer);
+            m_renderer = new spark::renderer::OpenGLFLES3Renderer(this, m_shader, m_texureFactory, m_vertexBufferFactory, m_lightBuffer);
         }
 #if SPARK_COMPILE_VULKAN == 0x1
         else

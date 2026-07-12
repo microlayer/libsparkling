@@ -1,25 +1,29 @@
-#include "OpenGLES2Renderer.hpp"
-#if SPARK_PLATFORM == SPARK_PLATFORM_ANDROID || \
-    SPARK_PLATFORM == SPARK_PLATFORM_WEBGL
+#include "OpenGLFLES3Renderer.hpp"
+#if SPARK_PLATFORM == SPARK_PLATFORM_WINDOWS  || \
+    SPARK_PLATFORM == SPARK_PLATFORM_LINUX
 
 namespace spark::renderer {
     /**
     *
     */
-    OpenGLES2Renderer::OpenGLES2Renderer(spark::device::ISparkDevice* device,
+    OpenGLFLES3Renderer::OpenGLFLES3Renderer(spark::device::ISparkDevice* device,
         spark::renderer::shader::ISparkShader* shader,
         spark::renderer::ISparkTextureFactory* textureFactory,
         spark::renderer::ISparkVertexBufferFactory* vertexBufferFactory,
         spark::renderer::lightbuffer::ISparkLightBuffer* lightBuffer) :
         OpenGLRenderer(device, shader, textureFactory, vertexBufferFactory, lightBuffer)
     {
+        uint32_t ret = glewInit();
 
+        glEnable(GL_PROGRAM_POINT_SIZE);
+
+        lightBuffer->init();
     }
 
     /**
     *
     */
-    OpenGLES2Renderer::~OpenGLES2Renderer(void)
+    OpenGLFLES3Renderer::~OpenGLFLES3Renderer(void)
     {
 
     }
@@ -27,7 +31,7 @@ namespace spark::renderer {
     /**
     *
     */
-    void OpenGLES2Renderer::onInit()
+    void OpenGLFLES3Renderer::onInit()
     {
         m_device->getLogger()->info("Initializing render pipeline");
         m_shader->applyShader("Default");

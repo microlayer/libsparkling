@@ -94,7 +94,7 @@ namespace spark::device {
     void AndroidDevice::createRenderer()
     {
         m_lightBuffer = new spark::renderer::lightbuffer::OGLLightBuffer();
-        m_renderer = new spark::renderer::OpenGLES2Renderer(this, m_shader, m_texureFactory, m_vertexBufferFactory, m_lightBuffer);
+        m_renderer = new spark::renderer::OpenGLES3Renderer(this, m_shader, m_texureFactory, m_vertexBufferFactory, m_lightBuffer);
         m_renderer->onInit();
     }
 

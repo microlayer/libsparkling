@@ -5,7 +5,7 @@
 #if SPARK_PLATFORM == SPARK_PLATFORM_ANDROID
 #include "Sparkling.hpp"
 #include "AbstractSparkDevice.hpp"
-#include "renderer/OpenGLES2Renderer.hpp"
+#include "renderer/OpenGLES3Renderer.hpp"
 #include "window/AndroidEGLWindow.hpp"
 #include "renderer/shader/OpenGLShaderProgram.hpp"
 #include "asset/AssetManager.hpp"
