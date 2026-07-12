@@ -14,12 +14,15 @@ public:
         // Create SceneGraphManager3D
         m_sceneGraphManager3D = device->createSceneGraphManager3D();
 
-        // Material
-        m_material = m_device->getRenderer()->createMaterial(spark::material::RenderMode::DIFFUSE);
-        m_material->setAlbedo({ 1.0, 0.5, 0.0 });   // DIFFUSE only
-        //m_material->setRoughness(0.3);            // PBR only
-        //m_material->setMetallic(0.3);             // PBR only
+        // Create Texture
+        m_texture = m_device->getAssetManager()->loadTexture("file://texture1.png");
 
+        // Material
+        m_material = m_device->getRenderer()->createDiffuseMaterial();
+        m_material->setAlbedo({ 1.0, 1.0, 1.0 });
+        m_material->setAlbedoTexture(m_texture.get());
+
+        // Camera
         m_camera = m_device->getRenderer()->createPerspectiveCamera();
         m_camera->setPerspective(20.0f, m_device->getScreenResolution().m_ratio, 0.1f, 100.0f);
         m_camera->setPosition(spark::math::Vector3f(0, 2, 5.00f));
@@ -33,7 +36,6 @@ public:
         // Create Animator
         spark::SparkSharedPointer<spark::animator::ISparkNodeAnimator> nodeRotationAnimator = spark::animator::NodeRotationAnimator::create(spark::math::Vector3f(0, 30, 0));
 
-        
         // Create SceneNode
         spark::SparkSharedPointer<spark::scene::nodes::ISparkMeshSceneNode> node1 = m_sceneGraphManager3D->createMeshSceneNode();
         node1->setPosition(spark::math::Vector3f(0, 0, 0));
@@ -48,7 +50,6 @@ public:
         node2->setMesh(cubeMesh.get());
         node2->setScale(0.5, 0.25, 0.5);
         //node2->setMaterial(m_material.get());
-        
 
         // Create Directional-Light
         spark::SparkSharedPointer<spark::scene::nodes::ISparkDirectionalLightNode> directionalLightNode = m_sceneGraphManager3D->createDirectionalLightNode();
@@ -56,14 +57,14 @@ public:
         directionalLightNode->setIntensity(0.5);
         directionalLightNode->setLightColor(spark::drawing::Color(0, 255, 0, 255));
         directionalLightNode->setDirection(spark::math::Vector3f(-1, -1, 0));
-        
+
         // Create Point-Light
         spark::SparkSharedPointer<spark::scene::nodes::ISparkPointLightNode> pointLightNode = m_sceneGraphManager3D->createPointLightNode();
         pointLightNode->setPosition(spark::math::Vector3f(0, -1, 0));
         pointLightNode->setIntensity(2);
-        pointLightNode->setLightColor(spark::drawing::Color(255, 242, 230, 255));
-        pointLightNode->setRange(5.0);       
-        
+        pointLightNode->setLightColor(spark::drawing::Color(255, 255, 255, 0));
+        pointLightNode->setRange(2.0);
+
         m_sceneGraphManager3D->addLight(directionalLightNode.get());
         m_sceneGraphManager3D->addLight(pointLightNode.get());
 
@@ -76,7 +77,7 @@ public:
     */
     virtual ~LambertLightCanvas()
     {
-
+        m_device->getLogger()->info("Deleting LambertLightCanvas");
     }
 
     /**
@@ -113,4 +114,5 @@ private:
     spark::SparkSharedPointer<spark::scene::ISceneGraphManager3D> m_sceneGraphManager3D;
     spark::SparkSharedPointer<spark::scene::camera::ISparkPerspectiveCamera> m_camera;
     spark::SparkSharedPointer<spark::material::ISparkMaterial> m_material;
+    spark::SparkSharedPointer<spark::renderer::ISparkTexture> m_texture;
 };

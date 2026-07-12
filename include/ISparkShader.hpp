@@ -30,16 +30,23 @@ namespace spark::renderer::shader {
 
     public:
         virtual void setDrawMode(uint32_t drawMode) = 0;
-        virtual void setTextureUnit(uint32_t unit) = 0;
+        virtual void setTextureUnit(const std::string& name, uint32_t unit) = 0;
         virtual void setFontColor(spark::drawing::Color fontColor) = 0;
 
     public: // Light
         virtual void setLightBuffer(spark::renderer::lightbuffer::GPULightBuffer& lightBuffer) = 0;
 
-    public: // PBR
+    public:
+        // Material
         virtual void setAlbedo(spark::math::Vector3f albedo) = 0;
+
+        // PBR
         virtual void setRoughness(spark::real32 roughness) = 0;
         virtual void setMetallic(spark::real32 metallic) = 0;
+        virtual void setAO(real32 ao) = 0;
+
+    public: // Texture
+        virtual void setHasAlbedoTexture(bool flag) = 0;
     };
 }
 #endif

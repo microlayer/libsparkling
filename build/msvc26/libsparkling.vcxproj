@@ -244,6 +244,7 @@
     <ClCompile Include="..\..\source\material\Material.cpp" />
     <ClCompile Include="..\..\source\material\MaterialLibrary.cpp" />
     <ClCompile Include="..\..\source\material\PBRMaterial.cpp" />
+    <ClCompile Include="..\..\source\material\UnlitMaterial.cpp" />
     <ClCompile Include="..\..\source\mlstl\MLBase64.cpp" />
     <ClCompile Include="..\..\source\network\HttpClient.cpp" />
     <ClCompile Include="..\..\source\network\SocketClient.cpp" />
@@ -321,6 +322,7 @@
     <ClInclude Include="..\..\include\ISparkTextureFactory.hpp" />
     <ClInclude Include="..\..\include\ISparkTiledLayer.hpp" />
     <ClInclude Include="..\..\include\ISparkTimer.hpp" />
+    <ClInclude Include="..\..\include\ISparkUnlitMaterial.hpp" />
     <ClInclude Include="..\..\include\ISparkVertexBuffer.hpp" />
     <ClInclude Include="..\..\include\ISparkVertexBufferFactory.hpp" />
     <ClInclude Include="..\..\include\ISparkWindow.hpp" />
@@ -369,6 +371,7 @@
     <ClInclude Include="..\..\source\material\Material.hpp" />
     <ClInclude Include="..\..\source\material\MaterialLibrary.hpp" />
     <ClInclude Include="..\..\source\material\PBRMaterial.hpp" />
+    <ClInclude Include="..\..\source\material\UnlitMaterial.hpp" />
     <ClInclude Include="..\..\source\math\Matrix3.hpp" />
     <ClInclude Include="..\..\source\math\Matrix4.hpp" />
     <ClInclude Include="..\..\source\math\ProjectionMatrix.hpp" />
@@ -385,6 +388,7 @@
     <ClInclude Include="..\..\source\perspective\VirtualResolution.hpp" />
     <ClInclude Include="..\..\source\renderer\AbstractSparkRenderer.hpp" />
     <ClInclude Include="..\..\source\renderer\common\ERenderEngine.hpp" />
+    <ClInclude Include="..\..\source\renderer\common\ERenderTarget.hpp" />
     <ClInclude Include="..\..\source\renderer\common\TextureFactory.hpp" />
     <ClInclude Include="..\..\source\renderer\common\VertexBufferFactory.hpp" />
     <ClInclude Include="..\..\source\renderer\config\OGLConfig.hpp" />
@@ -425,6 +429,7 @@
     <ClInclude Include="..\..\source\ui\Command.hpp" />
     <ClInclude Include="..\..\testbed\FallingBlocksPhysicsCanvas.hpp" />
     <ClInclude Include="..\..\testbed\LambertLightCanvas.hpp" />
+    <ClInclude Include="..\..\testbed\PBRLightCanvas.hpp" />
     <ClInclude Include="..\..\testbed\PerspectiveCameraTestCanvas.hpp" />
     <ClInclude Include="..\..\testbed\PointCloudCanvas.hpp" />
     <ClInclude Include="..\..\testbed\RotatingCubeCanvas.hpp" />
@@ -432,7 +437,9 @@
     <ClInclude Include="..\..\testbed\SampleCanvas4.hpp" />
     <ClInclude Include="..\..\testbed\SampleCanvas6.hpp" />
     <ClInclude Include="..\..\testbed\SampleCanvas7.hpp" />
+    <ClInclude Include="..\..\testbed\ShadowMapCanvas.hpp" />
     <ClInclude Include="..\..\testbed\TeapotCanvas.hpp" />
+    <ClInclude Include="..\..\testbed\UnlitTextureCanvas.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\source\renderer\shader\glsl_for_gles3_feature_level_glsles30\Default.frag" />

@@ -10,6 +10,7 @@
 #include "ISparkLightBuffer.hpp"
 #include "../material/DiffuseMaterial.hpp"
 #include "../material/PBRMaterial.hpp"
+#include "../material/UnlitMaterial.hpp"
 
 namespace spark::renderer {
     /**
@@ -43,6 +44,9 @@ namespace spark::renderer {
 
     public: // Factory
         spark::material::ISparkMaterial* createMaterial(spark::material::RenderMode renderMode);
+        spark::material::ISparkUnlitMaterial* createUnlitMaterial();
+        spark::material::ISparkDiffuseMaterial* createDiffuseMaterial();
+        spark::material::ISparkPBRMaterial* createPBRMaterial();
         spark::scene::camera::ISparkPerspectiveCamera* createPerspectiveCamera();
 
     protected:

@@ -18,7 +18,7 @@ namespace spark::material {
     */
     Material::~Material()
     {
-
+        if (m_texture != NULL) m_texture->release();
     }
 
     /**
@@ -56,8 +56,33 @@ namespace spark::material {
     /**
     *
     */
+    void Material::setAlbedoTexture(spark::renderer::ISparkTexture* texture)
+    {
+        texture->addRef();
+        m_texture = texture;
+    }
+
+    /**
+    *
+    */
+    spark::renderer::ISparkTexture* Material::getAlbedoTexture() const
+    {
+        return m_texture;
+    }
+
+    /**
+    *
+    */
     void Material::apply(spark::renderer::shader::ISparkShader* shader) const
     {
+        auto* albedoTex = Material::getAlbedoTexture();
 
+        shader->setHasAlbedoTexture(albedoTex != nullptr);
+        if (albedoTex)
+        {
+            albedoTex->bind(spark::renderer::TextureSlot::Albedo);
+        }
+
+        shader->setAlbedo(Material::getAlbedo());
     }
 }

@@ -14,6 +14,7 @@ namespace spark::asset {
     {
     public:
         virtual spark::drawing::ISparkImage* loadBitmap(const std::string& uri) = 0;
+        virtual spark::renderer::ISparkTexture* loadTexture(const std::string& uri) = 0;
         virtual spark::game::ISparkTiledLayer* loadTiledLayer(const std::string& uri) = 0;
         virtual spark::geometry::mesh::ISparkMesh* loadMesh(const std::string& uri) = 0;
         virtual spark::geometry::pointcloud::ISparkPointCloud* loadPointCloud(const std::string& uri) = 0;

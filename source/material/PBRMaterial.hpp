@@ -26,8 +26,8 @@ namespace spark::material {
         void apply(spark::renderer::shader::ISparkShader* shader) const override;
 
     private:
-        real32 m_metallic = 0.0f;
         real32 m_roughness = 1.0f;
+        real32 m_metallic = 0.0f;
         real32 m_ao = 1.0f;
     };
 }

@@ -178,11 +178,12 @@ namespace spark::renderer::shader {
     /**
     * TODO: remove glGetUniformLocation replace with cached uniform location in shader init O(n)
     */
-    void OpenGLShaderProgram::setTextureUnit(uint32_t unit)
-    {
-        glActiveTexture(GL_TEXTURE0);
-        int uTexture0Location = glGetUniformLocation(m_programObject, "uTexture0");
-        glUniform1i(uTexture0Location, 0); // Tell the sampler to use texture unit 0
+    void OpenGLShaderProgram::setTextureUnit(const std::string& name, uint32_t unit)
+    {        
+        int uTextureLocation = glGetUniformLocation(m_programObject, name.c_str());
+        
+        
+        glUniform1i(uTextureLocation, unit); // Tell the sampler with name to use texture unit 
     }
 
     /**
@@ -302,8 +303,32 @@ namespace spark::renderer::shader {
     /**
     *
     */
+    void OpenGLShaderProgram::setAO(real32 ao)
+    {
+        GLint loc = glGetUniformLocation(m_programObject, "uAo");
+        glUniform1f(loc, ao);
+    }
+
+    /**
+    *
+    */
+    void OpenGLShaderProgram::setHasAlbedoTexture(bool flag)
+    {
+        GLint loc = glGetUniformLocation(m_programObject, "uHasAlbedoTexture");
+        glUniform1i(loc, flag ? 1 : 0);
+    }
+
+    /**
+    * Initializes shader
+    */
     void OpenGLShaderProgram::init()
     {
-        setTextureUnit(0);
+        setTextureUnit("uDefaultTexture", 0);
+        setTextureUnit("uAlbedoMap", 1);
+        setTextureUnit("uNormalMap", 2);
+        setTextureUnit("uRoughnessMap", 3);
+        setTextureUnit("uMetallicMap", 4);
+
+        setAlbedo(spark::math::Vector3f(1, 1, 1));
     }
 }

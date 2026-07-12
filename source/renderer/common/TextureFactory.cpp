@@ -15,7 +15,12 @@ namespace spark::renderer {
     */
     TextureFactory::~TextureFactory()
     {
+        for (auto& entry : m_textureMap)
+        {
+            entry.second->release();
+        }
 
+        m_textureMap.clear();
     }
 
     /**
@@ -27,11 +32,14 @@ namespace spark::renderer {
         {
             spark::renderer::texture::OGLTexture* texture = new spark::renderer::texture::OGLTexture(m_logger, data, width, height, pixelFormat);
             m_textureMap[id] = texture;
+            texture->addRef();
             return texture;
         }
         else
         {
-            return m_textureMap[id];
+            spark::renderer::texture::OGLTexture* texture = m_textureMap[id];
+            texture->addRef();
+            return texture;
         }
     }
 }

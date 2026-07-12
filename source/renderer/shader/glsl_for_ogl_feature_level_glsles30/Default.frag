@@ -7,9 +7,10 @@ in vec2 textureCoord;
 in vec3 barycentric;
 in vec3 fragPosition;
 
-// Input
-uniform sampler2D uTexture0;
+// Mode
 uniform int uDrawMode;
+
+// Font
 uniform vec3 uFontColor;
 
 // Light
@@ -24,10 +25,22 @@ uniform vec3 uPointLightColor[4];
 uniform float uPointLightIntensity[4];
 uniform float uPointLightRange[4];
 
+// Diffuse
+uniform vec3 uAlbedo; // default: (1,1,1)
+
 // PBR
-uniform vec3 uAlbedo;
 uniform float uRoughness;
 uniform float uMetallic;
+uniform float uAo;
+
+// Texture
+uniform sampler2D uDefaultTexture;  // default: unit0
+uniform sampler2D uAlbedoMap;       // default: unit1
+uniform sampler2D uNormalMap;       // default: unit2
+uniform sampler2D uRoughnessMap;    // default: unit3
+uniform sampler2D uMetallicMap;     // default: unit4
+
+uniform bool uHasAlbedoTexture;
 
 // Out
 out vec4 fragColor;
@@ -40,18 +53,20 @@ const int DRAW_FONT        = 2; // DrawMode = 2: Used to draw glyphs
 const int DRAW_NORMALS     = 3; // DrawMode = 3: Used to draw Normal Vector Debug Visualization for mesh
 const int DRAW_BARYCENTRIC = 4; // DrawMode = 4: Used to draw mesh with each triangle filled using its barycenter RGB color
 const int DRAW_WIREFRAME   = 5; // DrawMode = 5: Used to draw mesh as wireframe
-const int DRAW_DIFFUSE     = 6; // DrawMode = 6: Used to draw Diffuse Lighting (Lambert)
-const int DRAW_PBR         = 7; // DrawMode = 7: Used to draw PBR Lighting
+const int DRAW_UNLIT       = 6; // DrawMode = 6: Used to draw texture without Lighting
+const int DRAW_DIFFUSE     = 7; // DrawMode = 7: Used to draw Diffuse Lighting (Lambert)
+const int DRAW_PBR         = 8; // DrawMode = 8: Used to draw PBR Lighting
 
 void main()
 {
     if(uDrawMode == DRAW_TEXTURE)
-    {
-        fragColor = texture2D(uTexture0, textureCoord);
+    {        
+        vec4 tex = texture(uDefaultTexture, textureCoord);
+        fragColor = vec4(tex.rgb * uAlbedo, tex.a);
     }
     else if(uDrawMode == DRAW_FONT)
     {
-        float alpha = texture2D(uTexture0, textureCoord.xy).x;
+        float alpha = texture(uDefaultTexture, textureCoord.xy).x;
         fragColor = vec4(uFontColor, alpha);
     }
     else if(uDrawMode == DRAW_NORMALS)
@@ -72,9 +87,20 @@ void main()
         else
             discard;
     }
+    else if(uDrawMode == DRAW_UNLIT)
+    {
+        vec4 tex = texture(uAlbedoMap, textureCoord);
+        fragColor = vec4(tex.rgb * uAlbedo, tex.a);
+    }
     else if(uDrawMode == DRAW_DIFFUSE)
     {       
         vec3 result = vec3(0.0);
+
+        vec3 albedo = uAlbedo;
+        if (uHasAlbedoTexture)
+        {
+            albedo *= texture(uAlbedoMap, textureCoord).rgb;           
+        }
         
         // Add Directional Lights
         for (int i = 0; i < uDirectionalLightCount; ++i)
@@ -84,7 +110,7 @@ void main()
 
             float NdotL = max(dot(N, L), 0.0);
 
-            vec3 diffuse = uAlbedo * uDirectionalLightColor[i] * uDirectionalLightIntensity[i] * NdotL;
+            vec3 diffuse = albedo * uDirectionalLightColor[i] * uDirectionalLightIntensity[i] * NdotL;
 
             result += diffuse;
         }
@@ -101,7 +127,7 @@ void main()
             float attenuation = 0.8 / (dist * dist);
             
             vec3 diffuse =
-                uAlbedo *
+                albedo *
                 uPointLightColor[i] *
                 uPointLightIntensity[i] *
                 NdotL *

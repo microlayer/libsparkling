@@ -103,10 +103,20 @@ namespace spark::renderer::texture {
     }
 
     /**
-    *
+    * This texture is now bound to texture unit 0
     */
     void OGLTexture::bind()
     {
+        bind(spark::renderer::TextureSlot::Default);
+    }
+
+    /**
+    * This texture is now bound to texture unit 'slot'
+    */
+    void OGLTexture::bind(spark::renderer::TextureSlot slot)
+    {
+        uint32_t slotIndex = static_cast<uint32_t>(slot);        
+        glActiveTexture(GL_TEXTURE0 + slotIndex);        
         glBindTexture(GL_TEXTURE_2D, m_textureId);
     }
 

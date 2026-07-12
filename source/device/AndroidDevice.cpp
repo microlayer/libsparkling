@@ -52,7 +52,7 @@ namespace spark::device {
     */
     void AndroidDevice::createAssetManager()
     {
-        m_assetManager = new spark::asset::AssetManager(m_fileSystem, m_httpClient, m_logger);
+        m_assetManager = new spark::asset::AssetManager(m_fileSystem, m_httpClient, m_texureFactory, m_logger);
     }
 
     /**

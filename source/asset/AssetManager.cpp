@@ -9,9 +9,11 @@ namespace spark::asset {
     AssetManager::AssetManager(
         spark::file::ISparkFileSystem* fileSystem,
         spark::network::ISparkHttpClient* httpClient,
+        spark::renderer::ISparkTextureFactory* textureFactory,
         spark::log::ISparkLogger* logger) :
         m_fileSystem(fileSystem),
         m_httpClient(httpClient),
+        m_texureFactory(textureFactory),
         m_logger(logger)
     {
     }
@@ -54,6 +56,23 @@ namespace spark::asset {
             bmp = NULL;
         }
         return bmp;
+    }
+
+    /**
+    *
+    */
+    spark::renderer::ISparkTexture* AssetManager::loadTexture(const std::string& uri)
+    {
+        // TODO: avoid loadBitmap
+        spark::drawing::ISparkImage* image = loadBitmap(uri);
+        spark::renderer::ISparkTexture* texture = m_texureFactory->getOrCreateTexture(
+            image->getHash(),
+            image->getImageAsStream(),
+            image->getWidth(),
+            image->getHeight(),
+            spark::drawing::E_RGBA8);
+        image->release();
+        return texture;
     }
 
     /**

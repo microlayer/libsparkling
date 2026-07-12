@@ -9,11 +9,15 @@
 #include "drawing/ClippingRectangle.hpp"
 #include "geometry/mesh/Mesh.hpp"
 #include "renderer/common/ERenderEngine.hpp"
+#include "renderer/common/ERenderTarget.hpp"
 #include "SparkRefCount.hpp"
 #include "ISparkImage.hpp"
 #include "ISparkFont.hpp"
 #include "math/Matrix4.hpp"
 #include "ISparkMaterial.hpp"
+#include "ISparkUnlitMaterial.hpp"
+#include "ISparkDiffuseMaterial.hpp"
+#include "ISparkPBRMaterial.hpp"
 #include "ISparkPointCloud.hpp"
 #include "ISparkPerspectiveCamera.hpp"
 #include "renderer/lightbuffer/GPUDirectionalLight.hpp"
@@ -75,8 +79,11 @@ namespace spark::renderer {
 
         virtual void flush3DLines() = 0;
 
-        // Factory
+        // Factory        
         virtual spark::material::ISparkMaterial* createMaterial(spark::material::RenderMode renderMode) = 0;
+        virtual spark::material::ISparkUnlitMaterial* createUnlitMaterial() = 0;
+        virtual spark::material::ISparkDiffuseMaterial* createDiffuseMaterial() = 0;
+        virtual spark::material::ISparkPBRMaterial* createPBRMaterial() = 0;
         virtual spark::scene::camera::ISparkPerspectiveCamera* createPerspectiveCamera() = 0;
     };
 }

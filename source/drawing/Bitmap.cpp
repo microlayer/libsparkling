@@ -9,7 +9,8 @@ namespace spark::drawing {
         m_width(width),
         m_height(height),
         m_pixelFormat(pixelFormat),
-        m_hash(hash)
+        m_hash(hash),
+        m_texture(NULL)
     {
         if (spark::drawing::E_RGBA8 == pixelFormat)
         {

@@ -46,6 +46,9 @@ namespace spark::renderer {
         void setViewMatrix(const spark::math::Matrix4f& viewMatrix);
         void setModelTransformation(math::Matrix4f& modelTransformation);
 
+        // Render Target
+        void setActiveRenderTarget(spark::renderer::E_RENDER_TARGET renderTarget);
+
         // Common
         void drawBackground(const spark::drawing::Color& color);
 

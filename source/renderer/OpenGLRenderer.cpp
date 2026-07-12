@@ -138,6 +138,31 @@ namespace spark::renderer {
     /**
     *
     */
+    void OpenGLRenderer::setActiveRenderTarget(spark::renderer::E_RENDER_TARGET renderTarget)
+    {
+        switch (renderTarget)
+        {
+        case spark::renderer::ERT_SHADOW:
+            //glBindFramebuffer(GL_FRAMEBUFFER, m_shadowMapFBID);
+            //glViewport(0, 0, SHADOW_W, SHADOW_H);
+            glClear(GL_DEPTH_BUFFER_BIT);
+
+            glCullFace(GL_FRONT);
+            break;
+
+        case spark::renderer::ERT_WINDOW:
+            glBindFramebuffer(GL_FRAMEBUFFER, 0);
+            //glViewport(0, 0, screenW, screenH);
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+            glCullFace(GL_BACK);
+            break;
+        }
+    }
+
+    /**
+    *
+    */
     void OpenGLRenderer::drawBackground(const spark::drawing::Color& color)
     {
         m_backgroundColor = spark::drawing::Color(color.m_red, color.m_green, color.m_blue, color.m_alpha);
@@ -224,7 +249,7 @@ namespace spark::renderer {
 
         spark::renderer::ISparkTexture* texture = m_textureFactory->getOrCreateTexture(image->getHash(), image->getImageAsStream(), image->getWidth(), image->getHeight(), spark::drawing::E_RGBA8);
         texture->bind();
-        image->setTexture(texture);
+        //image->setTexture(texture);
 
         GLfloat clipStart = (GLfloat)(1.0 / image->getWidth()) * clipRect.m_x;
         GLfloat clipEnd = (GLfloat)(clipStart + (1.0 / image->getWidth()) * clipRect.m_width);
@@ -273,7 +298,12 @@ namespace spark::renderer {
 
         spark::drawing::ISparkImage* tilsetImage = tiledLayer->getTilesetImage();
 
-        spark::renderer::ISparkTexture* texture = m_textureFactory->getOrCreateTexture(tilsetImage->getHash(), tilsetImage->getImageAsStream(), tilsetImage->getWidth(), tilsetImage->getHeight(), spark::drawing::E_RGBA8);
+        spark::renderer::ISparkTexture* texture = m_textureFactory->getOrCreateTexture(
+            tilsetImage->getHash(),
+            tilsetImage->getImageAsStream(),
+            tilsetImage->getWidth(),
+            tilsetImage->getHeight(),
+            spark::drawing::E_RGBA8);
         texture->bind();
         tilsetImage->setTexture(texture);
 
@@ -502,11 +532,8 @@ namespace spark::renderer {
         case RenderMode::Default:
             m_shader->setDrawMode(0); break;
 
+        case RenderMode::UNLIT:
         case RenderMode::DIFFUSE:
-            m_shader->setDrawMode(6);
-            material->apply(m_shader);
-            break;
-
         case RenderMode::PBR:
             material->apply(m_shader);
             break;

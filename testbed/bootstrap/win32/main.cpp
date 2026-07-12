@@ -72,6 +72,7 @@ int main()
 int main()
 {
     _CrtMemDumpAllObjectsSince(NULL);
+    //_CrtSetBreakAlloc(20883);
     spark::device::ISparkDevice* device = spark::createDevice(spark::renderer::ERE_OGLFLES2, 1196, 720);
     spark::log::ISparkLogger* logger = device->getLogger();
     {

@@ -8,6 +8,7 @@ namespace spark::renderer::vertexbuffer {
         m_bufferSizeVertices(0),
         m_bufferSizeNormals(0),
         m_bufferSizeColor(0),
+        m_bufferSizeTextureCoord(0),
         m_bufferSizeBarycentric(0),
         m_bufferSizeIndices(0)
     {
@@ -23,11 +24,14 @@ namespace spark::renderer::vertexbuffer {
             m_colorData.push_back(vertex.m_color.m_green);
             m_colorData.push_back(vertex.m_color.m_blue);
             m_colorData.push_back(vertex.m_color.m_alpha);
+            m_textureCoordData.push_back(vertex.m_textureCoord.m_x);
+            m_textureCoordData.push_back(vertex.m_textureCoord.m_y);
         }
 
         m_bufferSizeVertices = m_verticesData.size() * sizeof(real32);
         m_bufferSizeNormals = m_normalData.size() * sizeof(real32);
         m_bufferSizeColor = m_colorData.size() * sizeof(uc8_t);
+        m_bufferSizeTextureCoord = m_textureCoordData.size() * sizeof(real32);
 
         allocateBuffer();
         uploadBuffer();
@@ -41,6 +45,7 @@ namespace spark::renderer::vertexbuffer {
         m_bufferSizeVertices(0),
         m_bufferSizeNormals(0),
         m_bufferSizeColor(0),
+        m_bufferSizeTextureCoord(0),
         m_bufferSizeBarycentric(0),
         m_bufferSizeIndices(0),
         m_vertexLayout(vertexLayout)
@@ -74,12 +79,17 @@ namespace spark::renderer::vertexbuffer {
             m_colorData.push_back(vertex.m_color.m_green);
             m_colorData.push_back(vertex.m_color.m_blue);
             m_colorData.push_back(vertex.m_color.m_alpha);
+            m_textureCoordData.push_back(vertex.m_textureCoord.m_x);
+            m_textureCoordData.push_back(vertex.m_textureCoord.m_y);
         }
 
-        m_bufferSizeVertices = m_mesh->getVertices().size() * 3 * sizeof(real32);           // Vertex Count Vc * 3 * 4 bytes=96
-        m_bufferSizeNormals = m_mesh->getNormals().size() * 3 * sizeof(real32);             // Vertex Count Vc * 3 * 4 bytes=96
-        m_bufferSizeColor = m_mesh->getColors().size() * 4 * sizeof(uc8_t);                 // Vertex Count Vc * 3 * 1 byte=24               
-        m_bufferSizeIndices = m_mesh->getIndices().size() * sizeof(uint16_t);               // Vertex Count Vc * 1 * 2 bytes=72
+        m_bufferSizeVertices = m_mesh->getVertices().size() * 3 * sizeof(real32);           // Vertex Count Vc(24) = 24 * 3 * 4 bytes=288
+        m_bufferSizeNormals = m_mesh->getNormals().size() * 3 * sizeof(real32);             // Vertex Count Vc(24) = 24 * 3 * 4 bytes=288
+        m_bufferSizeColor = m_mesh->getColors().size() * 4 * sizeof(uc8_t);                 // Vertex Count Vc(24) = 24 * 4 * 1 byte=96   
+        m_bufferSizeTextureCoord = m_mesh->getTextureCoords().size() * 2 * sizeof(real32);  // Vertex Count Vc(24) = 24 * 2 * 4 byte=192 
+        m_bufferSizeIndices = m_mesh->getIndices().size() * sizeof(uint16_t);               // Vertex Count Vc(24) = 36 * 1 * 2 bytes=72
+
+        m_verticesCount = m_verticesData.size() / 3;
     }
 
     /**
@@ -107,6 +117,9 @@ namespace spark::renderer::vertexbuffer {
             m_colorData.push_back(m_mesh->getVertex(i0).m_color.m_blue);
             m_colorData.push_back(m_mesh->getVertex(i0).m_color.m_alpha);
 
+            m_textureCoordData.push_back(m_mesh->getVertex(i0).m_textureCoord.m_x);
+            m_textureCoordData.push_back(m_mesh->getVertex(i0).m_textureCoord.m_y);
+
             m_barycentricData.push_back(1.0f);
             m_barycentricData.push_back(0.0f);
             m_barycentricData.push_back(0.0f);
@@ -124,6 +137,9 @@ namespace spark::renderer::vertexbuffer {
             m_colorData.push_back(m_mesh->getVertex(i1).m_color.m_green);
             m_colorData.push_back(m_mesh->getVertex(i1).m_color.m_blue);
             m_colorData.push_back(m_mesh->getVertex(i1).m_color.m_alpha);
+
+            m_textureCoordData.push_back(m_mesh->getVertex(i1).m_textureCoord.m_x);
+            m_textureCoordData.push_back(m_mesh->getVertex(i1).m_textureCoord.m_y);
 
             m_barycentricData.push_back(0.0f);
             m_barycentricData.push_back(1.0f);
@@ -143,6 +159,9 @@ namespace spark::renderer::vertexbuffer {
             m_colorData.push_back(m_mesh->getVertex(i2).m_color.m_blue);
             m_colorData.push_back(m_mesh->getVertex(i2).m_color.m_alpha);
 
+            m_textureCoordData.push_back(m_mesh->getVertex(i2).m_textureCoord.m_x);
+            m_textureCoordData.push_back(m_mesh->getVertex(i2).m_textureCoord.m_y);
+
             m_barycentricData.push_back(0.0f);
             m_barycentricData.push_back(0.0f);
             m_barycentricData.push_back(1.0f);
@@ -151,6 +170,7 @@ namespace spark::renderer::vertexbuffer {
         m_bufferSizeVertices = m_verticesData.size() * sizeof(real32);
         m_bufferSizeNormals = m_normalData.size() * sizeof(real32);
         m_bufferSizeColor = m_colorData.size() * sizeof(uc8_t);
+        m_bufferSizeTextureCoord = m_textureCoordData.size() * sizeof(real32);
         m_bufferSizeBarycentric = m_barycentricData.size() * sizeof(real32);
         m_verticesCount = m_verticesData.size() / 3;
     }
@@ -163,6 +183,7 @@ namespace spark::renderer::vertexbuffer {
         glDeleteBuffers(1, &m_vbo);
         glDeleteBuffers(1, &m_nbo);
         glDeleteBuffers(1, &m_cbo);
+        glDeleteBuffers(1, &m_tbo);
         glDeleteBuffers(1, &m_bbo);
         glDeleteBuffers(1, &m_ibo);
         glDeleteVertexArrays(1, &m_vao);
@@ -197,6 +218,13 @@ namespace spark::renderer::vertexbuffer {
         glBufferData(GL_ARRAY_BUFFER, m_bufferSizeColor, NULL, GL_DYNAMIC_DRAW); // Allocate but not upload on GPU yet
         glVertexAttribPointer(2, 4, GL_UNSIGNED_BYTE, GL_TRUE, 0, (void*)0);
         glEnableVertexAttribArray(2);
+
+        // Create VBO for textureCoord
+        glGenBuffers(1, &m_tbo);
+        glBindBuffer(GL_ARRAY_BUFFER, m_tbo);
+        glBufferData(GL_ARRAY_BUFFER, m_bufferSizeTextureCoord, NULL, GL_DYNAMIC_DRAW); // Allocate but not upload on GPU yet
+        glVertexAttribPointer(3, 2, GL_FLOAT, GL_TRUE, 0, (void*)0);
+        glEnableVertexAttribArray(3);
 
         // Create VBO for barycentric
         if (!m_barycentricData.empty())
@@ -236,6 +264,13 @@ namespace spark::renderer::vertexbuffer {
         {
             glBindBuffer(GL_ARRAY_BUFFER, m_cbo);
             glBufferSubData(GL_ARRAY_BUFFER, 0, m_bufferSizeColor, &m_colorData[0]);
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
+        }
+
+        if (!m_textureCoordData.empty())
+        {
+            glBindBuffer(GL_ARRAY_BUFFER, m_tbo);
+            glBufferSubData(GL_ARRAY_BUFFER, 0, m_bufferSizeTextureCoord, &m_textureCoordData[0]);
             glBindBuffer(GL_ARRAY_BUFFER, 0);
         }
 

@@ -4,6 +4,7 @@
 #include "SparkRefCount.hpp"
 #include "math/Vector3.hpp"
 #include "ISparkShader.hpp"
+#include "ISparkTexture.hpp"
 
 namespace spark::material {
     /**
@@ -22,6 +23,7 @@ namespace spark::material {
         Wireframe,
         DebugVisualizationBarycentric,
         DebugVisualizationNormals,
+        UNLIT,
         DIFFUSE,
         PBR
     };
@@ -37,8 +39,13 @@ namespace spark::material {
         virtual VertexLayout getRequiredMeshVariant() const = 0;
 
     public:
+        /**
+        * When used with texture albedo color acts as a color filter
+        */
         virtual void setAlbedo(spark::math::Vector3f albedo) = 0;
         virtual spark::math::Vector3f getAlbedo() const = 0;
+
+        virtual void setAlbedoTexture(spark::renderer::ISparkTexture* texture) = 0;
 
     public:
         virtual void apply(spark::renderer::shader::ISparkShader* shader) const = 0;

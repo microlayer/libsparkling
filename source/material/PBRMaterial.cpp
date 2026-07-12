@@ -71,9 +71,10 @@ namespace spark::material {
     */
     void PBRMaterial::apply(spark::renderer::shader::ISparkShader* shader) const
     {
-        shader->setDrawMode(7);
-        shader->setAlbedo(Material::getAlbedo());
+        shader->setDrawMode(8);
+
         shader->setRoughness(getRoughness());
         shader->setMetallic(getMetallic());
+        shader->setAO(getAO());
     }
 }

@@ -5,6 +5,8 @@
 #include "ISparkLogger.hpp"
 #include "ISparkFileSystem.hpp"
 #include "ISparkHttpClient.hpp"
+#include "ISparkTexture.hpp"
+#include "ISparkTextureFactory.hpp"
 #include "geometry/pointcloud/importer/PlyFileReader.hpp"
 #include "geometry/mesh/importer/WavefrontFileReader.hpp"
 #include "mlstl/MLHash.hpp"
@@ -22,11 +24,13 @@ namespace spark::asset {
         AssetManager(
             spark::file::ISparkFileSystem* fileSystem,
             spark::network::ISparkHttpClient* httpClient,
+            spark::renderer::ISparkTextureFactory* texureFactory,
             spark::log::ISparkLogger* logger);
         virtual ~AssetManager(void);
 
     public: // ISparkAssetManager
         spark::drawing::ISparkImage* loadBitmap(const std::string& uri);
+        spark::renderer::ISparkTexture* loadTexture(const std::string& uri);
         spark::game::ISparkTiledLayer* loadTiledLayer(const std::string& uri);
         spark::geometry::mesh::ISparkMesh* loadMesh(const std::string& uri);
         spark::geometry::pointcloud::ISparkPointCloud* loadPointCloud(const std::string& uri);
@@ -38,6 +42,7 @@ namespace spark::asset {
         spark::log::ISparkLogger* m_logger;
         spark::file::ISparkFileSystem* m_fileSystem;
         spark::network::ISparkHttpClient* m_httpClient;
+        spark::renderer::ISparkTextureFactory* m_texureFactory;
     };
 }
 #endif

@@ -29,7 +29,7 @@ const float POINT_SIZE = 3.0;
 void main()
 {    
     color = aVertexColor;
-    vertexNormal = normalize(uNormalMatrix * aVertexNormal);;
+    vertexNormal = normalize(uNormalMatrix * aVertexNormal);
     textureCoord = aTextureCoord;
     barycentric = aBarycentric;
         

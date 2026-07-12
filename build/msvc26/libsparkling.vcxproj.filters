@@ -336,6 +336,9 @@
     <ClCompile Include="..\..\source\material\DiffuseMaterial.cpp">
       <Filter>source\material</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\material\UnlitMaterial.cpp">
+      <Filter>source\material</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\spark\SparkCompilerConfig.hpp">
@@ -796,6 +799,24 @@
     </ClInclude>
     <ClInclude Include="..\..\source\renderer\shader\glsl_for_spir_feature_level_glsles30\DefaultShader.hpp">
       <Filter>source\renderer\shader\glsl_for_spir_feature_level_glsles30</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\renderer\common\ERenderTarget.hpp">
+      <Filter>source\renderer\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\material\UnlitMaterial.hpp">
+      <Filter>source\material</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\testbed\UnlitTextureCanvas.hpp">
+      <Filter>testbed</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkUnlitMaterial.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\testbed\PBRLightCanvas.hpp">
+      <Filter>testbed</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\testbed\ShadowMapCanvas.hpp">
+      <Filter>testbed</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

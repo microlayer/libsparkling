@@ -8,6 +8,18 @@ namespace spark::renderer {
     /**
     *
     */
+    enum class TextureSlot : uint32_t
+    {
+        Default = 0,
+        Albedo = 1,
+        Normal = 2,
+        Metallic = 3,
+        Roughness = 4,
+    };
+
+    /**
+    *
+    */
     class ISparkTexture : public virtual spark::SparkRefCount
     {
     public:
@@ -16,7 +28,16 @@ namespace spark::renderer {
         virtual uint32_t getHeight() const = 0;
         virtual spark::drawing::E_PIXEL_FORMAT getPixelFormat() const = 0;
         virtual bool hasMipMaps() const = 0;
+
+        /**
+        * This texture is bound to texture unit '0'
+        */
         virtual void bind() = 0;
+
+        /**
+        * This texture is now bound to texture unit 'slot' e.g. uDefaultTexture
+        */
+        virtual void bind(spark::renderer::TextureSlot slot) = 0;
         virtual uint32_t getHandle() const = 0;
     };
 }

@@ -35,6 +35,7 @@ namespace spark::renderer::texture {
         spark::drawing::E_PIXEL_FORMAT getPixelFormat() const;
         bool hasMipMaps() const;
         void bind();
+        void bind(spark::renderer::TextureSlot slot);
         uint32_t getHandle() const;
 
     private:

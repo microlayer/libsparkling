@@ -19,7 +19,7 @@ public:
     */
     virtual ~SampleCanvas4()
     {
-
+        m_device->getLogger()->info("Deleting SampleCanvas4");
     }
 
     /**

@@ -32,6 +32,7 @@ namespace spark::device {
         m_texureFactory->release();
         m_vertexBufferFactory->release();
         m_lightBuffer->release();
+        m_httpClient->release();
     }
 
     /**
@@ -42,11 +43,11 @@ namespace spark::device {
         createLogger();
         createFileSystem();
         createHttpClient();
+        createTextureFactory();
+        createVertexBufferFactory();
         createAssetManager();
         createSparkWindow();
         createShader();
-        createTextureFactory();
-        createVertexBufferFactory();
         createRenderer();
         createTimer();
         createFontPool();

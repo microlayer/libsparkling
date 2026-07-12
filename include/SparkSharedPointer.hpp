@@ -45,8 +45,21 @@ namespace spark {
         */
         SparkSharedPointer& operator=(const SparkSharedPointer& other)
         {
-            m_ptr = other.m_ptr;
-            static_cast<SparkRefCount*>(m_ptr)->addRef();
+            if (this != &other)
+            {
+                if (m_ptr)
+                {
+                    static_cast<SparkRefCount*>(m_ptr)->release();
+                }
+
+                m_ptr = other.m_ptr;
+
+                if (m_ptr)
+                {
+                    static_cast<SparkRefCount*>(m_ptr)->addRef();
+                }
+            }
+
             return *this;
         }
 

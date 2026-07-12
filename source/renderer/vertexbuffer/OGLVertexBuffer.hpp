@@ -41,11 +41,12 @@ namespace spark::renderer::vertexbuffer {
         void drawTriangles();
 
     private:
-        GLuint m_vao, m_vbo, m_nbo, m_cbo, m_bbo, m_ibo;
+        GLuint m_vao, m_vbo, m_nbo, m_cbo, m_tbo, m_bbo, m_ibo;
 
         int m_bufferSizeVertices;
         int m_bufferSizeNormals;
         int m_bufferSizeColor;
+        int m_bufferSizeTextureCoord;
         int m_bufferSizeBarycentric;
         int m_bufferSizeIndices;
         int m_verticesCount;
@@ -53,6 +54,7 @@ namespace spark::renderer::vertexbuffer {
         std::vector<real32> m_verticesData;
         std::vector<real32> m_normalData;
         std::vector<uc8_t> m_colorData;
+        std::vector<real32> m_textureCoordData;
         std::vector<real32> m_barycentricData;
         spark::geometry::mesh::ISparkMesh* m_mesh;
         spark::material::VertexLayout m_vertexLayout = spark::material::VertexLayout::NonIndexed;

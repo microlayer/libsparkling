@@ -8,6 +8,9 @@
 #include "LambertLightCanvas.hpp"
 #include "ISparkCommandListener.hpp"
 #include "PerspectiveCameraTestCanvas.hpp"
+#include "UnlitTextureCanvas.hpp"
+#include "ShadowMapCanvas.hpp"
+#include "PBRLightCanvas.hpp"
 
 /**
 *
@@ -31,6 +34,9 @@ public:
         m_sampleCanvas7 = new SampleCanvas7(device);
         m_lambertLightCanvas = new LambertLightCanvas(device);
         m_perspectiveCameraTestCanvas = new PerspectiveCameraTestCanvas(device);
+        m_unlitTextureCanvas = new UnlitTextureCanvas(device);
+        m_shadowMapCanvas = new ShadowMapCanvas(device);
+        m_pbrLightCanvas = new PBRLightCanvas(device);
 
         //m_sampleCanvas->registerCommandListener(this);
     }
@@ -57,6 +63,8 @@ public:
         m_timer6.setTimeout([this]() {this->switchToCanvas7(); }, 30000);
         m_timer7.setTimeout([this]() {this->switchToCanvas8(); }, 35000);
         m_timer8.setTimeout([this]() {this->switchToCanvas9(); }, 40000);
+        m_timer9.setTimeout([this]() {this->switchToCanvas10(); }, 45000);
+        m_timer10.setTimeout([this]() {this->switchToCanvas11(); }, 50000);
     }
 
     /**
@@ -134,6 +142,30 @@ public:
     /**
     *
     */
+    void switchToCanvas10()
+    {
+        this->setActiveCanvas(m_unlitTextureCanvas.get());
+    }
+
+    /**
+    *
+    */
+    void switchToCanvas11()
+    {
+        this->setActiveCanvas(m_shadowMapCanvas.get());
+    }
+
+    /**
+    *
+    */
+    void switchToCanvas12()
+    {
+        this->setActiveCanvas(m_pbrLightCanvas.get());
+    }
+
+    /**
+    *
+    */
     void executeCommand(spark::ui::Command::E_COMMAND_TYPE cmd, spark::ui::AbstractCanvas* canvas)
     {
         if (spark::ui::Command::ECT_BACK == cmd)
@@ -168,6 +200,9 @@ private:
     spark::SparkSharedPointer<SampleCanvas7> m_sampleCanvas7;
     spark::SparkSharedPointer<LambertLightCanvas> m_lambertLightCanvas;
     spark::SparkSharedPointer<PerspectiveCameraTestCanvas> m_perspectiveCameraTestCanvas;
+    spark::SparkSharedPointer<UnlitTextureCanvas> m_unlitTextureCanvas;
+    spark::SparkSharedPointer<ShadowMapCanvas> m_shadowMapCanvas;
+    spark::SparkSharedPointer<PBRLightCanvas> m_pbrLightCanvas;
 
     spark::ui::AbstractCanvas* m_currentCanvas;
     spark::device::ISparkDevice* m_device;
@@ -179,4 +214,6 @@ private:
     spark::timer::Timer m_timer6;
     spark::timer::Timer m_timer7;
     spark::timer::Timer m_timer8;
+    spark::timer::Timer m_timer9;
+    spark::timer::Timer m_timer10;
 };
