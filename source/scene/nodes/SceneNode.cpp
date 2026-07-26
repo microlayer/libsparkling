@@ -54,7 +54,7 @@ namespace spark::scene::nodes {
     void SceneNode::setPosition(spark::math::Vector3f position)
     {
         m_position = position;
-        m_modelTransformationMatrix.setTranslation(position);
+        updateModelMatrix();
     }
 
     /**
@@ -71,7 +71,7 @@ namespace spark::scene::nodes {
     void SceneNode::setRotation(spark::math::Vector3f rotation)
     {
         m_rotation = rotation;
-        m_modelTransformationMatrix.setRotation(rotation);
+        updateModelMatrix();
     }
 
     /**
@@ -87,9 +87,28 @@ namespace spark::scene::nodes {
     */
     void SceneNode::setScale(const real32 x, const real32 y, const real32 z)
     {
-        spark::math::Matrix4f m;
-        m.setScale(x, y, z);
-        m_modelTransformationMatrix = m_modelTransformationMatrix * m;
+        /*spark::math::Matrix4f m;
+        S.setScale(x, y, z);
+        m_modelTransformationMatrix = m_modelTransformationMatrix * m;*/
+
+        m_scale = { x,y,z };
+        updateModelMatrix();
+    }
+
+    /**
+    *
+    */
+    void SceneNode::updateModelMatrix()
+    {
+        spark::math::Matrix4f T;
+        spark::math::Matrix4f R;
+        spark::math::Matrix4f S;
+
+        T.setTranslation(m_position);
+        R.setRotation(m_rotation);
+        S.setScale(m_scale.m_x, m_scale.m_y, m_scale.m_z);
+
+        m_modelTransformationMatrix = T * R * S;
     }
 
     /**

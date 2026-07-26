@@ -42,6 +42,24 @@ namespace spark::scene::nodes {
     /**
     *
     */
+    spark::math::Matrix4f PointLightNode::getLightViewProjectionMatrix()
+    {
+        spark::math::Matrix4f m;
+
+        return m;
+    }
+
+    /**
+    *
+    */
+    bool PointLightNode::castsShadows()
+    {
+        return false;
+    }
+
+    /**
+    *
+    */
     void PointLightNode::render(spark::renderer::ISparkRenderer* renderer)
     {
 

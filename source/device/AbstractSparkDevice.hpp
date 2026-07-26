@@ -16,6 +16,8 @@
 #include "ISparkVertexBufferFactory.hpp"
 #include "renderer/common/TextureFactory.hpp"
 #include "renderer/common/VertexBufferFactory.hpp"
+#include "renderer/common/FramebufferFactory.hpp"
+#include "renderer/common/ShadowMapFactory.hpp"
 #include "game/Sprite.hpp"
 #include "game/TiledLayer.hpp"
 #include "network/HttpClient.hpp"
@@ -78,6 +80,8 @@ namespace spark::device {
         virtual void createFontPool();
         virtual void createTextureFactory();
         virtual void createVertexBufferFactory();
+        virtual void createFramebufferFactory();
+        virtual void createShadowMapFactory();
         virtual void createHttpClient();
 
     private:
@@ -102,6 +106,8 @@ namespace spark::device {
         spark::renderer::ISparkRendererApiConfig* m_rendererConfig;
         spark::renderer::ISparkTextureFactory* m_texureFactory;
         spark::renderer::ISparkVertexBufferFactory* m_vertexBufferFactory;
+        spark::renderer::ISparkFramebufferFactory* m_framebufferFactory;
+        spark::renderer::ISparkShadowMapFactory* m_shadowMapFactory;
         spark::renderer::lightbuffer::ISparkLightBuffer* m_lightBuffer;
         spark::ui::AbstractCanvas* m_activeCanvas;
         spark::app::ISparkApp* m_sparkApp;

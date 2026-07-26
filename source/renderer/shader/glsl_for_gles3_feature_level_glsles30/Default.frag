@@ -7,6 +7,7 @@ in vec3 vertexNormal;
 in vec2 textureCoord;
 in vec3 barycentric;
 in vec3 fragPosition;
+in vec4 fragShadowCoord;
 
 // Mode
 uniform int uDrawMode;
@@ -40,8 +41,10 @@ uniform sampler2D uAlbedoMap;       // default: unit1
 uniform sampler2D uNormalMap;       // default: unit2
 uniform sampler2D uRoughnessMap;    // default: unit3
 uniform sampler2D uMetallicMap;     // default: unit4
+uniform sampler2D uShadowMap;       // default: unit7
 
 uniform bool uHasAlbedoTexture;
+uniform bool uHasShadowMap; // default: false
 
 // Out
 out vec4 fragColor;
@@ -57,6 +60,19 @@ const int DRAW_WIREFRAME   = 5; // DrawMode = 5: Used to draw mesh as wireframe
 const int DRAW_UNLIT       = 6; // DrawMode = 6: Used to draw texture without Lighting
 const int DRAW_DIFFUSE     = 7; // DrawMode = 7: Used to draw Diffuse Lighting (Lambert)
 const int DRAW_PBR         = 8; // DrawMode = 8: Used to draw PBR Lighting
+
+float calculateShadow()
+{
+    vec3 projCoords = fragShadowCoord.xyz / fragShadowCoord.w;
+    projCoords = projCoords * 0.5 + 0.5;
+
+    float closestDepth = texture(uShadowMap, projCoords.xy).r;
+    float currentDepth = projCoords.z;
+
+    float bias = 0.005;
+
+    return currentDepth - bias > closestDepth ? 1.0 : 0.0;
+}
 
 void main()
 {
@@ -95,6 +111,13 @@ void main()
     }
     else if(uDrawMode == DRAW_DIFFUSE)
     {       
+        float shadow = 0.0;
+
+        if (uHasShadowMap)
+        {
+            shadow = calculateShadow();
+        }
+        
         vec3 result = vec3(0.0);
          
         vec3 albedo = uAlbedo;
@@ -111,7 +134,11 @@ void main()
 
             float NdotL = max(dot(N, L), 0.0);
 
-            vec3 diffuse = albedo * uDirectionalLightColor[i] * uDirectionalLightIntensity[i] * NdotL;
+            vec3 diffuse = 
+                albedo * 
+                uDirectionalLightColor[i] * 
+                uDirectionalLightIntensity[i] * 
+                NdotL * (1.0 - shadow);
 
             result += diffuse;
         }
@@ -132,7 +159,8 @@ void main()
                 uPointLightColor[i] *
                 uPointLightIntensity[i] *
                 NdotL *
-                attenuation;
+                attenuation *
+                (1.0 - shadow);
 
             result += diffuse;
         }
@@ -147,5 +175,4 @@ void main()
         fragColor = color;
     }
 }
-
 

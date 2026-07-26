@@ -15,6 +15,7 @@ namespace spark::renderer {
         Normal = 2,
         Metallic = 3,
         Roughness = 4,
+        ShadowMap = 7
     };
 
     /**

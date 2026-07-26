@@ -136,6 +136,12 @@
     <Filter Include="source\renderer\shader\glsl_for_spir_feature_level_glsles30">
       <UniqueIdentifier>{0b9947a8-380d-46e3-95e6-de45192e416a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\renderer\framebuffer">
+      <UniqueIdentifier>{ea8ad3b6-b4ae-4285-b0e0-92f0437cc6b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\renderer\shadowmap">
+      <UniqueIdentifier>{f403ab18-9d6b-4d7a-8cff-358e0545b439}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\spark\Sparkling.cpp">
@@ -338,6 +344,18 @@
     </ClCompile>
     <ClCompile Include="..\..\source\material\UnlitMaterial.cpp">
       <Filter>source\material</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\renderer\common\FramebufferFactory.cpp">
+      <Filter>source\renderer\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\renderer\framebuffer\OGLFramebuffer.cpp">
+      <Filter>source\renderer\framebuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\renderer\shadowmap\ShadowMap.cpp">
+      <Filter>source\renderer\shadowmap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\renderer\common\ShadowMapFactory.cpp">
+      <Filter>source\renderer\common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -817,6 +835,30 @@
     </ClInclude>
     <ClInclude Include="..\..\testbed\ShadowMapCanvas.hpp">
       <Filter>testbed</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkFramebufferFactory.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\renderer\common\FramebufferFactory.hpp">
+      <Filter>source\renderer\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\renderer\framebuffer\OGLFramebuffer.hpp">
+      <Filter>source\renderer\framebuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkFramebuffer.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkShadowMap.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\renderer\shadowmap\ShadowMap.hpp">
+      <Filter>source\renderer\shadowmap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\renderer\common\ShadowMapFactory.hpp">
+      <Filter>source\renderer\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISparkShadowMapFactory.hpp">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

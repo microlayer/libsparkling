@@ -10,6 +10,8 @@
 #include "fonts/FontPool.hpp"
 #include "ISparkTextureFactory.hpp"
 #include "ISparkVertexBufferFactory.hpp"
+#include "ISparkShadowMap.hpp"
+#include "renderer/framebuffer/OGLFramebuffer.hpp"
 #if SPARK_PLATFORM == SPARK_PLATFORM_WINDOWS || \
     SPARK_PLATFORM == SPARK_PLATFORM_LINUX   || \
     SPARK_PLATFORM == SPARK_PLATFORM_APPLE
@@ -46,11 +48,12 @@ namespace spark::renderer {
         void setViewMatrix(const spark::math::Matrix4f& viewMatrix);
         void setModelTransformation(math::Matrix4f& modelTransformation);
 
-        // Shadow map
-        void beginShadowPass(/*spark::scene::nodes::ISparkLightNode* light*/);
-        void endShadowPass();
-        void setActiveRenderTarget(spark::renderer::E_RENDER_TARGET renderTarget);
+        void setLightViewProjection(math::Matrix4f& modelTransformation);
 
+        // Shadow map
+        void beginShadowPass(spark::scene::nodes::ISparkLightNode* light);
+        void endShadowPass();
+       
         // Common
         void drawBackground(const spark::drawing::Color& color);
 

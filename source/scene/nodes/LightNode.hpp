@@ -4,6 +4,7 @@
 #include "SparkRefCount.hpp"
 #include "scene/nodes/SceneNode.hpp"
 #include "ISparkLightNode.hpp"
+#include "ISparkShadowMap.hpp"
 
 namespace spark::scene::nodes {
     /**
@@ -25,11 +26,18 @@ namespace spark::scene::nodes {
         virtual LightType getLightType() override = 0;
 
     public:
+        void setShadowMap(spark::renderer::ISparkShadowMap* shadowMap) override;
+        spark::renderer::ISparkShadowMap* getShadowMap() override;
+
+    public:
         void render(spark::renderer::ISparkRenderer* renderer) override;
 
     private:
         spark::drawing::Color m_lightColor;
         real32 m_intensity;
+
+    protected:
+        spark::renderer::ISparkShadowMap* m_shadowMap;
     };
 }
 #endif

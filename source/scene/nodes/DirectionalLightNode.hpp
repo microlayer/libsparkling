@@ -3,6 +3,7 @@
 
 #include "scene/nodes/LightNode.hpp"
 #include "ISparkDirectionalLightNode.hpp"
+#include "math/ProjectionMatrix.hpp"
 
 namespace spark::scene::nodes {
     /**
@@ -20,6 +21,10 @@ namespace spark::scene::nodes {
 
     public:
         LightType getLightType() override;
+
+    public:
+        spark::math::Matrix4f getLightViewProjectionMatrix() override;
+        bool castsShadows() override;
 
     public:
         void render(spark::renderer::ISparkRenderer* renderer) override;

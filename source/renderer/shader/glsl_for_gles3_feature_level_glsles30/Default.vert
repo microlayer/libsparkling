@@ -12,6 +12,7 @@ uniform mat4 uModelViewProjectionMatrix;
 uniform mat4 uModelViewMatrix;
 uniform mat4 uModelMatrix;
 uniform mat3 uNormalMatrix;
+uniform mat4 uLightViewProjection;
 
 // Varying
 out vec4 color;
@@ -20,6 +21,7 @@ out vec2 textureCoord;
 out vec3 barycentric;
 
 out vec3 fragPosition;
+out vec4 fragShadowCoord;
 
 const float POINT_SIZE = 3.0;
 
@@ -34,8 +36,12 @@ void main()
     barycentric = aBarycentric;
         
     vec4 worldPos = uModelMatrix * vec4(aVertexPosition, 1.0);
+    
     fragPosition = worldPos.xyz;
+    fragShadowCoord  = uLightViewProjection * uModelMatrix * vec4(aVertexPosition, 1.0);
+
     gl_Position = uModelViewProjectionMatrix * vec4(aVertexPosition, 1.0);
+
     gl_PointSize = POINT_SIZE;
 }
 

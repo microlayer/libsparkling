@@ -21,7 +21,7 @@ public:
 
         // Camera
         m_camera = m_device->getRenderer()->createPerspectiveCamera();
-        m_camera->setPosition(spark::math::Vector3f(0, 0, -15.00f));
+        m_camera->setPosition(spark::math::Vector3f(0, 0, 15.00f));
         m_sceneGraphManager3D->setActiveCamera(m_camera.get());
 
         // Create Mesh
@@ -35,7 +35,7 @@ public:
         node->setPosition(spark::math::Vector3f(0, 0, 0));
         //node->setRotation(spark::math::Vector3f(0, 0, 0));
         node->setMesh(cubeMesh.get());
-        node->setScale(0.25, 0.25, 0.25);
+        node->setScale(0.75, 0.75, 0.75);
         node->setMaterial(m_material.get());
         node->addAnimator(nodeRotationAnimator.get());
 

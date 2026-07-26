@@ -170,6 +170,14 @@ namespace spark::renderer::shader {
     /**
     * TODO: remove glGetUniformLocation replace with cached uniform location in shader init O(n)
     */
+    void OpenGLShaderProgram::setLightViewProjection(const real32* matrix)
+    {
+        glUniformMatrix3fv(glGetUniformLocation(m_programObject, "uLightViewProjection"), 1, GL_FALSE, matrix);
+    }
+
+    /**
+    * TODO: remove glGetUniformLocation replace with cached uniform location in shader init O(n)
+    */
     void OpenGLShaderProgram::setDrawMode(uint32_t drawMode)
     {
         glUniform1i(glGetUniformLocation(m_programObject, "uDrawMode"), drawMode);
@@ -179,10 +187,10 @@ namespace spark::renderer::shader {
     * TODO: remove glGetUniformLocation replace with cached uniform location in shader init O(n)
     */
     void OpenGLShaderProgram::setTextureUnit(const std::string& name, uint32_t unit)
-    {        
+    {
         int uTextureLocation = glGetUniformLocation(m_programObject, name.c_str());
-        
-        
+
+
         glUniform1i(uTextureLocation, unit); // Tell the sampler with name to use texture unit 
     }
 
@@ -319,6 +327,15 @@ namespace spark::renderer::shader {
     }
 
     /**
+    *
+    */
+    void OpenGLShaderProgram::setHasShadowMap(bool flag)
+    {
+        GLint loc = glGetUniformLocation(m_programObject, "uHasShadowMap");
+        glUniform1i(loc, flag ? 1 : 0);
+    }
+
+    /**
     * Initializes shader
     */
     void OpenGLShaderProgram::init()
@@ -328,7 +345,9 @@ namespace spark::renderer::shader {
         setTextureUnit("uNormalMap", 2);
         setTextureUnit("uRoughnessMap", 3);
         setTextureUnit("uMetallicMap", 4);
+        setTextureUnit("uShadowMap", 7);
 
         setAlbedo(spark::math::Vector3f(1, 1, 1));
+        setHasShadowMap(false);
     }
 }

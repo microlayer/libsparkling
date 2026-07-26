@@ -138,15 +138,32 @@ namespace spark::renderer {
     /**
     *
     */
-    void OpenGLRenderer::beginShadowPass(/*spark::scene::nodes::ISparkLightNode* light*/)
+    void OpenGLRenderer::setLightViewProjection(math::Matrix4f& modelTransformation)
     {
-        //glBindFramebuffer(GL_FRAMEBUFFER, light->shadowMap().fbo);
+        m_shader->setLightViewProjection(modelTransformation.getPointer());
+    }
 
-        //glViewport(0, 0, light->shadowMap().width, light->shadowMap().height);
+    /**
+    *
+    */
+    void OpenGLRenderer::beginShadowPass(spark::scene::nodes::ISparkLightNode* light)
+    {
+        m_shader->setHasShadowMap(true); 
+        
+        spark::renderer::ISparkShadowMap* shadowMap = light->getShadowMap();
+        spark::renderer::ISparkFramebuffer* framebuffer = shadowMap->framebuffer();
+        
+        shadowMap->depthTexture()->bind(spark::renderer::TextureSlot::ShadowMap);
 
-        //glClear(GL_DEPTH_BUFFER_BIT);
+        auto ogl = static_cast<spark::renderer::framebuffer::OGLFramebuffer*>(shadowMap->framebuffer());
+        glBindFramebuffer(GL_FRAMEBUFFER, ogl->getHandle());
 
-        //glCullFace(GL_FRONT);
+        glViewport(0, 0, framebuffer->getWidth(), framebuffer->getHeight());
+
+        glClear(GL_DEPTH_BUFFER_BIT);
+        
+        //glEnable(GL_CULL_FACE);
+        //glCullFace(GL_FRONT);        
     }
 
     /**
@@ -154,32 +171,11 @@ namespace spark::renderer {
     */
     void OpenGLRenderer::endShadowPass()
     {
-        //setActiveRenderTarget(ERT_WINDOW);    
-    }
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-    /**
-    *
-    */
-    void OpenGLRenderer::setActiveRenderTarget(spark::renderer::E_RENDER_TARGET renderTarget)
-    {
-        switch (renderTarget)
-        {
-        case spark::renderer::ERT_SHADOW:
-            //glBindFramebuffer(GL_FRAMEBUFFER, m_shadowMapFBID);
-            //glViewport(0, 0, SHADOW_W, SHADOW_H);
-            glClear(GL_DEPTH_BUFFER_BIT);
+        glCullFace(GL_BACK);
 
-            glCullFace(GL_FRONT);
-            break;
-
-        case spark::renderer::ERT_WINDOW:
-            glBindFramebuffer(GL_FRAMEBUFFER, 0);
-            //glViewport(0, 0, screenW, screenH);
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-            glCullFace(GL_BACK);
-            break;
-        }
+        glViewport(0, 0, m_device->getScreenResolution().m_width, m_device->getScreenResolution().m_height);
     }
 
     /**

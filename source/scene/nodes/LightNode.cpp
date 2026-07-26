@@ -14,7 +14,10 @@ namespace spark::scene::nodes {
     */
     LightNode::~LightNode()
     {
-
+        if (m_shadowMap != NULL)
+        {
+            m_shadowMap->release();
+        }
     }
 
     /**
@@ -47,6 +50,22 @@ namespace spark::scene::nodes {
     real32 LightNode::getIntesity()
     {
         return m_intensity;
+    }
+
+    /**
+    *
+    */
+    void LightNode::setShadowMap(spark::renderer::ISparkShadowMap* shadowMap)
+    {
+        m_shadowMap = shadowMap;
+    }
+
+    /**
+    *
+    */
+    spark::renderer::ISparkShadowMap* LightNode::getShadowMap()
+    {
+        return m_shadowMap;
     }
 
     /**

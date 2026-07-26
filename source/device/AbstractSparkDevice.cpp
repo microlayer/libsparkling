@@ -31,8 +31,10 @@ namespace spark::device {
         m_fontPool->release();
         m_texureFactory->release();
         m_vertexBufferFactory->release();
+        m_framebufferFactory->release();
+        m_shadowMapFactory->release();
         m_lightBuffer->release();
-        m_httpClient->release();
+        //m_httpClient->release();
     }
 
     /**
@@ -45,6 +47,8 @@ namespace spark::device {
         createHttpClient();
         createTextureFactory();
         createVertexBufferFactory();
+        createFramebufferFactory();
+        createShadowMapFactory();
         createAssetManager();
         createSparkWindow();
         createShader();
@@ -155,7 +159,10 @@ namespace spark::device {
     */
     spark::scene::ISceneGraphManager3D* AbstractSparkDevice::createSceneGraphManager3D()
     {
-        return new spark::scene::SceneGraphManager3D(m_renderer, this->getScreenResolution(), m_logger);
+        return new spark::scene::SceneGraphManager3D(
+            m_renderer, this->getScreenResolution(),
+            m_shadowMapFactory,
+            m_logger);
     }
 
     /**
@@ -317,5 +324,21 @@ namespace spark::device {
     void AbstractSparkDevice::createVertexBufferFactory()
     {
         m_vertexBufferFactory = new spark::renderer::VertexBufferFactory(m_logger);
+    }
+
+    /**
+    *
+    */
+    void AbstractSparkDevice::createFramebufferFactory()
+    {
+        m_framebufferFactory = new spark::renderer::FramebufferFactory();
+    }
+
+    /**
+    *
+    */
+    void AbstractSparkDevice::createShadowMapFactory()
+    {
+        m_shadowMapFactory = new spark::renderer::ShadowMapFactory(m_texureFactory, m_framebufferFactory);
     }
 }

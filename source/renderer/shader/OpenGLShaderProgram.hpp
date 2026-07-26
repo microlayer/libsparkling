@@ -41,6 +41,7 @@ namespace spark::renderer::shader {
         void setModelViewMatrix(const real32* matrix);
         void setModelMatrix(const real32* matrix);
         void setNormalMatrix(const real32* matrix);
+        void setLightViewProjection(const real32* matrix);
 
     public:
         void setDrawMode(uint32_t drawMode);
@@ -50,7 +51,7 @@ namespace spark::renderer::shader {
     public: // Light
         void setLightBuffer(spark::renderer::lightbuffer::GPULightBuffer& lightBuffer);
 
-    public: 
+    public:
         // Unlit, Diffuse
         void setAlbedo(spark::math::Vector3f albedo);
         // PBR
@@ -60,7 +61,8 @@ namespace spark::renderer::shader {
 
     public: // Texture
         void setHasAlbedoTexture(bool flag);
-        
+        void setHasShadowMap(bool flag);
+
     private:
         void init();
 

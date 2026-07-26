@@ -72,6 +72,30 @@ namespace spark::renderer {
     /**
     *
     */
+    void VulkanRenderer::setLightViewProjection(math::Matrix4f& modelTransformation)
+    {
+
+    }
+
+    /**
+    *
+    */
+    void VulkanRenderer::beginShadowPass(spark::scene::nodes::ISparkLightNode* light)
+    {
+
+    }
+
+    /**
+    *
+    */
+    void VulkanRenderer::endShadowPass()
+    {
+
+    }
+
+    /**
+    *
+    */
     void VulkanRenderer::drawBackground(const spark::drawing::Color& color)
     {
 

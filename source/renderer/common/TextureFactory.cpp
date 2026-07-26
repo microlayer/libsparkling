@@ -30,7 +30,7 @@ namespace spark::renderer {
     {
         if (m_textureMap.find(id) == m_textureMap.end())
         {
-            spark::renderer::texture::OGLTexture* texture = new spark::renderer::texture::OGLTexture(m_logger, data, width, height, pixelFormat);
+            spark::renderer::texture::OGLTexture* texture = new spark::renderer::texture::OGLTexture(data, width, height, pixelFormat, m_logger);
             m_textureMap[id] = texture;
             texture->addRef();
             return texture;
@@ -41,5 +41,14 @@ namespace spark::renderer {
             texture->addRef();
             return texture;
         }
+    }
+
+    /**
+    *
+    */
+    spark::renderer::ISparkTexture* TextureFactory::createDepthTexture(int32_t width, int32_t height)
+    {
+        spark::renderer::texture::OGLTexture* texture = new spark::renderer::texture::OGLTexture(width, height, m_logger);
+        return texture;
     }
 }

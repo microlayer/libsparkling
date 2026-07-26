@@ -22,6 +22,10 @@ namespace spark::scene::nodes {
         LightType getLightType() override;
 
     public:
+        spark::math::Matrix4f getLightViewProjectionMatrix() override;
+        bool castsShadows() override;
+
+    public:
         void render(spark::renderer::ISparkRenderer* renderer) override;
 
     private:

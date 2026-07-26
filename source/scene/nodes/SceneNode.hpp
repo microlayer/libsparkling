@@ -27,6 +27,9 @@ namespace spark::scene::nodes {
         spark::math::Vector3f getRotation();
         void setScale(const real32 x, const real32 y, const real32 z);
 
+    private:
+        void updateModelMatrix();
+
     protected:
         void addAnimator(spark::animator::ISparkNodeAnimator* nodeAnimator);
 
@@ -43,6 +46,7 @@ namespace spark::scene::nodes {
         std::vector<ISparkSceneNode*> m_children;
         spark::math::Vector3f m_position;
         spark::math::Vector3f m_rotation;
+        spark::math::Vector3f m_scale = { 1,1,1 };
         spark::math::Matrix4f m_modelTransformationMatrix;
         spark::animator::ISparkNodeAnimator* m_nodeAnimator;
         spark::material::ISparkMaterial* m_material;

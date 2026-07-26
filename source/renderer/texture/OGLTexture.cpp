@@ -5,16 +5,16 @@ namespace spark::renderer::texture {
     *
     */
     OGLTexture::OGLTexture(
-        spark::log::ISparkLogger* logger,
         uc8_t* data,
         int32_t width,
         int32_t height,
-        spark::drawing::E_PIXEL_FORMAT pixelFormat) :
-        m_logger(logger),
+        spark::drawing::E_PIXEL_FORMAT pixelFormat,
+        spark::log::ISparkLogger* logger) :
         m_data(data),
         m_width(width),
         m_height(height),
         m_pixelFormat(pixelFormat),
+        m_logger(logger),
         m_textureId(0)
     {
         m_logger->info("Start creating texture");
@@ -49,6 +49,42 @@ namespace spark::renderer::texture {
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
         m_logger->info("Creating texture done");
+    }
+
+    /**
+    *
+    */
+    OGLTexture::OGLTexture(
+        int32_t width,
+        int32_t height,
+        spark::log::ISparkLogger* logger) :
+        m_width(width),
+        m_height(height),
+        m_logger(logger),
+        m_textureId(0)
+    {
+        m_logger->info("Start creating depth texture");
+
+        glGenTextures(1, &m_textureId);
+        glBindTexture(GL_TEXTURE_2D, m_textureId);
+
+        glTexImage2D(
+            GL_TEXTURE_2D,
+            0,
+            GL_DEPTH_COMPONENT24,
+            width,
+            height,
+            0,
+            GL_DEPTH_COMPONENT,
+            GL_UNSIGNED_INT,
+            NULL);
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+        m_logger->info("Creating depth texture done");
     }
 
     /**
@@ -115,8 +151,8 @@ namespace spark::renderer::texture {
     */
     void OGLTexture::bind(spark::renderer::TextureSlot slot)
     {
-        uint32_t slotIndex = static_cast<uint32_t>(slot);        
-        glActiveTexture(GL_TEXTURE0 + slotIndex);        
+        uint32_t slotIndex = static_cast<uint32_t>(slot);
+        glActiveTexture(GL_TEXTURE0 + slotIndex);
         glBindTexture(GL_TEXTURE_2D, m_textureId);
     }
 

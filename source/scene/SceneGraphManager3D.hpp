@@ -17,6 +17,7 @@
 #include "ISparkPointLightNode.hpp"
 #include "renderer/lightbuffer/GPUDirectionalLight.hpp"
 #include "renderer/lightbuffer/GPUPointLight.hpp"
+#include "ISparkShadowMapFactory.hpp"
 
 namespace spark::scene {
     /**
@@ -27,6 +28,7 @@ namespace spark::scene {
     public:
         SceneGraphManager3D(spark::renderer::ISparkRenderer* renderer,
             spark::device::ScreenResolution screenResolution,
+            spark::renderer::ISparkShadowMapFactory* shadowMapFactory,
             spark::log::ISparkLogger* logger);
         virtual ~SceneGraphManager3D();
 
@@ -36,6 +38,7 @@ namespace spark::scene {
         void setActiveCamera(spark::scene::camera::ISparkPerspectiveCamera* camera);
         void addLight(spark::scene::nodes::ISparkLightNode* lightNode);
         void drawGraph(spark::renderer::ISparkRenderer* renderer);
+        void setShadowMappingEnabled(bool flag);
 
     private:
         void renderScene(spark::renderer::ISparkRenderer* renderer);
@@ -44,6 +47,7 @@ namespace spark::scene {
     private:
         void applyCamera();
         void applyLight();
+        void applyLightCamera(spark::scene::nodes::ISparkLightNode* light);
 
     private:
         void onBeforeDrawGraph();
@@ -70,6 +74,8 @@ namespace spark::scene {
         std::vector<spark::scene::nodes::ISparkLightNode*> m_lights;
 
         bool m_isShadowMappingEnabled;
+
+        spark::renderer::ISparkShadowMapFactory* m_shadowMapFactory;
     };
 }
 #endif

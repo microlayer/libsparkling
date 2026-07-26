@@ -28,6 +28,9 @@ namespace spark::renderer {
     public: // ISparkTextureFactory
         spark::renderer::ISparkTexture* getOrCreateTexture(std::string id, uc8_t* data, int32_t width, int32_t height, spark::drawing::E_PIXEL_FORMAT pixelFormat);
 
+    public:
+        spark::renderer::ISparkTexture* createDepthTexture(int32_t width, int32_t height);
+
     private:
         std::map<std::string, spark::renderer::texture::OGLTexture*> m_textureMap;
         spark::log::ISparkLogger* m_logger;

@@ -9,7 +9,7 @@
 #include <vector>
 #include <string>
 #include "ISparkLogger.hpp"
-#include "../shader/glsl_for_spir_feature_level_glsles10/DefaultShader.hpp"
+#include "../shader/glsl_for_spir_feature_level_glsles30/DefaultShader.hpp"
 #include "mlstl/MLBase64.hpp"
 
 namespace spark::renderer {

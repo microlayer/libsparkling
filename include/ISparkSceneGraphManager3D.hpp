@@ -21,6 +21,7 @@ namespace spark::scene {
         virtual void setActiveCamera(spark::scene::camera::ISparkPerspectiveCamera* camera) = 0;
         virtual void addLight(spark::scene::nodes::ISparkLightNode* lightNode) = 0;
         virtual void drawGraph(spark::renderer::ISparkRenderer* renderer) = 0;
+        virtual void setShadowMappingEnabled(bool flag) = 0;
 
     public: // Factory        
         virtual spark::scene::nodes::ISparkMeshSceneNode* createMeshSceneNode() = 0;

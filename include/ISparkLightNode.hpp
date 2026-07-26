@@ -3,6 +3,7 @@
 
 #include "SparkRefCount.hpp"
 #include "ISparkSceneNode.hpp"
+#include "ISparkShadowMap.hpp"
 
 namespace spark::scene::nodes {
     /**
@@ -25,6 +26,12 @@ namespace spark::scene::nodes {
         virtual void setIntensity(real32 intensity) = 0;
         virtual real32 getIntesity() = 0;
         virtual LightType getLightType() = 0;
+
+        virtual void setShadowMap(spark::renderer::ISparkShadowMap* shadowMap) = 0;
+        virtual spark::renderer::ISparkShadowMap* getShadowMap() = 0;
+
+        virtual spark::math::Matrix4f getLightViewProjectionMatrix() = 0;
+        virtual bool castsShadows() = 0;
     };
 }
 #endif

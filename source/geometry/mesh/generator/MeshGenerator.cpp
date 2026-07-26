@@ -152,10 +152,10 @@ namespace spark::geometry::mesh::generator {
     {
         spark::geometry::mesh::Mesh* m = new spark::geometry::mesh::Mesh();
 
-        m->addVertex(spark::drawing::Vertex3(-1.0f, 0.0f, -1.0f, spark::drawing::Color(255, 0, 0, 255), math::Vector3f(0.0f, -1.0f, 0.0f), math::Vector2f(0.0f, 0.0f)));
-        m->addVertex(spark::drawing::Vertex3(1.0f, 0.0f, -1.0f, spark::drawing::Color(0, 255, 0, 255), math::Vector3f(0.0f, -1.0f, 0.0f), math::Vector2f(1.0f, 0.0f)));
-        m->addVertex(spark::drawing::Vertex3(-1.0f, 0.0f, 1.0f, spark::drawing::Color(0, 0, 255, 255), math::Vector3f(0.0f, -1.0f, 0.0f), math::Vector2f(0.0f, 1.0f)));
-        m->addVertex(spark::drawing::Vertex3(1.0f, 0.0f, 1.0f, spark::drawing::Color(0, 255, 0, 255), math::Vector3f(0.0f, -1.0f, 0.0f), math::Vector2f(1.0f, 1.0f)));
+        m->addVertex(spark::drawing::Vertex3(-1.0f, 0.0f, -1.0f, spark::drawing::Color(255, 0, 0, 255), math::Vector3f(0.0f, 1.0f, 0.0f), math::Vector2f(0.0f, 0.0f)));
+        m->addVertex(spark::drawing::Vertex3(1.0f, 0.0f, -1.0f, spark::drawing::Color(0, 255, 0, 255), math::Vector3f(0.0f, 1.0f, 0.0f), math::Vector2f(1.0f, 0.0f)));
+        m->addVertex(spark::drawing::Vertex3(-1.0f, 0.0f, 1.0f, spark::drawing::Color(0, 0, 255, 255), math::Vector3f(0.0f, 1.0f, 0.0f), math::Vector2f(0.0f, 1.0f)));
+        m->addVertex(spark::drawing::Vertex3(1.0f, 0.0f, 1.0f, spark::drawing::Color(0, 255, 0, 255), math::Vector3f(0.0f, 1.0f, 0.0f), math::Vector2f(1.0f, 1.0f)));
 
         uint16_t planeVertexFaces[] = {
             2, 3, 1,  // 

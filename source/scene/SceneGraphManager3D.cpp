@@ -7,13 +7,17 @@ namespace spark::scene {
     SceneGraphManager3D::SceneGraphManager3D(
         spark::renderer::ISparkRenderer* renderer,
         spark::device::ScreenResolution screenResolution,
+        spark::renderer::ISparkShadowMapFactory* shadowMapFactory,
         spark::log::ISparkLogger* logger) : m_renderer(renderer),
         m_screenResolution(screenResolution),
+        m_shadowMapFactory(shadowMapFactory),
         m_logger(logger),
         m_activeCamera(NULL),
         m_defaultCamera(screenResolution.m_ratio)
     {
         m_renderer->setDrawMode(0);
+
+        m_isShadowMappingEnabled = false;
     }
 
     /**
@@ -82,6 +86,14 @@ namespace spark::scene {
     /**
     *
     */
+    void SceneGraphManager3D::setShadowMappingEnabled(bool flag)
+    {
+        m_isShadowMappingEnabled = flag;
+    }
+
+    /**
+    *
+    */
     void SceneGraphManager3D::renderScene(spark::renderer::ISparkRenderer* renderer)
     {
         if (!m_rootNode.getChildren().empty())
@@ -105,9 +117,12 @@ namespace spark::scene {
         {
             for (auto* light : m_lights)
             {
-                renderer->beginShadowPass(/*light*/);
+                if (!light->castsShadows())
+                    continue;
 
-                //applyLightCamera(light);
+                renderer->beginShadowPass(light);
+
+                applyLightCamera(light);
 
                 renderScene(renderer);
 
@@ -180,6 +195,16 @@ namespace spark::scene {
     /**
     *
     */
+    void SceneGraphManager3D::applyLightCamera(spark::scene::nodes::ISparkLightNode* light)
+    {
+        spark::math::Matrix4f m = light->getLightViewProjectionMatrix();
+
+        m_renderer->setLightViewProjection(m);
+    }
+
+    /**
+    *
+    */
     void SceneGraphManager3D::onBeforeDrawGraph()
     {
         m_renderer->activateDepthTest(true);
@@ -225,7 +250,13 @@ namespace spark::scene {
     */
     spark::scene::nodes::ISparkDirectionalLightNode* SceneGraphManager3D::createDirectionalLightNode()
     {
-        return new spark::scene::nodes::DirectionalLightNode();
+        auto* light = new spark::scene::nodes::DirectionalLightNode();
+
+        if (light->castsShadows())
+        {
+            light->setShadowMap(m_shadowMapFactory->create(2048, 2048));
+        }
+        return light;
     }
 
     /**
@@ -233,6 +264,12 @@ namespace spark::scene {
     */
     spark::scene::nodes::ISparkPointLightNode* SceneGraphManager3D::createPointLightNode()
     {
-        return new spark::scene::nodes::PointLightNode();
+        auto* light = new spark::scene::nodes::PointLightNode();
+
+        if (light->castsShadows())
+        {
+            light->setShadowMap(m_shadowMapFactory->create(2048, 2048));
+        }
+        return light;
     }
 }

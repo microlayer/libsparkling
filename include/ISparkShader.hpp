@@ -27,6 +27,7 @@ namespace spark::renderer::shader {
         virtual void setModelViewMatrix(const real32* matrix) = 0;
         virtual void setModelMatrix(const real32* matrix) = 0;
         virtual void setNormalMatrix(const real32* matrix) = 0;
+        virtual void setLightViewProjection(const real32* matrix) = 0;
 
     public:
         virtual void setDrawMode(uint32_t drawMode) = 0;
@@ -47,6 +48,7 @@ namespace spark::renderer::shader {
 
     public: // Texture
         virtual void setHasAlbedoTexture(bool flag) = 0;
+        virtual void setHasShadowMap(bool flag) = 0;
     };
 }
 #endif

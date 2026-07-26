@@ -32,6 +32,12 @@ namespace spark::renderer {
         void setViewMatrix(const spark::math::Matrix4f& viewMatrix);
         void setModelTransformation(math::Matrix4f& modelTransformation);
 
+        void setLightViewProjection(math::Matrix4f& modelTransformation);
+
+        // Shadow map
+        void beginShadowPass(spark::scene::nodes::ISparkLightNode* light);
+        void endShadowPass();
+
         // Common
         void drawBackground(const spark::drawing::Color& color);
 
