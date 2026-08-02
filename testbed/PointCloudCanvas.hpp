@@ -27,6 +27,7 @@ public:
         spark::SparkSharedPointer<spark::scene::nodes::ISparkPointCloudSceneNode> sceneNode = m_sceneGraphManager3D->createPointCloudSceneNode();
         sceneNode->setPosition(spark::math::Vector3f(0, 0, -50));
         sceneNode->setRotation(spark::math::Vector3f(0, 0, 0));
+        sceneNode->setScale(0.75, 0.75, 0.75);
         sceneNode->setPointCloud(pointCloud.get());
 
 
