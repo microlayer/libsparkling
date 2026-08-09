@@ -148,22 +148,30 @@ namespace spark::renderer {
     */
     void OpenGLRenderer::beginShadowPass(spark::scene::nodes::ISparkLightNode* light)
     {
-        m_shader->setHasShadowMap(true); 
-        
+        m_shader->setHasShadowMap(true);
+        m_shader->setShadowPass(true);
+
+        glActiveTexture(GL_TEXTURE7);
+        glBindTexture(GL_TEXTURE_2D, 0);
+
         spark::renderer::ISparkShadowMap* shadowMap = light->getShadowMap();
         spark::renderer::ISparkFramebuffer* framebuffer = shadowMap->framebuffer();
-        
-        shadowMap->depthTexture()->bind(spark::renderer::TextureSlot::ShadowMap);
 
-        auto ogl = static_cast<spark::renderer::framebuffer::OGLFramebuffer*>(shadowMap->framebuffer());
+        auto ogl = static_cast<spark::renderer::framebuffer::OGLFramebuffer*>(framebuffer);
         glBindFramebuffer(GL_FRAMEBUFFER, ogl->getHandle());
 
         glViewport(0, 0, framebuffer->getWidth(), framebuffer->getHeight());
 
+        glDisable(GL_SCISSOR_TEST); // Important
+
+        glEnable(GL_DEPTH_TEST);
+        glDepthMask(GL_TRUE);
+        glDepthFunc(GL_LESS);
+
+        glDisable(GL_CULL_FACE);
+
+        glClearDepthf(1.0);
         glClear(GL_DEPTH_BUFFER_BIT);
-        
-        //glEnable(GL_CULL_FACE);
-        //glCullFace(GL_FRONT);        
     }
 
     /**
@@ -171,11 +179,17 @@ namespace spark::renderer {
     */
     void OpenGLRenderer::endShadowPass()
     {
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-        glCullFace(GL_BACK);
+        m_shader->setShadowPass(false);
 
         glViewport(0, 0, m_device->getScreenResolution().m_width, m_device->getScreenResolution().m_height);
+
+        glActiveTexture(GL_TEXTURE0);
+
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+        glEnable(GL_SCISSOR_TEST);
+        glDisable(GL_DEPTH_TEST);
+        glEnable(GL_CULL_FACE);
     }
 
     /**
@@ -301,6 +315,42 @@ namespace spark::renderer {
         glDisableVertexAttribArray(0);
 
         glDisable(GL_BLEND);
+        m_shader->setDrawMode(0);
+    }
+
+    /**
+    *
+    */
+    void OpenGLRenderer::drawShadowMap(spark::renderer::ISparkTexture* shadowMap, int16_t x1, int16_t y1, int16_t width, int16_t height)
+    {
+        m_shader->setDrawMode(9);
+        shadowMap->bind(spark::renderer::TextureSlot::ShadowMap);
+
+        GLfloat texureCoords[] = {
+            0.0, 1.0,
+            1.0, 1.0,
+            0.0, 0.0,
+            1.0, 0.0
+        };
+
+        GLfloat vertices[] = {
+            (GLfloat)x1,                  (GLfloat)(height + y1), 0.0f,
+            (GLfloat)(width + x1),        (GLfloat)(height + y1), 0.0f,
+            (GLfloat)x1,                  (GLfloat)y1,             0.0f,
+            (GLfloat)(width + x1),        (GLfloat)y1,             0.0f
+        };
+
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, &vertices[0]);
+        glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 0, &texureCoords[0]);
+
+        glEnableVertexAttribArray(0);
+        glEnableVertexAttribArray(3);
+
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+        glDisableVertexAttribArray(3);
+        glDisableVertexAttribArray(0);
+
         m_shader->setDrawMode(0);
     }
 

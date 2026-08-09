@@ -53,7 +53,7 @@ namespace spark::renderer {
         // Shadow map
         void beginShadowPass(spark::scene::nodes::ISparkLightNode* light);
         void endShadowPass();
-       
+
         // Common
         void drawBackground(const spark::drawing::Color& color);
 
@@ -64,6 +64,7 @@ namespace spark::renderer {
         void draw2DRectangle(int16_t x1, int16_t y1, int16_t width, int16_t height);
         void draw2DBitmap(spark::drawing::ISparkImage* image, int16_t x, int16_t y);
         void draw2DBitmap(spark::drawing::ISparkImage* image, int16_t x, int16_t y, const spark::drawing::ClippingRectangle clipRect);
+        void drawShadowMap(spark::renderer::ISparkTexture* shadowMap, int16_t x1, int16_t y1, int16_t width, int16_t height);
         void drawTiledLayer(const spark::game::TiledLayer* tiledLayer, int16_t x, int16_t y);
         void drawString(const spark::font::E_SYSTEM_FONT_TYPE fontType, const std::string text, spark::drawing::Color color, int16_t x, int16_t y);
         void drawString(const std::string fontFamily, uint32_t size, const std::string text, spark::drawing::Color color, int16_t x, int16_t y);

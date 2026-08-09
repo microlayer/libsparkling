@@ -40,11 +40,11 @@ namespace spark::scene::nodes {
     }
 
     /**
-    * VP
+    * 
     */
     spark::math::Matrix4f DirectionalLightNode::getLightViewProjectionMatrix()
     {
-        float size = 50.0f;
+        float size = 5.0f;
 
         real32 orthoArray[16];
         spark::math::ProjectionMatrixf::createOrthofMatrix(
@@ -52,14 +52,17 @@ namespace spark::scene::nodes {
             size,
             -size,
             size,
-            1.0,
-            300.0f,
+            0.5,
+            50.0f,
             orthoArray);
 
         spark::math::Matrix4f projectionMatrix;
         memcpy(projectionMatrix.m_matrix, orthoArray, sizeof(orthoArray));
 
-        spark::math::Vector3f lightPosition = m_lightDirection * -100.0f;
+
+        real32 shadowDistance = 20;
+        spark::math::Vector3f sceneCenter(0.0, 0.0, 0.0);
+        spark::math::Vector3f lightPosition = sceneCenter - m_lightDirection * shadowDistance;
 
         real32 viewArray[16];
         spark::math::ProjectionMatrixf::createLookAtMatrix(
@@ -70,6 +73,7 @@ namespace spark::scene::nodes {
 
         spark::math::Matrix4f viewMatrix;
         memcpy(viewMatrix.m_matrix, viewArray, sizeof(viewArray));
+
 
         spark::math::Matrix4f shadowMatrix = projectionMatrix * viewMatrix;
 

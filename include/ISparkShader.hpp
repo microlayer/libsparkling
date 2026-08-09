@@ -49,6 +49,9 @@ namespace spark::renderer::shader {
     public: // Texture
         virtual void setHasAlbedoTexture(bool flag) = 0;
         virtual void setHasShadowMap(bool flag) = 0;
+
+    public:
+        virtual void setShadowPass(bool flag) = 0;
     };
 }
 #endif

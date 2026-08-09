@@ -172,7 +172,7 @@ namespace spark::renderer::shader {
     */
     void OpenGLShaderProgram::setLightViewProjection(const real32* matrix)
     {
-        glUniformMatrix3fv(glGetUniformLocation(m_programObject, "uLightViewProjection"), 1, GL_FALSE, matrix);
+        glUniformMatrix4fv(glGetUniformLocation(m_programObject, "uLightViewProjection"), 1, GL_FALSE, matrix);
     }
 
     /**
@@ -332,6 +332,15 @@ namespace spark::renderer::shader {
     void OpenGLShaderProgram::setHasShadowMap(bool flag)
     {
         GLint loc = glGetUniformLocation(m_programObject, "uHasShadowMap");
+        glUniform1i(loc, flag ? 1 : 0);
+    }
+
+    /**
+    *
+    */
+    void OpenGLShaderProgram::setShadowPass(bool flag)
+    {
+        GLint loc = glGetUniformLocation(m_programObject, "uShadowPass");
         glUniform1i(loc, flag ? 1 : 0);
     }
 

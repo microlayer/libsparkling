@@ -1,4 +1,5 @@
 #include "OGLFramebuffer.hpp"
+#include <assert.h>
 
 namespace spark::renderer::framebuffer {
     /**
@@ -30,7 +31,11 @@ namespace spark::renderer::framebuffer {
 
         m_depthTextureId = m_oglTexture->getHandle();
 
+
+        depthTexture->bind(spark::renderer::TextureSlot::ShadowMap);
         glBindFramebuffer(GL_FRAMEBUFFER, m_fbo);
+
+      
 
         glFramebufferTexture2D(
             GL_FRAMEBUFFER,
@@ -39,11 +44,12 @@ namespace spark::renderer::framebuffer {
             m_depthTextureId,
             0);
 
+        //glDrawBuffer(GL_NONE);
+        //glReadBuffer(GL_NONE);
+
         const GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-        if (status != GL_FRAMEBUFFER_COMPLETE)
-        {
-            // TODO: ERROR
-        }
+        assert(status == GL_FRAMEBUFFER_COMPLETE);
+       
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
     }
 

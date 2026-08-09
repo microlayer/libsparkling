@@ -10,7 +10,7 @@ public:
     */
     ShadowMapCanvas(spark::device::ISparkDevice* device) :
         m_device(device)
-    {
+    {        
         // Create SceneGraphManager3D                
         m_sceneGraphManager3D = device->createSceneGraphManager3D();
         m_sceneGraphManager3D->setShadowMappingEnabled(true);
@@ -30,7 +30,8 @@ public:
         spark::SparkSharedPointer<spark::geometry::mesh::ISparkMesh> planeMesh(spark::geometry::mesh::generator::MeshGenerator::createPlaneMesh());
         spark::SparkSharedPointer<spark::geometry::mesh::ISparkMesh> cubeMesh(spark::geometry::mesh::generator::MeshGenerator::createQuadMesh());
 
-        spark::SparkSharedPointer<spark::animator::ISparkNodeAnimator> nodeRotationAnimator = spark::animator::NodeRotationAnimator::create(spark::math::Vector3f(0, 30, 0));
+        spark::SparkSharedPointer<spark::animator::ISparkNodeAnimator> nodeRotationAnimator = 
+            spark::animator::NodeRotationAnimator::create(spark::math::Vector3f(0, 40, 0));
 
 
         // Create SceneNode
@@ -50,12 +51,12 @@ public:
         node2->addAnimator(nodeRotationAnimator.get());
 
         // Create Directional-Light
-        spark::SparkSharedPointer<spark::scene::nodes::ISparkDirectionalLightNode> directionalLightNode = m_sceneGraphManager3D->createDirectionalLightNode();
-        directionalLightNode->setIntensity(1.5);
-        directionalLightNode->setLightColor(spark::drawing::Color(0, 255, 0, 255));
-        directionalLightNode->setDirection(spark::math::Vector3f(1, -1, -1));
+        m_directionalLightNode = m_sceneGraphManager3D->createDirectionalLightNode();
+        m_directionalLightNode->setIntensity(1.5);
+        m_directionalLightNode->setLightColor(spark::drawing::Color(0, 255, 0, 255));
+        m_directionalLightNode->setDirection(spark::math::Vector3f(1, -1, -1));
 
-        m_sceneGraphManager3D->addLight(directionalLightNode.get());
+        m_sceneGraphManager3D->addLight(m_directionalLightNode.get());
 
         m_sceneGraphManager3D->rootNode()->addChildSceneNode(node1.get());
         m_sceneGraphManager3D->rootNode()->addChildSceneNode(node2.get());
@@ -89,6 +90,13 @@ public:
     void paint(spark::renderer::ISparkRenderer* renderer)
     {
         m_sceneGraphManager3D->drawGraph(renderer);
+
+        spark::perspective::OrthographicProjection orthographicProjection(m_device->getScreenResolution().m_width, m_device->getScreenResolution().m_height);
+        orthographicProjection.setVirtualResolution(1196, 720, spark::perspective::VirtualResolution::E_LETTER_OR_PILLARBOX);
+        m_device->getRenderer()->setOrthographicProjectionMatrix(orthographicProjection);
+
+        renderer->drawString(spark::font::ESFT_ARIAL_16, "ShadowMapCanvas", spark::drawing::Color(255, 255, 0, 128), 10,50);
+        renderer->drawShadowMap(m_directionalLightNode.get()->getShadowMap()->depthTexture(), 940,0,256,256);
     }
 
 private:
@@ -96,4 +104,5 @@ private:
     spark::SparkSharedPointer<spark::scene::ISceneGraphManager3D> m_sceneGraphManager3D;
     spark::SparkSharedPointer<spark::scene::camera::ISparkPerspectiveCamera> m_camera;
     spark::SparkSharedPointer<spark::material::ISparkMaterial> m_material;
+    spark::SparkSharedPointer<spark::scene::nodes::ISparkDirectionalLightNode> m_directionalLightNode;
 };

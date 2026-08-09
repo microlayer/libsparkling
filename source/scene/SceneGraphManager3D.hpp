@@ -50,6 +50,7 @@ namespace spark::scene {
         void applyLightCamera(spark::scene::nodes::ISparkLightNode* light);
 
     private:
+        void bindShadowMaps();
         void onBeforeDrawGraph();
         void onAfterDrawGraph();
 

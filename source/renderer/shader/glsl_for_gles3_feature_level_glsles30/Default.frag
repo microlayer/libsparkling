@@ -60,6 +60,7 @@ const int DRAW_WIREFRAME   = 5; // DrawMode = 5: Used to draw mesh as wireframe
 const int DRAW_UNLIT       = 6; // DrawMode = 6: Used to draw texture without Lighting
 const int DRAW_DIFFUSE     = 7; // DrawMode = 7: Used to draw Diffuse Lighting (Lambert)
 const int DRAW_PBR         = 8; // DrawMode = 8: Used to draw PBR Lighting
+const int DRAW_SHADOWMAP   = 9; // DrawMode = 9: Used to draw Shadow Map
 
 float calculateShadow()
 {
@@ -169,6 +170,11 @@ void main()
     }
     else if(uDrawMode == DRAW_PBR)
     {
+    }
+    else if(uDrawMode == DRAW_SHADOWMAP)
+    {
+        float depth = texture(uShadowMap, textureCoord).r;
+        fragColor = vec4(depth, depth, depth, 1.0);
     }
     else
     {        

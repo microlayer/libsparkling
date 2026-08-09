@@ -76,6 +76,8 @@ namespace spark::scene {
         applyCamera();
         applyLight();
 
+        bindShadowMaps();
+
         onBeforeDrawGraph();
 
         renderScene(renderer);
@@ -200,6 +202,22 @@ namespace spark::scene {
         spark::math::Matrix4f m = light->getLightViewProjectionMatrix();
 
         m_renderer->setLightViewProjection(m);
+    }
+
+    /**
+    *
+    */
+    void SceneGraphManager3D::bindShadowMaps()
+    {
+        for (auto* light : m_lights)
+        {
+            if (!light->castsShadows())
+                continue;
+
+            auto* shadowMap = light->getShadowMap();
+
+            shadowMap->depthTexture()->bind(spark::renderer::TextureSlot::ShadowMap);
+        }
     }
 
     /**

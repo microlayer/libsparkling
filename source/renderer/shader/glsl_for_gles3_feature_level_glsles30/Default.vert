@@ -13,6 +13,7 @@ uniform mat4 uModelViewMatrix;
 uniform mat4 uModelMatrix;
 uniform mat3 uNormalMatrix;
 uniform mat4 uLightViewProjection;
+uniform bool uShadowPass;
 
 // Varying
 out vec4 color;
@@ -40,7 +41,14 @@ void main()
     fragPosition = worldPos.xyz;
     fragShadowCoord  = uLightViewProjection * uModelMatrix * vec4(aVertexPosition, 1.0);
 
-    gl_Position = uModelViewProjectionMatrix * vec4(aVertexPosition, 1.0);
+    if(uShadowPass)
+    {
+        gl_Position = uLightViewProjection * uModelMatrix * vec4(aVertexPosition, 1.0);
+    }
+    else
+    {
+        gl_Position = uModelViewProjectionMatrix * vec4(aVertexPosition, 1.0);
+    }
 
     gl_PointSize = POINT_SIZE;
 }

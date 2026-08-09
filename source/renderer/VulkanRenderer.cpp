@@ -174,6 +174,14 @@ namespace spark::renderer {
     /**
     *
     */
+    void VulkanRenderer::drawShadowMap(spark::renderer::ISparkTexture* shadowMap, int16_t x1, int16_t y1, int16_t width, int16_t height)
+    {
+
+    }
+
+    /**
+    *
+    */
     void VulkanRenderer::drawTiledLayer(const spark::game::TiledLayer* tiledLayer, int16_t x, int16_t y)
     {
 
