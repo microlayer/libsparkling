@@ -3,6 +3,7 @@
 
 #include "SparkRefCount.hpp"
 #include "renderer/lightbuffer/GPUDirectionalLight.hpp"
+#include "renderer/lightbuffer/GPUSpotLight.hpp"
 #include "renderer/lightbuffer/GPUPointLight.hpp"
 #include "ISparkShader.hpp"
 #include <vector>
@@ -18,6 +19,7 @@ namespace spark::renderer::lightbuffer {
         virtual void uploadLights(
             spark::renderer::shader::ISparkShader* shader,
             std::vector<renderer::lightbuffer::GPUDirectionalLight>& gpuDirectionalLights,
+            std::vector<renderer::lightbuffer::GPUSpotLight>& gpuSpotLights,
             std::vector<renderer::lightbuffer::GPUPointLight>& gpuPointLights) = 0;
     };
 }

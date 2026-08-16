@@ -7,6 +7,7 @@
 #include "ISparkCoordinateSystemNode.hpp"
 #include "ISparkDirectionalLightNode.hpp"
 #include "nodes/DirectionalLightNode.hpp"
+#include "nodes/SpotLightNode.hpp"
 #include "nodes/PointLightNode.hpp"
 #include "Sparkling.hpp"
 #include "ISparkLightNode.hpp"
@@ -16,6 +17,7 @@
 #include "camera/PerspectiveCamera.hpp"
 #include "ISparkPointLightNode.hpp"
 #include "renderer/lightbuffer/GPUDirectionalLight.hpp"
+#include "renderer/lightbuffer/GPUSpotLight.hpp"
 #include "renderer/lightbuffer/GPUPointLight.hpp"
 #include "ISparkShadowMapFactory.hpp"
 
@@ -61,6 +63,7 @@ namespace spark::scene {
 
         // Light
         spark::scene::nodes::ISparkDirectionalLightNode* createDirectionalLightNode();
+        spark::scene::nodes::ISparkSpotLightNode* createSpotLightNode();
         spark::scene::nodes::ISparkPointLightNode* createPointLightNode();
 
     private:

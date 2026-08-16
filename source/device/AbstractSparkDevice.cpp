@@ -224,7 +224,7 @@ namespace spark::device {
         if (m_activeCanvas != NULL)
         {
             m_activeCanvas->init();
-#ifdef EMSCRIPTEN						
+#ifdef __EMSCRIPTEN__						
             emscripten_set_main_loop(setEmscriptenMainLoop, 0, 1);
 #else
             while (isDeviceRunning())

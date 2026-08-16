@@ -27,6 +27,7 @@ namespace spark::renderer::lightbuffer {
         void uploadLights(
             spark::renderer::shader::ISparkShader* shader,
             std::vector<renderer::lightbuffer::GPUDirectionalLight>& gpuDirectionalLights,
+            std::vector<renderer::lightbuffer::GPUSpotLight>& gpuSpotLights,
             std::vector<renderer::lightbuffer::GPUPointLight>& gpuPointLights);
     };
 }

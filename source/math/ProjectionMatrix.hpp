@@ -1,8 +1,8 @@
 #ifndef __SPARK_MATH_PROJECTION_HPP_INCLUDED__
 #define __SPARK_MATH_PROJECTION_HPP_INCLUDED__
 
-#define USE_DIRECTX_PERSPECTIVE
-#define PI 3.14159265358979323846
+#define USE_GLU_PERSPECTIVE
+#define PI 3.14159265358979323846f
 
 #include <cstring>
 
@@ -38,15 +38,15 @@ namespace spark::math {
 
 #ifdef USE_GLU_PERSPECTIVE		
             real32 sine, cotangent, deltaZ;
-            real32 radians = fovy / 2 * PI / 180;
+            real32 radians = fovy / 2.0f * PI / 180.0f;
 
             deltaZ = zFar - zNear;
-            sine = sin(radians);
+            sine = (real32)sin(radians);
             if ((deltaZ == 0) || (sine == 0) || (aspect == 0))
             {
                 return;
             }
-            cotangent = cos(radians) / sine;
+            cotangent = (real32)cos(radians) / sine;
 
             m[0][0] = cotangent / aspect;
             m[1][1] = cotangent;

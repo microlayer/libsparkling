@@ -38,5 +38,6 @@
 * @brief GPU
 */
 #define MAX_DIR_LIGHTS              4
-#define MAX_POINT_LIGHTS            64
+#define MAX_SPOT_LIGHTS             4
+#define MAX_POINT_LIGHTS            4
 #endif

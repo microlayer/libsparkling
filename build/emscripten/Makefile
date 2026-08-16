@@ -43,7 +43,7 @@ IDIRINCLUDE  	:= ../../include
 IDIRSOURCE 	+= ../../source
 IDIRLIBS 	+= ../../lib
 
-CC=emcc
+CC=em++
 CFLAGS=-I$(IDIRINCLUDE) -I$(IDIRSOURCE) -I$(IDIRLIBS) -D__WEBGL__ -Wno-write-strings -std=c++17
 EMFLAGS=-s FETCH=1 -lwebsocket.js -s PROXY_POSIX_SOCKETS=1 -s SOCKET_DEBUG=1
 LDFLAGS=
@@ -61,7 +61,7 @@ WASM=-s WASM=0
 
 # Link bitcode of lib projects 'emcc foo.bc -o bar.html ...'
 sparkling:$(LIBSPARKLING_SRC_FILES) 
-	emcc ../../lib/lodepng/build/emscripten/lodepng.bc ../../lib/tinyxml2/build/emscripten/tinyxml2.bc ../../lib/box2d/build/emscripten/build/box2d.bc -o libsparkling_emscripten.html $(LIBSPARKLING_SRC_FILES) $(CFLAGS) $(EMFLAGS) $(OGLSUPPORT) $(OPTIMIZERFLAGS) $(EXCEPTIONS) $(WASM) $(MEMORY) -s MODULARIZE=0 --embed-file ../../res@
+	em++ ../../lib/lodepng/build/emscripten/lodepng.bc ../../lib/tinyxml2/build/emscripten/tinyxml2.bc ../../lib/box2d/build/emscripten/build/box2d.bc -o libsparkling_emscripten.html $(LIBSPARKLING_SRC_FILES) $(CFLAGS) $(EMFLAGS) $(OGLSUPPORT) $(OPTIMIZERFLAGS) $(EXCEPTIONS) $(WASM) $(MEMORY) -s MODULARIZE=0 --embed-file ../../res@
 
 clean:
     # TODO

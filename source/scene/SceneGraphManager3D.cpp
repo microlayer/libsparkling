@@ -158,6 +158,7 @@ namespace spark::scene {
         if (m_lights.size() > 0)
         {
             std::vector<renderer::lightbuffer::GPUDirectionalLight> gpuDirectionalLights;
+            std::vector<renderer::lightbuffer::GPUSpotLight> gpuSpotLights;
             std::vector<renderer::lightbuffer::GPUPointLight> gpuPointLights;
 
             for (auto* light : m_lights)
@@ -168,6 +169,7 @@ namespace spark::scene {
                 {
                     renderer::lightbuffer::GPUDirectionalLight gpuDirectionalLight;
                     spark::scene::nodes::ISparkDirectionalLightNode* l = dynamic_cast<spark::scene::nodes::ISparkDirectionalLightNode*>(light);
+
                     gpuDirectionalLight.color = l->getLightColor();
                     gpuDirectionalLight.direction = l->getDirection();
                     gpuDirectionalLight.intensity = l->getIntesity();
@@ -175,10 +177,27 @@ namespace spark::scene {
                     gpuDirectionalLights.push_back(gpuDirectionalLight);
                     break;
                 }
+                case spark::scene::nodes::LightType::Spot:
+                {
+                    renderer::lightbuffer::GPUSpotLight gpuSpotLight;
+                    spark::scene::nodes::ISparkSpotLightNode* l = dynamic_cast<spark::scene::nodes::ISparkSpotLightNode*>(light);
+
+                    gpuSpotLight.position = l->getPosition();
+                    gpuSpotLight.direction = l->getDirection();
+                    gpuSpotLight.color = l->getLightColor();
+                    gpuSpotLight.intensity = l->getIntesity();
+                    gpuSpotLight.range = l->getRange();
+                    gpuSpotLight.angle = l->getAngel();
+
+                    gpuSpotLights.push_back(gpuSpotLight);
+                    break;
+                }
+
                 case spark::scene::nodes::LightType::Point:
                 {
                     renderer::lightbuffer::GPUPointLight gpuPointLight;
                     spark::scene::nodes::ISparkPointLightNode* l = dynamic_cast<spark::scene::nodes::ISparkPointLightNode*>(light);
+
                     gpuPointLight.position = l->getPosition();
                     gpuPointLight.color = l->getLightColor();
                     gpuPointLight.intensity = l->getIntesity();
@@ -190,7 +209,7 @@ namespace spark::scene {
                 }
             }
 
-            m_renderer->uploadLights(gpuDirectionalLights, gpuPointLights);
+            m_renderer->uploadLights(gpuDirectionalLights, gpuSpotLights, gpuPointLights);
         }
     }
 
@@ -269,6 +288,20 @@ namespace spark::scene {
     spark::scene::nodes::ISparkDirectionalLightNode* SceneGraphManager3D::createDirectionalLightNode()
     {
         auto* light = new spark::scene::nodes::DirectionalLightNode();
+
+        if (light->castsShadows())
+        {
+            light->setShadowMap(m_shadowMapFactory->create(2048, 2048));
+        }
+        return light;
+    }
+
+    /**
+    *
+    */
+    spark::scene::nodes::ISparkSpotLightNode* SceneGraphManager3D::createSpotLightNode()
+    {
+        auto* light = new spark::scene::nodes::SpotLightNode();
 
         if (light->castsShadows())
         {

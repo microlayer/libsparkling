@@ -36,6 +36,7 @@ namespace spark::renderer {
     public: // Light
         void uploadLights(
             std::vector<renderer::lightbuffer::GPUDirectionalLight> gpuDirectionalLights,
+            std::vector<renderer::lightbuffer::GPUSpotLight> gpuSpotLights,
             std::vector<renderer::lightbuffer::GPUPointLight> gpuPointLights);
 
     public:

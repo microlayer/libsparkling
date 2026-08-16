@@ -32,16 +32,22 @@ namespace spark::renderer::lightbuffer {
     void OGLLightBuffer::uploadLights(
         spark::renderer::shader::ISparkShader* shader,
         std::vector<renderer::lightbuffer::GPUDirectionalLight>& gpuDirectionalLights,
+        std::vector<renderer::lightbuffer::GPUSpotLight>& gpuSpotLights,
         std::vector<renderer::lightbuffer::GPUPointLight>& gpuPointLights)
     {
         spark::renderer::lightbuffer::GPULightBuffer lightBuffer{};
 
         lightBuffer.directionalLightCount = std::min(gpuDirectionalLights.size(), static_cast<size_t>(MAX_DIR_LIGHTS));
+        lightBuffer.spotLightCount = std::min(gpuSpotLights.size(), static_cast<size_t>(MAX_SPOT_LIGHTS));
         lightBuffer.pointLightCount = std::min(gpuPointLights.size(), static_cast<size_t>(MAX_POINT_LIGHTS));
 
         memcpy(
             lightBuffer.directionalLights, gpuDirectionalLights.data(),
             lightBuffer.directionalLightCount * sizeof(GPUDirectionalLight));
+
+        memcpy(
+            lightBuffer.spotLights, gpuSpotLights.data(),
+            lightBuffer.spotLightCount * sizeof(GPUSpotLight));
 
         memcpy(lightBuffer.pointLights, gpuPointLights.data(),
             lightBuffer.pointLightCount * sizeof(GPUPointLight));

@@ -20,6 +20,14 @@ uniform vec3 uDirectionalLightDirection[4];
 uniform vec3 uDirectionalLightColor[4];
 uniform float uDirectionalLightIntensity[4];
 
+uniform int uSpotLightCount;
+uniform vec3 uSpotLightPosition[4];
+uniform vec3 uSpotLightDirection[4];
+uniform vec3 uSpotLightColor[4];
+uniform float uSpotLightRange[4];
+uniform float uSpotLightAngle[4];
+uniform float uSpotLightIntensity[4];
+
 uniform int uPointLightCount;
 uniform vec3 uPointLightPosition[4];
 uniform vec3 uPointLightColor[4];
@@ -139,6 +147,42 @@ void main()
                 uDirectionalLightColor[i] * 
                 uDirectionalLightIntensity[i] * 
                 NdotL * (1.0 - shadow);
+
+            result += diffuse;
+        }
+
+        // Add Spot Lights
+        for (int i = 0; i < uSpotLightCount; ++i)
+        {
+            vec3 N = normalize(vertexNormal);
+
+            vec3 lightDir = uSpotLightPosition[i] - fragPosition;
+
+            float dist = length(lightDir);
+            lightDir = normalize(lightDir);
+
+            float NdotL = max(dot(N, lightDir), 0.0);
+
+            // Distance attenuation
+            float rangeFactor = 1.0 - smoothstep(0.0, uSpotLightRange[i], dist);
+            float attenuation = 0.8 / (dist * dist) * rangeFactor;
+
+            // Spot cone
+            vec3 spotDirection = normalize(uSpotLightDirection[i]);
+
+            float theta = dot(-lightDir, spotDirection);
+            float cutoff = cos(uSpotLightAngle[i]);
+
+            float spotFactor = theta >= cutoff ? 1.0 : 0.0;
+
+            vec3 diffuse =
+                albedo *
+                uSpotLightColor[i] *
+                uSpotLightIntensity[i] *
+                NdotL *
+                attenuation *
+                spotFactor *
+                (1.0 - shadow);
 
             result += diffuse;
         }

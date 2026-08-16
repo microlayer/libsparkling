@@ -48,16 +48,26 @@ public:
         //directionalLightNode->setPosition(spark::math::Vector3f(0, -1, 0)); // Not needed in directional light
         directionalLightNode->setIntensity(1);
         directionalLightNode->setLightColor(spark::drawing::Color(0, 0, 0, 0));
-        directionalLightNode->setDirection(spark::math::Vector3f(-1, -1, 0));
+        directionalLightNode->setDirection(spark::math::Vector3f(0, -1, 0));
+
+        // Create Spot-Light
+        spark::SparkSharedPointer<spark::scene::nodes::ISparkSpotLightNode> spotLightNode = m_sceneGraphManager3D->createSpotLightNode();
+        spotLightNode->setPosition(spark::math::Vector3f(1, 1, 0));
+        spotLightNode->setDirection(spark::math::Vector3f(0, -1, 0));
+        spotLightNode->setLightColor(spark::drawing::Color(255, 255, 255, 255));
+        spotLightNode->setIntensity(2.0);
+        spotLightNode->setAngle(60);
+        spotLightNode->setRange(3);
 
         // Create Point-Light
         spark::SparkSharedPointer<spark::scene::nodes::ISparkPointLightNode> pointLightNode = m_sceneGraphManager3D->createPointLightNode();
         pointLightNode->setPosition(spark::math::Vector3f(0, 1, 0));
-        pointLightNode->setIntensity(2);
+        pointLightNode->setIntensity(1);
         pointLightNode->setLightColor(spark::drawing::Color(255, 255, 255, 255));
         pointLightNode->setRange(2.0);
 
         m_sceneGraphManager3D->addLight(directionalLightNode.get());
+        m_sceneGraphManager3D->addLight(spotLightNode.get());
         m_sceneGraphManager3D->addLight(pointLightNode.get());
 
         m_sceneGraphManager3D->rootNode()->addChildSceneNode(node1.get());

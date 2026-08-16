@@ -5,6 +5,7 @@
 #include "scene/nodes/SceneNode.hpp"
 #include "ISparkCoordinateSystemNode.hpp"
 #include "ISparkDirectionalLightNode.hpp"
+#include "ISparkSpotLightNode.hpp"
 #include "ISparkPointLightNode.hpp"
 #include "ISparkMeshSceneNode.hpp"
 #include "ISparkPointCloudSceneNode.hpp"
@@ -30,6 +31,7 @@ namespace spark::scene {
 
         // Light
         virtual spark::scene::nodes::ISparkDirectionalLightNode* createDirectionalLightNode() = 0;
+        virtual spark::scene::nodes::ISparkSpotLightNode* createSpotLightNode() = 0;
         virtual spark::scene::nodes::ISparkPointLightNode* createPointLightNode() = 0;
     };
 }

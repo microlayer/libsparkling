@@ -277,6 +277,7 @@
     <ClCompile Include="..\..\source\scene\nodes\PointCloudSceneNode.cpp" />
     <ClCompile Include="..\..\source\scene\nodes\PointLightNode.cpp" />
     <ClCompile Include="..\..\source\scene\nodes\SceneNode.cpp" />
+    <ClCompile Include="..\..\source\scene\nodes\SpotLightNode.cpp" />
     <ClCompile Include="..\..\source\scene\SceneGraphManager2D.cpp" />
     <ClCompile Include="..\..\source\scene\SceneGraphManager3D.cpp" />
     <ClCompile Include="..\..\source\spark\Sparkling.cpp" />
@@ -407,6 +408,7 @@
     <ClInclude Include="..\..\source\renderer\lightbuffer\GPUDirectionalLight.hpp" />
     <ClInclude Include="..\..\source\renderer\lightbuffer\GPULightBuffer.hpp" />
     <ClInclude Include="..\..\source\renderer\lightbuffer\GPUPointLight.hpp" />
+    <ClInclude Include="..\..\source\renderer\lightbuffer\GPUSpotLight.hpp" />
     <ClInclude Include="..\..\source\renderer\lightbuffer\OGLLightBuffer.hpp" />
     <ClInclude Include="..\..\source\renderer\OpenGLES3Renderer.hpp" />
     <ClInclude Include="..\..\source\renderer\OpenGLFLES3Renderer.hpp" />
@@ -430,6 +432,7 @@
     <ClInclude Include="..\..\source\scene\nodes\PointCloudSceneNode.hpp" />
     <ClInclude Include="..\..\source\scene\nodes\PointLightNode.hpp" />
     <ClInclude Include="..\..\source\scene\nodes\SceneNode.hpp" />
+    <ClInclude Include="..\..\source\scene\nodes\SpotLightNode.hpp" />
     <ClInclude Include="..\..\source\scene\SceneGraphManager2D.hpp" />
     <ClInclude Include="..\..\source\scene\SceneGraphManager3D.hpp" />
     <ClInclude Include="..\..\source\spark\SparkCompilerConfig.hpp" />

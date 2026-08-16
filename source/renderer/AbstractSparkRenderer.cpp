@@ -58,9 +58,10 @@ namespace spark {
         */
         void AbstractSparkRenderer::uploadLights(
             std::vector<renderer::lightbuffer::GPUDirectionalLight> gpuDirectionalLights,
+            std::vector<renderer::lightbuffer::GPUSpotLight> gpuSpotLights,
             std::vector<renderer::lightbuffer::GPUPointLight> gpuPointLights)
         {
-            m_lightBuffer->uploadLights(m_shader, gpuDirectionalLights, gpuPointLights);
+            m_lightBuffer->uploadLights(m_shader, gpuDirectionalLights, gpuSpotLights, gpuPointLights);
         }
 
         /**

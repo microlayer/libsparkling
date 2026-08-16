@@ -21,6 +21,7 @@
 #include "ISparkPointCloud.hpp"
 #include "ISparkPerspectiveCamera.hpp"
 #include "renderer/lightbuffer/GPUDirectionalLight.hpp"
+#include "renderer/lightbuffer/GPUSpotLight.hpp"
 #include "renderer/lightbuffer/GPUPointLight.hpp"
 
 namespace spark {
@@ -88,6 +89,7 @@ namespace spark::renderer {
         virtual void setDrawMode(uint32_t drawMode) = 0;
         virtual void uploadLights(
             std::vector<renderer::lightbuffer::GPUDirectionalLight> gpuDirectionalLights,
+            std::vector<renderer::lightbuffer::GPUSpotLight> gpuSpotLights,
             std::vector<renderer::lightbuffer::GPUPointLight> gpuPointLights) = 0;
 
         // Depth-Test

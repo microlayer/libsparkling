@@ -12,6 +12,7 @@ namespace spark::scene::nodes {
     enum class LightType
     {
         Directional,
+        Spot,
         Point
     };
 

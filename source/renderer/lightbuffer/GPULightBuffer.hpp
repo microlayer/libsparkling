@@ -3,6 +3,7 @@
 
 #include "spark/SparkLibConfig.hpp"
 #include "GPUDirectionalLight.hpp"
+#include "GPUSpotLight.hpp"
 #include "GPUPointLight.hpp"
 
 namespace spark::renderer::lightbuffer {
@@ -12,9 +13,11 @@ namespace spark::renderer::lightbuffer {
     struct GPULightBuffer
     {
         uint32_t directionalLightCount;
+        uint32_t spotLightCount;
         uint32_t pointLightCount;
 
         GPUDirectionalLight directionalLights[MAX_DIR_LIGHTS];
+        GPUSpotLight spotLights[MAX_SPOT_LIGHTS];
         GPUPointLight pointLights[MAX_POINT_LIGHTS];
     };
 }

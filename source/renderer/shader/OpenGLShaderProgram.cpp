@@ -212,12 +212,20 @@ namespace spark::renderer::shader {
         GLint locDirectionallLightColors = glGetUniformLocation(m_programObject, "uDirectionalLightColor");
         GLint locDirectionallLightIntensitys = glGetUniformLocation(m_programObject, "uDirectionalLightIntensity");
 
+        GLint locSpotLightCount = glGetUniformLocation(m_programObject, "uSpotLightCount");
+        GLint locSpotLightPositions = glGetUniformLocation(m_programObject, "uSpotLightPosition");
+        GLint locSpotLightDirections = glGetUniformLocation(m_programObject, "uSpotLightDirection");
+        GLint locSpotLightColors = glGetUniformLocation(m_programObject, "uSpotLightColor");
+        GLint locSpotLightIntensitys = glGetUniformLocation(m_programObject, "uSpotLightIntensity");
+        GLint locSpotLightRanges = glGetUniformLocation(m_programObject, "uSpotLightRange");
+        GLint locSpotLightAngles = glGetUniformLocation(m_programObject, "uSpotLightAngle");
+
 
         GLint locPointLightCount = glGetUniformLocation(m_programObject, "uPointLightCount");
-        GLint locPointlLightPositions = glGetUniformLocation(m_programObject, "uPointLightPosition");
-        GLint locPointlLightColors = glGetUniformLocation(m_programObject, "uPointLightColor");
-        GLint locPointlLightIntensitys = glGetUniformLocation(m_programObject, "uPointLightIntensity");
-        GLint locPointlLightRanges = glGetUniformLocation(m_programObject, "uPointLightRange");
+        GLint locPointLightPositions = glGetUniformLocation(m_programObject, "uPointLightPosition");
+        GLint locPointLightColors = glGetUniformLocation(m_programObject, "uPointLightColor");
+        GLint locPointLightIntensitys = glGetUniformLocation(m_programObject, "uPointLightIntensity");
+        GLint locPointLightRanges = glGetUniformLocation(m_programObject, "uPointLightRange");
 
         int directionalLightCount = std::min(static_cast<int>(lightBuffer.directionalLightCount), 4);
         if (locDirectionalLightCount != -1) glUniform1i(locDirectionalLightCount, directionalLightCount);
@@ -248,6 +256,47 @@ namespace spark::renderer::shader {
             if (locDirectionallLightIntensitys != -1) glUniform1fv(locDirectionallLightIntensitys, directionalLightCount, intensities);
         }
 
+        int spotLightCount = std::min(static_cast<int>(lightBuffer.spotLightCount), 4);
+        if (locSpotLightCount != -1) glUniform1i(locSpotLightCount, spotLightCount);
+
+        if (spotLightCount > 0)
+        {
+            real32 positions[4 * 3] = { 0.0f };
+            real32 directions[4 * 3] = { 0.0f };
+            real32 colors[4 * 3] = { 0.0f };
+            real32 intensities[4] = { 0.0f };
+            real32 ranges[4] = { 0.0f };
+            real32 angles[4] = { 0.0f };
+
+            for (int i = 0; i < spotLightCount; ++i)
+            {
+                const auto& light = lightBuffer.spotLights[i];
+
+                positions[i * 3 + 0] = light.position.m_x;
+                positions[i * 3 + 1] = light.position.m_y;
+                positions[i * 3 + 2] = light.position.m_z;
+
+                directions[i * 3 + 0] = light.direction.m_x;
+                directions[i * 3 + 1] = light.direction.m_y;
+                directions[i * 3 + 2] = light.direction.m_z;
+
+                colors[i * 3 + 0] = (real32)light.color.m_redf;
+                colors[i * 3 + 1] = (real32)light.color.m_greenf;
+                colors[i * 3 + 2] = (real32)light.color.m_bluef;
+
+                intensities[i] = light.intensity;
+                ranges[i] = light.range;
+                angles[i] = light.angle;
+            }
+
+            if (locSpotLightPositions != -1)  glUniform3fv(locSpotLightPositions, spotLightCount, positions);
+            if (locSpotLightDirections != -1) glUniform3fv(locSpotLightDirections, spotLightCount, directions);
+            if (locSpotLightColors != -1)     glUniform3fv(locSpotLightColors, spotLightCount, colors);
+            if (locSpotLightIntensitys != -1) glUniform1fv(locSpotLightIntensitys, spotLightCount, intensities);
+            if (locSpotLightRanges != -1)     glUniform1fv(locSpotLightRanges, spotLightCount, ranges);
+            if (locSpotLightAngles != -1)     glUniform1fv(locSpotLightAngles, spotLightCount, angles);
+        }
+
         int pointLightCount = std::min(static_cast<int>(lightBuffer.pointLightCount), 4);
         if (locPointLightCount != -1) glUniform1i(locPointLightCount, pointLightCount);
 
@@ -274,10 +323,10 @@ namespace spark::renderer::shader {
                 ranges[i] = light.range;
             }
 
-            if (locPointlLightPositions != -1)  glUniform3fv(locPointlLightPositions, pointLightCount, positions);
-            if (locPointlLightColors != -1)     glUniform3fv(locPointlLightColors, pointLightCount, colors);
-            if (locPointlLightIntensitys != -1) glUniform1fv(locPointlLightIntensitys, pointLightCount, intensities);
-            if (locPointlLightRanges != -1)     glUniform1fv(locPointlLightRanges, pointLightCount, ranges);
+            if (locPointLightPositions != -1)  glUniform3fv(locPointLightPositions, pointLightCount, positions);
+            if (locPointLightColors != -1)     glUniform3fv(locPointLightColors, pointLightCount, colors);
+            if (locPointLightIntensitys != -1) glUniform1fv(locPointLightIntensitys, pointLightCount, intensities);
+            if (locPointLightRanges != -1)     glUniform1fv(locPointLightRanges, pointLightCount, ranges);
         }
     }
 

@@ -25,7 +25,14 @@ public:
 
         // Create SceneNode
         spark::SparkSharedPointer<spark::scene::nodes::ISparkMeshSceneNode> node = m_sceneGraphManager3D->createMeshSceneNode();
-        node->setPosition(spark::math::Vector3f(0, 0, -0));
+
+        // Clipping Test
+        // zNear  = 0.1 
+        // near plane is at z: 5.67 - 0.1 = 5.57
+        // (0,0,5.570) = on near plane (z fighting)
+        // (0,0,5.565) = visible
+        // (0,0,5.575) = clipped
+        node->setPosition(spark::math::Vector3f(0, 0, 0));
         node->setRotation(spark::math::Vector3f(1.57f, 0, -0));
         node->setMesh(planeMesh.get());
 
